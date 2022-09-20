@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\title{Problem Statement and Goals\\\progname}
+
+\author{\authname}
+
+\date{}
+
+\input{Comments.tex}
+\input{Common.tex}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+September 25th & N/A & Initial documentation\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\section{Problem Statement}
+
+\subsection{Motivation Problem}
+
+Dr. Luciana Macedo investigates treatment strategies for elders with  lumbar spinal disorders (LSS), particularly focused on Ecological Momentary Assessment (EMA). EMA aims to study the thoughts, experiences, and behaviours of patients' daily lives by repeatedly collecting data in their day-to-day environment, at or close to the time they carry out that particular behaviour.\\
+
+Since Dr. Macedo's EMA work is focused on analyzing the daily activities and symptoms of mostly-elderly people with mobility issues, her solution needs to capture their slow and subtle movements. In order to accomplish this, she and her students have attempted to use various smart-watch-esque activity tracking devices along with various software applications to prompt their patients with questions. However, they have been frustrated with very limited success.\\
+
+Their current system works on a time-based prompt-system, asking questions at regular intervals throughout the day. This isn't as useful, as they are rather interested in the experiences of their patients when certain events or triggers happen. In addition, all of her data collection methods are heavily segregated and inefficient. In order to report their symptoms, a patient must input their answers into a smart watch, a mobile app, a website, etc. According to Dr. Macedo, this is not quite user-friendly especially when it comes to a group of elderly patients, and incredibly annoying and difficult for a researcher to analyze the gathered data. Importantly, the existing commercial products are designed to capture the activities of healthy and active people, which contrasts with what she is trying to caputre: shuffling, limping, slower walking, etc.\\
+
+This solution device would have to capture the subtle and slow movement of elderly patience with lumbar spinal stenosis (LSS) and prompt them with pre-determined questions when they stop or make certain type of  movements. It will then have to collect and send those data back to Dr. Macedo for her analysis.
+
+\subsection{Inputs and Outputs}
+
+\textbf{[Inputs]}
+\begin{itemize}
+\item Patient's movements
+\item Self responses to given prompt questions
+\end{itemize}
+
+\textbf{[Outputs]}
+\begin{itemize}
+\item Data points
+\item User-friendly graphs for interpretation
+\end{itemize}
+
+\subsection{Stakeholders}
+
+- Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
+
+\subsection{Environment}
+\wss{Hardware and software}
+
+\subsection{Constraints}
+Medical constraints.
+
+\section{Base Goals}
+
+\section{Stretch Goals}
+
+\end{document}
