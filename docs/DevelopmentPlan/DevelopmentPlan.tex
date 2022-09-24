@@ -55,9 +55,22 @@ For any documentation, team members are not required to put in a merge request. 
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+Ultimately, the risks for the success of our project lie within the software that we design. The hardware component in which we collect data will be designed with a relatively simplistic plug-and-play approach in the goal of feeding data to our software component. We aim to use as many off-the-shelf components and sensors as possible to reduce development overhead and the many possible problems that developing a complex electromechanic system from scratch can involve.\\
+
+Our software system will be the lynchpin of our project. Its goal will be to take the various events that are relevant to Ecological Momentary Assessment (EMA) that the hardware component detects and handle them accordingly. This will involve logging timestamps, locations, environmental factors, and other momentary information, and prompting the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and momentary data, and will send off the data to the team of physicians handling this person's EMA.\\
+
+If we find that the hardware component of our system is incapable of sending data to our software and handling output from our software, continuing with our project involves finding a new method of sensing the user's movement, survey answers, and other relevant data and displaying processed information in return. If we find that the software component of our system is incapable of responding to data input from our hardware, processing said data, and returning meaningful results, then the goal of our entire project is rendered moot.\\
+
+Our goal for our proof of concept demo will be to demonstrate a functional EMA-enabled software system that can respond to events relevant to EMA, and respond accordingly. This software system will be run locally on one of our team member's computers. It will be capable of:\\
+
+\begin{itemize}
+\item Accepting input in the form of momentary data from events that are triggered as a simulation of real EMA events (such as limps, falls, strange movement patterns, etc.)
+\item Prompting the user to answer relevant self-survey questions
+\item Processing the inbound EMA and survey data and producing results meaningful to the physicians responsible for the user's EMA
+\item Producing graphical representations of said EMA data
+\item Sending the processed data and representations to the physicians responsible for the user's EMA
+\item Notifying the user about relevant information as a result of processing data (confirmations that data has been sent, recommendations for activity or rest, etc.)
+\end{itemize}
 
 \section{Technology}
 The following tools shall be used for development in software, embedded systems as well as any support platforms in the system:
