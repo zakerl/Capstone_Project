@@ -60,21 +60,60 @@ demonstrate during your proof of concept demonstration to convince yourself that
 you will be able to overcome this risk?
 
 \section{Technology}
+The following tools shall be used for development in software, embedded systems as well as any support platforms in the system:
 
+\begin{enumerate}
+\item Programming languages:
 \begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
+\item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
+\end{itemize}
+\begin{itemize}
+\item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
+\end{itemize}
+\begin{itemize}
+\item C\# will be used the team decides to use Unity to create parts of the product.
+\end{itemize}
+\item Platforms for development 
+\begin{itemize}
+\item VS code will be used for code-based development.
+\item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc)
+\item Autodesk Inventor may be used for creating models for the device and finishing product.
+\end{itemize}
+\item Version control platforms
+\begin{itemize}
+\item GitHub will be used for version control for development purposes and general group activity tracking 
+\item GitLab will be used for version control (collaborative) with McMaster University.
+\end{itemize}
+\item Document generation
+\begin{itemize}
+\item Latex will be used for generating documentation. TeX distributions that will be used amongst the collaborators are  Texmaker, TeXworks, MikteX and VScode Latex extension.
+\end{itemize}
 \item Investigation of code coverage measuring tools
 \item Specific plans for Continuous Integration (CI), or an explanation that CI
   is not being done
 \item Specific performance measuring tools (like Valgrind), if
   appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
+\item Libraries to use
+\begin{itemize}
+\item OpenCV: Open Source computer vision library capable of performing image and video manipulation.
+\item Numpy, pandas: Libraries with Python for number and matrix computation/manipulation.
+\item HAL libraries: Should we pursue using an ARM architecture chip, the HAL libraries will allow for ease of coding.
+\item tkinter: Default python UI library.
+\item Several Arduino Sensor libraries to use for interacting with accelerators and other wireless modules.
 \end{itemize}
+\item Tools you will likely be using?
+\end{enumerate}
 
 \section{Coding Standard}
+\begin{enumerate}
+\item Python:
+\begin{itemize} 
+\item Code development will closely follow the Google Python Style Guide as a list for do's and don'ts for Python programs
+\item For inline code documentation, Google style doc-strings will be followed for commenting.
+\item Pylint will be used as a linter for code development. This linter can be used as an extension to VS code while developing and debugging code.
+\end{itemize}
+\item C: lint will be used as a linter when programming in C for development and debugging purposes.
+\end{enumerate}
 
 \section{Project Scheduling}
 
