@@ -2,11 +2,12 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
 
 \title{Development Plan\\\progname}
 
 \author{\authname}
-
+\setlength\parindent{0pt}
 \date{}
 
 \input{../Comments}
@@ -20,9 +21,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+September 26 & N/A & Initial documentation\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -34,44 +33,126 @@ Date2 & Name(s) & Description of changes\\
 \wss{Put your introductory blurb here.}
 
 \section{Team Meeting Plan}
+Weekly meetings to be held every Saturday at 8:00PM, and additional meetings to be planned as needed. Any meetings requiring the attendance of supervisor will have to be planned based on Dr. Macedo's availability each time. In cases of team members' absence, each absent team members are expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Team leaders are expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
 
 \section{Team Communication Plan}
+All main communication channel will be done through the Discord server, including all meetings. Secondary communication will be through Facebook group chat if necessary.\\
+
+The following is a screen shot of this team's Discord server:\\
+\begin{center}
+    \includegraphics{DiscordServer}
+\end{center}
 
 \section{Team Member Roles}
+The team will have 2 team leaders (co-leaders), Jonathan Hai and Jessica Bae will take this role. The responsibilities of team leaders are to organize meetings, record meeting notes, assign specific tasks to all team members, overlook deliverable deadlines, keep track of overall team project progress, and communicate with the TA, the professor, and the supervisor.\\
+
+The team will also have a Github leader, responsible for managing all technical Github merge requests and approving them. Labeeb Zaker will take on this role.\\
+
+The task of eviewing rubrics, and each subcomponents of the project will not be assigned to any specific member. These tasks are to be allocated to different members each time, to be decided as needed.\\
 
 \section{Workflow Plan}
-
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
+For any documentation, team members are not required to put in a merge request. For any technical commits, everyone is required to put in a merge request for the Github leader to review and approve. Trello will be used for project management purposes (non-technical tasks) and Github issue tracker will be used for technical tasks.\\
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+Ultimately, the risks for the success of our project lie within the software that we design. The hardware component in which we collect data will be designed with a relatively simplistic plug-and-play approach in the goal of feeding data to our software component. We aim to use as many off-the-shelf components and sensors as possible to reduce development overhead and the many possible problems that developing a complex electromechanic system from scratch can involve.\\
 
-\section{Technology}
+Our software system will be the lynchpin of our project. Its goal will be to take the various events that are relevant to Ecological Momentary Assessment (EMA) that the hardware component detects and handle them accordingly. This will involve logging timestamps, locations, environmental factors, and other momentary information, and prompting the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and momentary data, and will send off the data to the team of physicians handling this person's EMA.\\
+
+If we find that the hardware component of our system is incapable of sending data to our software and handling output from our software, continuing with our project involves finding a new method of sensing the user's movement, survey answers, and other relevant data and displaying processed information in return. If we find that the software component of our system is incapable of responding to data input from our hardware, processing said data, and returning meaningful results, then the goal of our entire project is rendered moot.\\
+
+Our goal for our proof of concept demo will be to demonstrate a functional EMA-enabled software system that can respond to events relevant to EMA, and respond accordingly. This software system will be run locally on one of our team member's computers. It will be capable of:\\
 
 \begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
+\item Accepting input in the form of momentary data from events that are triggered as a simulation of real EMA events (such as limps, falls, strange movement patterns, etc.)
+\item Prompting the user to answer relevant self-survey questions
+\item Processing the inbound EMA and survey data and producing results meaningful to the physicians responsible for the user's EMA
+\item Producing graphical representations of said EMA data
+\item Sending the processed data and representations to the physicians responsible for the user's EMA
+\item Notifying the user about relevant information as a result of processing data (confirmations that data has been sent, recommendations for activity or rest, etc.)
 \end{itemize}
 
+\section{Technology}
+The following tools shall be used for development in software, embedded systems as well as any support platforms in the system:
+
+\begin{enumerate}
+\item Programming languages:
+\begin{itemize}
+\item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
+\item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
+\item C\# will be used the team decides to use Unity to create parts of the product.
+\item SQL will be used for DBMS and storing data for activity-based tracking.
+\end{itemize}
+\item Platforms for development:
+\begin{itemize}
+\item VS code will be used for code-based development.
+\item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc).
+\item STM32Cube IDE for STM32 development. 
+\item Autodesk Inventor may be used for creating models for the device and finishing product.
+\item MySQL will be used as the platform for interacting with the Database.
+\end{itemize}
+\item Version control platforms:
+\begin{itemize}
+\item GitHub will be used for version control for development purposes and general group activity tracking.
+\item GitLab will be used for version control (collaborative) with McMaster University.
+\end{itemize}
+\item Document generation:
+\begin{itemize}
+\item Latex will be used for generating documentation. TeX distributions that will be used amongst the collaborators are  Texmaker, TeXworks, MikteX and VScode Latex extension.
+\end{itemize}
+\item Specific plans for Continuous Integration (CI), or an explanation that CI
+  is not being done
+\begin{itemize}
+\item CI will be used to block merge requests until all tests have been passed and approval has been given by atleast two members of the team. 
+\item This will speed up development by reducing the overall bugs introduced into the project.
+\end{itemize}
+\item Measuring tools for code:
+\begin{itemize}
+\item Coverage.py for measuring code coverage in Python and effectiveness of testing.
+\item Valgrind for efficient memory management.
+\item Bullseye coverage for C/C++.
+\end{itemize}
+\item Libraries to use:
+\begin{itemize}
+\item OpenCV: Open Source computer vision library capable of performing image and video manipulation.
+\item Numpy, pandas: Libraries with Python for number and matrix computation/manipulation.
+\item HAL libraries: Should we pursue using an ARM architecture chip, the HAL libraries will allow for ease of coding.
+\item tkinter: Default python UI library.
+\item Several Arduino Sensor libraries to use for interacting with accelerators and other wireless modules.
+\end{itemize}
+\item Tools to use for project:
+\begin{itemize}
+\item 3D printer and slicer tools for rapid prototyping.
+\item Soldering station and Glue Gun.
+\item Wood working tools (Hand Saws and Power Sanding ) if necessary.
+\end{itemize}
+\end{enumerate}
+
 \section{Coding Standard}
+\begin{enumerate}
+\item Python:
+\begin{itemize} 
+\item Code development will closely follow the Google Python Style Guide as a list for do's and don'ts for Python programs.
+\item For inline code documentation, Google style doc-strings will be followed for commenting.
+\item Pylint will be used as a linter for code development. This linter can be used as an extension to VS code while developing and debugging code.
+\end{itemize}
+\item C: lint will be used as a linter when programming in C for development and debugging purposes.
+\end{enumerate}
 
 \section{Project Scheduling}
 
-\wss{How will the project be scheduled?}
+\begin{enumerate}
+\item Master Project Schedule will be made with a list of all the deadlines, deliverables and Project Implementation tasks. Work will be done based on weekly sprints where tasks will be assigned to each member along with an estimated number of days needed to finish the task. This number is evaluated based on relative complexity of each task.\\
+
+\item Imposed deadline for all tasks are \textbf{two} days before the due date of the deliverable. On this day, the team will conduct a review of all the work done by the members and provide any feedback. The last day before the due date is reserved for making any final changes and small revisions. Moreover, the team will check the completed deliverable with the marking rubric.\\
+
+\item Every two weeks, a design overhaul will be conducted wherein the team will go through the previous parts of the project and update it with any changes made as a result of the current iteration of the project.\\
+\end{enumerate}
+
+
+
+
+
+
 
 \end{document}
