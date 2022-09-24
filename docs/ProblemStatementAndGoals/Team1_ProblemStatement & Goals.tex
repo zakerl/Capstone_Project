@@ -19,14 +19,14 @@
 \maketitle
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-September 25th & N/A & Initial documentation\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{TblRevisionHistory}
+    \begin{tabularx}{\textwidth}{llX}
+        \toprule
+        \textbf{Date}  & \textbf{Developer(s)} & \textbf{Change}       \\
+        \midrule
+        September 25th & N/A                   & Initial documentation \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \newpage
@@ -47,14 +47,17 @@ This solution device would have to capture the subtle and slow movement of elder
 
 \textbf{[Inputs]}
 \begin{itemize}
-\item Patient's movements
-\item Self responses to given prompt questions
+    \item Sensor data will be used as a trigger to start the EMA
+    \item User responses to the survey for data collection
+    \item Geolocation data of the user
 \end{itemize}
-
+\pagebreak
 \textbf{[Outputs]}
+\linebreak
+The output will be something that's useful for research and conclusion. This includes:
 \begin{itemize}
-\item Data points
-\item User-friendly graphs for interpretation
+    \item Graphically represented data that can be easily interpreted.
+    \item Specific numerical data of interest.
 \end{itemize}
 
 \subsection{Stakeholders}
@@ -65,8 +68,15 @@ This solution device would have to capture the subtle and slow movement of elder
 \wss{Hardware and software}
 
 \subsection{Constraints}
-Medical constraints.
-
+Constraints include:
+\begin{itemize}
+    \item Safety
+    \item Fail-safe
+    \item Offline useability
+    \item Portability
+    \item Strict data privacy (security)
+    \item Accurate timing; system is very sensitive to timing inaccuracies
+\end{itemize}
 \section{Base Goals}
 
 \section{Stretch Goals}
