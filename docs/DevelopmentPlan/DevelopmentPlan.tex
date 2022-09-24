@@ -66,34 +66,36 @@ The following tools shall be used for development in software, embedded systems 
 \item Programming languages:
 \begin{itemize}
 \item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
-\end{itemize}
-\begin{itemize}
 \item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
-\end{itemize}
-\begin{itemize}
 \item C\# will be used the team decides to use Unity to create parts of the product.
+\item SQL will be used for DBMS and storing data for activity-based tracking.
 \end{itemize}
-\item Platforms for development 
+\item Platforms for development:
 \begin{itemize}
 \item VS code will be used for code-based development.
-\item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc)
+\item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc).
+\item STM32Cube IDE for STM32 development. 
 \item Autodesk Inventor may be used for creating models for the device and finishing product.
+\item MySQL will be used as the platform for interacting with the Database.
 \end{itemize}
-\item Version control platforms
+\item Version control platforms:
 \begin{itemize}
-\item GitHub will be used for version control for development purposes and general group activity tracking 
+\item GitHub will be used for version control for development purposes and general group activity tracking.
 \item GitLab will be used for version control (collaborative) with McMaster University.
 \end{itemize}
-\item Document generation
+\item Document generation:
 \begin{itemize}
 \item Latex will be used for generating documentation. TeX distributions that will be used amongst the collaborators are  Texmaker, TeXworks, MikteX and VScode Latex extension.
 \end{itemize}
-\item Investigation of code coverage measuring tools
 \item Specific plans for Continuous Integration (CI), or an explanation that CI
   is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries to use
+\item Measuring tools for code:
+\begin{itemize}
+\item Coverage.py for measuring code coverage in Python and effectiveness of testing.
+\item Valgrind for efficient memory management.
+\item Bullseye coverage for C/C++.
+\end{itemize}
+\item Libraries to use:
 \begin{itemize}
 \item OpenCV: Open Source computer vision library capable of performing image and video manipulation.
 \item Numpy, pandas: Libraries with Python for number and matrix computation/manipulation.
@@ -101,14 +103,19 @@ The following tools shall be used for development in software, embedded systems 
 \item tkinter: Default python UI library.
 \item Several Arduino Sensor libraries to use for interacting with accelerators and other wireless modules.
 \end{itemize}
-\item Tools you will likely be using?
+\item Tools to use for project:
+\begin{itemize}
+\item 3D printer and slicer tools for rapid prototyping.
+\item Soldering station and Glue Gun.
+\item Wood working tools (Hand Saws and Power Sanding ) if necessary.
+\end{itemize}
 \end{enumerate}
 
 \section{Coding Standard}
 \begin{enumerate}
 \item Python:
 \begin{itemize} 
-\item Code development will closely follow the Google Python Style Guide as a list for do's and don'ts for Python programs
+\item Code development will closely follow the Google Python Style Guide as a list for do's and don'ts for Python programs.
 \item For inline code documentation, Google style doc-strings will be followed for commenting.
 \item Pylint will be used as a linter for code development. This linter can be used as an extension to VS code while developing and debugging code.
 \end{itemize}
@@ -117,11 +124,13 @@ The following tools shall be used for development in software, embedded systems 
 
 \section{Project Scheduling}
 
-Firstly, a Master Project Schedule will be made with a list of all the deadlines, deliverables and Project Implementation tasks. Work will be done based on weekly sprints where tasks will be assigned to each member along with an estimated number of days needed to finish the task. This number is evaluated based on relative complexity of each task.\\
+\begin{enumerate}
+\item Master Project Schedule will be made with a list of all the deadlines, deliverables and Project Implementation tasks. Work will be done based on weekly sprints where tasks will be assigned to each member along with an estimated number of days needed to finish the task. This number is evaluated based on relative complexity of each task.\\
 
-Secondly, the team imposed deadline for all tasks are \textbf{two} days before the due date of the deliverable. On this day, the team will conduct a review of all the work done by the members and provide any feedback. The last day before the due date is reserved for making any final changes and small revisions. Moreover, the team will check the completed deliverable with the marking rubric.\\
+\item Imposed deadline for all tasks are \textbf{two} days before the due date of the deliverable. On this day, the team will conduct a review of all the work done by the members and provide any feedback. The last day before the due date is reserved for making any final changes and small revisions. Moreover, the team will check the completed deliverable with the marking rubric.\\
 
-Finally, every two weeks, a design overhaul will be conducted wherein the team will go through the previous parts of the project and update it with any changes made as a result of the current iteration of the project.\\
+\item Every two weeks, a design overhaul will be conducted wherein the team will go through the previous parts of the project and update it with any changes made as a result of the current iteration of the project.\\
+\end{enumerate}
 
 
 
