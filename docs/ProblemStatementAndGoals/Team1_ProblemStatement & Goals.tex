@@ -1,7 +1,8 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -42,6 +43,11 @@ Since Dr. Macedo's EMA work is focused on analyzing the daily activities and sym
 Their current system works on a time-based prompt-system, asking questions at regular intervals throughout the day. This is not as useful, as they are rather interested in the experiences of their patients when certain events or triggers happen. In addition, all of her data collection methods are heavily segregated and inefficient. In order to report their symptoms, a patient must input their answers into a smart watch, a mobile app, a website, etc. According to Dr. Macedo, this is not quite user-friendly especially when it comes to a group of older adult patients, and incredibly annoying and difficult for a researcher to analyze the gathered data. Importantly, the existing commercial products are designed to capture the activities of healthy and active people, which contrasts with what she is trying to caputre: shuffling, limping, slower walking, etc.\\
 
 This solution device would have to capture the subtle and slow movement of older adult patients with lumbar spinal stenosis (LSS) and prompt them with pre-determined questions when they stop or make certain type of  movements. It will then have to collect and send those data back to Dr. Macedo for her analysis.
+<<<<<<< HEAD
+=======
+
+\pagebreak
+>>>>>>> 27853a6f4d7de5f7e1c8a7088d58e7cb66d21e9f
 
 \subsection{Inputs and Outputs}
 
@@ -50,7 +56,7 @@ This solution device would have to capture the subtle and slow movement of older
     \item Sensor data will be used as a trigger to start the EMA
     \item User responses to the survey for data collection
 \end{itemize}
-\pagebreak
+
 \textbf{[Outputs]}
 \linebreak
 The output will be something that's useful for research and conclusion. This includes:
@@ -76,7 +82,9 @@ Constraints include. All the numbers included are average and are subject to cha
     \item Accurate timing: System is very sensitive to timing inaccuracies, no \linebreak expected delays between detection and reporting.
     \item Battery Life: The device should be operable for a minimum of 7 days without having to charge or replace the battery, as this is the standard length for one EMA evaluation session.
 \end{itemize}
+
 \pagebreak
+
 \section{Base Goals}
 \begin{center}
     \begin{tabular}{ | m{7em} | m{32em}| }
@@ -88,7 +96,11 @@ Constraints include. All the numbers included are average and are subject to cha
         \hline
         Activity Based Prompting                            & The tracker should be able to prompt individuals when the activity monitoring system detects that a particular event has occurred, such as no movement after a period of movement.  Once prompted the individual will be asked to complete a Ecological Momentary Assessment (EMA) survey, in which they will be asked questions such as why they stopped moving, and if they are feeling any pain. Having a high visibile prompting system that includes audio and visual queues would be helpful in notifying participants that they should complete the EMA. This data will then be stored and used for further analysis. \\
         \hline
+<<<<<<< HEAD
         Battery Life                                     & A minimum battery life of one day will allow for daytime tracking and nighttime charging. This is a relatively standard practice with most smartphones and activty trackers. If a user has experienced using one of these devices the expectation of nightly charging would be something they are already used to. By not requiring the user to charge the device during the day there is a reduced likelihood of data collection disruptions due to charging.                                                                                                                                   \\
+=======
+        Battery Life                                     & A minimum battery life of 7 days will allow for daytime tracking for one session of EMA without forcing the user to charge the system. This is the standard length that most physicians say EMA occurs for. Ideally, the battery life will be 14 days, as this ensures that the device will be able to perform additional types of EMA and fit more situations. By not requiring the user to charge the device there is a reduced likelihood of data collection disruptions due to difficulties with the charging process.\\
+>>>>>>> 27853a6f4d7de5f7e1c8a7088d58e7cb66d21e9f
         \hline
         Highly Simplistic User Interface/Hardware design & The user base for this product will be the older adult population, some of whom many not use smartphones or smart activity trackers. Therefore, it is essential that the design of the user interface and hardware be intuitive to a person without a lot of experience using smart technology. This also improves the likelihood that a user will fill out the survery successfully and quickly when prompted to do so.                                                                                                                                                                         \\
         \hline
@@ -96,7 +108,9 @@ Constraints include. All the numbers included are average and are subject to cha
         \hline
     \end{tabular}
 \end{center}
+
 \pagebreak
+
 \section{Stretch Goals}
 \begin{center}
     \begin{tabular}{ | m{7em} | m{32em}| }
