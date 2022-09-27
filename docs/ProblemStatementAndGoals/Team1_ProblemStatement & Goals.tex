@@ -3,6 +3,8 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -25,7 +27,7 @@
         \toprule
         \textbf{Date}  & \textbf{Developer(s)} & \textbf{Change}       \\
         \midrule
-        September 25th & N/A                   & Initial documentation \\
+        September 26th &    N/A   & Initial documentation \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -42,22 +44,17 @@ Since Dr. Macedo's EMA work is focused on analyzing the daily activities and sym
 
 Their current system works on a time-based prompt-system, asking questions at regular intervals throughout the day. This is not as useful, as they are rather interested in the experiences of their patients when certain events or triggers happen. In addition, all of her data collection methods are heavily segregated and inefficient. In order to report their symptoms, a patient must input their answers into a smart watch, a mobile app, a website, etc. According to Dr. Macedo, this is not quite user-friendly especially when it comes to a group of older adult patients, and incredibly annoying and difficult for a researcher to analyze the gathered data. Importantly, the existing commercial products are designed to capture the activities of healthy and active people, which contrasts with what she is trying to caputre: shuffling, limping, slower walking, etc.\\
 
-This solution device would have to capture the subtle and slow movement of older adult patients with lumbar spinal stenosis (LSS) and prompt them with pre-determined questions when they stop or make certain type of  movements. It will then have to collect and send those data back to Dr. Macedo for her analysis.
-<<<<<<< HEAD
-=======
-
 \pagebreak
->>>>>>> 27853a6f4d7de5f7e1c8a7088d58e7cb66d21e9f
 
 \subsection{Inputs and Outputs}
 
 \textbf{[Inputs]}
 \begin{itemize}
-    \item Sensors will detect EMA relevant patient movement
-    \item User responses to the survey for data collection
+    \item Sensors will detect relevant patient movement.
+    \item User responses to the survey for data collection.
 \end{itemize}
 
-\textbf{[Outputs]}
+\textbf{[Outputs]} \\
 \linebreak
 The output will be something that's useful for research and conclusion. This includes:
 \begin{itemize}
@@ -68,15 +65,16 @@ The output will be something that's useful for research and conclusion. This inc
 
 \subsection{Stakeholders}
 
-- Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
+Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
 
 \subsection{Environment}
-\wss{Hardware and software}
+
+Covered in the Development Plan document.
 
 \subsection{Constraints}
-Constraints include. All the numbers included are average and are subject to change:
+Constraints include all the numbers included are average and are subject to change:
 \begin{itemize}
-    \item Safety: The device will be safe to use, limit any danger to the user.
+    \item Safety: The device will be safe to use.
     \item Weight: 60 grams. The device will be lightweight, so that it's portable and doesn't impact user's daily activities.
     \item Dimensions: 40mm long, and 34mm wide with a depth of 10.4 mm. A device of specified dimensions are very ergonomic and comfortable to wear.
     \item Accurate timing: System is very sensitive to timing inaccuracies, no \linebreak expected delays between detection and reporting.
@@ -97,15 +95,9 @@ Constraints include. All the numbers included are average and are subject to cha
         \hline
         Activity Based Prompting                            & The tracker should be able to prompt individuals when the activity monitoring system detects that a particular event has occurred, such as no movement after a period of movement.  Once prompted the individual will be asked to complete a Ecological Momentary Assessment (EMA) survey, in which they will be asked questions such as why they stopped moving, and if they are feeling any pain. Having a high visibile prompting system that includes audio and visual queues would be helpful in notifying participants that they should complete the EMA. This data will then be stored and used for further analysis. \\
         \hline
-<<<<<<< HEAD
-        Battery Life                                     & A minimum battery life of one day will allow for daytime tracking and nighttime charging. This is a relatively standard practice with most smartphones and activty trackers. If a user has experienced using one of these devices the expectation of nightly charging would be something they are already used to. By not requiring the user to charge the device during the day there is a reduced likelihood of data collection disruptions due to charging.                                                                                                                                   \\
-=======
-        Battery Life                                     & A minimum battery life of 7 days will allow for daytime tracking for one session of EMA without forcing the user to charge the system. This is the standard length that most physicians say EMA occurs for. Ideally, the battery life will be 14 days, as this ensures that the device will be able to perform additional types of EMA and fit more situations. By not requiring the user to charge the device there is a reduced likelihood of data collection disruptions due to difficulties with the charging process.\\
->>>>>>> 27853a6f4d7de5f7e1c8a7088d58e7cb66d21e9f
+        Highly \linebreak Simplistic User Interface and Hardware design & The user base for this product will be the older adult population, some of whom many not use smartphones or smart activity trackers. Therefore, it is essential that the design of the user interface and hardware be intuitive to a person without a lot of experience using smart technology. This also improves the likelihood that a user will fill out the survery successfully and quickly when prompted to do so.                                                                                                                                                                         \\
         \hline
-        Highly Simplistic User Interface/Hardware design & The user base for this product will be the older adult population, some of whom many not use smartphones or smart activity trackers. Therefore, it is essential that the design of the user interface and hardware be intuitive to a person without a lot of experience using smart technology. This also improves the likelihood that a user will fill out the survery successfully and quickly when prompted to do so.                                                                                                                                                                         \\
-        \hline
-        Meaningful Presentation of Data                   & The data will be processed into an easy to interepert graphical or image based format that can be used to interpert the collected data. This will be displayed to the user to provide feedback on the activities that have been tracked throughout the day. Feedback will allow the users to better understand their movements and keep them on track with their rehabilitation programs. In addition, the option to export the raw data collected during the EMA period will be available, as well as the processed versions of the data.                                                                                                                                                                                      \\
+        Relevant \linebreak Presentation of Data                   & The data will be processed into an easy to interepert graphical or image based format that can be used to interpert the collected data. This will be displayed to the user to provide feedback on the activities that have been tracked throughout the day. Feedback will allow the users to better understand their movements and keep them on track with their rehabilitation programs. In addition, the option to export the raw data collected during the EMA period will be available, as well as the processed versions of the data.                                                                                                                                                                                      \\
 	\hline
 	Customizeable Event Types and Thresholds			& Researchers will be able to customize the types of events that the device will detect and the thresholds that will activate them according to the needs of each individual EMA session and patient. Setting up the types of events to detect and their thresholds will be done before each monitoring period. The system will be configured in a way that will allow for a broad range of possible events to track, and will have many options to change properties of events and the types and levels of triggers for said events.
 \\
@@ -121,7 +113,7 @@ Constraints include. All the numbers included are average and are subject to cha
         \hline
         \textbf{Goal}                   & \textbf{Explanation and Reasoning}                                                                                                                                                                                                                                                                                                                                                           \\
         \hline
-        Anomaly Detection               & The device should detect when certain anamolies occur. Some examples include: an abrupt stop in movement and then a prolonged duration of no movement (indicated a potential accident), major spikes in movements (sudden increases in acceleration, speed or, orientation changes), or other abnormal events. Detecting anomolies could improve user safety and quality of data collection. \\
+        Anomaly \linebreak Detection               & The device should detect when certain anamolies occur. Some examples include: an abrupt stop in movement and then a prolonged duration of no movement (indicated a potential accident), major spikes in movements (sudden increases in acceleration, speed or, orientation changes), or other abnormal events. Detecting anomolies could improve user safety and quality of data collection. \\
         \hline
         Geotagging Events and Movements & Geotracking users and movements could show if a majority of movement is happening close to home or away form home; for example. This data will enable better primary data collection and help understand how users movements change throughout the day in a location and time based manner.                                                                                                  \\
         \hline

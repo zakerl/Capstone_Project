@@ -1,10 +1,13 @@
 \documentclass[12pt]{article}
 
+\usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage[table]{xcolor}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 \title{Development Plan\\\progname}
 
@@ -32,10 +35,10 @@ September 26 & N/A & Initial documentation\\
 
 \maketitle
 
-\wss{Put your introductory blurb here.}
-
 \section{Team Meeting Plan}
 Weekly meetings are to be held every Saturday at 8:00PM, and additional meetings are to be planned as needed. Any meetings requiring the attendance of the team's supervisor will have to be planned based on Dr. Macedo's availability. In cases where some team members are absent, each absent member is expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Note-taker is expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
+
+\pagebreak
 
 \section{Team Communication Plan}
 All primary communication is to be done through the team's Discord server, including all meetings. Secondary communication will be through the Facebook group chat only if necessary.\\
@@ -60,17 +63,28 @@ The following is a screen shot of this team's Discord server:\\
  \hline
  Note-Taker & Oliver Foote & Take notes during the meeting and post it in the meeting-notes section of Discord channel for record keeping purposes.\\
    \hline
-Developer & Everyone & Everyone will work together on the technical component of this project.\\
+ Embedded Developer,\linebreak Frontend Developer,\linebreak Backend Developer,\linebreak CAD Designer,\linebreak Electromechanical Designer & Everyone & Everyone will work together on the technical component of this project.\\
 \hline
 \end{tabular}
 \end{center}
 
 The task of reviewing rubrics, and each subcomponents of the project will not be assigned to any specific members. These tasks are to be allocated to different members each time as and when needed.\\
 
-\section{Workflow Plan}
-Git's branching technique will be used for version control purposes. For any technical commits, everyone is required to put in a formal merge request for GitHub leaders to review and approve or deny. All documentation work does not have to go through GitHub leaders, and can be commited to the main branch right away. Trello will be used for project management purposes (keeping track of non-technical tasks) and Github issue tracker will be used for keeping track of technical tasks.\\
-
 \pagebreak
+
+\section{Workflow Plan}
+\begin{enumerate}
+\item Move current task into the To-Do Section of the Trello Board. Assign relevant labels through the Trello Card (Hardware, Software, Features, Bugs, etc.).
+\item Make branch for current task on Github (Branch named according to: "Trello Ticket \# - Member Name").
+\item Once task has been completed, move task into Testing Section of the Trello Board.
+\item If testing is successful, send pull request and move task into the Code Review Section of the Trello Board.
+\item Update code with any comments from other developers.
+\item Once the pull request has been approved, move the task into the Finished Section of the Trello Board.
+\item Inform team that the branch has been merged into the main branch.
+\item Delete your extant branch.
+\end{enumerate}
+
+
 
 \section{Proof of Concept Demonstration Plan}
 
@@ -107,7 +121,6 @@ The following tools shall be used for development in software, embedded systems 
 \begin{itemize}
 \item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
 \item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
-\item C\# will be used the team decides to use Unity to create parts of the product.
 \item SQL will be used for DBMS and storing data for activity-based tracking.
 \item R will be used for statistical computing and data analysis.
 \end{itemize}
@@ -130,8 +143,7 @@ The following tools shall be used for development in software, embedded systems 
 \begin{itemize}
 \item Latex will be used for generating documentation. TeX distributions that will be used amongst the collaborators are  Texmaker, TeXworks, MikteX and VScode Latex extension.
 \end{itemize}
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
+\item Specific plans for Continuous Integration (CI)
 \begin{itemize}
 \item CI will be used to block merge requests until all tests have been passed and approval has been given by atleast two members of the team. 
 \item This will speed up development by reducing the overall bugs introduced into the project.
@@ -157,6 +169,16 @@ The following tools shall be used for development in software, embedded systems 
 \item Wood working tools (Hand Saws and Power Sanding ) if necessary.
 \end{itemize}
 \end{enumerate}
+
+\section{Limitations of Tools and Methods of Solving}
+
+\begin{itemize}
+\item Python: Memory usage may be inefficient due to limitations of hardware. \\ Solution: Use C or utilize static memory allocation.
+\item Arduino IDE: Libraries may be specific to the Arduino Microcontrollers. \\ Solution: Write drivers for other microcontrollers.
+\item CI/CD/Code Measuring Tools: Complex to set up, may require extra learning overhead to reach full functionality. \\ Solution: Assign members to investigate and document CI/CD methodology.
+\item Libraries: Compatibility of libraries are version dependent and not necessarily backwards or forward compatible. \\ Solution: Run compatibility testing before using or changing libraries and keep updated documentation available.
+\item 3D Printing: High time constraints, low availability, and print quality may be inconsistent. \\ Must take time constraints into consideration before integrating 3D Printing into the project.
+\end{itemize}
 
 \pagebreak
 
