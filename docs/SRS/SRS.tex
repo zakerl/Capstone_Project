@@ -453,7 +453,7 @@ The design has 2 different users:
 
 Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good undeerstanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
-Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.
+Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.\\\\
 \plt{This section summarizes the knowledge/skills expected of the user.
   Measuring usability, which is often a required non-function requirement,
   requires knowledge of a typical user.  As mentioned above, the user is a
@@ -464,6 +464,23 @@ Researchers will have the option of tweaking the configuration of the device, al
   Calculus and Physics.''}
 
 \subsection{System Constraints}
+
+The design will consist of both a hardware and a software system. The constraints for both systems are as follows:
+\begin{itemize}
+\item \textbf{Hardware}: 
+	\begin{itemize}
+		\item The system must weigh less than 60g to facilitate being lightweight and comfortable.
+		\item The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
+		\item The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
+	\end{itemize}
+
+\item \textbf{Software} :
+	\begin{itemize}
+		\item The system will have hard time constrainsts so as to store data and prompt users with low latency .
+		\item To maintain privacy, the system will only store data for two weeks after which the data will be deleted.
+		\item The system must prompt users based on activities and not based on time of day. 
+	\end{itemize}
+\end{itemize}
 
 \plt{System constraints differ from other type of requirements because they
   limit the developers' options in the system design and they identify how the
