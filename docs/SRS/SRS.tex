@@ -563,48 +563,6 @@ includes the following elements:
 
 \subsection{Solution Characteristics Specification}
 
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
-
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
-
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
-
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
-
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
-
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
-
 \begin{figure}[H]
   \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
 \end{figure}
@@ -615,15 +573,7 @@ instance models and their derivation is also presented, so that the instance
 models can be verified.
 
 \subsubsection{Assumptions} \label{sec_assumpt}
-
-\plt{The assumptions are a refinement of the scope.  The scope is general, where
-  the assumptions are specific.  All assumptions should be listed, even those
-  that domain experts know so well that they are rarely (if ever) written down.}
-\plt{The document should not take for granted that the reader knows which
-  assumptions have been made. In the case of unusual assumptions, it is
-  recommended that the documentation either include, or point to, an explanation
-  and justification for the assumption.}
-
+    
 This section simplifies the original problem and helps in developing the
 theoretical model by filling in the missing information for the physical
 system. The numbers given in the square brackets refer to the theoretical model
@@ -632,57 +582,63 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to T, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] The age range of patients is between }
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] All users are native and fluent English speakers.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] Device is to be used both outdoors and indoors.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] Device is to be used during both daytime and night time}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] Patients are not expected to have background knowledge on medical or biological terms. Simple language will be used for questionnaires.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] Researchers are not expected to have background knowledge on Mechatronics Engineering field.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[LC] Device will always have access to wifi or bluetooth.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{[GD] All patients will be given verbal instructions from the researcher on how to use the device.}
 
 \end{itemize}
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
-
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
-
-~\newline
+This section focuses on the general equations and laws that  \progname{} is based on.
 
 \noindent
 \deftheory
 % #2 refname of theory
-{T:COE}
+{T: NWT}
 % #3 label
-{Conservation of thermal energy}
+{Newton's 2\textsuperscript{nd} Law of Motion}
 % #4 equation
 {
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
+  ${\bf F = ma}$
 }
 % #5 description
 {
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
+  The above equation represents Newton's 2\textsuperscript{nd} equation of motion where $F$ is the force (\si{newton}), $m$ is mass of the object (\si{\kilogram}), and $a$  is the acceleration of that object (\si{\kilogram\per\square\metre}).
 }
 % #6 Notes
 {
-None.
 }
 % #7 Source
 {
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
 }
 % #8 Referenced by
 {
@@ -695,31 +651,12 @@ None
 % #1 derivation - not applicable by default
 {}
 
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if T1 is referenced by G2, that means that G2 will
-  explicitly include a reference to T1.}
-
 ~\newline
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
-
 This section collects the laws and equations that will be used in building the
 instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
 
 ~\newline
 
@@ -731,27 +668,20 @@ instance models.
 \rowcolor[gray]{0.9}
 Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
 \hline
-Label &\bf Newton's law of cooling \\
+Label &\bf Motion of Accelerometers \\
 \hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si{\watt\per\square\metre}\\
+SI Units&\si{\kilogram}, \si{\metre\per\square\second}, \si{\newton\second\per\metre}, \si{\metre\per\second}, \si{\newton\per\metre}, \si{\metre} \\
 \hline
-Equation&$ q(t) = h \Delta T(t)$  \\
+Equation&${m\ddot{x} + c\dot{x} + kx = m\ddot{y}}$  \\
 \hline
-Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
-\\
+Description 
+
+&This equation represents motion of an accelerometer with respect to 1 dimension where $m$ is the seismic mass of the accelerometer (\si{\kilogram}), $x$ is the position of that seismic mass (\si{\metre}), $y$ is the position of the device (\si{\metre}), $c$ is the damping constant (\si{\newton\second\per\metre}), and $k$  is the stiffness of the spring (\si{\newton\per\metre}).\\
+
+&The effect of gravity will depend on the orientation of accelerometer.\\
+
 \hline
-  Source & Citation here \\
+  Source & \url{https://leancrew.com/all-this/2012/05/accelerometers/} \\
   \hline
   Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
   \hline
@@ -760,25 +690,39 @@ between the environment and the object (\si{\celsius}).
 
 \subsubsection*{Detailed derivation of simplified rate of change of temperature}
 
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
+The following is a general basic diagram of the set up.\\
+
+\begin{center}
+    \includegraphics{accelerometer}
+\end{center}
+
+The following is a more realistic diagram of accelerometers.\\
+
+\begin{center}
+    \includegraphics{accelerometer2}
+\end{center}
+
+~\newline
+
+Derivation of Equation is as follows. From Newton's 2\textsubscript{nd} Law of Motion:\\
+\begin{center}${F = ma}$\\\end{center}
+
+Substitute a as ${\ddot{y}}$ to represent the acceleration of the overall device:\\
+\begin{center}${F = m\ddot{x}}$\\\end{center}
+
+Accounting for spring force that supports the oscillation:  \\
+\begin{center}${ kx = m\ddot{y}}$\\\end{center}
+
+Accounting for damping force that opposes the oscillation:\\
+\begin{center}${c\dot{x} + kx = m\ddot{y}}$\\\end{center}
+
+Finally, accounting for the acceleration of the seismic mass:\\
+\begin{center}${\therefore m\ddot{x} + c\dot{x} + kx = m\ddot{y}}$\\\end{center}
 
 \subsubsection{Data Definitions}\label{sec_datadef}
 
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
-
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
-
 This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
+models. The dimension of each quantity is also given.
 
 ~\newline
 
@@ -790,15 +734,13 @@ models. The dimension of each quantity is also given.  \plt{Modify the examples
 \rowcolor[gray]{0.9}
 Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
 \hline
-Label& \bf Heat flux out of coil\\
+Label& \bf Stiffness of Spring\\
 \hline
-Symbol &$q_C$\\
+Symbol &$k$\\
 \hline
-% Units& $Mt^{-3}$\\
-% \hline
-  SI Units & \si{\watt\per\square\metre}\\
+  SI Units & \si{\newton\per\metre}\\
   \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
+  Equation&$m\ddot{x} + c\dot{x} + kx = m\ddot{y}$\\
   \hline
   Description & 
                 $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
@@ -817,6 +759,36 @@ Symbol &$q_C$\\
   Ref.\ By & \iref{ewat}\\
   \hline
 \end{tabular}
+\end{minipage}
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxPCM}\\
+\hline
+Label& \bf Damping Constant\\
+\hline
+Symbol &$c$\\
+\hline
+  SI Units & \si{\newton\second\per\metre}\\
+  \hline
+  Equation&$m\ddot{x} + c\dot{x} + kx = m\ddot{y}$\\
+  \hline
+  Description 
+  & text.
+  \\
+  \hline
+  Sources& Citation here \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular}
+
 \end{minipage}\\
 
 \subsubsection{Data Types}\label{sec_datatypes}
