@@ -173,53 +173,60 @@ description of the unit and the SI name.
     \si{\metre} & length & metre\\
     \si{\kilogram} & mass	& kilogram\\
     \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
+    \si{\degree} & angle & degree\\
+    \si{\radian} & angle & radian\\
+    \si{\V} & potential & volts\\
+    \si{\ampere} & current & ampere\\
+    \si{\ohm} & resistance & ohm (\si\ohm = \si{\V\per\ampere})\\
+    \si{\F} & capacitance & farad\\
+    \si{\H} & inductance & henry\\
+    N & force & newton (N = \si{\kilogram\metre\per\square\second})\\
+    Pa & pressure & pascals (Pa = N\si{\per\square\metre})\\
+    \si{\Hz} & frequency & hertz\\
     \si{\joule} & energy & joule\\
     \si{\watt} & power & watt (W = \si{\joule\per\second})\\
     \bottomrule
   \end{tabular}
+  
+  ~\newline
+Below are some derived units that do not use a specific SI symbol.
+~\newline
+
+  \renewcommand{\arraystretch}{1.2}
+%\begin{table}[ht]
+  \noindent \begin{tabular}{l l} 
+    \toprule		
+    \textbf{Derived unit} & \textbf{SI}\\
+    \midrule 
+    area  & \si{\square\metre}\\
+    volume & \si{\cubic\metre}\\
+    velocity &  \si{\metre\per\second}\\
+    acceleration &  \si{\metre\per\square\second}\\    
+    \bottomrule
+  \end{tabular}
+  
   %	\caption{Provide a caption}
 %\end{table}
 
-\plt{Only include the units that your SRS actually uses.}
-
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
-
-\plt{The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.}
 
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units.  The choice of symbols was made to be consistent with the heat
-transfer literature and with existing documentation for solar water heating
-systems.  The symbols are listed in alphabetical order.
+their units.  The choice of symbols was made to be consistent with kinematics and existing documentation of existing activity trackers. The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
-\midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
-\\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
-\\ 
+\midrule
+$f_c$ & \si{\Hz} & clock frequency of microcontroller\\
+$m_{tracker}$ & \si\g & mass of activity tracker (device)\\
+$a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
+$A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
+$V_{battery}$ & \si\V & supplied voltage of battery\\
+
 \bottomrule
 \end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
 
 \subsection{Abbreviations and Acronyms}
 
@@ -229,101 +236,32 @@ which heat is transferred in
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   A & Assumption\\
+  ACC & Acceleration\\
+  BAR & Barometer\\
+  CV & Controlled Variables\\
   DD & Data Definition\\
+  EMA & Ecological Momentary Assessment\\
+  FSM & Finite State Machine\\
   GD & General Definition\\
   GS & Goal Statement\\
+  GYR & Gyrometer\\
   IM & Instance Model\\
   LC & Likely Change\\
+  LSS & Lumbar Spinal Stenosis\\
+  MV & Monitored Variables\\
+  OOP & Object Oriented Programming\\
+  PID & Proportional-integral-derivative\\
   PS & Physical System Description\\
   R & Requirement\\
+  SI & Syst\`{e}me International d'Unit\'{e}s\\
+  SReS & School of Rehabilitation Sciences\\
   SRS & Software Requirements Specification\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
-  T & Theoretical Model\\
   \bottomrule
 \end{tabular}\\
 
-\plt{Add any other abbreviations or acronyms that you add}
-
 \subsection{Mathematical Notation}
-
-\plt{This section is optional, but should be included for projects that make use
-  of notation to convey mathematical information.  For instance, if typographic
-  conventions (like bold face font) are used to distinguish matrices, this
-  should be stated here.  If symbols are used to show mathematical operations,
-  these should be summarized here.  In some cases the easiest way to summarize
-  the notation is to point to a text or other source that explains the
-  notation.}
-
-\plt{This section was added to the template because some students use very
-  domain specific notation.  This notation will not be readily understandable to
-  people outside of your domain.  It should be explained.}
-
-\newpage
-
+N/A
 \pagenumbering{arabic}
-
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}.  It
-  will get you started.  You should not modify the section headings, without
-  first discussing the change with the course instructor.  Modification means
-  you are not following the template, which loses some of the advantage of a
-  template, especially standardization.  Although the bits shown below do not
-  include type information, you may need to add this information for your
-  problem.  If you are unsure, please can ask the instructor.}
-
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
-
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
-}
-
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
-
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
-
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
-
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
-
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
-
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
 
 \section{Introduction}
 
