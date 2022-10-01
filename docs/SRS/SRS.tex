@@ -391,8 +391,6 @@ expect in the Introduction section.}
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
 characteristics and lists the system constraints.  \\\\
-This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. of the user, stores specific statistics about the user and catalogues it. Finally this data will be processed to present it to physichians and researches in an easy graphical manner.
-
 \subsection{System Context}
 
 \plt{Your system context will include a figure that shows the abstract view of
@@ -411,9 +409,10 @@ This system in theory is very simple. An array of sensors grabs info regarding t
   They should only be named with a specific library name if this is required by
   the system constraint.}
 
+This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. 
 \begin{figure}[h!]
 \begin{center}
- \includegraphics[width=0.6\textwidth]{SystemContextFigure}
+ \includegraphics[width=.95\textwidth]{System Context Diagram}
 \caption{System Context}
 \label{Fig_SystemContext} 
 \end{center}
@@ -429,21 +428,6 @@ This system in theory is very simple. An array of sensors grabs info regarding t
   For instance, saying ``material properties'' provides some information, but it
   stays away from the detail of listing every required properties.}
 
-\begin{itemize}
-\item User Responsibilities:
-\begin{itemize}
-\item 
-\end{itemize}
-\item \progname{} Responsibilities:
-\begin{itemize}
-\item Detect data type mismatch, such as a string of characters instead of a
-  floating point number.
-\item 
-\end{itemize}
-\end{itemize}
-
-\subsection{User Characteristics} \label{SecUserCharacteristics}
-
 The design has 2 different users:
 \begin{itemize}
 \item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
@@ -451,9 +435,28 @@ The design has 2 different users:
 
 \end{itemize}
 
+\begin{itemize}
+\item Patient Responsibilities:
+\begin{itemize}
+\item Patients are required to set up the device correctly so that their various attributes (Orientation, velocity, etc.) can be collected.
+\item Patients are also required to answer the prompts given to them so that adequate data can be collected.
+\end{itemize}
+\item Researcher Responsibilities:
+\begin{itemize}
+\item Required to confirm that data is being collected.
+\item Required to set up the intial thresholds for activity tracking.
+\item Offshoot the data.
+\item Charge and calibrate the system.
+\end{itemize}
+\end{itemize}
+
+\subsection{User Characteristics} \label{SecUserCharacteristics}
+
 Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good undeerstanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
 Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.\\\\
+
+
 \plt{This section summarizes the knowledge/skills expected of the user.
   Measuring usability, which is often a required non-function requirement,
   requires knowledge of a typical user.  As mentioned above, the user is a
