@@ -390,16 +390,8 @@ expect in the Introduction section.}
 
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \plt{This text can likely be
-  borrowed verbatim.}
-
-\plt{The purpose of this section is to provide general information about the
-  system so the specific requirements in the next section will be easier to
-  understand. The general system description section is designed to be
-  changeable independent of changes to the functional requirements documented in
-  the specific system description. The general system description provides a
-  context for a family of related models.  The general description can stay the
-  same, while specific details are changed between family members.}
+characteristics and lists the system constraints.  \\\\
+This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. of the user, stores specific statistics about the user and catalogues it. Finally this data will be processed to present it to physichians and researches in an easy graphical manner.
 
 \subsection{System Context}
 
@@ -452,6 +444,16 @@ characteristics and lists the system constraints.  \plt{This text can likely be
 
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
+The design has 2 different users:
+\begin{itemize}
+\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
+\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
+
+\end{itemize}
+
+Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good undeerstanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
+
+Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.
 \plt{This section summarizes the knowledge/skills expected of the user.
   Measuring usability, which is often a required non-function requirement,
   requires knowledge of a typical user.  As mentioned above, the user is a
