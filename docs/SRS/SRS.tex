@@ -18,6 +18,8 @@
 \usepackage{afterpage}
 
 \usepackage[round]{natbib}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
 
@@ -265,59 +267,36 @@ N/A
 
 \section{Introduction}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
+Researchers at the School of Rehabilitation Sciences (SReS) at McMaster University are investigating treatment strategies for victims of spinal disorders and back pain. Currently, there is great interest in performing Ecological Momentary Assessment (EMA) of those who suffer from back pain and disorders in order to make treatment options more effective. EMA aims to study the thoughts, experiences, and behaviours of a patient's daily life by repeatedly collecting data in an individual's normal environment, at or close to the time they carry out that behaviour.\\
+
+Specifically, the type of EMA that the SReS is interested in is focused on analyzing the daily activities and symptoms of mostly-older adults with mobility and spinal issues. For example, they may be interested in performing EMA on a patient with spinal compression issues which prevent them from being able to walk long distances without experiencing pain or distress. They wish to track that patient's walking activity as they go about their daily life. If this patient stops walking or moving, they wish to prompt them with questions such as, "Did you stop moving? If so, was it due to pain? Describe your pain, describe which portion of the body it is in." The answers to these questions will be combined with activity monitoring data to form a better picture about the experience this patient has with their spinal and mobility issues.\\
+
+In order to accomplish this, the researchers have attempted to use various smart-watch-esque activity tracking devices to track the activity of their patients, and have attempted to use apps and different pieces of software for them to prompt their patients with questions. However, they have been frustrated with very limited success, and are looking for a system which integrated precise and relevant activity tracking with user-friendly self-reporting symptom functionality.\\
+
+The researchers require a method to perform EMA analysis in a manner which even older patients can use, integrated into one package which gathers relevant data about a patient's activities and allows them to easily report what is currently going on and how they feel. They also are looking for a way to access EMA data in various ways. This includes graphical representations of the data which are meaningful to researchers, along with the raw data itself. This data could be activity data, symptoms reporting data, both types of data collated together, and so on. \\
+
+This introductory section of the document is intended to provide a reader with an overview of the purpose, overall scope, and organization of the document. As well as a description of the characteristics of the intended reader of this document.\\
 
 \subsection{Purpose of Document}
 
-\plt{This section summarizes the purpose of the SRS document.  It does not focus
-  on the problem itself.  The problem is described in the ``Problem
-  Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
-  in the context of the project itself, not in the context of this course.
-  Although the ``purpose'' of the document is to get a grade, you should not
-  mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
-  section will be similar between projects.  The purpose of the document is the
-  purpose of the SRS, including communication, planning for the design stage,
-  etc.}
+This document is intended to describe the requirements of Team \#1's system in a structured and collected manner. In other words, this is a document focused on what the system needs to do and the metrics and methods used to measure its performance. This groundwork is laid in a way to allow every individual who reads this document to understand the details essential to the requirements of this system.\\
+
+Additional purposes of this document are to plan for the design stage of the project, foster effective communication between members of the team, and to establish reference material to which team members will be able to refer back to at later stages in the project should they need to acquire a higher-level view of the system.
 
 \subsection{Scope of Requirements} 
 
-\plt{Modelling the real world requires simplification.  The full complexity of
-  the actual physics, chemistry, biology is too much for existing models, and
-  for existing computational solution techniques.  Rather than say what is in
-  the scope, it is usually easier to say what is not.  You can think of it as
-  the scope is initially everything, and then it is constrained to create the
-  actual scope.  For instance, the problem can be restricted to 2 dimensions, or
-  it can ignore the effect of temperature (or pressure) on the material
-  properties, etc.}  
-
-\plt{The scope section is related to the assumptions section
-  (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
-  at the same level of abstraction.  The scope is at a high level.  The focus is
-  on the ``big picture'' assumptions.  The assumptions section lists, and
-  describes, all of the assumptions.}
+The scope requirements for a system which satisfies the goals of EMA must be defined properly. In the case of this project, the requirements must include a method of activity monitoring and a way to prompt users with questions relevant to EMA. In addition, this system will be used by older adults in Canada, specifically in a typical Canadian household environment, likely with a fixed daily routine. This system is not intended to be used by bedridden or sedentary users. If a user is unable to maintain a certain level of movement on a regular basis, the entire point of EMA is rendered moot. It is also necessary to exclude children from the sphere of users. This system must be designed for adults, aimed specifically towards older adults.\\
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-\plt{This section summarizes the skills and knowledge of the readers of the
-  SRS.  It does NOT have the same purpose as the ``User Characteristics''
-  section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
-  people that will read, review and maintain the SRS.  They are the people that
-  will conceivably design the software that is intended to meet the
-  requirements.  The user, on the other hand, is the person that uses the
-  software that is built.  They may never read this SRS document.  Of course,
-  the same person could be a ``user'' and an ``intended reader.''}
+While this document is intended to describe the requirements of the system in as abstract of a method as possible, it is unreasonable to expect a layman without any knowledge within the field of mechatronics to understand the contents of this document. Therefore, there are certain characteristics that a reader must have in order to fully grasp the scope of this SRS. \\
 
-\plt{The intended reader characteristics should be written as unambiguously and
-  as specifically as possible.  Rather than say, the user should have an
-  understanding of physics, say what kind of physics and at what level.  For
-  instance, is high school physics adequate, or should the reader have had a
-  graduate course on advanced quantum mechanics?}
+A reader should have a grasp of software development, electronics, mechanics and dynamics at a level equivalent to a 3rd-Year Mechatronics Undergraduate University student, as well as a basic understanding of human anatomy of which a high school level is adequate. \\
+
+In addition, a reader should have a high-level understanding of Ecological Momentary Assessment. This does not have to be particularly in depth, but a reader should be able to identify the main objectives, practices, and difficulties of performing EMA. Introductory resources related to this can be found here [specify where]. \\
 
 \subsection{Organization of Document}
+I'm leaving this section until we finalize section 5 and beyond. It won't take long. -JH\\
 
 \plt{This section provides a roadmap of the SRS document.  It will help the
   reader orient themselves.  It will provide direction that will help them
