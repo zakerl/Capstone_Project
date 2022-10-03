@@ -18,7 +18,7 @@
 \usepackage{afterpage}
 
 \usepackage[round]{natbib}
-\usepackage{helvet}
+
 \renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
@@ -319,12 +319,6 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 \end{center}
 \end{figure}
 
-The design has 2 different users:
-\begin{itemize}
-\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
-\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
-
-\end{itemize}
 
 \begin{itemize}
 \item Patient Responsibilities:
@@ -1157,6 +1151,95 @@ instance models, requirements, and data constraints on each other.
 Their values are defined in this section for easy maintenance.}
 
 \plt{The value of FRACTION, for the Maintainability NFR would be given here.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Users and Stakeholders}
+\begin{itemize}
+\item Stakeholders
+
+	\begin{itemize}
+		\item \textbf{Researchers}: Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
+		\item \textbf{Patients} :	 Dr. Spencer Smith (Project Supervisor).
+	\end{itemize}
+
+\item Users: The design has 2 different users:
+	\begin{itemize}
+		\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
+		\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
+	\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Project Attributes}
+This is a comphrehensive list of the various Open Issues, Costs and Risks involved with the project. This will be updated to reflect changes in the Design. Moreover this section also includes some stretch goals that may be accomplised depending on the pace and scale of the project.
+\begin{itemize}
+\item Open Issues:
+	\begin{itemize}
+		\item A decision must be made whether the design will be worn on the wrist like a smart watch or on the waist like a belt.
+		\item Sensor choices must be decided for optimal state detection of the user.
+		\item Data transfer protocol must be decided, (Bluetooth, Ethernet, Wifi etc.)
+		\item Cost analysis must be performed to see whether designing a custom PCB would be economical.
+	\end{itemize}
+	
+
+\item Costs:
+		\begin{center}
+			\begin{tabular}{ |c|c|c| } 
+				 \hline
+				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (CAD)} \\ 
+				 \hline
+				 	1 & Arduino Nano 										& \$10/unit  \\ 
+				 \hline		
+				 	2 & MPU6050 (Accelerometer/ Gyroscope)						& \$12/unit \\ 
+				 \hline
+				 	3 & BMP-388 (Barometer) 									& \$2.5/unit \\ 
+				 \hline
+				 	4 & XD-58C (Heart Rate Sensor)								& \$3/unit \\ 
+				 \hline
+				 	5 & STM32f405rgt6 (Primary Control Chip) 						& \$8/unit \\ 
+				 \hline
+				 	6 & Electrical Components (Diodes, Resistors, Capacitors ,etc.) 		& \$20 \\ 
+				 \hline
+				 	7 & Lipo Battery 											& \$30 \\ 
+				 \hline
+				 	8 &OLED mini display										& \$15 \\ 
+				 \hline
+				 	9 & Structural Materials (MDF, PLA plastic, wood, etc.) 				& \$10 \\ 
+				 \hline
+				 	& \textbf{Average Total Cost}								& \$110.5 \\ 
+				 \hline
+			\end{tabular}
+		\end{center}
+
+\item Risks:
+	\begin{itemize}
+		\item Battery life will degrade over time.
+		\item Device is not sanitized between different monitoring periods.
+		\item Device is improperly calibrated causing improper data collection.
+		\item User error when answering prompts.
+		\item Internal memory storage may become full if redundant data isnt regularly removed.
+	\end{itemize}
+
+\item Stretch goals: Detailed explanations of the following are provided in the Development Plan Document.
+	\begin{itemize}
+		\item Detection of Anomalous behaviour may be added to track irregular movements.
+		\item Geotagging location of the activities being tracked to achieve observations about high traffic activity areas.
+		\item To optimize charging the device, a movement based charging system may be implemented.
+	\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 
