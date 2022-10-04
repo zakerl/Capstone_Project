@@ -19,6 +19,7 @@
 
 \usepackage[round]{natbib}
 \usepackage{helvet}
+\usepackage[none]{hyphenat}
 \renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
@@ -240,6 +241,7 @@ $V_{battery}$ & \si\V & supplied voltage of battery\\
   A & Assumption\\
   ACC & Acceleration\\
   BAR & Barometer\\
+  CSV & Comma-Separated Values\\
   CV & Controlled Variables\\
   DD & Data Definition\\
   EMA & Ecological Momentary Assessment\\
@@ -900,30 +902,90 @@ software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
+Below are the functional requirements of the device as well as the rationale.
 
-\noindent \begin{itemize}
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R1} & Device should be able to turn on and off at the choice of the researcher/user. \\ [0.5ex]
+ \hline
+ Rationale &  The User/Researcher would want to turn on/off the device when not in use.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5cm}
+%%%%%%%%%%%%
+% Requirement 2
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R2} & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to track minor movements as a lot of the participants have limited mobility.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 3
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to prompt the user when the software detects no movement has occurred.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 4
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
+ \hline
+ Rationale &  The system will be attached to an individual's body part (wrist, lower back, etc.) in order to detect activity.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 5
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic method.\\ [0.5ex]
+ \hline
+ Rationale & The Researcher should be able to change input thresholds in order to tweak the device's settings.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 6
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will have to store data every time an activity takes place or a prompt is answered on the device by the user.\\ [0.5ex]
+ \hline
+ Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 7
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will have to be extracted such that the data is interpretable in the form of graphs and csv.\\[0.5ex]
+ \hline
+ Rationale & This is so that the Researcher is able to have all the data in a spreadsheet/graphs to study it.\\ 
+ \hline
+\end{tabular}
+\end{center}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
-
-\end{itemize}
-
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
 
 \subsection{Nonfunctional Requirements}
 
