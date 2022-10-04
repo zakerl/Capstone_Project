@@ -480,13 +480,9 @@ the instance models.  \plt{Add any project specific details that are relevant
 
 \subsection{Problem Description} \label{Sec_pd}
 
-Dr. Luciana Macedo investigates treatment strategies for elders with  lumbar spinal disorders (LSS), particularly focused on Ecological Momentary Assessment (EMA). EMA aims to study the thoughts, experiences, and behaviours of patients' daily lives by repeatedly collecting data in their day-to-day environment, at or close to the time they carry out that particular behaviour.\\
-
-Since Dr. Macedo's EMA work is focused on analyzing the daily activities and symptoms of mostly-elderly people with mobility issues, her solution needs to capture their slow and subtle movements. In order to accomplish this, she and her students have attempted to use various smart-watch-esque activity tracking devices along with various software applications to prompt their patients with questions. However, they have been frustrated with very limited success.\\
-
-Their current system works on a time-based prompt-system, asking questions at regular intervals throughout the day. This isn't as useful, as they are rather interested in the experiences of their patients when certain events or triggers happen. In addition, all of her data collection methods are heavily segregated and inefficient. In order to report their symptoms, a patient must input their answers into a smart watch, a mobile app, a website, etc. According to Dr. Macedo, this is not quite user-friendly especially when it comes to a group of elderly patients, and incredibly annoying and difficult for a researcher to analyze the gathered data. Importantly, the existing commercial products are designed to capture the activities of healthy and active people, which contrasts with what she is trying to caputre: shuffling, limping, slower walking, etc.\\
-
-This solution device would have to capture the subtle and slow movement of elderly patience with lumbar spinal stenosis (LSS) and prompt them with pre-determined questions when they stop or make certain type of  movements. It will then have to collect and send those data back to Dr. Macedo for her analysis.
+Dr. Luciana Macedo investigates treatment strategies for older adults with lumbar spinal disorders (LSS), based on the results reported through Ecological Momentary Assessment (EMA).
+The current solution is not very sensitive to slow and subtle movements. It also works on a time-based approach, reporting data after specified intervals. Moreover, the Human Computer Interface is not user-friendly for the targeted audience and the data gathered is difficult to analyze.
+The motive is to design a device that is able to capture very minor movements, that could produce data of interest based on the survey results along with a well-designed, intuitive Human Computer Interface allowing the users to navigate with ease.
 
 \subsubsection{Terminology and  Definitions}
 
@@ -496,11 +492,12 @@ easier to correctly understand the requirements:
 
 \begin{itemize}
 
-  \item EMA: This stands for Ecological Momentary Assessment. It is the process of studying behaviour and thoughts by repeatedly collecting data about an individual in their normal environment,
-        as they are about to carry out the desired behaviour.
-  \item Patients: This refers to the older adults with the lumbar spinal disorder, that could inhibit some of their activities.
-  \item LSS: It stands for Lumber Spinal Stenosis. It's the narrowing of the spinal canal, thus compressing certain nerves travelling through lower back into the legs, hence causing numbness or pain in legs.
+  \item PID controller: This stands for proportional–integral–derivative controller. It is an instrument used in industrial control applications to regulate temperature, flow, pressure, speed and other process variables.
   \item FSM: This stands for Finite State Machine. An FSM is a machine that can be in a specific state from finite set of states based on previous conditions and inputs.
+  \item OLED display: It stands for organic light-emitting diodes screen. This is the display screen where light is produced by organic molecules.
+  \item MVC: Model-View-Controller. It is a software architectural pattern used to implement user interfaces, data and controlling logic. It separates display from program logic.
+  \item Control variables: These are the variables that will be controlled in our implementation and research to avoid their impact.
+  \item Monitored variables: These are the variables that will be calculated based on program logic and output as a result.
 
 \end{itemize}
 
@@ -519,14 +516,16 @@ easier to correctly understand the requirements:
   interactions between the elements and their physical environment; ii) the
   interactions between elements; and, iii) the initial or boundary conditions.}
 
-The physical system of \progname{}, as shown in Figure~?,
-includes the following elements:
+\includegraphics[]{watch.png}
+
+The physical system of the device, as shown in above figure,includes the following elements:
 
 \begin{itemize}
 
-  \item[PS1:]
-
-  \item[PS2:] ...
+  \item[PS1:] The display screen will be around 2500 mm$^2$. This will be the interface between the user and the system.
+  \item[PS2:] The bracket around the screen will be approximately 2700 mm$^2$. This will be an added layer of protection against the screen to avoid damages to the screen itself.
+  \item[PS3:] The weight of the device will be around 100 grams. This is because of the additional weight coming from the straps and embedded sensors. The resultant force will be in the direction of arm, since arm weighs approximately 3.5 kg, making the device lightweight.
+  \item[PS4:] The strap will be approximately 75mm long on the short side and 140 mm long on the long side, so that it sits perfectly and comfortably on the user's wrist.
 
 \end{itemize}
 
@@ -549,10 +548,9 @@ includes the following elements:
 \begin{itemize}
 
   \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Minor movement tracking}: The idea is to be able to capture very subtle, minor movements, as most activity trackers are incapable of doing it. Since our target audience have limited movements, the device needs to be sensitive to capturing minor motion since that would produce the desired data.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Event-based prompting}: Based on desired trigger events, the user would be prompted to complete the EMA. Incorporating audio and visual queues would be a solid approach to remind the user to complete EMA immediately.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Battery life}: The goal is to implement one day battery life. This would ensure that sufficient data are being collected throughout the data without any disruptions due to charging. The device can be charged through night, so that it can be used the following day.
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Event-based prompting}: Based on desired trigger events, the user would be prompted to complete the EMA.
   \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Simple User Interface}: We want to be able to design a very intuitive User interface, one that would be very interactive and easy to navigate around. This would result in quicker and more accurate survey submissions as they are prompted.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Graph Representation}: Our supervisor wants to be able to capture the trends in the behaviours over a set time. Graphical outputs are the best method to capture and understand the behaviour of certain dependent variables.
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Graph Representation}: Researchers desire to be able to capture the trends in the behaviours over a set time. Graphical outputs are the best method to capture and understand the behaviour of certain dependent variables.
 
 \end{itemize}
 
