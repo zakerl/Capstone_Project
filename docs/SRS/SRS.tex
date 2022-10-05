@@ -16,11 +16,13 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{color, colortbl}
 
 \usepackage[round]{natbib}
 
 %\usepackage{refcheck}
-
+	
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,       % false: boxed links; true: colored links
@@ -500,7 +502,62 @@ easier to correctly understand the requirements:
   \item Monitored variables: These are the variables that will be calculated based on program logic and output as a result.
 
 \end{itemize}
+\subsubsection{Monitored variables}
+\begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
+  \hline
+  \rowcolor{LightCyan}
+  \textbf{Monitored Variable}       & \textbf{Description}                                                                                                                                                                          & \textbf{Units}           \\
+  \hline
+  m\textunderscore batteryLife      & This signal is used to monitor the battery life.                                                                                                                                              & Integer(\%)              \\
+  \hline
+  m\textunderscore startup          & This signal is used to indicate the device has started.                                                                                                                                       & Boolean                  \\
+  \hline
+  m\textunderscore modeUser         & This signal is used to indicate who is the user. There are only two types of users: participant and researcher. Mode for participant is 0 and 1 for researcher.                               & Boolean                  \\
+  \hline
+  m\textunderscore ActivityDetected & This signal is used to check whether the desired behaviour has been displayed by the participant.                                                                                             & Boolean                  \\
+  \hline
+  m\textunderscore promptAnswered   & This signal is used to monitor whether the participant has filled up the survey and submitted the responses.                                                                                  & Boolean                  \\
+  \hline
+  m\textunderscore monitorPer       & This signal is used to monitor the duration, the participant has been monitored since the device has been turned on.                                                                          & Integer (number of days) \\
+  \hline
+  m\textunderscore valConnect       & This signal is used to indicate whether the researcher's system can be validated as a host, this is a layer of security so that only researchers can get their specific view.                 & Boolean                  \\
+  \hline
+  m\textunderscore modeResearcher   & This flag is used to indicate what the researcher is trying to do. There are 3 different views: for calibrating the device(0), accessing patient records(1), and accessing data collected(2). & Integer                  \\
+  \hline
+  m\textunderscore senCalVal        & This signal is used to indicate whether the sensors have been calibrated successfully according to the researcher's constraints.                                                              & Boolean                  \\
+  \hline
+\end{tabular}
+\\
+\linebreak
+\linebreak
 
+\subsubsection{Controlled variables}
+\begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
+  \hline
+
+  \rowcolor{LightCyan}
+  \textbf{Controlled Variable} & \textbf{Description}                                                                                                          & \textbf{Units}           \\
+  \hline
+  c\textunderscore batteryLife & This is the battery threshold that the battery life should be above to indicate that the device is good for usage             & Integer(\%)              \\
+  \hline
+  c\textunderscore monitorPer  & This is the monitoring period set for participants by the researcher. The device shall be collecting data within this period. & Integer (number of days) \\
+  \hline
+\end{tabular}
+
+\subsubsection{Comparison to existing solutions}
+Most of the solutions are just softwares when installed, uses phone sensor data to cause an intervention. They are very dependent on mobile phone sensors, meaning if there are no sensors on the phone, the software application becomes obsolete.
+The app might also have to be open 24/7 or running in background to be able to read live sensor data.  Some of the current solutions involved a time-based EMA trigger
+which may cause the data collected to be segregated as the trigger time intervals could be well beyond when the user expressed a desired behaviour.
+\\\\
+Most of the solutions could include smartwatches such as Fitbit, Samsung Galaxy Watch. These products are not very accurate as they could track movement wrongly, leading to wrong results.
+These devices can also be easily tampered by participants, which could affect the results produced in favour of participants. The battery life on these devices are also very short, and they can drain rapidly with very little use.
+They also tend to be very expensive due to some features offered, which may not be useful to the situation.
+\\\\
+The device that we will be designing will be independent of the cellphone devices. This removes the ambiguity in the linking of phone sensors to software application for tracking. It will be collecting data live and triggering EMA based on sensor data, thus being momentary and
+more accurate responses are expected to be responded at the time of happening. It will also thrive to use very sensitive sensors, so that every minor movement can be captured, which is limited to the existing solutions due to their dependency on phone sensors.
+Some of the softwares could be very expensive despite the limitations they have, such as being dependent entirely on phone. This makes the overall system expensive as the user will need
+to be owning a phone which could add to the total expenses. The device that we will be designing is also expected to have longer battery life and ease-of-comfort while wearing. They will have an added layer of security, where the participants cannot recalibrate the devices, hence enhancing accuracy of the results.
+It will be very cheap and specific to the purpose, thus ensuring better performance, and higher reliability.
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
 \plt{The purpose of this section is to clearly and unambiguously state the
