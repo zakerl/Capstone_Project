@@ -524,12 +524,21 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to T, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{All users are fluent English speakers.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{The device is to be used under normal daily activities.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{The device does not have to receive or send data in any wireless manner. It will only have to transfer data through wired connections.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A_meaningfulLabel}:]
+{All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
 \end{itemize}
 
@@ -1204,6 +1213,28 @@ Their values are defined in this section for easy maintenance.}
   requirement could be more abstract
 \end{itemize}
 }
+
+\section{Legal and Regulatory Factors}
+
+\begin{itemize}
+\item All collected and analyzed non-medical data shall be protected under the Personal Information Protection and Electronic Documents Act (PIPEDA).
+\item All medical records shall be protected under the Personal Health Information Protection Act (PHIPA).
+\item All patients are to sign a waiver form consenting to the use of their personal information and medical records prior to using the device.
+\item Only those with administrative rights will have access to all data files, all data to be secured with passwords.
+\item Documentation to follow IEEE format for references and citations.
+\item Documentation to be completed with 12pt Arial font on US Letter size paper (8.5" x 11") with 1 inch margin on all sides.
+\item UI implementation to follow ....?
+\end{itemize}
+
+\section{System Boundary Conditions}
+\begin{itemize}
+\item If the device detects abnormally fast and/or large range of sensor input, alert the participant with a prompt: "Irregular activity detected. Press the button to continue".
+\item If the device does not detect any movement for 24 hours straight, then prompt the participant with a question: "Are you still using the device?". If so, simply restart the clock. If no response is given within another 2 hours, power off the device.
+\item If the device reaches 3\% battery life...?
+\end{itemize}
+
+\section{Phase in Plan}
+
 
 \newpage{}
 \section*{Appendix --- Reflection}
