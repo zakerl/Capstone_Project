@@ -70,9 +70,9 @@
 \newcounter{instnum} %Instance Number
 \newcommand{\itheinstnum}{IM\theinstnum}
 \newcommand{\iref}[1]{IM\ref{#1}}
-\newcounter{reqnum} %Requirement Number
-\newcommand{\rthereqnum}{P\thereqnum}
-\newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{reqnum} %Functional Requirement Number
+\newcommand{\frthereqnum}{P\thereqnum}
+\newcommand{\frref}[1]{R\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
@@ -528,12 +528,21 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to T, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A1}:]
+{All users are fluent English speakers.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A2}:]
+{The device is to be used under normal daily activities.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A3}:]
+{The device does not have to receive or send data in any wireless manner. It will only have to transfer data through wired connections.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A4}:]
+{All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
 \end{itemize}
 
@@ -1094,109 +1103,70 @@ Below are the functional requirements of the device as well as the rationale.
 \section{Traceability Matrices and Graphs}
 
 The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
+has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions.
+with an ``X'' may have to be modified as well. In other words it shows the dependencies 
+between different requriements and assumptions in the document. 
 
-\plt{You will have to modify these tables for your problem.}
-
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
-
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
-
-\afterpage{
+\newpage
+\noindent
 \begin{landscape}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
+	& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4}& \aref{A5}& \aref{A6}& \aref{A7}& \aref{A8}& \aref{A9}& \aref{A10}& \aref{A11}& \aref{A12}& \aref{A13}& \aref{A14}& \aref{A15}& \aref{A16}& \aref{A17}& \aref{A18}& \aref{A19} \\
+\hline          %   1   2    3   4   5    6   7
+\frref{R1}       &   &   &   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R2}       &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R3}       & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R4}       &   & X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R5}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R6}       &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R7}       & X&   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R8}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R9}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R10}     &   &   &   &   &   &   &   & & & & & & & & & & & &  \\ \hline
+\nfrref{NFR1} &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR2} & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR3} &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR4} &   & X& X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR5} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR6} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR7} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR8} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR9} &   &   &   &   &   &   &   & & & & & & & & & & & & \\
 \hline
 \end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
 \label{Table:A_trace}
 \end{table}
 \end{landscape}
-}
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
+	& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} &\frref{R8} &\frref{R9}& \frref{R10} \\
+\hline                    %1   2   3    4   5   6    7   8    9  10  
+\nfrref{NFR1}         &   & X& X&   &   &   & X&   &   &\\ \hline
+\nfrref{NFR2}         & X&   & X& X&  X&   & X&   &   & \\ \hline
+\nfrref{NFR3}         & X&   &   &   &   & X&   &   &   & \\ \hline
+\nfrref{NFR4}         &   & X&   & X&   &   &   &   &   & \\ \hline
+\nfrref{NFR5}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR6}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR7}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR8}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR9}         &   &   &   &   &   &   &   &   &   & \\ \hline 
+\nfrref{NFR10}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR11}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR12}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR13}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR14}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR15}       &   &   &   &   &   &   &   &   &   & \\ 
 \hline
 \end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
+\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
 \label{Table:R_trace}
 \end{table}
 
@@ -1205,31 +1175,7 @@ what has to be additionally modified if a certain component is changed.  The
 arrows in the graphs represent dependencies. The component at the tail of an
 arrow is depended on by the component at the head of that arrow. Therefore, if a
 component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
-
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
+changed. 
 
 \section{Development Plan}
 
@@ -1251,6 +1197,20 @@ Their values are defined in this section for easy maintenance.}
 \plt{The value of FRACTION, for the Maintainability NFR would be given here.}
 
 \newpage
+
+%I think this will probably get covered in the requirements
+\section{Required Behavior}
+
+The activity tracking system should have the following required behavior: \\
+Feels redundant guys....
+
+\begin{itemize}
+\item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
+\item The activity tracker must be able to turn on, or reboot itself without user intervention if an issue is detected\\
+\item The battery must last a minimum of 7 days\\
+\item The system must be able to store at least 14 days worth of activity tracking data locally\\
+\item The system should be intuitive and seamless for the user\\
+\end{itemize} 
 
 \bibliographystyle {plainnat}
 \bibliography {../../refs/References}
