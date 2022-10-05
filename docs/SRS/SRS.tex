@@ -339,7 +339,7 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 
 Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
-Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.\\\\
+Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs and statistical analysis will be required to understand the research data collected by the device.\\\\
 
 
 \subsection{System Constraints}
@@ -348,7 +348,7 @@ The design will consist of both a hardware and a software system. The constraint
 \begin{itemize}
 \item \textbf{Hardware}: 
 	\begin{itemize}
-		\item The system must weigh less than 60g to facilitate being lightweight and comfortable.
+		\item The system must weigh less than 100g to facilitate being lightweight and comfortable.
 		\item The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
 		\item The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
 	\end{itemize}
@@ -1158,8 +1158,8 @@ Their values are defined in this section for easy maintenance.}
 \item Stakeholders
 
 	\begin{itemize}
-		\item \textbf{Researchers}: Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
-		\item \textbf{Patients} :	 Dr. Spencer Smith (Project Supervisor).
+		\item  Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University (Project Supervisor).
+		\item  Dr. Spencer Smith (Project Supervisor).
 	\end{itemize}
 
 \item Users: The design has 2 different users:
@@ -1187,15 +1187,15 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 		\begin{center}
 			\begin{tabular}{ |c|c|c| } 
 				 \hline
-				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (CAD)} \\ 
+				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (\$CAD)} \\ 
 				 \hline
-				 	1 & Arduino Nano 										& \$10/unit  \\ 
+				 	1 & Arduino Nano 											& \$10 \\ 
 				 \hline		
 				 	2 & MPU6050 (Accelerometer/ Gyroscope)						& \$12/unit \\ 
 				 \hline
 				 	3 & BMP-388 (Barometer) 									& \$2.5/unit \\ 
 				 \hline
-				 	4 & XD-58C (Heart Rate Sensor)								& \$3/unit \\ 
+				 	4 & XD-58C (Heart Rate Sensor)								& \$3\\ 
 				 \hline
 				 	5 & STM32f405rgt6 (Primary Control Chip) 						& \$8/unit \\ 
 				 \hline
@@ -1205,7 +1205,7 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 				 \hline
 				 	8 &OLED mini display										& \$15 \\ 
 				 \hline
-				 	9 & Structural Materials (MDF, PLA plastic, wood, etc.) 				& \$10 \\ 
+				 	9 & Structural Materials (MDF, PLA plastic, wood, etc.) 			& \$10 \\ 
 				 \hline
 				 	& \textbf{Average Total Cost}								& \$110.5 \\ 
 				 \hline
@@ -1221,7 +1221,7 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 		\item Internal memory storage may become full if redundant data isnt regularly removed.
 	\end{itemize}
 
-\item Stretch goals: Detailed explanations of the following are provided in the Development Plan Document.
+\item Stretch goals: Detailed explanations of the following are provided in the Specification/Problem Statement Document.
 	\begin{itemize}
 		\item Detection of Anomalous behaviour may be added to track irregular movements.
 		\item Geotagging location of the activities being tracked to achieve observations about high traffic activity areas.
@@ -1230,6 +1230,65 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normal Operation Overview}
+\setlength{\parindent}{20pt}
+Initially, the researcher will connect to the device using the provided software and either register a new participant or select a pre existing participant profile. Once a participant is selected, the researcher can set the thresholds, activities to be tracked and the monitoring period. \\
+
+Once the device is handed off to the participant, an inital set up process is done, where the device is worn by the user and a test prompt is sent. Once this initial set up process is done, the user will simply carry on with their normal day to day and the device will track all registered activities using the onboard sensors. As the data is collected, it is logged into the internal memory and is stored based on the date and time of entry.\\
+
+Finally after the monitoring period is finished, the device will go into an idle state until it is returned to the researcher. The researcher will then log in using their master credentials at which point the device will off load all data into the host software which will compile and present the data in a graphical manner.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Undersired Event Handling}
+\begin{itemize}
+	\item \textbf{Incorrect start up prompt response}: When the device is turned on by the user for the first time. A simple start up prompt is given just to check that system booted correctly ("Is this device on?"). If the user incorrectly enters their responsem, the system will simply 				perform a quick restart and ask the same question again.
+
+	\item \textbf{Stagnant sensor data}: Should the device store the same sequence of data for an extended period of time, the system will perform a soft reboot of the sensor array to try to fix the issue. If the problem persists, An alert will be sent out to the researchers informing them 			of a system failure.
+
+	\item \textbf{Improper prompt request}: Should the device generate a prompt whe no activity is being conducted. The user can simply report the prompt and the sytem will record an error, perform a soft reboot and continue normal operation.
+
+	\item \textbf{Early battery failure}: The device's battery should normally last one week. If the charge goes below a predefined threshold before the monitoring period ends, activity tracking will cease and the user will be prompted to charge the device.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{FSM and Dataflow Diagram}
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=1.3\textwidth]{FSM}
+		\caption{FSM}
+		\label{Fig_FSM} 
+	\end{center}
+\end{figure}
+The following explains the states presented in the above Finite State Machine:
+\begin{itemize}
+\item \textbf{States}:
+	\begin{enumerate}
+		\item \textbf{Startup}: Initial state of the system when it turns on. Simply transitions after checking battery life.           
+		\item \textbf{Battery Prompt}: Sends a prompt to the user informing them that the device needs to be charged.
+		\item \textbf{Shutdown}: This essentially powers of the device if the battery gets too low. 
+		\item \textbf{Test Prompt}: Testing the prompting system by giving a simple question to the user, Is the device on?
+		\item \textbf{Sensing}: Reads data from all the sensor and checks whether an activity is detected.
+		\item \textbf{Prompting}: Sends a prompt to the user when a registered activity is found. 
+		\item \textbf{Logging}: Logs prompt answers and sensor data in the internal memory.
+		\item \textbf{Sleep}: Temporarily puts the device to sleep until it is returned to the researchers.
+		\item \textbf{Restart}: Restarts the device without going through the startup sequence.
+		\item \textbf{Researcher Software}: Initilal state of the software on the host computer. Consists of a simple welcome screen.
+		\item \textbf{Calibration}: Calibrates sensors, allows setting new thresholds and choosing what activities to track.
+		\item \textbf{Participant Records}: Allows creating and modifying participant information.
+		\item \textbf{Data}: Presents all data stored on the device in a graphcial manner.
+		\item \textbf{Idle}: Idle state of the software. Awaits any user input.
+		\item \textbf{Software/Device shutdown}: When the software shuts down, the device also turns off.
+	\end{enumerate}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
