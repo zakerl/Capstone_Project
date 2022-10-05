@@ -524,12 +524,21 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to T, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A1}:]
+{All users are fluent English speakers.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A2}:]
+{The device is to be used under normal daily activities.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A3}:]
+{The device does not have to receive or send data in any wireless manner. It will only have to transfer data through wired connections.}
+
+\item[A\refstepcounter{assumpnum}\theassumpnum
+\label{A4}:]
+{All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
 \end{itemize}
 
@@ -901,26 +910,88 @@ qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
 
-\noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
-
-\end{itemize}
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R1} & Device should be able to turn on and off at the choice of the researcher/user. \\ [0.5ex]
+ \hline
+ Rationale &  The User/Researcher would want to turn on/off the device when not in use.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5cm}
+%%%%%%%%%%%%
+% Requirement 2
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R2} & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to track minor movements as a lot of the participants have limited mobility.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 3
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to prompt the user when the software detects no movement has occurred.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 4
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
+ \hline
+ Rationale &  The system will be attached to an individual's body part (wrist, lower back, etc.) in order to detect activity.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 5
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic method.\\ [0.5ex]
+ \hline
+ Rationale & The Researcher should be able to change input thresholds in order to tweak the device's settings.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 6
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will have to store data every time an activity takes place or a prompt is answered on the device by the user.\\ [0.5ex]
+ \hline
+ Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 7
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will have to be extracted such that the data is interpretable in the form of graphs and csv.\\[0.5ex]
+ \hline
+ Rationale & This is so that the Researcher is able to have all the data in a spreadsheet/graphs to study it.\\ 
+ \hline
+\end{tabular}
+\end{center}
 
 \plt{Every IM should map to at least one requirement, but not every requirement
   has to map to a corresponding IM.}
@@ -946,7 +1017,7 @@ be covered in the Verification and Validation document.}
 
 \noindent \begin{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR1}:]
   \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
     the software.  Maybe something like, ``The accuracy of the computed
     solutions should meet the level needed for $<$engineering or scientific
@@ -954,26 +1025,30 @@ be covered in the Verification and Validation document.}
     described following the procedure given in Section~X of the Verification and
     Validation Plan.''  A link to the VnV plan would be a nice extra.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR2}:] \textbf{Usability}
   \plt{Characterize the usability by giving the context/use for the software.
     You should likely reference the user characteristics section.  The level of
     usability achieved by the software shall be described following the
     procedure given in Section~X of the Verification and Validation Plan.  A
     link to the VnV plan would be a nice extra.}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR3}:]
   \textbf{Maintainability} \plt{The effort required to make any of the likely
     changes listed for \progname{} should be less than FRACTION of the original
     development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
+    at the end of the report.} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR4}:]
   \textbf{Portability} \plt{This NFR is easier to write than the others.  The
     systems that \progname{} should run on should be listed here.  When possible
     the specific versions of the potential operating environments should be
     given.  To make the NFR verifiable a statement could be made that the tests
     from a given section of the VnV plan can be successfully run on all of the
     possible operating environments.}
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR5}:]
+  \textbf{Cleanability} test test text gen
+
 
 \item Other NFRs that might be discussed include verifiability,
   understandability and reusability.
@@ -1002,66 +1077,67 @@ be covered in the Verification and Validation document.}
 \section{Traceability Matrices and Graphs}
 
 The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
+has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  
+with an ``X'' may have to be modified as well. In other words it shows the dependencies 
+between different requriements and assumptions in the document. 
 
-\afterpage{
+\newpage
+\noindent
 \begin{landscape}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 	& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4}& \aref{A5}& \aref{A6}& \aref{A7}& \aref{A8}& \aref{A9}& \aref{A10}& \aref{A11}& \aref{A12}& \aref{A13}& \aref{A14}& \aref{A15}& \aref{A16}& \aref{A17}& \aref{A18}& \aref{A19} \\
-\hline
-\frref{FR1}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\frref{FR2}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\frref{FR3}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\nfrref{NFR4}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\ref{}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ref{}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ref{}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ref{}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ref{}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\ref{}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\ref{}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\ref{}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\ref{}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\ref{}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\ref{}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\ref{}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\ref{}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\ref{} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\ref{}    & & & & & & & & & & & & & & & X& & & & \\
+\hline          %   1   2    3   4   5    6   7
+\frref{R1}       &   &   &   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R2}       &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R3}       & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R4}       &   & X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R5}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R6}       &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R7}       & X&   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R8}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R9}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R10}     &   &   &   &   &   &   &   & & & & & & & & & & & &  \\ \hline
+\nfrref{NFR1} &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR2} & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR3} &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR4} &   & X& X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR5} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR6} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR7} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR8} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR9} &   &   &   &   &   &   &   & & & & & & & & & & & & \\
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
 \label{Table:A_trace}
 \end{table}
 \end{landscape}
-}
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \frref{FR1}& \frref{FR2}& \frref{FR3}& \frref{FR4}& \frref{FR5}& \frref{FR6}& \frref{FR7} \\
-\hline
-\nfrref{NFR1}            & & X& & & & X& X \\ \hline
-\nfrref{NFR2}            & X& & & X& & X& X \\ \hline
-\nfrref{NFR3}          & & & & & & X& X \\ \hline
-\nfrref{NFR4}          & & X& & & & X& X \\ \hline
-\nfrref{NFR5}     & & & & & & & \\ \hline
-\nfrref{NFR6}    & & & & & & X& \\ \hline
-\nfrref{NFR7}   & & & & & X& & \\ \hline
-\nfrref{NFR8}  & X& X& & & & X& X \\ \hline
-\nfrref{NFR9}     & X& & & & & & \\ \hline 
-\nfrref{NFR10}       & & X& & & & & \\ \hline
-\nfrref{NFR11}   & & & X& & & & \\ \hline
-\nfrref{NFR12}     & & & & X& & & \\ \hline
-\nfrref{NFR13}  & & & X& X& & & \\ \hline
-\nfrref{NFR14} & & X& & & & & \\ \hline
-\nfrref{NFR15}   & & X& & & & & \\ 
+	& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} &\frref{R8} &\frref{R9}& \frref{R10} \\
+\hline                    %1   2   3    4   5   6    7   8    9  10  
+\nfrref{NFR1}         &   & X& X&   &   &   & X&   &   &\\ \hline
+\nfrref{NFR2}         & X&   & X& X&  X&   & X&   &   & \\ \hline
+\nfrref{NFR3}         & X&   &   &   &   & X&   &   &   & \\ \hline
+\nfrref{NFR4}         &   & X&   & X&   &   &   &   &   & \\ \hline
+\nfrref{NFR5}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR6}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR7}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR8}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR9}         &   &   &   &   &   &   &   &   &   & \\ \hline 
+\nfrref{NFR10}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR11}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR12}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR13}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR14}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR15}       &   &   &   &   &   &   &   &   &   & \\ 
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
