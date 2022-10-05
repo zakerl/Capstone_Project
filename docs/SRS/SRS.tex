@@ -20,6 +20,7 @@
 \usepackage[round]{natbib}
 \usepackage{helvet}
 \usepackage[none]{hyphenat}
+\usepackage{tabularx}
 \renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
@@ -253,6 +254,7 @@ $V_{battery}$ & \si\V & supplied voltage of battery\\
   LC & Likely Change\\
   LSS & Lumbar Spinal Stenosis\\
   MV & Monitored Variables\\
+  NFR & Non-Functional Requirements\\
   OOP & Object Oriented Programming\\
   PID & Proportional-integral-derivative\\
   PS & Physical System Description\\
@@ -986,6 +988,32 @@ Below are the functional requirements of the device as well as the rationale.
 \end{tabular}
 \end{center}
 
+\subsection{Likely/Unlikely Changes for Functional Requirements}    
+
+\begin{tabularx}{1.05\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ Requirement & Likelihood of Change& Rationale & Ways to Change \\
+ \hline
+ R1  & Very Unlikely  & Key Implementation & N/A  \\
+ \hline
+ R2  & Unlikely  & Key Implementation & Minor movements may be calibrated.  \\
+ \hline
+ R3  & Very Unlikely  & Key Implementation & N/A  \\
+ \hline
+ R4  & Unlikely  & Key Implementation & N/A  \\
+\hline
+ R5  & Likely  & Depends on Researcher's choice &  Thresholds can be changed based on different protocols (wireless/wired). \\
+ \hline
+ R6  & Very Unlikely  & Key Implementation & N/A  \\
+\hline
+ R7  & Unlikely  & Ensures data reaches Researcher & Method of data storage can be changed.  \\
+\hline
+\end{tabularx}
+
 
 \subsection{Nonfunctional Requirements}
 
@@ -1042,24 +1070,6 @@ be covered in the Verification and Validation document.}
 
 \end{itemize}
 
-\section{Likely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
-
-\end{itemize}
-
-\section{Unlikely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
-
-\end{itemize}
 
 \section{Traceability Matrices and Graphs}
 
