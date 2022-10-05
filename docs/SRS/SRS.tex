@@ -927,60 +927,76 @@ qualities that the software is expected to exhibit.
 
 \subsection{Nonfunctional Requirements}
 
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
-
 \noindent \begin{itemize}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+  \textbf{Accuracy:} The accuracy of the data collected during each EMA session by this device must meet the level needed for academic research based on said results. This includes results from sensors capturing participant activity, answers provided by participants from event prompting, timestamps of data inputs, geolocation information, and any other information pertinent to the form of EMA being performed.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
+\underline{Rationale:} Should the EMA data coming from the system be considered inaccurate or incomplete, this system is effectively rendered moot as it is intended to be used in a research setting.\\
+
+\underline{Fit Criterion:} The data recorded, stored, and submitted by the system should be accurate to a level considered satisfactory to standard EMA studies conducted by the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
+
+\underline{Rationale:} As many of the participants may be older adults, they may be unfamiliar with modern activity tracking technology. It is unreasoneable to expect such participants to be able to use the functions of this system unless it is explicitly designed to be useable at any level of experience with technology. Also, we don't wanna waste the time of the researchers or introduce unneccessary complexity into operating this system which may introduce erroneous inputs or data interpretations based on confusing interfaces.\\
+
+\underline{Fit Criterion:} The system's interfaces (both to the researchers and the participants) should fit the guidelines of HCI standards, with an emphasis on making this system more useable for those unfamiliar with modern technology.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.
+  \textbf{Maintainability:} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.\\
+
+\underline{Rationale:} As many of the participants may be older adults, maintenance of this system may be daunting to those unfamilar with modern technology. In addition, any downtime due to maintenance needs during each EMA period will result in a loss of valuable EMA data.\\
+
+\underline{Fit Criterion:} Once activated, the system should perform all of its functions continuously without error for a period of 7 days.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
+  \textbf{Portability:} LIST SYSTEMS TO RUN, operating environments: specify what environment that they're using it in! But in this case, less the hardware that it's using, but more what actual physical environment the participants will be in. WE HAVE TO TEST IN EACH OF THESE INDIVIDUAL ENVIRONMENTS! The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
+
+\underline{Rationale:} Ecological Momentary Assessment (EMA) is meant to be performed at almost all points of a participant's daily routine. If the system is bulky, difficult to maneuver around or wear, or heavy, a participant's movement and actions will be hindered and they will be unable to provide EMA data accurately.\\
+
+\underline{Fit Criterion:} Has been tested in each individual environment where EMA will be taking place with satisfactory results regarding its portability.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Cleanabiity}:]
-  \textbf{Cleanability} test test text gen
+  \textbf{Cleanability:} Each portion of this device must be capable of being cleaned, sanitized, and made hygenic before and after each period of EMA which it is used for. As each component of the device is constructed and used in a different manner, the different needs each component has in order to render it clean must be considered as well.\\
 
+\underline{Rationale:} In a post-COVID world, maintaining personal hygiene is rightfully considered an important aspect of daily life. It is the responsibility of this devices makers to ensure conditions or practices conducive to maintaining health and preventing disease, especially through cleanliness.\\
 
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
+\underline{Fit Criterion:} Can be sterilized, cleaned, or treated safely and in a manner satisfactory to the standards of the participants and researchers of the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety}:]
+  \textbf{Safety:} The system must be designed in a way which prevents any harm or injury (whether it be physical, emotional, or mental) from coming to the participants as a result of the useage of the device and its information collection methods. This includes physical characteristics which prevent immediate injury (removal of sharp objects, useage of soft materials), physical characteristics which prevent long-term adverse health effects (human-safe materials, safe levels of noise production), or any other considerations that need to be taken in order to prevent harm to the participant.\\
+
+\underline{Rationale:} Safety speaks for itself. To put a participant in harms way as a result of the functions of this system would be a gross violation of ethics.\\
+
+\underline{Fit Criterion:} The system conforms to the health and safety standards deemed appropriate by the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Reusability}:]
+  \textbf{Reusability:} The system must be capable of being reused for an appropriate number of times. This means that the system must be capable of completing its functions without error after each period of EMA without need for significant upkeep other than regular maintenance (charging the battery, cleaning the device, scrubbing data from the system, etc.)\\
+
+\underline{Rationale:} Researchers at the SReS intend to use this system for a vast number of EMA periods, and for multiple different forms of research which EMA may assist with. Thi system must be designed to be able to sustain its functions for whatever purposes and periods of time which the researchers need.\\
+
+\underline{Fit Criterion:} Can be used for 3 consecutive EMA study periods without need for significant maintenance.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Privacy}:]
+  \textbf{Privacy:} This system must protect the data collected from the participants from being accessed or distributed to inappropriate entities or people. \\
+
+\underline{Rationale:} Data privacy is a right, and one that must be taken seriously. When revealed to inappropriate people or entities, personal information can be used to negatively affect a participant to a great extent. Preservation of the security of participant's peronal information is therefore essential.\\
+
+\underline{Fit Criterion:} Data is collected, distributed, and then erased from the system according to modern data privacy standards.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accessibility}:]
+  \textbf{Accessibility:} This device must be accessible to any participant who is partaking in EMA. Regardless of disability, mental or physical status, a participant must be capable of utilizing this device for EMA with the full ability to collect and respond to prompts in accordance with EMA principles. This includes designing the system's phyical portion with accessibility needs in mind, along with designing the system's software, user interface, and data collection portions to allow any participant to be able to use it.\\
+
+\underline{Rationale:} If this device is exclusionary to those with special accessibility needs, then it is severly limited in its use for EMA. According to the user characteristics, this device will mostly be used for those suffering from musculo-skeletal disorders, and many of these participants may be suffering from additional disabilities as well.\\
+
+\underline{Fit Criterion:} The system has been verified to perform in accordance to modern accessibility standards, for both the physical component of the system, and the data collection/software component of the system.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_NonDisruptiveness}:]
+  \textbf{Non-Disruptiveness:} The system must be designed in a way which allows participants to provide EMA data without significant impact or change to their activities or daily life. This includes bulky constructions which they must spend effort in considering while moving around, significant visual or auditory disruptions which may startle, distract, or annoy participants, embarassing or aesthetically unpleasant constructs, or any other disturbances that they must make considerations for.\\
+
+\underline{Rationale:} It is of paramount importance that this device does not disrupt the daily activities of participants in order to preserve their dignity, and allow them to perform the necessary tasks of their daily lives. In addition, the less the system disrupts their daily activities, the more accurate the picture will be that the system captures of what those daily acitivities are and their relevance to EMA.\\
+
+\underline{Fit Criterion:} The system must be rated sufficiently non-disruptive to the daily lives of the participants using the system during testing.\\
 
 \end{itemize}
 
