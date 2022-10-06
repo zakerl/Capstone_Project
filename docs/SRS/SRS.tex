@@ -19,6 +19,8 @@
 
 \usepackage[round]{natbib}
 \usepackage{helvet}
+\usepackage[none]{hyphenat}
+\usepackage{tabularx}
 \renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
@@ -68,9 +70,9 @@
 \newcounter{instnum} %Instance Number
 \newcommand{\itheinstnum}{IM\theinstnum}
 \newcommand{\iref}[1]{IM\ref{#1}}
-\newcounter{reqnum} %Requirement Number
-\newcommand{\rthereqnum}{P\thereqnum}
-\newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{reqnum} %Functional Requirement Number
+\newcommand{\frthereqnum}{P\thereqnum}
+\newcommand{\frref}[1]{R\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
@@ -240,6 +242,7 @@ $V_{battery}$ & \si\V & supplied voltage of battery\\
   A & Assumption\\
   ACC & Acceleration\\
   BAR & Barometer\\
+  CSV & Comma-Separated Values\\
   CV & Controlled Variables\\
   DD & Data Definition\\
   EMA & Ecological Momentary Assessment\\
@@ -251,6 +254,7 @@ $V_{battery}$ & \si\V & supplied voltage of battery\\
   LC & Likely Change\\
   LSS & Lumbar Spinal Stenosis\\
   MV & Monitored Variables\\
+  NFR & Non-Functional Requirements\\
   OOP & Object Oriented Programming\\
   PID & Proportional-integral-derivative\\
   PS & Physical System Description\\
@@ -307,7 +311,7 @@ I'm leaving this section until we finalize section 5 and beyond. It won't take l
 
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \\\\
+characteristi	cs and lists the system constraints.  \\\\
 \subsection{System Context}
 
 This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. 
@@ -319,12 +323,6 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 \end{center}
 \end{figure}
 
-The design has 2 different users:
-\begin{itemize}
-\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
-\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
-
-\end{itemize}
 
 \begin{itemize}
 \item Patient Responsibilities:
@@ -345,7 +343,7 @@ The design has 2 different users:
 
 Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
-Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs andd statistical analysis will be required to understand the research data collected by the device.\\\\
+Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs and statistical analysis will be required to understand the research data collected by the device.\\\\
 
 
 \subsection{System Constraints}
@@ -354,7 +352,7 @@ The design will consist of both a hardware and a software system. The constraint
 \begin{itemize}
 \item \textbf{Hardware}: 
 	\begin{itemize}
-		\item The system must weigh less than 60g to facilitate being lightweight and comfortable.
+		\item The system must weigh less than 100g to facilitate being lightweight and comfortable.
 		\item The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
 		\item The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
 	\end{itemize}
@@ -525,6 +523,7 @@ likely change [LC], in which the respective assumption is used.
 \begin{itemize}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
+
 \label{A_meaningfulLabel}:]
 {All users are fluent English speakers.}
 
@@ -538,6 +537,7 @@ likely change [LC], in which the respective assumption is used.
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
 \label{A_meaningfulLabel}:]
+
 {All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
 \end{itemize}
@@ -909,211 +909,260 @@ software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
+Below are the functional requirements of the device as well as the rationale.
 
-\noindent \begin{itemize}
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R1} & Device should be able to turn on and off at the choice of the researcher/user. \\ [0.5ex]
+ \hline
+ Rationale &  The User/Researcher would want to turn on/off the device when not in use.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5cm}
+%%%%%%%%%%%%
+% Requirement 2
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R2} & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to track minor movements as a lot of the participants have limited mobility.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 3
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to prompt the user when the software detects no movement has occurred.\\ [0.5ex]
+ \hline
+ Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 4
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
+ \hline
+ Rationale &  The system will be attached to an individual's body part (wrist, lower back, etc.) in order to detect activity.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 5
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic method.\\ [0.5ex]
+ \hline
+ Rationale & The Researcher should be able to change input thresholds in order to tweak the device's settings.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 6
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will have to store data every time an activity takes place or a prompt is answered on the device by the user.\\ [0.5ex]
+ \hline
+ Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
+ \hline
+\end{tabular}
+\end{center}
+\hspace{0.5em}
+%%%%%%%%%%%
+% Requirement 7
+\begin{center}
+\begin{tabular}{|l|p{14cm}|}
+ \hline
+ R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will have to be extracted such that the data is interpretable in the form of graphs and csv.\\[0.5ex]
+ \hline
+ Rationale & This is so that the Researcher is able to have all the data in a spreadsheet/graphs to study it.\\ 
+ \hline
+\end{tabular}
+\end{center}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
+\subsection{Likely/Unlikely Changes for Functional Requirements}    
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
+\begin{tabularx}{1.05\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ Requirement & Likelihood of Change& Rationale & Ways to Change \\
+ \hline
+ R1  & Very Unlikely  & Key Implementation & N/A  \\
+ \hline
+ R2  & Unlikely  & Key Implementation & Minor movements may be calibrated.  \\
+ \hline
+ R3  & Very Unlikely  & Key Implementation & N/A  \\
+ \hline
+ R4  & Unlikely  & Key Implementation & N/A  \\
+\hline
+ R5  & Likely  & Depends on Researcher's choice &  Thresholds can be changed based on different protocols (wireless/wired). \\
+ \hline
+ R6  & Very Unlikely  & Key Implementation & N/A  \\
+\hline
+ R7  & Unlikely  & Ensures data reaches Researcher & Method of data storage can be changed.  \\
+\hline
+\end{tabularx}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
-
-\end{itemize}
-
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
 
 \subsection{Nonfunctional Requirements}
-
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
 
 \noindent \begin{itemize}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+  \textbf{Accuracy:} The accuracy of the data collected during each EMA session by this device must meet the level needed for academic research based on said results. This includes results from sensors capturing participant activity, answers provided by participants from event prompting, timestamps of data inputs, geolocation information, and any other information pertinent to the form of EMA being performed.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
+\underline{Rationale:} Should the EMA data coming from the system be considered inaccurate or incomplete, this system is effectively rendered moot as it is intended to be used in a research setting.\\
+
+\underline{Fit Criterion:} The data recorded, stored, and submitted by the system should be accurate to a level considered satisfactory to standard EMA studies conducted by the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
+
+\underline{Rationale:} As many of the participants may be older adults, they may be unfamiliar with modern activity tracking technology. It is unreasoneable to expect such participants to be able to use the functions of this system unless it is explicitly designed to be useable at any level of experience with technology. Also, we don't wanna waste the time of the researchers or introduce unneccessary complexity into operating this system which may introduce erroneous inputs or data interpretations based on confusing interfaces.\\
+
+\underline{Fit Criterion:} The system's interfaces (both to the researchers and the participants) should fit the guidelines of HCI standards, with an emphasis on making this system more useable for those unfamiliar with modern technology.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
+  \textbf{Maintainability:} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.\\
+
+\underline{Rationale:} As many of the participants may be older adults, maintenance of this system may be daunting to those unfamilar with modern technology. In addition, any downtime due to maintenance needs during each EMA period will result in a loss of valuable EMA data.\\
+
+\underline{Fit Criterion:} Once activated, the system should perform all of its functions continuously without error for a period of 7 days.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
+  \textbf{Portability:} LIST SYSTEMS TO RUN, operating environments: specify what environment that they're using it in! But in this case, less the hardware that it's using, but more what actual physical environment the participants will be in. WE HAVE TO TEST IN EACH OF THESE INDIVIDUAL ENVIRONMENTS! The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
 
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
+\underline{Rationale:} Ecological Momentary Assessment (EMA) is meant to be performed at almost all points of a participant's daily routine. If the system is bulky, difficult to maneuver around or wear, or heavy, a participant's movement and actions will be hindered and they will be unable to provide EMA data accurately.\\
+
+\underline{Fit Criterion:} Has been tested in each individual environment where EMA will be taking place with satisfactory results regarding its portability.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Cleanabiity}:]
+  \textbf{Cleanability:} Each portion of this device must be capable of being cleaned, sanitized, and made hygenic before and after each period of EMA which it is used for. As each component of the device is constructed and used in a different manner, the different needs each component has in order to render it clean must be considered as well.\\
+
+\underline{Rationale:} In a post-COVID world, maintaining personal hygiene is rightfully considered an important aspect of daily life. It is the responsibility of this devices makers to ensure conditions or practices conducive to maintaining health and preventing disease, especially through cleanliness.\\
+
+\underline{Fit Criterion:} Can be sterilized, cleaned, or treated safely and in a manner satisfactory to the standards of the participants and researchers of the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Safety}:]
+  \textbf{Safety:} The system must be designed in a way which prevents any harm or injury (whether it be physical, emotional, or mental) from coming to the participants as a result of the useage of the device and its information collection methods. This includes physical characteristics which prevent immediate injury (removal of sharp objects, useage of soft materials), physical characteristics which prevent long-term adverse health effects (human-safe materials, safe levels of noise production), or any other considerations that need to be taken in order to prevent harm to the participant.\\
+
+\underline{Rationale:} Safety speaks for itself. To put a participant in harms way as a result of the functions of this system would be a gross violation of ethics.\\
+
+\underline{Fit Criterion:} The system conforms to the health and safety standards deemed appropriate by the SReS.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Reusability}:]
+  \textbf{Reusability:} The system must be capable of being reused for an appropriate number of times. This means that the system must be capable of completing its functions without error after each period of EMA without need for significant upkeep other than regular maintenance (charging the battery, cleaning the device, scrubbing data from the system, etc.)\\
+
+\underline{Rationale:} Researchers at the SReS intend to use this system for a vast number of EMA periods, and for multiple different forms of research which EMA may assist with. Thi system must be designed to be able to sustain its functions for whatever purposes and periods of time which the researchers need.\\
+
+\underline{Fit Criterion:} Can be used for 3 consecutive EMA study periods without need for significant maintenance.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Privacy}:]
+  \textbf{Privacy:} This system must protect the data collected from the participants from being accessed or distributed to inappropriate entities or people. \\
+
+\underline{Rationale:} Data privacy is a right, and one that must be taken seriously. When revealed to inappropriate people or entities, personal information can be used to negatively affect a participant to a great extent. Preservation of the security of participant's peronal information is therefore essential.\\
+
+\underline{Fit Criterion:} Data is collected, distributed, and then erased from the system according to modern data privacy standards.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accessibility}:]
+  \textbf{Accessibility:} This device must be accessible to any participant who is partaking in EMA. Regardless of disability, mental or physical status, a participant must be capable of utilizing this device for EMA with the full ability to collect and respond to prompts in accordance with EMA principles. This includes designing the system's phyical portion with accessibility needs in mind, along with designing the system's software, user interface, and data collection portions to allow any participant to be able to use it.\\
+
+\underline{Rationale:} If this device is exclusionary to those with special accessibility needs, then it is severly limited in its use for EMA. According to the user characteristics, this device will mostly be used for those suffering from musculo-skeletal disorders, and many of these participants may be suffering from additional disabilities as well.\\
+
+\underline{Fit Criterion:} The system has been verified to perform in accordance to modern accessibility standards, for both the physical component of the system, and the data collection/software component of the system.\\
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_NonDisruptiveness}:]
+  \textbf{Non-Disruptiveness:} The system must be designed in a way which allows participants to provide EMA data without significant impact or change to their activities or daily life. This includes bulky constructions which they must spend effort in considering while moving around, significant visual or auditory disruptions which may startle, distract, or annoy participants, embarassing or aesthetically unpleasant constructs, or any other disturbances that they must make considerations for.\\
+
+\underline{Rationale:} It is of paramount importance that this device does not disrupt the daily activities of participants in order to preserve their dignity, and allow them to perform the necessary tasks of their daily lives. In addition, the less the system disrupts their daily activities, the more accurate the picture will be that the system captures of what those daily acitivities are and their relevance to EMA.\\
+
+\underline{Fit Criterion:} The system must be rated sufficiently non-disruptive to the daily lives of the participants using the system during testing.\\
 
 \end{itemize}
 
-\section{Likely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
-
-\end{itemize}
-
-\section{Unlikely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
-
-\end{itemize}
 
 \section{Traceability Matrices and Graphs}
 
 The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
+has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions.
+with an ``X'' may have to be modified as well. In other words it shows the dependencies 
+between different requriements and assumptions in the document. 
 
-\plt{You will have to modify these tables for your problem.}
-
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
-
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
-
-\afterpage{
+\newpage
+\noindent
 \begin{landscape}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
+	& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4}& \aref{A5}& \aref{A6}& \aref{A7}& \aref{A8}& \aref{A9}& \aref{A10}& \aref{A11}& \aref{A12}& \aref{A13}& \aref{A14}& \aref{A15}& \aref{A16}& \aref{A17}& \aref{A18}& \aref{A19} \\
+\hline          %   1   2    3   4   5    6   7
+\frref{R1}       &   &   &   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R2}       &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R3}       & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R4}       &   & X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R5}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R6}       &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R7}       & X&   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R8}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R9}       &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\frref{R10}     &   &   &   &   &   &   &   & & & & & & & & & & & &  \\ \hline
+\nfrref{NFR1} &   & X&   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR2} & X& X&   & X&   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR3} &   &   & X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR4} &   & X& X&   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR5} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR6} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR7} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR8} &   &   &   &   &   &   &   & & & & & & & & & & & & \\ \hline
+\nfrref{NFR9} &   &   &   &   &   &   &   & & & & & & & & & & & & \\
 \hline
 \end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
 \label{Table:A_trace}
 \end{table}
 \end{landscape}
-}
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
+	& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} &\frref{R8} &\frref{R9}& \frref{R10} \\
+\hline                    %1   2   3    4   5   6    7   8    9  10  
+\nfrref{NFR1}         &   & X& X&   &   &   & X&   &   &\\ \hline
+\nfrref{NFR2}         & X&   & X& X&  X&   & X&   &   & \\ \hline
+\nfrref{NFR3}         & X&   &   &   &   & X&   &   &   & \\ \hline
+\nfrref{NFR4}         &   & X&   & X&   &   &   &   &   & \\ \hline
+\nfrref{NFR5}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR6}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR7}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR8}         &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR9}         &   &   &   &   &   &   &   &   &   & \\ \hline 
+\nfrref{NFR10}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR11}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR12}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR13}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR14}       &   &   &   &   &   &   &   &   &   & \\ \hline
+\nfrref{NFR15}       &   &   &   &   &   &   &   &   &   & \\ 
 \hline
 \end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
+\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
 \label{Table:R_trace}
 \end{table}
 
@@ -1122,31 +1171,7 @@ what has to be additionally modified if a certain component is changed.  The
 arrows in the graphs represent dependencies. The component at the tail of an
 arrow is depended on by the component at the head of that arrow. Therefore, if a
 component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
-
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
+changed. 
 
 \section{Development Plan}
 
@@ -1167,7 +1192,169 @@ Their values are defined in this section for easy maintenance.}
 
 \plt{The value of FRACTION, for the Maintainability NFR would be given here.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Users and Stakeholders}
+\begin{itemize}
+\item Stakeholders
+
+	\begin{itemize}
+		\item  Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University (Project Supervisor).
+		\item  Dr. Spencer Smith (Project Supervisor).
+	\end{itemize}
+
+\item Users: The design has 2 different users:
+	\begin{itemize}
+		\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
+		\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
+	\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Project Attributes}
+This is a comphrehensive list of the various Open Issues, Costs and Risks involved with the project. This will be updated to reflect changes in the Design. Moreover this section also includes some stretch goals that may be accomplised depending on the pace and scale of the project.
+\begin{itemize}
+\item Open Issues:
+	\begin{itemize}
+		\item A decision must be made whether the design will be worn on the wrist like a smart watch or on the waist like a belt.
+		\item Sensor choices must be decided for optimal state detection of the user.
+		\item Data transfer protocol must be decided, (Bluetooth, Ethernet, Wifi etc.)
+		\item Cost analysis must be performed to see whether designing a custom PCB would be economical.
+	\end{itemize}
+	
+
+\item Costs:
+		\begin{center}
+			\begin{tabular}{ |c|c|c| } 
+				 \hline
+				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (\$CAD)} \\ 
+				 \hline
+				 	1 & Arduino Nano 											& \$10 \\ 
+				 \hline		
+				 	2 & MPU6050 (Accelerometer/ Gyroscope)						& \$12/unit \\ 
+				 \hline
+				 	3 & BMP-388 (Barometer) 									& \$2.5/unit \\ 
+				 \hline
+				 	4 & XD-58C (Heart Rate Sensor)								& \$3\\ 
+				 \hline
+				 	5 & STM32f405rgt6 (Primary Control Chip) 						& \$8/unit \\ 
+				 \hline
+				 	6 & Electrical Components (Diodes, Resistors, Capacitors ,etc.) 		& \$20 \\ 
+				 \hline
+				 	7 & Lipo Battery 											& \$30 \\ 
+				 \hline
+				 	8 &OLED mini display										& \$15 \\ 
+				 \hline
+				 	9 & Structural Materials (MDF, PLA plastic, wood, etc.) 			& \$10 \\ 
+				 \hline
+				 	& \textbf{Average Total Cost}								& \$110.5 \\ 
+				 \hline
+			\end{tabular}
+		\end{center}
+
+\item Risks:
+	\begin{itemize}
+		\item Battery life will degrade over time.
+		\item Device is not sanitized between different monitoring periods.
+		\item Device is improperly calibrated causing improper data collection.
+		\item User error when answering prompts.
+		\item Internal memory storage may become full if redundant data isnt regularly removed.
+	\end{itemize}
+
+\item Stretch goals: Detailed explanations of the following are provided in the Specification/Problem Statement Document.
+	\begin{itemize}
+		\item Detection of Anomalous behaviour may be added to track irregular movements.
+		\item Geotagging location of the activities being tracked to achieve observations about high traffic activity areas.
+		\item To optimize charging the device, a movement based charging system may be implemented.
+	\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normal Operation Overview}
+\setlength{\parindent}{20pt}
+Initially, the researcher will connect to the device using the provided software and either register a new participant or select a pre existing participant profile. Once a participant is selected, the researcher can set the thresholds, activities to be tracked and the monitoring period. \\
+
+Once the device is handed off to the participant, an inital set up process is done, where the device is worn by the user and a test prompt is sent. Once this initial set up process is done, the user will simply carry on with their normal day to day and the device will track all registered activities using the onboard sensors. As the data is collected, it is logged into the internal memory and is stored based on the date and time of entry.\\
+
+Finally after the monitoring period is finished, the device will go into an idle state until it is returned to the researcher. The researcher will then log in using their master credentials at which point the device will off load all data into the host software which will compile and present the data in a graphical manner.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Undersired Event Handling}
+\begin{itemize}
+	\item \textbf{Incorrect start up prompt response}: When the device is turned on by the user for the first time. A simple start up prompt is given just to check that system booted correctly ("Is this device on?"). If the user incorrectly enters their responsem, the system will simply 				perform a quick restart and ask the same question again.
+
+	\item \textbf{Stagnant sensor data}: Should the device store the same sequence of data for an extended period of time, the system will perform a soft reboot of the sensor array to try to fix the issue. If the problem persists, An alert will be sent out to the researchers informing them 			of a system failure.
+
+	\item \textbf{Improper prompt request}: Should the device generate a prompt whe no activity is being conducted. The user can simply report the prompt and the sytem will record an error, perform a soft reboot and continue normal operation.
+
+	\item \textbf{Early battery failure}: The device's battery should normally last one week. If the charge goes below a predefined threshold before the monitoring period ends, activity tracking will cease and the user will be prompted to charge the device.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{FSM and Dataflow Diagram}
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=1.3\textwidth]{FSM}
+		\caption{FSM}
+		\label{Fig_FSM} 
+	\end{center}
+\end{figure}
+The following explains the states presented in the above Finite State Machine:
+\begin{itemize}
+\item \textbf{States}:
+	\begin{enumerate}
+		\item \textbf{Startup}: Initial state of the system when it turns on. Simply transitions after checking battery life.           
+		\item \textbf{Battery Prompt}: Sends a prompt to the user informing them that the device needs to be charged.
+		\item \textbf{Shutdown}: This essentially powers of the device if the battery gets too low. 
+		\item \textbf{Test Prompt}: Testing the prompting system by giving a simple question to the user, Is the device on?
+		\item \textbf{Sensing}: Reads data from all the sensor and checks whether an activity is detected.
+		\item \textbf{Prompting}: Sends a prompt to the user when a registered activity is found. 
+		\item \textbf{Logging}: Logs prompt answers and sensor data in the internal memory.
+		\item \textbf{Sleep}: Temporarily puts the device to sleep until it is returned to the researchers.
+		\item \textbf{Restart}: Restarts the device without going through the startup sequence.
+		\item \textbf{Researcher Software}: Initilal state of the software on the host computer. Consists of a simple welcome screen.
+		\item \textbf{Calibration}: Calibrates sensors, allows setting new thresholds and choosing what activities to track.
+		\item \textbf{Participant Records}: Allows creating and modifying participant information.
+		\item \textbf{Data}: Presents all data stored on the device in a graphcial manner.
+		\item \textbf{Idle}: Idle state of the software. Awaits any user input.
+		\item \textbf{Software/Device shutdown}: When the software shuts down, the device also turns off.
+	\end{enumerate}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
 \newpage
+
+%I think this will probably get covered in the requirements
+\section{Required Behavior}
+
+The activity tracking system should have the following required behavior: \\
+Feels redundant guys....
+
+\begin{itemize}
+\item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
+\item The activity tracker must be able to turn on, or reboot itself without user intervention if an issue is detected\\
+\item The battery must last a minimum of 7 days\\
+\item The system must be able to store at least 14 days worth of activity tracking data locally\\
+\item The system should be intuitive and seamless for the user\\
+\end{itemize} 
 
 \bibliographystyle {plainnat}
 \bibliography {../../refs/References}
