@@ -16,7 +16,7 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
-
+\usepackage{color, colortbl}
 \usepackage[round]{natbib}
 \usepackage{helvet}
 \usepackage[none]{hyphenat}
@@ -24,7 +24,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 %\usepackage{refcheck}
-
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,       % false: boxed links; true: colored links
@@ -130,10 +130,10 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
+\title{Software Requirements Specification for \progname: subtitle describing software}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 ~\newpage
@@ -147,11 +147,11 @@
 \section*{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
+  \midrule
+  Date 1              & 1.0           & Notes       \\
+  Date 2              & 1.1           & Notes       \\
+  \bottomrule
 \end{tabularx}
 
 ~\newpage
@@ -170,46 +170,46 @@ description of the unit and the SI name.
 
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass	& kilogram\\
-    \si{\second} & time & second\\
-    \si{\degree} & angle & degree\\
-    \si{\radian} & angle & radian\\
-    \si{\V} & potential & volts\\
-    \si{\ampere} & current & ampere\\
-    \si{\ohm} & resistance & ohm (\si\ohm = \si{\V\per\ampere})\\
-    \si{\F} & capacitance & farad\\
-    \si{\H} & inductance & henry\\
-    N & force & newton (N = \si{\kilogram\metre\per\square\second})\\
-    Pa & pressure & pascals (Pa = N\si{\per\square\metre})\\
-    \si{\Hz} & frequency & hertz\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
-    \bottomrule
-  \end{tabular}
-  
-  ~\newline
+\noindent \begin{tabular}{l l l}
+  \toprule
+  \textbf{symbol} & \textbf{unit} & \textbf{SI}                                         \\
+  \midrule
+  \si{\metre}     & length        & metre                                               \\
+  \si{\kilogram}  & mass          & kilogram                                            \\
+  \si{\second}    & time          & second                                              \\
+  \si{\degree}    & angle         & degree                                              \\
+  \si{\radian}    & angle         & radian                                              \\
+  \si{\V}         & potential     & volts                                               \\
+  \si{\ampere}    & current       & ampere                                              \\
+  \si{\ohm}       & resistance    & ohm (\si\ohm = \si{\V\per\ampere})                  \\
+  \si{\F}         & capacitance   & farad                                               \\
+  \si{\H}         & inductance    & henry                                               \\
+  N               & force         & newton (N = \si{\kilogram\metre\per\square\second}) \\
+  Pa              & pressure      & pascals (Pa = N\si{\per\square\metre})              \\
+  \si{\Hz}        & frequency     & hertz                                               \\
+  \si{\joule}     & energy        & joule                                               \\
+  \si{\watt}      & power         & watt (W = \si{\joule\per\second})                   \\
+  \bottomrule
+\end{tabular}
+
+~\newline
 Below are some derived units that do not use a specific SI symbol.
 ~\newline
 
-  \renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
-  \noindent \begin{tabular}{l l} 
-    \toprule		
-    \textbf{Derived unit} & \textbf{SI}\\
-    \midrule 
-    area  & \si{\square\metre}\\
-    volume & \si{\cubic\metre}\\
-    velocity &  \si{\metre\per\second}\\
-    acceleration &  \si{\metre\per\square\second}\\    
-    \bottomrule
-  \end{tabular}
-  
-  %	\caption{Provide a caption}
+\noindent \begin{tabular}{l l}
+  \toprule
+  \textbf{Derived unit} & \textbf{SI}                   \\
+  \midrule
+  area                  & \si{\square\metre}            \\
+  volume                & \si{\cubic\metre}             \\
+  velocity              & \si{\metre\per\second}        \\
+  acceleration          & \si{\metre\per\square\second} \\
+  \bottomrule
+\end{tabular}
+
+%	\caption{Provide a caption}
 %\end{table}
 
 
@@ -221,20 +221,21 @@ their units.  The choice of symbols was made to be consistent with kinematics an
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
-\textbf{symbol} & \textbf{unit} & \textbf{description}\\
-\midrule
-$f_c$ & \si{\Hz} & clock frequency of microcontroller\\
-$m_{tracker}$ & \si\g & mass of activity tracker (device)\\
-$a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
-$A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
-$V_{battery}$ & \si\V & supplied voltage of battery\\
+  \textbf{symbol} & \textbf{unit} & \textbf{description}\\
+  \midrule
+  $f_c$ & \si{\Hz} & clock frequency of microcontroller\\
+  $m_{tracker}$ & \si\g & mass of activity tracker (device)\\
+  $a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
+  $A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
+  $V_{battery}$ & \si\V & supplied voltage of battery\\
 
-\bottomrule
+  \bottomrule
 \end{longtable*}
 
 \subsection{Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
+
 \begin{tabular}{l l} 
   \toprule		
   \textbf{symbol} & \textbf{description}\\
@@ -287,7 +288,7 @@ This document is intended to describe the requirements of Team \#1's system in a
 
 Additional purposes of this document are to plan for the design stage of the project, foster effective communication between members of the team, and to establish reference material to which team members will be able to refer back to at later stages in the project should they need to acquire a higher-level view of the system.
 
-\subsection{Scope of Requirements} 
+\subsection{Scope of Requirements}
 
 The scope requirements for a system which satisfies the goals of EMA must be defined properly. In the case of this project, the requirements must include a method of activity monitoring and a way to prompt users with questions relevant to EMA. In addition, this system will be used by older adults in Canada, specifically in a typical Canadian household environment, likely with a fixed daily routine. This system is not intended to be used by bedridden or sedentary users. If a user is unable to maintain a certain level of movement on a regular basis, the entire point of EMA is rendered moot. It is also necessary to exclude children from the sphere of users. This system must be designed for adults, aimed specifically towards older adults.\\
 
@@ -314,29 +315,28 @@ interfaces between the system and its environment, describes the user
 characteristi	cs and lists the system constraints.  \\\\
 \subsection{System Context}
 
-This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. 
+This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations.
 \begin{figure}[h!]
-\begin{center}
- \includegraphics[width=.95\textwidth]{System Context Diagram}
-\caption{System Context}
-\label{Fig_SystemContext} 
-\end{center}
+  \begin{center}
+    \includegraphics[width=.95\textwidth]{System Context Diagram}
+    \caption{System Context}
+    \label{Fig_SystemContext}
+  \end{center}
 \end{figure}
 
-
 \begin{itemize}
-\item Patient Responsibilities:
-\begin{itemize}
-\item Patients are required to set up the device correctly so that their various attributes (Orientation, velocity, etc.) can be collected.
-\item Patients are also required to answer the prompts given to them so that adequate data can be collected.
-\end{itemize}
-\item Researcher Responsibilities:
-\begin{itemize}
-\item Required to confirm that data is being collected.
-\item Required to set up the intial thresholds and activities for tracking.
-\item Offshoot the data.
-\item Charge and calibrate the system.
-\end{itemize}
+  \item Patient Responsibilities:
+        \begin{itemize}
+          \item Patients are required to set up the device correctly so that their various attributes (Orientation, velocity, etc.) can be collected.
+          \item Patients are also required to answer the prompts given to them so that adequate data can be collected.
+        \end{itemize}
+  \item Researcher Responsibilities:
+        \begin{itemize}
+          \item Required to confirm that data is being collected.
+          \item Required to set up the intial thresholds and activities for tracking.
+          \item Offshoot the data.
+          \item Charge and calibrate the system.
+        \end{itemize}
 \end{itemize}
 
 \subsection{User Characteristics} \label{SecUserCharacteristics}
@@ -350,6 +350,7 @@ Researchers will have the option of tweaking the configuration of the device, al
 
 The design will consist of both a hardware and a software system. The constraints for both systems are as follows:
 \begin{itemize}
+
 \item \textbf{Hardware}: 
 	\begin{itemize}
 		\item The system must weigh less than 100g to facilitate being lightweight and comfortable.
@@ -377,7 +378,7 @@ the instance models.  \plt{Add any project specific details that are relevant
 \subsection{Problem Description} \label{Sec_pd}
 
 \progname{} is intended to solve ... \plt{What problem does your program solve?
-The description here should be in the problem space, not the solution space.}
+  The description here should be in the problem space, not the solution space.}
 
 \subsubsection{Terminology and  Definitions}
 
@@ -387,10 +388,70 @@ easier to correctly understand the requirements:
 
 \begin{itemize}
 
-\item 
+  \item PID controller: This stands for proportional–integral–derivative controller. It is an instrument used in industrial control applications to regulate temperature, flow, pressure, speed and other process variables.
+  \item FSM: This stands for Finite State Machine. An FSM is a machine that can be in a specific state from finite set of states based on previous conditions and inputs.
+  \item OLED display: It stands for organic light-emitting diodes screen. This is the display screen where light is produced by organic molecules.
+  \item MVC: Model-View-Controller. It is a software architectural pattern used to implement user interfaces, data and controlling logic. It separates display from program logic.
+  \item Control variables: These are the variables that will be controlled in our implementation and research to avoid their impact.
+  \item Monitored variables: These are the variables that will be calculated based on program logic and output as a result.
 
 \end{itemize}
+\subsubsection{Monitored variables}
+\begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
+  \hline
+  \rowcolor{LightCyan}
+  \textbf{Monitored Variable}       & \textbf{Description}                                                                                                                                                                          & \textbf{Units}           \\
+  \hline
+  m\textunderscore batteryLife      & This signal is used to monitor the battery life.                                                                                                                                              & Integer(\%)              \\
+  \hline
+  m\textunderscore startup          & This signal is used to indicate the device has started.                                                                                                                                       & Boolean                  \\
+  \hline
+  m\textunderscore modeUser         & This signal is used to indicate who is the user. There are only two types of users: participant and researcher. Mode for participant is 0 and 1 for researcher.                               & Boolean                  \\
+  \hline
+  m\textunderscore ActivityDetected & This signal is used to check whether the desired behaviour has been displayed by the participant.                                                                                             & Boolean                  \\
+  \hline
+  m\textunderscore promptAnswered   & This signal is used to monitor whether the participant has filled up the survey and submitted the responses.                                                                                  & Boolean                  \\
+  \hline
+  m\textunderscore monitorPer       & This signal is used to monitor the duration, the participant has been monitored since the device has been turned on.                                                                          & Integer (number of days) \\
+  \hline
+  m\textunderscore valConnect       & This signal is used to indicate whether the researcher's system can be validated as a host, this is a layer of security so that only researchers can get their specific view.                 & Boolean                  \\
+  \hline
+  m\textunderscore modeResearcher   & This flag is used to indicate what the researcher is trying to do. There are 3 different views: for calibrating the device(0), accessing patient records(1), and accessing data collected(2). & Integer                  \\
+  \hline
+  m\textunderscore senCalVal        & This signal is used to indicate whether the sensors have been calibrated successfully according to the researcher's constraints.                                                              & Boolean                  \\
+  \hline
+\end{tabular}
+\\
+\linebreak
+\linebreak
 
+\subsubsection{Controlled variables}
+\begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
+  \hline
+
+  \rowcolor{LightCyan}
+  \textbf{Controlled Variable} & \textbf{Description}                                                                                                          & \textbf{Units}           \\
+  \hline
+  c\textunderscore batteryLife & This is the battery threshold that the battery life should be above to indicate that the device is good for usage             & Integer(\%)              \\
+  \hline
+  c\textunderscore monitorPer  & This is the monitoring period set for participants by the researcher. The device shall be collecting data within this period. & Integer (number of days) \\
+  \hline
+\end{tabular}
+
+\subsubsection{Comparison to existing solutions}
+Most of the solutions are just softwares when installed, uses phone sensor data to cause an intervention. They are very dependent on mobile phone sensors, meaning if there are no sensors on the phone, the software application becomes obsolete.
+The app might also have to be open 24/7 or running in background to be able to read live sensor data.  Some of the current solutions involved a time-based EMA trigger
+which may cause the data collected to be segregated as the trigger time intervals could be well beyond when the user expressed a desired behaviour.
+\\\\
+Most of the solutions could include smartwatches such as Fitbit, Samsung Galaxy Watch. These products are not very accurate as they could track movement wrongly, leading to wrong results.
+These devices can also be easily tampered by participants, which could affect the results produced in favour of participants. The battery life on these devices are also very short, and they can drain rapidly with very little use.
+They also tend to be very expensive due to some features offered, which may not be useful to the situation.
+\\\\
+The device that we will be designing will be independent of the cellphone devices. This removes the ambiguity in the linking of phone sensors to software application for tracking. It will be collecting data live and triggering EMA based on sensor data, thus being momentary and
+more accurate responses are expected to be responded at the time of happening. It will also thrive to use very sensitive sensors, so that every minor movement can be captured, which is limited to the existing solutions due to their dependency on phone sensors.
+Some of the softwares could be very expensive despite the limitations they have, such as being dependent entirely on phone. This makes the overall system expensive as the user will need
+to be owning a phone which could add to the total expenses. The device that we will be designing is also expected to have longer battery life and ease-of-comfort while wearing. They will have an added layer of security, where the participants cannot recalibrate the devices, hence enhancing accuracy of the results.
+It will be very cheap and specific to the purpose, thus ensuring better performance, and higher reliability.
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
 \plt{The purpose of this section is to clearly and unambiguously state the
@@ -411,9 +472,9 @@ includes the following elements:
 
 \begin{itemize}
 
-\item[PS1:] 
+  \item[PS1:]
 
-\item[PS2:] ...
+  \item[PS2:] ...
 
 \end{itemize}
 
@@ -445,9 +506,9 @@ includes the following elements:
 
 \begin{itemize}
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
-    sentence description of the goal.  There may be more than one.  Each Goal
-    should have a meaningful label.}
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
+      sentence description of the goal.  There may be more than one.  Each Goal
+      should have a meaningful label.}
 
 \end{itemize}
 
@@ -517,7 +578,7 @@ models can be verified.
 This section simplifies the original problem and helps in developing the
 theoretical model by filling in the missing information for the physical
 system. The numbers given in the square brackets refer to the theoretical model
-[T], general definition [GD], data definition [DD], instance model [IM], or
+  [T], general definition [GD], data definition [DD], instance model [IM], or
 likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
@@ -563,19 +624,19 @@ on.  \plt{Modify the examples below for your problem, and add additional models
 {Conservation of thermal energy}
 % #4 equation
 {
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
+$-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
 }
 % #5 description
 {
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
+The above equation gives the conservation of energy for transient heat transfer in a material
+of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$
+(\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
+$g$ is the volumetric heat generation
+(\si{\watt\per\cubic\metre}), $T$ is the temperature
+(\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
+the gradient operator.  For this equation to apply, other forms
+of energy, such as mechanical energy, are assumed to be negligible in the
+system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
 }
 % #6 Notes
 {
@@ -583,11 +644,11 @@ None.
 }
 % #7 Source
 {
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
+\url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
 }
 % #8 Referenced by
 {
-  \dref{ROCT}
+\dref{ROCT}
 }
 % #9 Preconditions
 {
@@ -626,37 +687,37 @@ instance models.
 
 \noindent
 \begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
-\hline
-Label &\bf Newton's law of cooling \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si{\watt\per\square\metre}\\
-\hline
-Equation&$ q(t) = h \Delta T(t)$  \\
-\hline
-Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
-\\
-\hline
-  Source & Citation here \\
-  \hline
-  Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
-  \hline
-\end{tabular}
+  \renewcommand*{\arraystretch}{1.5}
+  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    Number      & GD\refstepcounter{defnum}\thedefnum \label{NL}                                     \\
+    \hline
+    Label       & \bf Newton's law of cooling                                                        \\
+    \hline
+    % Units&$MLt^{-3}T^0$\\
+    % \hline
+    SI Units    & \si{\watt\per\square\metre}                                                        \\
+    \hline
+    Equation    & $ q(t) = h \Delta T(t)$                                                            \\
+    \hline
+    Description &
+    Newton's law of cooling describes convective cooling from a surface.  The law is
+    stated as: the rate of heat loss from a body is proportional to the difference
+    in temperatures between the body and its surroundings.
+    \\
+                & $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).                          \\
+                & $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
+    (\si{\watt\per\square\metre\per\celsius}).                                                       \\
+                & $\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
+    between the environment and the object (\si{\celsius}).
+    \\
+    \hline
+    Source      & Citation here                                                                      \\
+    \hline
+    Ref.\ By    & \ddref{FluxCoil}, \ddref{FluxPCM}                                                  \\
+    \hline
+  \end{tabular}
 \end{minipage}\\
 
 \subsubsection*{Detailed derivation of simplified rate of change of temperature}
@@ -685,39 +746,39 @@ models. The dimension of each quantity is also given.  \plt{Modify the examples
 
 \noindent
 \begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
-\hline
-Label& \bf Heat flux out of coil\\
-\hline
-Symbol &$q_C$\\
-\hline
-% Units& $Mt^{-3}$\\
-% \hline
-  SI Units & \si{\watt\per\square\metre}\\
-  \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
-  \hline
-  Description & 
-                $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
-                The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-                assuming that Newton's Law 
-                of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-                the coil, which has area $A_C$ (\si{\square\metre}) and heat 
-                transfer coefficient $h_C$
-                (\si{\watt\per\square\metre\per\celsius}).  This equation
-                assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-                of the coil (\aref{A_tlcoil}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{ewat}\\
-  \hline
-\end{tabular}
+  \renewcommand*{\arraystretch}{1.5}
+  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    Number      & DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil} \\
+    \hline
+    Label       & \bf Heat flux out of coil                                    \\
+    \hline
+    Symbol      & $q_C$                                                        \\
+    \hline
+    % Units& $Mt^{-3}$\\
+    % \hline
+    SI Units    & \si{\watt\per\square\metre}                                  \\
+    \hline
+    Equation    & $q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$               \\
+    \hline
+    Description &
+    $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).
+    The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
+    assuming that Newton's Law
+    of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
+    the coil, which has area $A_C$ (\si{\square\metre}) and heat
+    transfer coefficient $h_C$
+    (\si{\watt\per\square\metre\per\celsius}).  This equation
+    assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
+    of the coil (\aref{A_tlcoil}).
+    \\
+    \hline
+    Sources     & Citation here                                                \\
+    \hline
+    Ref.\ By    & \iref{ewat}                                                  \\
+    \hline
+  \end{tabular}
 \end{minipage}\\
 
 \subsubsection{Data Types}\label{sec_datatypes}
@@ -743,23 +804,23 @@ models. \plt{Modify the examples below for your problem, and add additional
 
 \noindent
 \begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Type Name & Name for Type\\
-  \hline
-  Type Def & mathematical definition of the type\\
-  \hline
-  Description & description here
-  \\
-  \hline
-  Sources & Citation here, if the type is borrowed from another source\\
-  \hline
-\end{tabular}
+  \renewcommand*{\arraystretch}{1.5}
+  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    Type Name   & Name for Type                                              \\
+    \hline
+    Type Def    & mathematical definition of the type                        \\
+    \hline
+    Description & description here
+    \\
+    \hline
+    Sources     & Citation here, if the type is borrowed from another source \\
+    \hline
+  \end{tabular}
 \end{minipage}\\
 
-\subsubsection{Instance Models} \label{sec_instance}    
+\subsubsection{Instance Models} \label{sec_instance}
 
 \plt{The motivation for this section is to reduce the problem defined in
   ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
@@ -767,9 +828,9 @@ models. \plt{Modify the examples below for your problem, and add additional
   GDs.  This section should remain abstract.  The SRS should specify the
   requirements without considering the implementation.}
 
-This section transforms the problem defined in Section~\ref{Sec_pd} into 
-one which is expressed in mathematical terms. It uses concrete symbols defined 
-in Section~\ref{sec_datadef} to replace the abstract symbols in the models 
+This section transforms the problem defined in Section~\ref{Sec_pd} into
+one which is expressed in mathematical terms. It uses concrete symbols defined
+in Section~\ref{sec_datadef} to replace the abstract symbols in the models
 identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
 
 The goals \plt{reference your goals} are solved by \plt{reference your instance
@@ -783,37 +844,37 @@ The goals \plt{reference your goals} are solved by \plt{reference your instance
 
 \noindent
 \begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
-  \hline
-  Label& \bf Energy balance on water to find $T_W$\\
-  \hline
-  Input&$m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$, 
-  $T_\text{init}$, $T_P(t)$ from \iref{epcm}\\
-  & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
-  \hline
-  Output&$T_W(t)$, $0\leq t \leq t_\text{final}$, such that\\
-  &$\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,\\
-  &$T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
-  \hline
-  Description&$T_W$ is the water temperature (\si{\celsius}).\\
-  &$T_P$ is the PCM temperature (\si{\celsius}).\\
-  &$T_C$ is the coil temperature (\si{\celsius}).\\
-  &$\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).\\
-  &$\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).\\
-  & The above equation applies as long as the water is in liquid form,
-  $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{epcm}\\
-  \hline
-\end{tabular}
+  \renewcommand*{\arraystretch}{1.5}
+  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    Number      & IM\refstepcounter{instnum}\theinstnum \label{ewat}                                  \\
+    \hline
+    Label       & \bf Energy balance on water to find $T_W$                                           \\
+    \hline
+    Input       & $m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$,
+    $T_\text{init}$, $T_P(t)$ from \iref{epcm}                                                        \\
+                & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})         \\
+    \hline
+    Output      & $T_W(t)$, $0\leq t \leq t_\text{final}$, such that                                  \\
+                & $\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,     \\
+                & $T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
+    \hline
+    Description & $T_W$ is the water temperature (\si{\celsius}).                                     \\
+                & $T_P$ is the PCM temperature (\si{\celsius}).                                       \\
+                & $T_C$ is the coil temperature (\si{\celsius}).                                      \\
+                & $\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).                    \\
+                & $\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).                     \\
+                & The above equation applies as long as the water is in liquid form,
+    $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
+    and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
+    \\
+    \hline
+    Sources     & Citation here                                                                       \\
+    \hline
+    Ref.\ By    & \iref{epcm}                                                                         \\
+    \hline
+  \end{tabular}
 \end{minipage}\\
 
 %~\newline
@@ -824,7 +885,7 @@ The goals \plt{reference your goals} are solved by \plt{reference your instance
   where the derivation cannot be described under the Description field, it will
   be necessary to include this subsection.}
 
-\subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
+\subsubsection{Input Data Constraints} \label{sec_DataConstraints}
 
 Table~\ref{TblInputVar} shows the data constraints on the input output
 variables.  The column for physical constraints gives the physical limitations
@@ -844,32 +905,32 @@ Table~\ref{TblSpecParams}.
 \begin{table}[!h]
   \caption{Input Variables} \label{TblInputVar}
   \renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l l l c} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
-                             \textbf{Typical Value} & \textbf{Uncertainty}\\
-  \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
-  \\
-  \bottomrule
-\end{longtable*}
+  \noindent \begin{longtable*}{l l l l c}
+    \toprule
+    \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
+    \textbf{Typical Value} & \textbf{Uncertainty}\\
+    \midrule
+    $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
+    \\
+    \bottomrule
+  \end{longtable*}
 \end{table}
 
-\noindent 
+\noindent
 \begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
+  \item[(*)] \plt{you might need to add some notes or clarifications}
 \end{description}
 
 \begin{table}[!h]
-\caption{Specification Parameter Values} \label{TblSpecParams}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Value} \\
-  \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
-  \bottomrule
-\end{longtable*}
+  \caption{Specification Parameter Values} \label{TblSpecParams}
+  \renewcommand{\arraystretch}{1.2}
+  \noindent \begin{longtable*}{l l}
+    \toprule
+    \textbf{Var} & \textbf{Value} \\
+    \midrule
+    $L_\text{min}$ & 0.1 \si{\metre}\\
+    \bottomrule
+  \end{longtable*}
 \end{table}
 
 \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
@@ -883,16 +944,16 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
 
 \begin{table}[!h]
-\caption{Output Variables} \label{TblOutputVar}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} \\
-  \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-  \\
-  \bottomrule
-\end{longtable*}
+  \caption{Output Variables} \label{TblOutputVar}
+  \renewcommand{\arraystretch}{1.2}
+  \noindent \begin{longtable*}{l l}
+    \toprule
+    \textbf{Var} & \textbf{Physical Constraints} \\
+    \midrule
+    $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
+    \\
+    \bottomrule
+  \end{longtable*}
 \end{table}
 
 \plt{This section is not for test cases or techniques for verification and
@@ -1031,6 +1092,7 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Fit Criterion:} The data recorded, stored, and submitted by the system should be accurate to a level considered satisfactory to standard EMA studies conducted by the SReS.\\
 
+
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
 
 \underline{Rationale:} As many of the participants may be older adults, they may be unfamiliar with modern activity tracking technology. It is unreasoneable to expect such participants to be able to use the functions of this system unless it is explicitly designed to be useable at any level of experience with technology. Also, we don't wanna waste the time of the researchers or introduce unneccessary complexity into operating this system which may introduce erroneous inputs or data interpretations based on confusing interfaces.\\
@@ -1050,6 +1112,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Rationale:} Ecological Momentary Assessment (EMA) is meant to be performed at almost all points of a participant's daily routine. If the system is bulky, difficult to maneuver around or wear, or heavy, a participant's movement and actions will be hindered and they will be unable to provide EMA data accurately.\\
 
 \underline{Fit Criterion:} Has been tested in each individual environment where EMA will be taking place with satisfactory results regarding its portability.\\
+
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Cleanabiity}:]
   \textbf{Cleanability:} Each portion of this device must be capable of being cleaned, sanitized, and made hygenic before and after each period of EMA which it is used for. As each component of the device is constructed and used in a different manner, the different needs each component has in order to render it clean must be considered as well.\\
@@ -1188,7 +1251,7 @@ changed.
 \plt{Show the values of the symbolic parameters introduced in the report.}
 
 \plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.}
+  Their values are defined in this section for easy maintenance.}
 
 \plt{The value of FRACTION, for the Maintainability NFR would be given here.}
 
@@ -1365,40 +1428,40 @@ Feels redundant guys....
   when filing in the template.}
 
 \noindent \plt{Grammar, flow and \LaTeX advice:
-\begin{itemize}
-\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-\item \LaTeX{} and formatting rules
-\begin{itemize}
-\item Variables are italic, everything else not, includes subscripts (link to
-  document)
-\begin{itemize}
-\item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-\item Watch out for implied multiplication
-\end{itemize}
-\item Use BibTeX
-\item Use cross-referencing
-\end{itemize}
-\item Grammar and writing rules
-\begin{itemize}
-\item Acronyms expanded on first usage (not just in table of acronyms)
-\item ``In order to'' should be ``to''
-\end{itemize}
-\end{itemize}}
+  \begin{itemize}
+    \item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
+    \item \LaTeX{} and formatting rules
+          \begin{itemize}
+            \item Variables are italic, everything else not, includes subscripts (link to
+                  document)
+                  \begin{itemize}
+                    \item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
+                    \item Watch out for implied multiplication
+                  \end{itemize}
+            \item Use BibTeX
+            \item Use cross-referencing
+          \end{itemize}
+    \item Grammar and writing rules
+          \begin{itemize}
+            \item Acronyms expanded on first usage (not just in table of acronyms)
+            \item ``In order to'' should be ``to''
+          \end{itemize}
+  \end{itemize}}
 
 \noindent \plt{Advice on using the template:
-\begin{itemize}
-\item Difference between physical and software constraints
-\item Properties of a correct solution means \emph{additional} properties, not
-  a restating of the requirements (may be ``not applicable'' for your problem).
-  If you have a table of output constraints, then these are properties of a
-  correct solution.
-\item Assumptions have to be invoked somewhere
-\item ``Referenced by'' implies that there is an explicit reference
-\item Think of traceability matrix, list of assumption invocations and list of
-  reference by fields as automatically generatable
-\item If you say the format of the output (plot, table etc), then your
-  requirement could be more abstract
-\end{itemize}
+  \begin{itemize}
+    \item Difference between physical and software constraints
+    \item Properties of a correct solution means \emph{additional} properties, not
+          a restating of the requirements (may be ``not applicable'' for your problem).
+          If you have a table of output constraints, then these are properties of a
+          correct solution.
+    \item Assumptions have to be invoked somewhere
+    \item ``Referenced by'' implies that there is an explicit reference
+    \item Think of traceability matrix, list of assumption invocations and list of
+          reference by fields as automatically generatable
+    \item If you say the format of the output (plot, table etc), then your
+          requirement could be more abstract
+  \end{itemize}
 }
 
 \section{Legal and Regulatory Factors}
@@ -1431,16 +1494,16 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
   \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete this capstone project?  Examples of possible knowledge
-  to acquire include domain specific knowledge from the domain of your
-  application, or software engineering knowledge, mechatronics knowledge or
-  computer science knowledge.  Skills may be related to technology, or writing,
-  or presentation, or team management, etc.  You should look to identify at
-  least one item for each team member.
+        successfully complete this capstone project?  Examples of possible knowledge
+        to acquire include domain specific knowledge from the domain of your
+        application, or software engineering knowledge, mechatronics knowledge or
+        computer science knowledge.  Skills may be related to technology, or writing,
+        or presentation, or team management, etc.  You should look to identify at
+        least one item for each team member.
   \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+        question, what are at least two approaches to acquiring the knowledge or
+        mastering the skill?  Of the identified approaches, which will each team
+        member pursue, and why did they make this choice?
 \end{enumerate}
 
 \end{document}
