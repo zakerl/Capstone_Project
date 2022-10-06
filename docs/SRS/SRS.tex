@@ -272,6 +272,21 @@ $V_{battery}$ & \si\V & supplied voltage of battery\\
   \bottomrule
 \end{tabular}\\
 
+
+\subsection{Constants}
+Below are the constant that will be used in the device.
+\renewcommand{\arraystretch}{1.2}
+%\noindent \begin{tabularx}{1.0\textwidth}{l l X}
+\noindent \begin{longtable*}{l l p{12cm}} \toprule
+
+\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
+\midrule
+$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
+$f_{arduino}$ &16 \si{MHz} & clock frequency of arduino uno\\
+\bottomrule
+
+\end{longtable*}
+
 \subsection{Mathematical Notation}
 N/A
 \pagenumbering{arabic}
@@ -296,6 +311,19 @@ This document is intended to describe the requirements of Team \#1's system in a
 
 Additional purposes of this document are to plan for the design stage of the project, foster effective communication between members of the team, and to establish reference material to which team members will be able to refer back to at later stages in the project should they need to acquire a higher-level view of the system.
 
+\subsection{Changes from template}
+This document was written based off of the sample work provided in the 4T06 course gitlab page, and changes have been made from the template accordingly. They are included here:\\
+
+\begin{itemize}
+	\item Added a constants subheading to section 1. This project does not use the mathematical notation included in the template.
+	\item Added a section for users and stakeholders.
+	\item Added subsections for monitored and controlled variables.
+	\item Renamed Solution Characteristics Specifications to Assumptions, as most of the original Solution Characteristics Specifications is not relevant to this project, other than the 					assumptions section.
+	\item Sections 5.2.1 through 5.2.7 are not applicable to this project and have been labelled N/A.
+	\item The Development Plan and Value of Auxiliary Constants sections are not applicable to this project and have been labelled N/A.
+	\item Added a section for Project Attributes, Normal Operation Overview, Undesirabled Event Handling, and FSM and Dataflow Diagram, and Legal and Regulatory Factors.
+\end{itemize}
+
 \subsection{Scope of Requirements}
 
 The scope requirements for a system which satisfies the goals of EMA must be defined properly. In the case of this project, the requirements must include a method of activity monitoring and a way to prompt users with questions relevant to EMA. In addition, this system will be used by older adults in Canada, specifically in a typical Canadian household environment, likely with a fixed daily routine. This system is not intended to be used by bedridden or sedentary users. If a user is unable to maintain a certain level of movement on a regular basis, the entire point of EMA is rendered moot. It is also necessary to exclude children from the sphere of users. This system must be designed for adults, aimed specifically towards older adults.\\
@@ -309,12 +337,8 @@ A reader should have a grasp of software development, electronics, mechanics and
 In addition, a reader should have a high-level understanding of Ecological Momentary Assessment. This does not have to be particularly in depth, but a reader should be able to identify the main objectives, practices, and difficulties of performing EMA. Introductory resources related to this can be found here [specify where]. \\
 
 \subsection{Organization of Document}
-I'm leaving this section until we finalize section 5 and beyond. It won't take long. -JH\\
+This document is organized in a way to make it simple for a reader to understand the essentials regarding the requirements of the system. Should one be interested in gaining a general understanding, it is highly recommended to read this document in its entirety. However, should one wish to learn about specific aspects of this project, please feel free to navigate to any individual section as they are each individually comprehensible. If the reader of this document is a participant in the SReS EMA program, the information relevant is located in sections 2, 3, and 4. If the reader of this document is a researcher performing EMA, the information relevant is located in sections 3, 4, 5, 11, 12, and 13.\\ 
 
-\plt{This section provides a roadmap of the SRS document.  It will help the
-  reader orient themselves.  It will provide direction that will help them
-  select which sections they want to read, and in what order.  This section will
-  be similar between project.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -558,10 +582,23 @@ N/A
 \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
 N/A
 
-\section{Requirements}
 
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Required Behavior}
+
+The activity tracking system should have the following required behavior: \\
+Feels redundant guys....
+
+\begin{itemize}
+\item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
+\item The activity tracker must be able to turn on, or reboot itself without user intervention if an issue is detected\\
+\item The battery must last a minimum of 7 days\\
+\item The system must be able to store at least 14 days worth of activity tracking data locally\\
+\item The system should be intuitive and seamless for the user\\
+\end{itemize} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Requirements}
 
 This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
@@ -586,7 +623,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R2} & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R2} (Prority) & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
  \hline
  Rationale &  The device will have to track minor movements as a lot of the participants have limited mobility.\\ 
  \hline
@@ -598,7 +635,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to notify the user when the software detects a registered activity relavent to EMA standards and that is signficant or promptable.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R3}(Prority) &Device has to notify the user when the software detects a registered activity relavent to EMA standards and that is signficant or promptable.\\ [0.5ex]
  \hline
  Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
  \hline
@@ -634,7 +671,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will store all relavent data every time an activity takes place or a prompt is answered on the device.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R6} (Prority) &The device will store all relavent data every time an activity takes place or a prompt is answered on the device.\\ [0.5ex]
  \hline
  Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
  \hline
@@ -646,7 +683,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will be able to be extracted such that the data is interpretable in the form of graphical representation and raw data.\\[0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R7} (Prority) &The data stored on the device will be able to be extracted such that the data is interpretable in the form of graphical representation and raw data.\\[0.5ex]
  \hline
  Rationale & The researches require data in formats conducive to conducting clinical EMA studies. These formats are most commonly spreadsheet or graphical forms.\\ 
  \hline
@@ -997,19 +1034,7 @@ The following explains the states presented in the above Finite State Machine:
 
 \newpage
 
-%I think this will probably get covered in the requirements
-\section{Required Behavior}
 
-The activity tracking system should have the following required behavior: \\
-Feels redundant guys....
-
-\begin{itemize}
-\item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
-\item The activity tracker must be able to turn on, or reboot itself without user intervention if an issue is detected\\
-\item The battery must last a minimum of 7 days\\
-\item The system must be able to store at least 14 days worth of activity tracking data locally\\
-\item The system should be intuitive and seamless for the user\\
-\end{itemize} 
 
 %\bibliographystyle {plainnat}
 %\bibliography {../../refs/References}
