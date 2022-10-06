@@ -311,9 +311,7 @@ I'm leaving this section until we finalize section 5 and beyond. It won't take l
 
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
-
-characteristics and lists the system constraints.  \\\\
-
+characteristi	cs and lists the system constraints.  \\\\
 \subsection{System Context}
 
 This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. 
@@ -345,7 +343,6 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 
 Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
-
 Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs and statistical analysis will be required to understand the research data collected by the device.\\\\
 
 
@@ -355,7 +352,6 @@ The design will consist of both a hardware and a software system. The constraint
 \begin{itemize}
 \item \textbf{Hardware}: 
 	\begin{itemize}
-
 		\item The system must weigh less than 100g to facilitate being lightweight and comfortable.
 		\item The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
 		\item The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
@@ -527,20 +523,19 @@ likely change [LC], in which the respective assumption is used.
 \begin{itemize}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
-\label{A_meaningfulLabel}:]
+\label{A1}:]
 {All users are fluent English speakers.}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
-\label{A_meaningfulLabel}:]
+\label{A2}:]
 {The device is to be used under normal daily activities.}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
-\label{A_meaningfulLabel}:]
+\label{A3}:]
 {The device does not have to receive or send data in any wireless manner. It will only have to transfer data through wired connections.}
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
-\label{A_meaningfulLabel}:]
-
+\label{A4}:]
 {All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
 \end{itemize}
@@ -1403,28 +1398,6 @@ Feels redundant guys....
   requirement could be more abstract
 \end{itemize}
 }
-
-\section{Legal and Regulatory Factors}
-
-\begin{itemize}
-\item All collected and analyzed non-medical data shall be protected under the Personal Information Protection and Electronic Documents Act (PIPEDA).
-\item All medical records shall be protected under the Personal Health Information Protection Act (PHIPA).
-\item All patients are to sign a waiver form consenting to the use of their personal information and medical records prior to using the device.
-\item Only those with administrative rights will have access to all data files, all data to be secured with passwords.
-\item Documentation to follow IEEE format for references and citations.
-\item Documentation to be completed with 12pt Arial font on US Letter size paper (8.5" x 11") with 1 inch margin on all sides.
-\item UI implementation to follow ....?
-\end{itemize}
-
-\section{System Boundary Conditions}
-\begin{itemize}
-\item If the device detects abnormally fast and/or large range of sensor input, alert the participant with a prompt: "Irregular activity detected. Press the button to continue".
-\item If the device does not detect any movement for 24 hours straight, then prompt the participant with a question: "Are you still using the device?". If so, simply restart the clock. If no response is given within another 2 hours, power off the device.
-\item If the device reaches 3\% battery life...?
-\end{itemize}
-
-\section{Phase in Plan}
-
 
 \newpage{}
 \section*{Appendix --- Reflection}
