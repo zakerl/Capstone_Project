@@ -19,8 +19,8 @@
 \usepackage{color, colortbl}
 
 \usepackage[round]{natbib}
-\usepackage{helvet}
-\usepackage[none]{hyphenat}
+%\usepackage{helvet}
+%\usepackage[none]{hyphenat}
 \usepackage{tabularx}
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -316,6 +316,25 @@ I'm leaving this section until we finalize section 5 and beyond. It won't take l
   select which sections they want to read, and in what order.  This section will
   be similar between project.}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Users and Stakeholders}
+\begin{itemize}
+\item Stakeholders
+
+	\begin{itemize}
+		\item  Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University (Project Supervisor).
+		\item  Dr. Spencer Smith (Project Supervisor).
+	\end{itemize}
+
+\item Users: The design has 2 different users:
+	\begin{itemize}
+		\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
+		\item \textbf{Patients/Participants} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
+	\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{General System Description}
 
 This section provides general information about the system.  It identifies the
@@ -378,18 +397,11 @@ The design will consist of both a hardware and a software system. The constraint
 
 
 \section{Specific System Description}
-
-This section first presents the problem description, which gives a high-level
-view of the problem to be solved.  This is followed by the solution characteristics
-specification, which presents the assumptions, theories, definitions and finally
-the instance models.  \plt{Add any project specific details that are relevant
-  for the section overview.}
-
 \subsection{Problem Description} \label{Sec_pd}
 
-Dr. Luciana Macedo investigates treatment strategies for older adults with lumbar spinal disorders (LSS), based on the results reported through Ecological Momentary Assessment (EMA).
+Dr. Luciana Macedo investigates treatment strategies for older adults with musculo-skeletal disorders, based on the results reported through Ecological Momentary Assessment (EMA).
 The current solution is not very sensitive to slow and subtle movements. It also works on a time-based approach, reporting data after specified intervals. Moreover, the Human Computer Interface is not user-friendly for the targeted audience and the data gathered is difficult to analyze.
-The motive is to design a device that is able to capture very minor movements, that could produce data of interest based on the survey results along with a well-designed, intuitive Human Computer Interface allowing the users to navigate with ease.
+The motive is to design a device that is able to capture very minor movements, that could produce data of interest based on the survey results along with a well-designed interface following HCI conventions allowing users to navigate with ease.
 
 \subsubsection{Terminology and  Definitions}
 
@@ -415,20 +427,18 @@ easier to correctly understand the requirements:
   \hline
   m\textunderscore batteryLife      & This signal is used to monitor the battery life.                                                                                                                                              & Integer(\%)              \\
   \hline
-  m\textunderscore startup          & This signal is used to indicate the device has started.                                                                                                                                       & Boolean                  \\
-  \hline
+
   m\textunderscore modeUser         & This signal is used to indicate who is the user. There are only two types of users: participant and researcher. Mode for participant is 0 and 1 for researcher.                               & Boolean                  \\
   \hline
-  m\textunderscore ActivityDetected & This signal is used to check whether the desired behaviour has been displayed by the participant.                                                                                             & Boolean                  \\
+  m\textunderscore ActivityDetected  & This signal is used to monitor the current state of the participant.                                                                                            	& struct(Boolean, Integer)                  \\
   \hline
-  m\textunderscore promptAnswered   & This signal is used to monitor whether the participant has filled up the survey and submitted the responses.                                                                                  & Boolean                  \\
+  m\textunderscore promptAnswered   & This signal is used to monitor the state of the participant response to the activity prompt.                                                                                  & Boolean                  \\
   \hline
   m\textunderscore monitorPer       & This signal is used to monitor the duration, the participant has been monitored since the device has been turned on.                                                                          & Integer (number of days) \\
   \hline
-  m\textunderscore valConnect       & This signal is used to indicate whether the researcher's system can be validated as a host, this is a layer of security so that only researchers can get their specific view.                 & Boolean                  \\
+  m\textunderscore valConnect       & This signal is used to indicate whether the researcher's system can be validated as a host.                 & Boolean                  \\
   \hline
-  m\textunderscore modeResearcher   & This flag is used to indicate what the researcher is trying to do. There are 3 different views: for calibrating the device(0), accessing patient records(1), and accessing data collected(2). & Integer                  \\
-  \hline
+
   m\textunderscore senCalVal        & This signal is used to indicate whether the sensors have been calibrated successfully according to the researcher's constraints.                                                              & Boolean                  \\
   \hline
 \end{tabular}
@@ -446,6 +456,8 @@ easier to correctly understand the requirements:
   c\textunderscore batteryLife & This is the battery threshold that the battery life should be above to indicate that the device is good for usage             & Integer(\%)              \\
   \hline
   c\textunderscore monitorPer  & This is the monitoring period set for participants by the researcher. The device shall be collecting data within this period. & Integer (number of days) \\
+  \hline
+  c\textunderscore modeResearcher   & This flag is used to control what the software does. There are 3 different actions: for Calibration, Accessing patient records, and Accessing data collected. & Integer                  \\
   \hline
 \end{tabular}
 
@@ -465,21 +477,9 @@ to be owning a phone which could add to the total expenses. The device that we w
 It will be very cheap and specific to the purpose, thus ensuring better performance, and higher reliability.
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
-
-\includegraphics[]{watch.png}
-
+\begin{center}
+	\includegraphics[]{watch.png}
+\end{center}
 The physical system of the device, as shown in above figure,includes the following elements:
 
 \begin{itemize}
@@ -491,22 +491,8 @@ The physical system of the device, as shown in above figure,includes the followi
 
 \end{itemize}
 
-\plt{A figure here makes sense for most SRS documents}
-
-% \begin{figure}[h!]
-% \begin{center}
-% %\rotatebox{-90}
-% {
-%  \includegraphics[width=0.5\textwidth]{<FigureName>}
-% }
-% \caption{\label{<Label>} <Caption>}
-% \end{center}
-% \end{figure}
 
 \subsubsection{Goal Statements}
-
-\noindent Given the \plt{inputs}, the goal statements are:
-
 \begin{itemize}
 
   \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Minor movement tracking}: The idea is to be able to capture very subtle, minor movements, as most activity trackers are incapable of doing it. Since our target audience have limited movements, the device needs to be sensitive to capturing minor motion since that would produce the desired data.
@@ -516,60 +502,7 @@ The physical system of the device, as shown in above figure,includes the followi
 
 \end{itemize}
 
-\subsection{Solution Characteristics Specification}
-
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
-
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
-
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
-
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
-
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
-
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
-
-\begin{figure}[H]
-  \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
-\end{figure}
-
-The instance models that govern \progname{} are presented in
-Subsection~\ref{sec_instance}.  The information to understand the meaning of the
-instance models and their derivation is also presented, so that the instance
-models can be verified.
-
-\subsubsection{Assumptions} \label{sec_assumpt}
+\subsection{Assumptions}%Solution Characteristic specification
 
 \begin{itemize}
 
@@ -595,361 +528,35 @@ models can be verified.
 
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
-
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
-
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
-
-~\newline
-
-\noindent
-\deftheory
-% #2 refname of theory
-{T:COE}
-% #3 label
-{Conservation of thermal energy}
-% #4 equation
-{
-$-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
-}
-% #5 description
-{
-The above equation gives the conservation of energy for transient heat transfer in a material
-of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$
-(\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-$g$ is the volumetric heat generation
-(\si{\watt\per\cubic\metre}), $T$ is the temperature
-(\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-the gradient operator.  For this equation to apply, other forms
-of energy, such as mechanical energy, are assumed to be negligible in the
-system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
-}
-% #6 Notes
-{
-None.
-}
-% #7 Source
-{
-\url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
-}
-% #8 Referenced by
-{
-\dref{ROCT}
-}
-% #9 Preconditions
-{
-None
-}
-% #1 derivation - not applicable by default
-{}
-
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if T1 is referenced by G2, that means that G2 will
-  explicitly include a reference to T1.}
-
-~\newline
+N/A
 
 \subsubsection{General Definitions}\label{sec_gendef}
-
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
-
-This section collects the laws and equations that will be used in building the
-instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-  \renewcommand*{\arraystretch}{1.5}
-  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-    \hline
-    \rowcolor[gray]{0.9}
-    Number      & GD\refstepcounter{defnum}\thedefnum \label{NL}                                     \\
-    \hline
-    Label       & \bf Newton's law of cooling                                                        \\
-    \hline
-    % Units&$MLt^{-3}T^0$\\
-    % \hline
-    SI Units    & \si{\watt\per\square\metre}                                                        \\
-    \hline
-    Equation    & $ q(t) = h \Delta T(t)$                                                            \\
-    \hline
-    Description &
-    Newton's law of cooling describes convective cooling from a surface.  The law is
-    stated as: the rate of heat loss from a body is proportional to the difference
-    in temperatures between the body and its surroundings.
-    \\
-                & $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).                          \\
-                & $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-    (\si{\watt\per\square\metre\per\celsius}).                                                       \\
-                & $\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-    between the environment and the object (\si{\celsius}).
-    \\
-    \hline
-    Source      & Citation here                                                                      \\
-    \hline
-    Ref.\ By    & \ddref{FluxCoil}, \ddref{FluxPCM}                                                  \\
-    \hline
-  \end{tabular}
-\end{minipage}\\
-
+N/A
 \subsubsection*{Detailed derivation of simplified rate of change of temperature}
-
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
+N/A
 
 \subsubsection{Data Definitions}\label{sec_datadef}
-
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
-
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
-
-This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-  \renewcommand*{\arraystretch}{1.5}
-  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-    \hline
-    \rowcolor[gray]{0.9}
-    Number      & DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil} \\
-    \hline
-    Label       & \bf Heat flux out of coil                                    \\
-    \hline
-    Symbol      & $q_C$                                                        \\
-    \hline
-    % Units& $Mt^{-3}$\\
-    % \hline
-    SI Units    & \si{\watt\per\square\metre}                                  \\
-    \hline
-    Equation    & $q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$               \\
-    \hline
-    Description &
-    $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).
-    The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-    assuming that Newton's Law
-    of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-    the coil, which has area $A_C$ (\si{\square\metre}) and heat
-    transfer coefficient $h_C$
-    (\si{\watt\per\square\metre\per\celsius}).  This equation
-    assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-    of the coil (\aref{A_tlcoil}).
-    \\
-    \hline
-    Sources     & Citation here                                                \\
-    \hline
-    Ref.\ By    & \iref{ewat}                                                  \\
-    \hline
-  \end{tabular}
-\end{minipage}\\
+N/A
 
 \subsubsection{Data Types}\label{sec_datatypes}
 
-\plt{This section is optional.  In many scientific computing programs it isn't
-  necessary, since the inputs and outpus are straightforward types, like reals,
-  integers, and sequences of reals and integers.  However, for some problems it
-  is very helpful to capture the type information.}
 
-\plt{The data types are not derived; they are simply stated and used by other
-  models.}
+N/A
 
-\plt{All data types must be used by at least one of the models.}
 
-\plt{For the mathematical notation for expressing types, the recommendation is
-  to use the notation of~\citet{HoffmanAndStrooper1995}.}
-
-This section collects and defines all the data types needed to document the
-models. \plt{Modify the examples below for your problem, and add additional
-  definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-  \renewcommand*{\arraystretch}{1.5}
-  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-    \hline
-    \rowcolor[gray]{0.9}
-    Type Name   & Name for Type                                              \\
-    \hline
-    Type Def    & mathematical definition of the type                        \\
-    \hline
-    Description & description here
-    \\
-    \hline
-    Sources     & Citation here, if the type is borrowed from another source \\
-    \hline
-  \end{tabular}
-\end{minipage}\\
 
 \subsubsection{Instance Models} \label{sec_instance}
-
-\plt{The motivation for this section is to reduce the problem defined in
-  ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
-  expressed in mathematical terms. The IMs are built by refining the TMs and/or
-  GDs.  This section should remain abstract.  The SRS should specify the
-  requirements without considering the implementation.}
-
-This section transforms the problem defined in Section~\ref{Sec_pd} into
-one which is expressed in mathematical terms. It uses concrete symbols defined
-in Section~\ref{sec_datadef} to replace the abstract symbols in the models
-identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
-
-The goals \plt{reference your goals} are solved by \plt{reference your instance
-  models}.  \plt{other details, with cross-references where appropriate.}
-\plt{Modify the examples below for your problem, and add additional models as
-  appropriate.}
-
-~\newline
-
-%Instance Model 1
-
-\noindent
-\begin{minipage}{\textwidth}
-  \renewcommand*{\arraystretch}{1.5}
-  \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-    \hline
-    \rowcolor[gray]{0.9}
-    Number      & IM\refstepcounter{instnum}\theinstnum \label{ewat}                                  \\
-    \hline
-    Label       & \bf Energy balance on water to find $T_W$                                           \\
-    \hline
-    Input       & $m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$,
-    $T_\text{init}$, $T_P(t)$ from \iref{epcm}                                                        \\
-                & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})         \\
-    \hline
-    Output      & $T_W(t)$, $0\leq t \leq t_\text{final}$, such that                                  \\
-                & $\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,     \\
-                & $T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
-    \hline
-    Description & $T_W$ is the water temperature (\si{\celsius}).                                     \\
-                & $T_P$ is the PCM temperature (\si{\celsius}).                                       \\
-                & $T_C$ is the coil temperature (\si{\celsius}).                                      \\
-                & $\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).                    \\
-                & $\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).                     \\
-                & The above equation applies as long as the water is in liquid form,
-    $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-    and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
-    \\
-    \hline
-    Sources     & Citation here                                                                       \\
-    \hline
-    Ref.\ By    & \iref{epcm}                                                                         \\
-    \hline
-  \end{tabular}
-\end{minipage}\\
-
-%~\newline
+N/A
 
 \subsubsection*{Derivation of ...}
-
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
+N/A
 
 \subsubsection{Input Data Constraints} \label{sec_DataConstraints}
+N/A
 
-Table~\ref{TblInputVar} shows the data constraints on the input output
-variables.  The column for physical constraints gives the physical limitations
-on the range of values that can be taken by the variable.  The column for
-software constraints restricts the range of inputs to reasonable values.  The
-software constraints will be helpful in the design stage for picking suitable
-algorithms.  The constraints are conservative, to give the user of the model the
-flexibility to experiment with unusual situations.  The column of typical values
-is intended to provide a feel for a common scenario.  The uncertainty column
-provides an estimate of the confidence with which the physical quantities can be
-measured.  This information would be part of the input if one were performing an
-uncertainty quantification exercise.
-
-The specification parameters in Table~\ref{TblInputVar} are listed in
-Table~\ref{TblSpecParams}.
-
-\begin{table}[!h]
-  \caption{Input Variables} \label{TblInputVar}
-  \renewcommand{\arraystretch}{1.2}
-  \noindent \begin{longtable*}{l l l l c}
-    \toprule
-    \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
-    \textbf{Typical Value} & \textbf{Uncertainty}\\
-    \midrule
-    $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
-    \\
-    \bottomrule
-  \end{longtable*}
-\end{table}
-
-\noindent
-\begin{description}
-  \item[(*)] \plt{you might need to add some notes or clarifications}
-\end{description}
-
-\begin{table}[!h]
-  \caption{Specification Parameter Values} \label{TblSpecParams}
-  \renewcommand{\arraystretch}{1.2}
-  \noindent \begin{longtable*}{l l}
-    \toprule
-    \textbf{Var} & \textbf{Value} \\
-    \midrule
-    $L_\text{min}$ & 0.1 \si{\metre}\\
-    \bottomrule
-  \end{longtable*}
-\end{table}
 
 \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
-
-\noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
-
-\begin{table}[!h]
-  \caption{Output Variables} \label{TblOutputVar}
-  \renewcommand{\arraystretch}{1.2}
-  \noindent \begin{longtable*}{l l}
-    \toprule
-    \textbf{Var} & \textbf{Physical Constraints} \\
-    \midrule
-    $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-    \\
-    \bottomrule
-  \end{longtable*}
-\end{table}
-
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
+N/A
 
 \section{Requirements}
 
@@ -991,7 +598,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to prompt the user when the software detects no movement has occurred.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R3} &Device has to notify the user when the software detects a registered activity relavent to EMA standards and that is signficant or promptable.\\ [0.5ex]
  \hline
  Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
  \hline
@@ -1015,7 +622,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic method.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic manner.\\ [0.5ex]
  \hline
  Rationale & The Researcher should be able to change input thresholds in order to tweak the device's settings.\\ 
  \hline
@@ -1027,7 +634,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will have to store data every time an activity takes place or a prompt is answered on the device by the user.\\ [0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R6} &The device will store all relavent data every time an activity takes place or a prompt is answered on the device.\\ [0.5ex]
  \hline
  Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
  \hline
@@ -1039,9 +646,9 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will have to be extracted such that the data is interpretable in the form of graphs and csv.\\[0.5ex]
+ R\refstepcounter{reqnum}\thereqnum \label{R7} &The data stored on the device will be able to be extracted such that the data is interpretable in the form of graphical representation and raw data.\\[0.5ex]
  \hline
- Rationale & This is so that the Researcher is able to have all the data in a spreadsheet/graphs to study it.\\ 
+ Rationale & The researches require data in formats conducive to conducting clinical EMA studies. These formats are most commonly spreadsheet or graphical forms.\\ 
  \hline
 \end{tabular}
 \end{center}
@@ -1058,13 +665,13 @@ Below are the functional requirements of the device as well as the rationale.
  \hline
  R1  & Very Unlikely  & Key Implementation & N/A  \\
  \hline
- R2  & Unlikely  & Key Implementation & Minor movements may be calibrated.  \\
+ R2  & Likely  &Degree of tracking& Change tracking reesolution.  \\
  \hline
  R3  & Very Unlikely  & Key Implementation & N/A  \\
  \hline
  R4  & Unlikely  & Key Implementation & N/A  \\
 \hline
- R5  & Likely  & Depends on Researcher's choice &  Thresholds can be changed based on different protocols (wireless/wired). \\
+ R5  & Unlikely & Key Implementation &  N/A \\
  \hline
  R6  & Very Unlikely  & Key Implementation & N/A  \\
 \hline
@@ -1101,7 +708,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} Once activated, the system should perform all of its functions continuously without error for a period of 7 days.\\
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability:} LIST SYSTEMS TO RUN, operating environments: specify what environment that they're using it in! But in this case, less the hardware that it's using, but more what actual physical environment the participants will be in. WE HAVE TO TEST IN EACH OF THESE INDIVIDUAL ENVIRONMENTS! The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
+  \textbf{Portability:} The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
 
 \underline{Rationale:} Ecological Momentary Assessment (EMA) is meant to be performed at almost all points of a participant's daily routine. If the system is bulky, difficult to maneuver around or wear, or heavy, a participant's movement and actions will be hindered and they will be unable to provide EMA data accurately.\\
 
@@ -1238,41 +845,11 @@ component is changed, the components that it points to should also be
 changed. 
 
 \section{Development Plan}
-
-\plt{This section is optional.  It is used to explain the plan for developing
-  the software.  In particular, this section gives a list of the order in which
-  the requirements will be implemented.  In the context of a course  this is
-  where you can indicate which requirements will be implemented as part of the
-  course, and which will be ``faked'' as future work.  This section can be
-  organized as a prioritized list of requirements, or it could should the
-  requirements that will be implemented for ``phase 1'', ``phase 2'', etc.}
+N/A
 
 \section{Values of Auxiliary Constants}
+N/A
 
-\plt{Show the values of the symbolic parameters introduced in the report.}
-
-\plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-  Their values are defined in this section for easy maintenance.}
-
-\plt{The value of FRACTION, for the Maintainability NFR would be given here.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Users and Stakeholders}
-\begin{itemize}
-\item Stakeholders
-
-	\begin{itemize}
-		\item  Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University (Project Supervisor).
-		\item  Dr. Spencer Smith (Project Supervisor).
-	\end{itemize}
-
-\item Users: The design has 2 different users:
-	\begin{itemize}
-		\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
-		\item \textbf{Patients} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
-	\end{itemize}
-\end{itemize}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Attributes}
@@ -1394,25 +971,19 @@ The following explains the states presented in the above Finite State Machine:
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Legal and Regulatory Factors}
 
 \begin{itemize}
-\item All collected and analyzed non-medical data shall be protected under the Personal Information Protection and Electronic Documents Act (PIPEDA).
-\item All medical records shall be protected under the Personal Health Information Protection Act (PHIPA).
-\item All patients are to sign a waiver form consenting to the use of their personal information and medical records prior to using the device.
-\item Only those with administrative rights will have access to all data files, all data to be secured with passwords.
-\item Documentation to follow IEEE format for references and citations.
-\item Documentation to be completed with 12pt Arial font on US Letter size paper (8.5" x 11") with 1 inch margin on all sides.
-\item UI implementation to follow ....?
+	\item All collected and analyzed non-medical data shall be protected under the Personal Information Protection and Electronic Documents Act (PIPEDA).
+	\item All medical records shall be protected under the Personal Health Information Protection Act (PHIPA).
+	\item All patients are to sign a waiver form consenting to the use of their personal information and medical records prior to using the device.
+	\item Only those with administrative rights will have access to all data files, all data to be secured with passwords.
+	\item Documentation to follow IEEE format for references and citations.
+	\item Documentation to be completed with 12pt Arial font on US Letter size paper (8.5" x 11") with 1 inch margin on all sides.
+	\item UI implementation to follow ....?
 \end{itemize}
-
-\section{System Boundary Conditions}
-\begin{itemize}
-\item If the device detects abnormally fast and/or large range of sensor input, alert the participant with a prompt: "Irregular activity detected. Press the button to continue".
-\item If the device does not detect any movement for 24 hours straight, then prompt the participant with a question: "Are you still using the device?". If so, simply restart the clock. If no response is given within another 2 hours, power off the device.
-\item If the device reaches 3\% battery life...?
-\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Phase in Plan}
 
@@ -1440,52 +1011,9 @@ Feels redundant guys....
 \item The system should be intuitive and seamless for the user\\
 \end{itemize} 
 
-\bibliographystyle {plainnat}
-\bibliography {../../refs/References}
+%\bibliographystyle {plainnat}
+%\bibliography {../../refs/References}
 
-\newpage
-
-\noindent \plt{The following is not part of the template, just some things to consider
-  when filing in the template.}
-
-\noindent \plt{Grammar, flow and \LaTeX advice:
-  \begin{itemize}
-    \item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-    \item \LaTeX{} and formatting rules
-          \begin{itemize}
-            \item Variables are italic, everything else not, includes subscripts (link to
-                  document)
-                  \begin{itemize}
-                    \item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-                    \item Watch out for implied multiplication
-                  \end{itemize}
-            \item Use BibTeX
-            \item Use cross-referencing
-          \end{itemize}
-    \item Grammar and writing rules
-          \begin{itemize}
-            \item Acronyms expanded on first usage (not just in table of acronyms)
-            \item ``In order to'' should be ``to''
-          \end{itemize}
-  \end{itemize}}
-
-\noindent \plt{Advice on using the template:
-  \begin{itemize}
-    \item Difference between physical and software constraints
-    \item Properties of a correct solution means \emph{additional} properties, not
-          a restating of the requirements (may be ``not applicable'' for your problem).
-          If you have a table of output constraints, then these are properties of a
-          correct solution.
-    \item Assumptions have to be invoked somewhere
-    \item ``Referenced by'' implies that there is an explicit reference
-    \item Think of traceability matrix, list of assumption invocations and list of
-          reference by fields as automatically generatable
-    \item If you say the format of the output (plot, table etc), then your
-          requirement could be more abstract
-  \end{itemize}
-}
-
-\newpage{}
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
