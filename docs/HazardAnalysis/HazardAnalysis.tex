@@ -3,7 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-
+\usepackage{graphicx}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -61,6 +61,7 @@ Date2 & Name(s) & Description of changes\\
 
 \section{System Boundaries and Components}
 The system consists of several components that make up the entire system
+
 	\subsection{Battery/Power Management system}
 		This component facilitates stepping down/up the source voltage from the battery to the necessary values required by different parts of the device. Moreover, it consists of a 										charge protection circuit for battery protection (Over-voltage and Discharge). Finally present is a battery level indicator that will generate an alert should the battery life fall below a certain threshold.  
 
@@ -89,6 +90,24 @@ The system consists of several components that make up the entire system
 		This system is the primary interface for the researchers to analyze the data collected by the device. It consists of several features that allows the researcher to set different 					
 		thresholds for activity tracking, calibrate all the sensors, update and create new records for participants, and finally interact with the data stored on the device.
 
+	\subsection{Calibration}
+		This system allows researchers to calibrate the sensors on the device , set and modify the different thresholds for activity tracking and create new prompts. 
+
+	\subsection{Records}
+		This system stores all information about users present in the study. Moreover it provides functionality for researchers to create new records for new users.
+
+	\subsection{Data View}
+		This is where all data stored on the device can be viewed/ analyzed by the researchers in a graphical manner. The system also contains some functionality for data sorting/parsing and statistical analysis.
+	
+	\subsection{System Boundary Diagram}
+		\begin{figure}
+			\begin{center}
+				 \includegraphics[width=1.0\textwidth]{SystemBoundaryDiagram}
+				\caption{System Boundary Diagram}
+				\label{Fig_SBD} 
+			\end{center}
+		\end{figure}	
+\pagebreak
 	 
 \section{Critical Assumptions }
 
