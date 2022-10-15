@@ -3,7 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{graphicx,array}
+\usepackage{enumitem}
+\usepackage{multirow}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -117,8 +120,103 @@ you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
+\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+    
+    \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}   & \textbf{Effects of Failure}   & \textbf{Detection}   & \textbf{Recommended Action}\tabularnewline\hline
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          & Display not working & 
+		    \begin{minipage}[t]{\linewidth}
+		        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Improper circuit connection
+		            \item Battery Level too low
+		            \item Code malfunction
+		        \end{itemize}
+		    \end{minipage}
 
-\wss{Include your FMEA table here}
+          & 	      \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Users cannot answer prompts.
+		            \item Users cannot view any information on the display
+		        \end{itemize}
+
+	  & Display system returns an error code. Display Led is OFF
+          & Check wiring and run a diagnostic on the display system  \tabularnewline\cline{2-6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Display System}}
+                             
+	 & Incorrect information displayed      
+	 & \begin{minipage}[t]{\linewidth}
+           	 \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Display Driver faulty
+		            \item Improper interaction between Display system and Prompt generation
+       		 \end{itemize}
+             \end{minipage}                             
+
+	& Users face unexpected outputs causing imporper use of device                                                                
+        & Display system returns an error code.
+
+        & \begin{minipage}[t]{\linewidth}
+              \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+	            \item Let Error Handler try to solve issue.
+	            \item Perform a manual overview of code.
+		    \item Perform a system reboot.
+               \end{itemize}
+            \end{minipage}  \tabularnewline\cline{1-6}
+\end{tabular}%\vspace{3mm}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+    
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	  \hline
+          & Prompt not generated & 
+		    \begin{minipage}[t]{\linewidth}
+		        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Prompt generation code faulty
+		            \item System stuck in an idle state where no activity is detected.
+		        \end{itemize}
+		    \end{minipage}
+
+          & 	      \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Display system will not produce an output.
+			    \item Users will be unable to provide feedback regarding activity
+		        \end{itemize}
+
+	  & Prompt Generation system returns an error code.
+          & Let Error Handle try to solve the issue  \tabularnewline\cline{2-6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Prompt Generation System}}
+                             
+	 & Incorrect Prompt Generated
+	 & \begin{minipage}[t]{\linewidth}
+           	 \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Prompt generation code faulty
+		            \item Improper interaction between Prompt generation and Sensor Array
+       		 \end{itemize}
+             \end{minipage}                             
+
+	& Prompt generated produces unexpected outputs causing imporper use of device                                                                
+        & Prompt Generation system returns an error code. Test prompt produces unexpeted outputs
+
+        & \begin{minipage}[t]{\linewidth}
+              \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+	            \item Let Error Handler try to solve issue.
+	            \item Check System Array State
+		    \item Perform a system reboot.
+               \end{itemize}
+            \end{minipage}  \tabularnewline\cline{1-6}
+\end{tabular}%\vspace{3mm}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
 
 \section{Safety and Security Requirements}
 
