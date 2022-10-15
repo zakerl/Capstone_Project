@@ -3,7 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-
+\usepackage{color, colortbl}
+\usepackage{multirow,graphicx,array}
+\usepackage{enumitem}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -31,16 +34,19 @@
 \pagenumbering{roman}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{TblRevisionHistory}
+    \begin{tabularx}{\textwidth}{llX}
+        \toprule
+        \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}        \\
+        \midrule
+        October 19th, 2022 & Jessica Bae & Initial Documentation\\ 
+	& Oliver Foote\\ 
+	& Jonathan Hai\\
+	& Anish Rangarajan\\
+	& Nish Shah\\
+	& Labeeb Zaker\\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 ~\newpage
@@ -55,39 +61,64 @@ Date2 & Name(s) & Description of changes\\
 
 \section{Introduction}
 
-In today's society, technology and engineering solutions are simply expected to work. The multitude of complex engineering designs and systems created to meet the needs of the world are expected to be infallible in the eyes of the public. When failures do occur, society considers them it shocking. When these failures happen in engineering systems critical to an aspect of safety, health, or some other critical role, people can die. In many cases, these failures are predictable and preventable in the design phase. The causes of such failures are known as hazards.
+\wss{You can include your definition of what a hazard is here.}
 
-\subsection{Purpose of Hazard Analysis}
-
-It is therefore necessary for engineers to perform extensive and thorough assessments of the systems they design in the aim to elimate as many failures as reasonably possible. This is process is called hazard analysis.\\
-
-More formally, hazard analysis is a step in the process to assess risk within an engineering system. Its aim is to identify and assess the potential conditions which may cause failure. These hazards can exist and cause failures alone, or in combination with other hazards or conditions. Once completed, a hazard analysis should provide a comprehensive assessment of the hazards within a system according to the system's components and boundaries, the assumptions critical in performing judgements regarding hazards and the scenarios they may occur in, and the requirements necessary to ensure that these hazards will be mitigated within the realm of reasonable possibility.
-
-\section{Scope}
-
-The purpose of this document is to perform this hazard analysis on the system to be designed by the Back End Developers. This document will first provide a description of the system boundaries and components of the system on an abstract level (both the hardware and software components), and then will list and justify the assumptions made in order to perform this hazard analysis. These assumptions will be kept to a minimum, in the hope to reduce the number of potentially overlooked hazards. The document will then describe the Failure Mode and Effect Analysis (FMEA) done by the team of the Back End Developers, and then detail the specific safety and security requirements that have been discovered in the process of performing the hazard analysis. The document will end with a roadmap describing the steps which will be taken in order to implement the novel discovered requirements, the timeline in which they will be implemented, and what considerations must be made regarding said requirements.
+\section{Scope and Purpose of Hazard Analysis}
 
 \section{System Boundaries and Components}
 
 \section{Critical Assumptions}
 
 \wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+    minimize the number of assumptions that remove potential hazards.  For instance,
+    you could assume a part will never fail, but it is generally better to include
+    this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+%% use this instead of \centerline
+\begin{table}[h]
+\caption{FMEA Table}
+
+\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+
+    \rowcolor{LightCyan}
+    \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}                                  & \textbf{Effects of Failure}                                                                                & \textbf{Detection}                                   & \textbf{Recommended Action}\tabularnewline\hline
+    %
+                              & Heart Rate not detected  &
+    \begin{minipage}[t]{\linewidth}
+        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Device not worn properly
+            \item Sensor failure
+            \item Device surface slippery
+        \end{itemize}
+    \end{minipage}
+                              & EMA may not be triggered & Software check to see if any sensor data is being collected & Ensure the device has been wrapped around properly for more accurate detection  \tabularnewline\cline{2-6}
+
+    %
+    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
+                              & Device not starting      & \begin{minipage}[t]{\linewidth}
+                                                               \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Device is faulty
+            \item Battery has died
+        \end{itemize}
+                                                           \end{minipage}                             & Device not turned on, thus no monitoring                                                                   & Battery dead logo appears when turning on the device & \begin{minipage}[t]{\linewidth}
+                                                                                                                                                                                                                                                                                \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Charge the device
+            \item Change batteries if needed
+        \end{itemize}
+                                                                                                                                                                                                                                                                            \end{minipage}  \tabularnewline\cline{1-6}
+\end{tabular}%\vspace{3mm}
+\end{table}
 
 \section{Safety and Security Requirements}
 
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+    rationale design process how and why to fake it.)}
 
 \section{Roadmap}
 
 \wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+    Which requirements will be implemented in the future?}
 
 \end{document}
