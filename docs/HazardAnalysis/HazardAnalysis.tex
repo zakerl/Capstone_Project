@@ -3,7 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
-
+\usepackage{color, colortbl}
+\usepackage{multirow,graphicx,array}
+\usepackage{enumitem}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -31,16 +34,16 @@
 \pagenumbering{roman}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{TblRevisionHistory}
+    \begin{tabularx}{\textwidth}{llX}
+        \toprule
+        \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}        \\
+        \midrule
+        Date1         & Name(s)               & Description of changes \\
+        Date2         & Name(s)               & Description of changes \\
+        ...           & ...                   & ...                    \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 ~\newpage
@@ -64,22 +67,50 @@ Date2 & Name(s) & Description of changes\\
 \section{Critical Assumptions}
 
 \wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+    minimize the number of assumptions that remove potential hazards.  For instance,
+    you could assume a part will never fail, but it is generally better to include
+    this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
+%% use this instead of \centerline
+\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+    \rowcolor{LightCyan}
+    \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}                                  & \textbf{Effects of Failure}                                                                                & \textbf{Detection}                                   & \textbf{Recommended Action}\tabularnewline\hline
+    %
+                              & Heart Rate not detected  &
+    \begin{minipage}[t]{\linewidth}
+        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Device not worn properly
+            \item Sensor failure
+            \item Device surface slippery
+        \end{itemize}
+    \end{minipage}
+                              & EMA may not be triggered & Software check to see if any sensor data is being collected & Ensure the device has been wrapped around properly for more accurate detection  \tabularnewline\cline{2-6}
 
-\wss{Include your FMEA table here}
+    %
+    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
+                              & Device not starting      & \begin{minipage}[t]{\linewidth}
+                                                               \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Device is faulty
+            \item Battery has died
+        \end{itemize}
+                                                           \end{minipage}                             & Device not turned on, thus no monitoring                                                                   & Battery dead logo appears when turning on the device & \begin{minipage}[t]{\linewidth}
+                                                                                                                                                                                                                                                                                \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Charge the device
+            \item Change batteries if needed
+        \end{itemize}
+                                                                                                                                                                                                                                                                            \end{minipage}  \tabularnewline\cline{1-6}
+\end{tabular}%\vspace{3mm}
+
 
 \section{Safety and Security Requirements}
 
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+    rationale design process how and why to fake it.)}
 
 \section{Roadmap}
 
 \wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+    Which requirements will be implemented in the future?}
 
 \end{document}
