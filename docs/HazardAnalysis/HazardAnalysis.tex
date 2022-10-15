@@ -3,6 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{color, colortbl}
+\usepackage{multirow,graphicx,array}
+\usepackage{enumitem}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -69,27 +73,59 @@ you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
 \begin{itemize}
-\item All users are fluent in English.
-\begin{itemize}
-\item The device will not have to handle any other languages.
-\end{itemize}
-\item No wireless data transfer required.
-\begin{itemize}
-\item The device operates completely offline, and will not be limited to use in wifi environment.
-\end{itemize}
-\item All participants will receive verbal instructions prior to using the device.
-\begin{itemize}
-\item It is assumed that all users will understand how to enter correct response to each question prompt. Any user inputs will be treated as valid response.
-\end{itemize}
-\item The device is to be used under normal daily activities.
-\begin{itemize}
-\item The device will not have to be designed for extraneous activities outisde of the scope of EMA.
-\end{itemize}
+\item No wires will come loose during use.
+\item Batteries are pugged in correctly (the positive and negative ends are aligned as intended).
+\item All data are stored in the correct memory location.
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+\rowcolor{LightCyan}
+\textbf{Design Component} &\textbf{Failure Modes}  &\textbf{Causes of Failure}
+&\textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}
+\tabularnewline\hline
+	Data Storage  &
+	Data stored at wrong memory location  &
+	\begin{minipage}[t]{\linewidth}
+        	\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Incorrect software commands
+			\item Memory space doesn't exist (invalid memory selected)
+			\item Insufficient memory space
+			\item Physical damage to hardware memory chip 
+        	\end{itemize}
+	\end{minipage} & 
+	Lost and unsaved data &
+	Set up error handler to check if each data point is successfully stored at the correct memory location each time &
+	Exchange hardware or set up correct memory path 
+	\tabularnewline\cline{1-6}
+
+   	% \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
+        Data Storage &
+	Data Stored with incorrect type &
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Wrong data type used for storing data
+		\end{itemize}
+	\end{minipage} &
+	Analysis program can't interpret data &
+	Failed data analysis &
+	Convert data to correct type
+	\tabularnewline\cline{1-6}
+
+	Device manager &
+	Unable to connect &
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Loose wires
+		\end{itemize}
+	\end{minipage} &
+	Hardware unrecognized &
+	Check list of connected devices on device manager &
+	Make sure all necessary connections are made
+	\tabularnewline\cline{1-6}		
+\end{tabular}
+%\vspace{3mm}
 
 \section{Safety and Security Requirements}
 
