@@ -85,18 +85,18 @@
     \rowcolor{LightCyan}
     \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}                                  & \textbf{Effects of Failure}                                                                                & \textbf{Detection}                                   & \textbf{Recommended Action}\tabularnewline\hline
     %
-                              & Heart Rate not detected  &
+                              & Security Compromised  &
     \begin{minipage}[t]{\linewidth}
         \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-            \item Device not worn properly
-            \item Sensor failure
-            \item Device surface slippery
+            \item Fail-open security check
+            \item Error data improperly protected
+	    \item Malicious cyber attack
         \end{itemize}
     \end{minipage}
-                              & EMA may not be triggered & Software check to see if any sensor data is being collected & Ensure the device has been wrapped around properly for more accurate detection  \tabularnewline\cline{2-6}
+                              & Participant data will be made vulnerable to exploitation & Error handler returns strange or incomplete results & Device enters data-lockdown mode, preventing data from being accessed until security issue is resolved. \tabularnewline\cline{2-6}
 
     %
-    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
+    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Error Handler}}
                               & Device not starting      & \begin{minipage}[t]{\linewidth}
                                                                \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
             \item Device is faulty
