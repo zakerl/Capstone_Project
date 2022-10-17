@@ -121,9 +121,11 @@ this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 \begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+\hline
     
     \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}   & \textbf{Effects of Failure}   & \textbf{Detection}   & \textbf{Recommended Action}\tabularnewline\hline
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
           & Display not working & 
 		    \begin{minipage}[t]{\linewidth}
 		        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
@@ -141,7 +143,8 @@ this potential failure mode.}
 	  & Display system returns an error code. Display Led is OFF
           & Check wiring and run a diagnostic on the display system  \tabularnewline\cline{2-6}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Display System}}
                              
 	 & Incorrect information displayed      
@@ -163,12 +166,14 @@ this potential failure mode.}
                \end{itemize}
             \end{minipage}  \tabularnewline\cline{1-6}
 \end{tabular}%\vspace{3mm}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
     
 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 	  \hline
           & Prompt not generated & 
 		    \begin{minipage}[t]{\linewidth}
@@ -186,7 +191,8 @@ this potential failure mode.}
 	  & Prompt Generation system returns an error code.
           & Let Error Handle try to solve the issue  \tabularnewline\cline{2-6}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Prompt Generation System}}
                              
 	 & Incorrect Prompt Generated
@@ -208,7 +214,7 @@ this potential failure mode.}
                \end{itemize}
             \end{minipage}  \tabularnewline\cline{1-6}
 \end{tabular}%\vspace{3mm}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -227,5 +233,51 @@ rationale design process how and why to fake it.)}
 
 \wss{Which safety requirements will be implemented as part of the capstone timeline?
 Which requirements will be implemented in the future?}
+
+\section{Appendix}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Error Codes}
+To facilitate error handling, every system will return an error code that represents the status of that system. These error codes follow the following format, BED\_ERR\_ERRORTYPE
+For example BED\_ERR\_NONE represent that the system is working correctly. Some more examples of error codes are:
+\begin{itemize}
+\item BED\_ERR\_PARAM\_ERR		 	: Represents an error with the paramaters of the function.
+\item BED\_ERR\_GENERAL			 	: Represents a generic error that hasnt been catalogued yet. 	
+\item BED\_ERR\_INVALID\_DATA\_SIZE	: Represents an error related to a size mismatch in what is stored within a block of memory or variable.
+\end{itemize}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%
+
 
 \end{document}
