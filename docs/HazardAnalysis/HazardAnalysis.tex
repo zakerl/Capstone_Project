@@ -73,33 +73,50 @@
 
 \section{Failure Mode and Effect Analysis}
 %% use this instead of \centerline
-\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+\begin{tabular}{|p{6em}|p{7em}|p{7em}|p{5em}|p{5em}|p{9em}|}
     \rowcolor{LightCyan}
-    \textbf{Design Component} & \textbf{Failure Modes}   & \textbf{Causes of Failure}                                  & \textbf{Effects of Failure}                                                                                & \textbf{Detection}                                   & \textbf{Recommended Action}\tabularnewline\hline
+    \textbf{Design Component} & \textbf{Failure Modes}          & \textbf{Causes of Failure}                                  & \textbf{Effects of Failure}                         & \textbf{Detection}                                        & \textbf{Recommended Action}\tabularnewline\hline
     %
-                              & Heart Rate not detected  &
+                              & \begin{minipage}[t]{\linewidth}
+                                    \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Heart rate not detected
+            \item User's body temperature couldn't be recorded
+            \item Surrounding pressure not being tracked
+            \item No motion detected
+        \end{itemize}
+                                \end{minipage} &
     \begin{minipage}[t]{\linewidth}
         \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
             \item Device not worn properly
-            \item Sensor failure
-            \item Device surface slippery
+            \item Sensor breaks down, due to passing thresholds limits
+            \item Device surface is dusty or contaminated
         \end{itemize}
     \end{minipage}
-                              & EMA may not be triggered & Software check to see if any sensor data is being collected & Ensure the device has been wrapped around properly for more accurate detection  \tabularnewline\cline{2-6}
+                              & EMA may not be triggered        & Software check to see if any sensor data is being collected &
+    \begin{minipage}[t]{\linewidth}
+        \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+            \item Ensure the device has been wrapped around properly for more accurate detection
+            \item Reboot the system
+            \item Let error handler try to solve the issue
+        \end{itemize}
+    \end{minipage}  \tabularnewline\cline{1-6}
 
     %
-    \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
-                              & Device not starting      & \begin{minipage}[t]{\linewidth}
-                                                               \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+    \multirow{-16}{*}{\centering\rotatebox[origin=c]{90}{Sensor Array}}
+                              & Device not starting             & \begin{minipage}[t]{\linewidth}
+                                                                      \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
             \item Device is faulty
             \item Battery has died
+            \item Device may have overheated
+            \item Water may have damaged the battery
         \end{itemize}
-                                                           \end{minipage}                             & Device not turned on, thus no monitoring                                                                   & Battery dead logo appears when turning on the device & \begin{minipage}[t]{\linewidth}
-                                                                                                                                                                                                                                                                                \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+                                                                  \end{minipage}                             & Device is not turned on, resulting in no monitoring & Battery dead indicator appears when turning on the device & \begin{minipage}[t]{\linewidth}
+                                                                                                                                                                                                                                     \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
             \item Charge the device
             \item Change batteries if needed
         \end{itemize}
-                                                                                                                                                                                                                                                                            \end{minipage}  \tabularnewline\cline{1-6}
+                                                                                                                                                                                                                                 \end{minipage}  \tabularnewline\cline{1-6}
+    \multirow{-13}{*}{\centering\rotatebox[origin=c]{90}{Battery management system}}
 \end{tabular}%\vspace{3mm}
 
 
