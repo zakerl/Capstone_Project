@@ -116,38 +116,45 @@ this potential failure mode.}
 	\tabularnewline\cline{1-6}
 
 	Device manager &
-	Unable to connect with hardware device &
-	\begin{minipage}[t]{\linewidth}
-		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Loose wires
-		\end{itemize}
-	\end{minipage} &
 	Unable to establish connection &
 	\begin{minipage}[t]{\linewidth}
 		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Check list of connected devices on device manager
-			\item Visual inspection
-			\item Attach error detection LED on the device
+			\item Loose wires
+			\item Incorrect communication protocol
+			\item Incorrect parameters for serial packets (size, format, etc.)
 		\end{itemize}
 	\end{minipage} &
-	Make sure all necessary connections are made
-	\tabularnewline\cline{1-6}		
-
-	Device Manager (Software) &
-	Unable to connect with host software &
 	\begin{minipage}[t]{\linewidth}
 		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Incorrect communication protocol
+			\item Data can't be transferred between hardware and software
+			\item Lost data
 		\end{itemize}
 	\end{minipage} &
-	Unable to communicate with host software, data can't be transferred, and data lost. &
-	Failed data analysis &
-	Convert data to correct type
-	\tabularnewline\cline{1-6}
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Check list of connected devices on device manager
+			\item Visual inspection of wiring and circuitry
+			\item Attach an error detection LED on the device
+		\end{itemize}
+	\end{minipage} &
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Make sure all necessary connections are made
+			\item Reboot device
+			\item Restart host software
+		\end{itemize}
+	\end{minipage}
+	\tabularnewline\cline{1-6}		
+
 \end{tabular}
 %\vspace{3mm}
 
 \section{Safety and Security Requirements}
+\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+	\item All users are required to complete test prompt
+	\item All data to be backed up each time the deivce connects to host software
+	\item Only admin users will have access to device manager
+\end{itemize}
 
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
 rationale design process how and why to fake it.)}
