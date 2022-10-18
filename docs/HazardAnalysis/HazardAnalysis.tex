@@ -132,6 +132,7 @@ this potential failure mode.}
 		            \item Improper circuit connection
 		            \item Battery Level too low
 		            \item Code malfunction
+			    \item Physical damage to display
 		        \end{itemize}
 		    \end{minipage}
 
@@ -141,7 +142,13 @@ this potential failure mode.}
 		        \end{itemize}
 
 	  & Display system returns an error code. Display Led is OFF
-          & Check wiring and run a diagnostic on the display system  \tabularnewline\cline{2-6}
+          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		            \item Users cannot answer prompts.
+		            \item Users cannot view any information on the display
+			    \item Check wiring and run a diagnostic on the display system
+			    \item Replace faulty hardware 
+		        \end{itemize}
+		  \tabularnewline\cline{2-6}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -183,7 +190,8 @@ this potential failure mode.}
 		        \end{itemize}
 		    \end{minipage}
 
-          & 	      \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+          & 	      
+			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 		            \item Display system will not produce an output.
 			    \item Users will be unable to provide feedback regarding activity
 		        \end{itemize}
@@ -226,8 +234,29 @@ this potential failure mode.}
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection{Hardware Requirements}
+\textbf{HR1}: All Hardware systems will have an associated indicator LED.\\
+\textbf{HR2}: Device compoments will have sufficient electrical tolerances for Current, Voltage, Temperature etc.
+
+\subsection{Software  Requirements}
+\textbf{SR1}: The Error Handler will initially try to solve all Non-Hardware issues.\\
+\textbf{SR2}: System tests will be conducted before deployment of the device.\\
+
+
+\subsection{Data Storage Requirements }
+\textbf{DSR1}: Error reports and incorrect data will be logged into a seperate database.\\
+
+
+\subsection{Data Security Requirements }
+
+
+
+
+
+
+
+
+
 
 \section{Roadmap}
 
