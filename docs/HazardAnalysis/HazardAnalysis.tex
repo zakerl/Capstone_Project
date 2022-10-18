@@ -76,6 +76,8 @@ this potential failure mode.}
 \item No wires will come loose during use.
 \item Batteries are pugged in correctly (the positive and negative ends are aligned as intended).
 \item All data are stored in the correct memory location.
+\item All subsystems work as intended.
+\item All off-the-shelf components work was intended.
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
@@ -97,7 +99,7 @@ this potential failure mode.}
 	\end{minipage} & 
 	Lost and unsaved data &
 	Set up error handler to check if each data point is successfully stored at the correct memory location each time &
-	Exchange hardware or set up correct memory path 
+	Replace faulty hardware or set up correct memory path 
 	\tabularnewline\cline{1-6}
 
    	% \multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Heart Rate Detection}}
@@ -114,16 +116,34 @@ this potential failure mode.}
 	\tabularnewline\cline{1-6}
 
 	Device manager &
-	Unable to connect &
+	Unable to connect with hardware device &
 	\begin{minipage}[t]{\linewidth}
 		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 			\item Loose wires
 		\end{itemize}
 	\end{minipage} &
-	Hardware unrecognized &
-	Check list of connected devices on device manager &
+	Unable to establish connection &
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Check list of connected devices on device manager
+			\item Visual inspection
+			\item Attach error detection LED on the device
+		\end{itemize}
+	\end{minipage} &
 	Make sure all necessary connections are made
 	\tabularnewline\cline{1-6}		
+
+	Device Manager (Software) &
+	Unable to connect with host software &
+	\begin{minipage}[t]{\linewidth}
+		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Incorrect communication protocol
+		\end{itemize}
+	\end{minipage} &
+	Unable to communicate with host software, data can't be transferred, and data lost. &
+	Failed data analysis &
+	Convert data to correct type
+	\tabularnewline\cline{1-6}
 \end{tabular}
 %\vspace{3mm}
 
