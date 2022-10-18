@@ -122,12 +122,16 @@
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-    rationale design process how and why to fake it.)}
-
 \section{Roadmap}
+\subsection{Battery Requirements}
+\textbf{BR1}: Fuses will be connected in the circuitry to shut down the device in case of voltages higher than threshold, as the batteries heat up.
+\\
+\textbf{BR2}: Adaptive charging can ensure that enough voltage is allowed to charge the battery. After it's fully charged, it can turn into open circuit to avoid damaging battery life.
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-    Which requirements will be implemented in the future?}
+\subsection{Sensory Array Requirements}
+\textbf{SRA1}: In case a high-frequency emitting sensor is used, the limit will be set to ensure that the user isn't exposed to harmful radiation.
+\\
+\textbf{SRA2}: Secure network protocols will be used to ensure that the data can't be decrypted if intercepted by hackers.
+
 
 \end{document}
