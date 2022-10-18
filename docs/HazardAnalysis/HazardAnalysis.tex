@@ -104,7 +104,7 @@
             \item Memory leak
 	\item Error previously unaccounted for
         \end{itemize}
-                                                           \end{minipage}                             & Persons responsible for responding to errors will be unable to daignose and address the underlying issue                                                                   & Error comes in unexpected form, or strange & \begin{minipage}[t]{\linewidth}
+                                                           \end{minipage}                             & Persons responsible for responding to errors will be unable to diagnose and address the underlying issue                                                                   & Error comes in an unexpected form, or returns no value & \begin{minipage}[t]{\linewidth}
                                                                                                                                                                                                                                                                                 \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
             \item Use different channels to handle device logic and error handling
             \item Ensure that strange errors either return as Optional or Empty List (i.e. any value but null)
@@ -113,10 +113,20 @@
 \end{tabular}%\vspace{3mm}
 \end{table}
 
+\pagebreak
+
 \section{Safety and Security Requirements}
 
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A
     rationale design process how and why to fake it.)}
+
+\begin{itemize}
+\item The device will not modify user data unnecessarily.
+\item Only authorized persons will be able to unlock locked-down user data.
+\item The device will have one channel to handle device logic, and a seperate channel to handle error handling.
+\item The error codes must be distinct and categorized so that operators may understand the importance of certain errors.
+\item The error handler must have safeguards in place to ensure it never returns a null value.
+\end{itemize}
 
 \section{Roadmap}
 
