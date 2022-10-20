@@ -7,13 +7,16 @@
 \usepackage{graphicx,array}
 \usepackage{enumitem}
 \usepackage{multirow}
+\usepackage{float} % here for H placement parameter
+\usepackage{hyperref}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
-    colorlinks=true,       % false: boxed links; true: colored links
-    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
-    citecolor=green,        % color of links to bibliography
-    filecolor=magenta,      % color of file links
-    urlcolor=cyan           % color of external links
+    colorlinks=true,       	% false: boxed links; true: colored links
+    linkcolor=red,          	% color of internal links (change box color with linkbordercolor)
+    citecolor=green,        	% color of links to bibliography
+    filecolor=magenta,      	% color of file links
+    urlcolor=cyan           	% color of external links
 }
 
 \title{Hazard Analysis\\\progname}
@@ -40,8 +43,7 @@
 		\toprule
 		\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}        \\
 		\midrule
-		Date1         & Name(s)               & Description of changes \\
-		Date2         & Name(s)               & Description of changes \\
+		October 19th 2022        & Back End Developers              & Initial documentation for Hazard Analysis \\
 		...           & ...                   & ...                    \\
 		\bottomrule
 	\end{tabularx}
@@ -50,12 +52,12 @@
 ~\newpage
 
 \tableofcontents
+\listoffigures
+\listoftables
 
 ~\newpage
 
 \pagenumbering{arabic}
-
-\wss{You are free to modify this template.}
 
 \section{Introduction}
 
@@ -73,52 +75,53 @@ The purpose of this document is to perform this hazard analysis on the system to
 \section{System Boundaries and Components}
 The system consists of several components that make up the entire system
 
-\subsection{Battery/Power Management system}
+\subsection{\label{Battery_sec}Battery/Power Management system}
 This component facilitates stepping down/up the source voltage from the battery to the necessary values required by different parts of the device. Moreover, it consists of a 										charge protection circuit for battery protection (Over-voltage and Discharge). Finally present is a battery level indicator that will generate an alert should the battery life fall below a certain threshold.
 
-\subsection{Sensor Array system}
+\subsection{\label{Sensor_sec}Sensor Array system}
 This component represents all the various sensors that will be used to collect the state information about the user. Also consists of various filters to facilitate smooth and accurate data collection.
 
-\subsection{Prompt generation system}
+\subsection{\label{Prompt_sec}Prompt generation system}
 This component handles  all prompt generation, from the detection of when a prompt occurs, to its specific creation and finally its display on the screen.
 
-\subsection{Display System}
+\subsection{\label{Display_sec}Display System}
 This system manages all functionality of the device's display, such as prompt display, showing basic user feedback such as date, time, temperature, etc.
 
-\subsection{Data Storage system}
+\subsection{\label{Storage_sec}Data Storage system}
 This system handles all logging and storage of data collected by both the sensor array and the prompt generator. Data is stored along with an indication of which system it came from and all prompts will be 				stored with the data and time of entry.
 
-\subsection{Device Manager}
+\subsection{\label{DevMan_sec}Device Manager}
 This system handles all connection and communication between the device and the host software.
 
-\subsection{Error Handler - Hardware}
+\subsection{\label{ErrHand_sec}Error Handler - Hardware}
 This component constantly checks the states of every system present and ensures that if any of them fail or return an error, an alert is generated. Moreover the system will also try to fix the problem 					wherever possible.
 
 \subsection{Error Handler - Software}
 This component monitors the state of the host software and will attempt to solve any errors that arise and will alert the user should the attempts fail.
 
-\subsection{Host Software}
+\subsection{\label{HostSfwr_sec}Host Software}
 This system is the primary interface for the researchers to analyze the data collected by the device. It consists of several features that allows the researcher to set different
 thresholds for activity tracking, calibrate all the sensors, update and create new records for participants, and finally interact with the data stored on the device.
 
-\subsection{Calibration}
+\subsection{\label{Configuration_sec}Configuration}
 This system allows researchers to calibrate the sensors on the device , set and modify the different thresholds for activity tracking and create new prompts.
 
-\subsection{Records}
+\subsection{\label{Records_sec}Records}
 This system stores all information about users present in the study. Moreover it provides functionality for researchers to create new records for new users.
 
-\subsection{Data View}
+\subsection{\label{View_sec}Data View}
 This is where all data stored on the device can be viewed/ analyzed by the researchers in a graphical manner. The system also contains some functionality for data sorting/parsing and statistical analysis.
 
+
 \subsection{System Boundary Diagram}
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=1.0\textwidth]{SystemBoundaryDiagram}
+		\includegraphics[width=0.90\textwidth]{SystemBoundaryDiagram}
 		\caption{System Boundary Diagram}
 		\label{Fig_SBD}
 	\end{center}
 \end{figure}
-\pagebreak
+
 
 \section{Critical Assumptions }
 
@@ -131,371 +134,440 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
-\begin{flushleft}
-	\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
-		\hline
-		\rowcolor{LightCyan}
-		\textbf{Design Component} & \textbf{Failure Modes}                                        & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}\tabularnewline\hline
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		                          & Display not working                                           &
-		\begin{minipage}[t]{\linewidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+	 \centering	
+		\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
+			\hline
+			\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+	
+	
+			                          & Display not working                                          
+						 &\begin{minipage}[t]{\linewidth}
+							\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+								\item Improper circuit connection
+								\item Battery Level too low
+								\item Code malfunction
+								\item Physical damage to display
+							\end{itemize}
+						    \end{minipage}
+	
+			                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				                            \item Users cannot answer prompts.
+				                            \item Users cannot view any information on the display
+			                            \end{itemize}
+	
+			                          & Display system returns an error code. Display Led is OFF
+			                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				                            \item Users cannot answer prompts.
+				                            \item Users cannot view any information on the display
+				                            \item Check wiring and run a diagnostic on the display system
+				                            \item Replace faulty hardware
+			                            \end{itemize}
+			\tabularnewline\cline{2-6}
+	
+	
+	
+			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Display_sec] {Display System} }}
+	
+			                          & Incorrect information displayed
+			                          & \begin{minipage}[t]{\linewidth}
+				                            \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Display Driver faulty
+					\item Improper interaction between Display system and Prompt generation
+				\end{itemize}
+			                            \end{minipage}
+	
+			                          & Users face unexpected outputs causing imporper use of device
+			                          & Display system returns an error code.
+	
+			                          & \begin{minipage}[t]{\linewidth}
+				                            \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Let Error Handler try to solve issue.
+					\item Perform a manual overview of code.
+					\item Perform a system reboot.
+				\end{itemize}
+			                            \end{minipage}  \tabularnewline\cline{1-6}
+		\end{tabular}%\vspace{3mm}
+		\caption{\label{tab:Display}Display FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR1]{HR1} ,\hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+	\begin{table}[H]
+	\centering	
+		\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
+	
+			\hline
+			\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 								\tabularnewline\hline
+			 & Prompt not generated                                                                   &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Prompt generation code faulty
+					\item System stuck in an idle state where no activity is detected.
+				\end{itemize}
+			\end{minipage}
+	
+			 &
 			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Improper circuit connection
-				\item Battery Level too low
-				\item Code malfunction
-				\item Physical damage to display
+				\item Display system will not produce an output.
+				\item Users will be unable to provide feedback regarding activity
 			\end{itemize}
-		\end{minipage}
+	
+			 & Prompt Generation system returns an error code.
+			 & Let Error Handle try to solve the issue  \tabularnewline\cline{2-6}
+	
+	
+	
+			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Prompt_sec] {Prompt Generation System}}}
+	
+			 & Incorrect Prompt Generated
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Prompt generation code faulty
+					\item Improper interaction between Prompt generation and Sensor Array
+				\end{itemize}
+			   \end{minipage}
+	
+			 & Prompt generated produces unexpected outputs causing imporper use of device
+			 & Prompt Generation system returns an error code. Test prompt produces unexpeted outputs
+	
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Let Error Handler try to solve issue.
+					\item Check System Array State
+					\item Perform a system reboot.
+				\end{itemize}
+			   \end{minipage}  \tabularnewline\cline{1-6}
+	
+		\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:Prompt}Prompt Generation FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}, \hyperref[SR3]{SR3}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+	\begin{table}[H]
+	\centering	
+		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
+			\hline
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 								\tabularnewline\hline
+			\multirow{16}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Sensor_sec] {Sensor Array}}}
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Heart rate not detected
+					\item Surrounding pressure not being tracked
+					\item No motion detected
+				\end{itemize}
+			   \end{minipage} &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Device not worn properly
+					\item Sensor breaks down, due to passing thresholds limits
+					\item Device surface is dusty or contaminated
+				\end{itemize}
+			\end{minipage}
+			 & EMA may not be triggered        & Software check to see if any sensor data is being collected &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Ensure the device has been wrapped around properly for more accurate detection
+					\item Reboot the system
+					\item Let error handler try to solve the issue
+				\end{itemize}
+			\end{minipage}  \tabularnewline\cline{1-6}
+	
+			%
+			
+			\end{tabular}%\vspace{3mm}
+	
+			
+	
+	\caption{\label{tab:Sensor}Sensor Array  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR2]{HR2}, \hyperref[HR5]{HR5}, \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			                            \item Users cannot answer prompts.
-			                            \item Users cannot view any information on the display
-		                            \end{itemize}
+	\begin{table}[H]
+\centering	
+		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
+		
+			\hline
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+		\multirow{16}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Battery_sec] {Battery management system}}}
+			 & Device not starting             & \begin{minipage}[t]{\linewidth}
+				                                     \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Device is faulty
+					\item Battery has died
+					\item Device may have overheated
+					\item Water may have damaged the battery
+				\end{itemize}
+			                                     \end{minipage}                             & Device is not turned on, resulting in no monitoring & Battery dead indicator appears when turning on the device &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Charge the device
+					\item Change batteries if needed
+				\end{itemize}
+			\end{minipage}  \tabularnewline\cline{1-6}
+		\end{tabular}%\vspace{3mm}
 
-		                          & Display system returns an error code. Display Led is OFF
-		                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			                            \item Users cannot answer prompts.
-			                            \item Users cannot view any information on the display
-			                            \item Check wiring and run a diagnostic on the display system
-			                            \item Replace faulty hardware
-		                            \end{itemize}
-		\tabularnewline\cline{2-6}
+	\caption{\label{tab:Battery}Battery Management  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR1]{HR1}, \hyperref[HR3]{HR3},\hyperref[HR4]{HR4}, \hyperref[SR1]{SR1}}
+	\end{table}
 
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+\centering	
+		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
+			%
+			\hline
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+			 & Security Compromised                                     &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Fail-open security check
+					\item Error data improperly protected
+					\item Malicious cyber attack
+				\end{itemize}
+			\end{minipage}
+			 & Participant data will be made vulnerable to exploitation & Error handler returns strange or incomplete results & Device enters data-lockdown mode, preventing data from being accessed until security issue is resolved. \tabularnewline\cline{2-6}
+	
+			%
+			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [ErrHand_sec] {Error Handler}}}
+			 & Errors are strange or incomplete                         & \begin{minipage}[t]{\linewidth}
+				                                                              \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Stack overflow
+					\item Memory leak
+					\item Error previously unaccounted for
+				\end{itemize}
+			                                                              \end{minipage}                     & Persons responsible for responding to errors will be unable to diagnose and address the underlying issue                           & Error comes in an unexpected form, or returns no value & \begin{minipage}[t]{\linewidth}
+				                                                                                                                                                                                                                                                                                                 		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Use different channels to handle device logic and error handling
+					\item Ensure that strange errors either return as Optional or Empty List (i.e. any value but null)
+				\end{itemize}
+			                                                                                                                                                                                                                                                                                                 			\end{minipage}  \tabularnewline\cline{1-6}
+		\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:Error}Error Handler FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[DSRQ1]{DSRQ1}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]	
+\centering	
+		\begin{tabular}{|p{6em}|p{7em}|p{6em}|p{5em}|p{5em}|p{9em}|}
+			\hline             
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline                                                                                              &
+			Data stored at wrong memory location                                                                             &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Incorrect software commands
+					\item Memory space doesn't exist (invalid memory selected)
+					\item Insufficient memory space
+					\item Physical damage to hardware memory chip
+				\end{itemize}
+			\end{minipage}                                                                                  &
+			Lost and unsaved data                                                                                            &
+			Set up error handler to check if each data point is successfully stored at the correct memory location each time &
+			Replace faulty hardware or set up correct memory path
+			\tabularnewline\cline{2-6}
+	
+			\multirow{-15}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Storage_sec] {Data Storage}}}
+			                                                                                                                 &
+			Data Stored with incorrect type                                                                                  &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Wrong data type used for storing data
+				\end{itemize}
+			\end{minipage}                                                                                  &
+			Analysis program can't interpret data                                                                            &
+			Failed data analysis                                                                                             &
+			Convert data to correct type
+			\tabularnewline\cline{1-6}
+			\end{tabular}
 
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Display System}}
+	
+	\caption{\label{tab:DataStorage}Data Storage FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR5]{SR5}, \hyperref[DSR2]{DSR2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		                          & Incorrect information displayed
-		                          & \begin{minipage}[t]{\linewidth}
-			                            \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Display Driver faulty
-				\item Improper interaction between Display system and Prompt generation
-			\end{itemize}
-		                            \end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-		                          & Users face unexpected outputs causing imporper use of device
-		                          & Display system returns an error code.
-
-		                          & \begin{minipage}[t]{\linewidth}
-			                            \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Let Error Handler try to solve issue.
-				\item Perform a manual overview of code.
-				\item Perform a system reboot.
-			\end{itemize}
-		                            \end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-	\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
-
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		\hline
-		 & Prompt not generated                                                                   &
-		\begin{minipage}[t]{\linewidth}
+	\begin{table}[H]		
+\centering		
+		\begin{tabular}{|p{6em}|p{7em}|p{6em}|p{5em}|p{5em}|p{9em}|}
+			\hline        
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline                                                                                                   
+			\multirow{15}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [DevMan_sec] {Device manager}}}
+			                                                                                                                 &
+			Unable to establish connection                                                                                   &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Loose wires
+					\item Incorrect communication protocol
+					\item Incorrect parameters for serial packets (size, format, etc.)
+				\end{itemize}
+			\end{minipage}                                                                                  &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Data can't be transferred between hardware and software
+					\item Lost data
+				\end{itemize}
+			\end{minipage}                                                                                  &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Check list of connected devices on device manager
+					\item Visual inspection of wiring and circuitry
+					\item Attach an error detection LED on the device
+				\end{itemize}
+			\end{minipage}                                                                                  &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Make sure all necessary connections are made
+					\item Reboot device
+					\item Restart host software
+				\end{itemize}
+			\end{minipage}
+			\tabularnewline\cline{1-6}
+		\end{tabular}
+	\caption{\label{tab:DeviceManager}Device Manager FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+\centering	
+		\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+			\hline
+	\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+			 & Records not created and deletion of records                             &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Code that writes to database is faulty.
+					\item	Connections between software systems are incorrect.
+				\end{itemize}
+			\end{minipage}
+	
+			 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				   \item Present users lose data, new users cannot have data stored.
+				   \item Time loss.
+			   \end{itemize}
+	
+			 &
 			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Prompt generation code faulty
-				\item System stuck in an idle state where no activity is detected.
+				\item Records system returns an error code using error checking.
+				\item Database trigger for stagnant data.
 			\end{itemize}
-		\end{minipage}
-
-		 &
-		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Display system will not produce an output.
-			\item Users will be unable to provide feedback regarding activity
-		\end{itemize}
-
-		 & Prompt Generation system returns an error code.
-		 & Let Error Handle try to solve the issue  \tabularnewline\cline{2-6}
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Prompt Generation System}}
-
-		 & Incorrect Prompt Generated
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Prompt generation code faulty
-				\item Improper interaction between Prompt generation and Sensor Array
-			\end{itemize}
-		   \end{minipage}
-
-		 & Prompt generated produces unexpected outputs causing imporper use of device
-		 & Prompt Generation system returns an error code. Test prompt produces unexpeted outputs
-
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Let Error Handler try to solve issue.
-				\item Check System Array State
-				\item Perform a system reboot.
-			\end{itemize}
-		   \end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
-		\hline
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Heart rate not detected
-				\item Surrounding pressure not being tracked
-				\item No motion detected
-			\end{itemize}
-		   \end{minipage} &
-		\begin{minipage}[t]{\linewidth}
+	
+			 & Create redundant data sets and storage units, or cloud storage of data.
+			\tabularnewline\cline{2-6}
+	
+	
+			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Records_sec] {Records}}}
+	
+			 & Corrupted records
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Code is faulty.
+					\item Database structure is faulty.
+					\item Wrong datatype used for storing data.
+				\end{itemize}
+			   \end{minipage}
+	
+			 & Data stored for various users is unusable.
+			 &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Detect if data records are returning unusable values, e.g. NaN, Inf, 0, garbage values.
+					\item View values stored in database to check for unexpected outputs.
+				\end{itemize}
+			\end{minipage}
+	
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Prevent users from accessing database.
+					\item Ensure database is robust prior to deployment through testing.
+				\end{itemize}
+			   \end{minipage}  \tabularnewline\cline{1-6}
+		\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:Records}Record System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[SR5]{SR5}, \hyperref[DSR1]{DSR1},\hyperref[DSRQ1]{DSRQ1},\hyperref[DSRQ2]{DSRQ2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+\centering		
+		\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
+			\hline
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+			 & Data not visible                                                                  &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Data collection failure.
+					\item Poorly aggregated data.
+					\item Incorrect software implementation.
+					\item Statistical analysis of data is faulty.
+				\end{itemize}
+			\end{minipage}
+	
+			 & Information provided is not useful to researchers or participants.
+			 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				   \item Error handling to detect if the software is not performing as it should be.
+				   \item Check error codes of device manager.
+			   \end{itemize}
+	
+			 &
 			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Device not worn properly
-				\item Sensor breaks down, due to passing thresholds limits
-				\item Device surface is dusty or contaminated
-			\end{itemize}
-		\end{minipage}
-		 & EMA may not be triggered        & Software check to see if any sensor data is being collected &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Ensure the device has been wrapped around properly for more accurate detection
-				\item Reboot the system
-				\item Let error handler try to solve the issue
-			\end{itemize}
-		\end{minipage}  \tabularnewline\cline{1-6}
-
-		%
-		\multirow{-16}{*}{\centering\rotatebox[origin=c]{90}{Sensor Array}}
-		\multirow{16}{*}{\centering\rotatebox[origin=c]{90}{Battery management system}}
-		 & Device not starting             & \begin{minipage}[t]{\linewidth}
-			                                     \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Device is faulty
-				\item Battery has died
-				\item Device may have overheated
-				\item Water may have damaged the battery
-			\end{itemize}
-		                                     \end{minipage}                             & Device is not turned on, resulting in no monitoring & Battery dead indicator appears when turning on the device &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Charge the device
-				\item Change batteries if needed
-			\end{itemize}
-		\end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-
-
-
-	\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
-		%
-		\hline
-		 & Security Compromised                                     &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Fail-open security check
-				\item Error data improperly protected
-				\item Malicious cyber attack
-			\end{itemize}
-		\end{minipage}
-		 & Participant data will be made vulnerable to exploitation & Error handler returns strange or incomplete results & Device enters data-lockdown mode, preventing data from being accessed until security issue is resolved. \tabularnewline\cline{2-6}
-
-		%
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Error Handler}}
-		 & Errors are strange or incomplete                         & \begin{minipage}[t]{\linewidth}
-			                                                              \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Stack overflow
-				\item Memory leak
-				\item Error previously unaccounted for
-			\end{itemize}
-		                                                              \end{minipage}                     & Persons responsible for responding to errors will be unable to diagnose and address the underlying issue                           & Error comes in an unexpected form, or returns no value & \begin{minipage}[t]{\linewidth}
-			                                                                                                                                                                                                                                                                                                 \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Use different channels to handle device logic and error handling
-				\item Ensure that strange errors either return as Optional or Empty List (i.e. any value but null)
-			\end{itemize}
-		                                                                                                                                                                                                                                                                                                 \end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-
-
-	\begin{tabular}{|p{6em}|p{7em}|p{6em}|p{5em}|p{5em}|p{9em}|}
-		\hline                                                                                                           &
-		Data stored at wrong memory location                                                                             &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Incorrect software commands
-				\item Memory space doesn't exist (invalid memory selected)
-				\item Insufficient memory space
-				\item Physical damage to hardware memory chip
-			\end{itemize}
-		\end{minipage}                                                                                  &
-		Lost and unsaved data                                                                                            &
-		Set up error handler to check if each data point is successfully stored at the correct memory location each time &
-		Replace faulty hardware or set up correct memory path
-		\tabularnewline\cline{2-6}
-
-		\multirow{-15}{*}{\centering\rotatebox[origin=c]{90}{Data Storage}}
-		                                                                                                                 &
-		Data Stored with incorrect type                                                                                  &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Wrong data type used for storing data
-			\end{itemize}
-		\end{minipage}                                                                                  &
-		Analysis program can't interpret data                                                                            &
-		Failed data analysis                                                                                             &
-		Convert data to correct type
-		\tabularnewline\cline{1-6}
-		\multirow{15}{*}{\centering\rotatebox[origin=c]{90}{Device manager}}
-		                                                                                                                 &
-		Unable to establish connection                                                                                   &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Loose wires
-				\item Incorrect communication protocol
-				\item Incorrect parameters for serial packets (size, format, etc.)
-			\end{itemize}
-		\end{minipage}                                                                                  &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Data can't be transferred between hardware and software
-				\item Lost data
-			\end{itemize}
-		\end{minipage}                                                                                  &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Check list of connected devices on device manager
-				\item Visual inspection of wiring and circuitry
-				\item Attach an error detection LED on the device
-			\end{itemize}
-		\end{minipage}                                                                                  &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Make sure all necessary connections are made
-				\item Reboot device
-				\item Restart host software
-			\end{itemize}
-		\end{minipage}
-		\tabularnewline\cline{1-6}
-	\end{tabular}
-
-
-
-	\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
-		\hline
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		 & Records not created and deletion of records                             &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Code that writes to database is faulty.
-				\item	Connections between software systems are incorrect.
-			\end{itemize}
-		\end{minipage}
-
-		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			   \item Present users lose data, new users cannot have data stored.
-			   \item Time loss.
-		   \end{itemize}
-
-		 &
-		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Records system returns an error code using error checking.
-			\item Database trigger for stagnant data.
-		\end{itemize}
-
-		 & Create redundant data sets and storage units, or cloud storage of data.
-		\tabularnewline\cline{2-6}
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Records}}
-
-		 & Corrupted records
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Code is faulty.
-				\item Database structure is faulty.
-				\item Wrong datatype used for storing data.
-			\end{itemize}
-		   \end{minipage}
-
-		 & Data stored for various users is unusable.
-		 &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Detect if data records are returning unusable values, e.g. NaN, Inf, 0, garbage values.
-				\item View values stored in database to check for unexpected outputs.
-			\end{itemize}
-		\end{minipage}
-
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Prevent users from accessing database.
-				\item Ensure database is robust prior to deployment through testing.
-			\end{itemize}
-		   \end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-	\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
-
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		\hline
-		 & Data not visible                                                                  &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Data collection failure.
-				\item Poorly aggregated data.
-				\item Incorrect software implementation.
-				\item Statistical analysis of data is faulty.
-			\end{itemize}
-		\end{minipage}
-
-		 & Information provided is not useful to researchers or participants.
-		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			   \item Error handling to detect if the software is not performing as it should be.
-			   \item Check error codes of device manager.
-		   \end{itemize}
-
-		 &
-		\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			\item Visual inspection to make sure device is working.
-			\item Ensure database is robust prior to deployment through testing
-		\end{itemize} \tabularnewline\cline{2-6}
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Data View}}
-
-		 & Graphical data representation incorrect.
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Improper communication with device manager.
-				\item Device malfunction, no correct data.
-			\end{itemize}
-		   \end{minipage}
-
-		 & Incorrect observations could be made based on the data.
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Error handling to detect if the software is not performing as it should be.
-				\item Check error codes of device manager
-			\end{itemize}
-		   \end{minipage}
-
-		 & \begin{minipage}[t]{\linewidth}
-			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 				\item Visual inspection to make sure device is working.
-				\item Use error handler to solve issue.
-			\end{itemize}
-		   \end{minipage}  \tabularnewline\cline{1-6}
-	\end{tabular}%\vspace{3mm}
-
-
-
-	\begin{tabular}{|p{3em}|p{5em}|p{5em}|p{8em}|p{8em}|p{8em}|}
+				\item Ensure database is robust prior to deployment through testing
+			\end{itemize} \tabularnewline\cline{2-6}
+	
+	
+			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [View_sec]{ Data View}}}
+	
+			 & Graphical data representation incorrect.
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Improper communication with device manager.
+					\item Device malfunction, no correct data.
+				\end{itemize}
+			   \end{minipage}
+	
+			 & Incorrect observations could be made based on the data.
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Error handling to detect if the software is not performing as it should be.
+					\item Check error codes of device manager
+				\end{itemize}
+			   \end{minipage}
+	
+			 & \begin{minipage}[t]{\linewidth}
+				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Visual inspection to make sure device is working.
+					\item Use error handler to solve issue.
+				\end{itemize}
+			   \end{minipage}  \tabularnewline\cline{1-6}
+		\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:DataView}Data View System FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+\centering	
+\begin{tabular}{|p{3em}|p{5em}|p{5em}|p{8em}|p{8em}|p{8em}|}
 		\hline
-		 & Calculation and floating point errors                                                                                                                      &
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+		 & Calculation and floating point error  &
 		\begin{minipage}[t]{\linewidth}
 			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 				\item Improper units used (metric vs Imperial)
@@ -505,8 +577,8 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 		\end{minipage}
 
 		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			   \item Wrong information can be reported if units are not consistent.
-			   \item Rounding errors can carry forward through different formulas resulting in improper final results which can cause the data to be inaccurate.
+			   \item Wrong information can be reported.
+			   \item Rounding errors can propagate through different formulae resulting in data inaccuracies.
 			   \item Data calculated will be completely wrong due to binary overflow.
 		   \end{itemize}
 
@@ -514,11 +586,35 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			   \item Unit and integration testing for checking proper metrics and calculation.
 			   \item Boundary condition testing for detecting binary overflow/floating point conversion errors.
 		   \end{itemize}
-		 & Avoid/fix type conversion and export raw data collected through hardware in case calculation of other metrics for tracker fails.\tabularnewline\cline{2-6}
+		 &  \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+		 \item Avoid/fix type conversion and export raw data collected through hardware in case calculation of other metrics for tracker fails.
+		 \item Use error handler to solve issue. 
+		 \end{itemize} \tabularnewline\cline{2-6}
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Host Software}}
+				  
+		 & Memory allocation failed
+		 & \begin{minipage}[t]{\linewidth}
+			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			\item Memory fragmentation or overflow due to Dynamic memory allocation.			
+			\end{itemize}
+		   \end{minipage}
 
+		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			   \item This can cause data to be overwritten and also failure of storing data.
+		   \end{itemize}
+		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			   \item Host software stops running and system fails.
+		   \end{itemize}
+
+		 & \begin{minipage}[t]{\linewidth}
+			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				\item Reboot Software and make sure to free memory if not using it during memory allocation.
+			\end{itemize}
+		   \end{minipage}  \tabularnewline\cline{2-6}
+		   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Host Software}}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 & Security threats and data loss
 		 & \begin{minipage}[t]{\linewidth}
 			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
@@ -529,114 +625,108 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 			   \item Software could have catastrophic failure and device could stop running.
-			   \item SQLi cyberattack can let attacker to view or modify database causing confidential data of participants to be leaked and modified.
+			   \item SQLi cyberattack can let attackers view or modify the database causing data leaks.
 		   \end{itemize}
-		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			   \item Unrecognizable patterns and processes running in the host software.
-			   \item Run a closed-loop network to avoid backend database manipulation.
-			   \item Limit access of tracker to Internet/IoT devices to avoid hacking and data leakage.
-		   \end{itemize}
-
+		 & Unrecognizable patterns and processes running in the host software.
 		 & \begin{minipage}[t]{\linewidth}
 			   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Limit use of libraries, especially unpopular ones.
-				\item Perform a manual overview of system and processing running.
+			   \item Run a closed-loop network to avoid backend database manipulation.
+			   \item Limit access of tracker to Internet/IoT devices to avoid hacking and data leakage.
+			   \item Perform a manual overview of system and processing running.
 			\end{itemize}
 		   \end{minipage}  \tabularnewline\cline{1-6}
+		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 	\end{tabular}%\vspace{3mm}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	\begin{tabular}{|p{3em}|p{5em}|p{7em}|p{8em}|p{6em}|p{6em}|}
-
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\hline
-		\multirow{20}{*}{\centering\rotatebox[origin=c]{90}{Calibration of device}}
-		 & Calibration fails                                                              &
-		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				\item Sensors not wired correctly with system.
-				\item System stuck in idle state and does not record reference for calibration.
-				\item Not enough power for sensors.
-				\item Code to calibrate sensors and system fails.
-			\end{itemize}
-		\end{minipage}
-
-		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-			   \item Wrong Calibration of system will result in incorrect activity detection.
-			   \item Data will be false/will not be measured correctly.
-		   \end{itemize}
-
-		 & Display message to check if all calibration is completed correctly.
-		 & Reboot system and check wiring to sensors.  \tabularnewline\cline{1-6}
-
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\end{tabular}%\vspace{3mm}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{flushleft}
-
-
-
+	\caption{\label{tab:HostSoftware}Host Software FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{table}[H]
+\centering	
+		\begin{tabular}{|p{3em}|p{5em}|p{7em}|p{8em}|p{6em}|p{6em}|}
+	
+			\hline
+\rowcolor{LightCyan}
+			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
+			\multirow{20}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Configuration_sec] {Configuration system}}}
+			 & Calibration fails                                                              &
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+					\item Sensors not wired correctly with system.
+					\item System stuck in idle state and does not record reference for calibration.
+					\item Not enough power for sensors.
+					\item Code to calibrate sensors and system fails.
+				\end{itemize}
+			\end{minipage}
+	
+			 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				   \item Wrong Calibration of system will result in incorrect activity detection.
+				   \item Data will be false/will not be measured correctly.
+			   \end{itemize}
+	
+			 & Display message to check if all calibration is completed correctly.
+			 & Reboot system and check wiring to sensors.  \tabularnewline\cline{1-6}
+	
+		\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:Calibration}Calibration System FMEA}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \section{Safety and Security Requirements}
 
 \subsection{Hardware Requirements}
-\textbf{HR1}: All Hardware systems will have an associated indicator LED.\\
-\textbf{HR2}: Device compoments will have sufficient electrical tolerances for Current, Voltage, Temperature etc.
+\begin{enumerate}
+	\item\label{HR1}\textbf{HR1}: All Hardware systems will have an associated indicator LED.\\
+	\item\label{HR2}\textbf{HR2}: Device components will have sufficient electrical tolerances for Current, Voltage, Temperature etc.\\
+	\item\label{HR3}\textbf{HR3}: Fuses will be connected in the circuitry to shut down the device in cases of high current draw.\\
+	\item\label{HR4}\textbf{HR4}: Charge protection circuity will be integrated to avoid overcharging/discharging of the battery.\\
+	\item\label{HR5}\textbf{HR5}: The intensity of emitted frequencies will be limited to safe levels.\\
+\end{enumerate}
 
 \subsection{Software  Requirements}
-\textbf{SR1}: The Error Handler will initially try to solve all Non-Hardware issues.\\
-\textbf{SR2}: System tests will be conducted before deployment of the device.\\
-% \textbf{SR3}: Data aggregation software system accurately and reliably creates graphical data that is useful to researcher. \\
-
+\begin{enumerate}
+	\item\label{SR1}\textbf{SR1}: The Error Handler will initially try to solve all Non-Hardware issues.\\
+	\item\label{SR2}\textbf{SR2}: Tests will be conducted for all Software before deployment to the device.\\
+	\item\label{SR3}\textbf{SR3}: All users are required to complete the test prompt.\\
+	\item\label{SR4}\textbf{SR4}: Configuration setting will fall within accepted boundaries.\\
+	\item\label{SR5}\textbf{SR5}: Manipulation of database shall be done with standard DBMS practices.\\
+\end{enumerate}
 
 \subsection{Data Storage Requirements }
-\textbf{DSR1}: Error reports and incorrect data will be logged into a seperate database.\\
-\textbf{DSR2}: Access to records will be restricted to administrative users with encrypted ssh access key.\\
-\textbf{DSR3}: Only admin users will have access to user records.\\
-\textbf{DSR4}: All data to be backed up, in case of power failure.\\
-
-\subsection{Privacy Requriements}
-\textbf{PR1}: Only those with an access key can gain access to the database which stores personal health records.
+\begin{enumerate}
+	\item\label{DSR1}\textbf{DSR1}: Error reports and incorrect data will be logged into a separate database.\\
+	\item\label{DSR2}\textbf{DSR2}: All data to be backed up, in case of power failure.\\
+\end{enumerate}
 
 
 \subsection{Data Security Requirements }
-N/A
-
-\subsection{Battery Requirements}
-\textbf{BR1}: Fuses will be connected in the circuitry to shut down the device in cases of high current draw.
-\\
-\textbf{BR2}: Charge protection circuity will be integrated to avoid overcharging/discharging of the battery.
-
-\subsection{Sensor Requirements}
-\textbf{SRA1}: The intensity of emitted frequencies will be limited to safe levels.
-\\
-\textbf{SRA2}: Secure network protocols will be used to ensure that the data can not be decrypted.
-
-
-\begin{itemize}
-	\item The device will not modify user data unnecessarily.
-	      %\item The device will have one channel to handle device logic, and a seperate channel to handle error handling.
-	      % \item The error codes must be distinct and categorized so that operators may understand the importance of certain errors.
-	      % \item The error handler must have safeguards in place to ensure it never returns a null value.
-	\item The error handler will stop a system if it returns an error.
-\end{itemize}
-
-\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-	\item All users are required to complete the test prompt.
-
-\end{itemize}
+\begin{enumerate}
+	\item\label{DSRQ1}\textbf{DSRQ1}: 	Access to records will be restricted to administrative users with encrypted ssh access key.\\
+	\item\label{DSRQ2}\textbf{DSRQ2}: 	The device will not modify user data unnecessarily.\\ 	
+\end{enumerate}
 
 
 
-
-
-
+\pagebreak
 \section{Roadmap}
-
-
+\begin{table}[H]
+	\caption{Road Map} \label{RoadMap}
+	\begin{tabularx}{\textwidth}{llX}
+		\toprule
+		\textbf{SNo.} & \textbf{Requirement} & \textbf{Expected date of implementation}        \\
+		\midrule
+		1         	& Name(s)               	& Description of changes \\
+		2         	& Name(s)              	& Description of changes \\
+		3          	& ...                   	& ...                   	     \\
+		4		& ... 				& ... 				     \\	
+		5		& ... 				& ...                               \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
 
 \section*{Appendix}
 \subsection*{Therac-25 case study}
