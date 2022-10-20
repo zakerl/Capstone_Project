@@ -10,6 +10,7 @@
 \usepackage{float} % here for H placement parameter
 \usepackage{hyperref}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
+
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     colorlinks=true,       	% false: boxed links; true: colored links
@@ -645,32 +646,51 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering	
-		\begin{tabular}{|p{3em}|p{5em}|p{7em}|p{8em}|p{6em}|p{6em}|}
-	
-			\hline
+	\begin{tabular}{|p{3em}|p{5em}|p{7em}|p{8em}|p{6em}|p{7em}|}
+		\hline
 \rowcolor{LightCyan}
 			\textbf{Design Component} & \textbf{Failure Modes}    & \textbf{Causes of Failure} & \textbf{Effects of Failure} & \textbf{Detection} & \textbf{Recommended Action}					 						\tabularnewline\hline
-			\multirow{20}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Configuration_sec] {Configuration system}}}
-			 & Calibration fails                                                              &
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-					\item Sensors not wired correctly with system.
-					\item System stuck in idle state and does not record reference for calibration.
-					\item Not enough power for sensors.
-					\item Code to calibrate sensors and system fails.
-				\end{itemize}
-			\end{minipage}
-	
-			 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				   \item Wrong Calibration of system will result in incorrect activity detection.
-				   \item Data will be false/will not be measured correctly.
-			   \end{itemize}
-	
-			 & Display message to check if all calibration is completed correctly.
-			 & Reboot system and check wiring to sensors.  \tabularnewline\cline{1-6}
-	
-		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Calibration}Calibration System FMEA}
+		 & Threshold adjustment fails &
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				\item Threshold settings changed by Researcher not registered correctly.
+				\item Code fails to save and keep settings for threshold.
+			\end{itemize}
+		\end{minipage}
+
+		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			   \item Wrong configuration of device can lead to false measurements and data reported.
+		   \end{itemize}
+
+		 &  \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			   \item Boundary condition check to see if threshold values entered are reasonable.
+			   \item System-wide check for checking last modified date of configuration of device.
+		   \end{itemize}
+		 & Report error if threshold values are incorrect and Reboot system. \tabularnewline\cline{2-6}
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{Configuration of device}}
+		 & Calibration fails      &
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+				\item System stuck in idle state and does not record reference for calibration.
+				\item Not enough power for sensors/system to calibrate.
+				\item Code to calibrate sensors and system fails.
+			\end{itemize}
+		\end{minipage}
+
+		 & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
+			   \item Wrong Calibration of system will result in incorrect activity detection.
+			   \item Data will be false/will not be measured correctly.
+		   \end{itemize}
+
+		 & Display message to check if all calibration is completed correctly.
+		 & Reboot system and check wiring to sensors. Let error handler solve issue. \tabularnewline\cline{1-6}
+
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{tabular}%\vspace{3mm}
+	\caption{\label{tab:Configuration}Configuration System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2},\hyperref[SR4]{SR4}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
