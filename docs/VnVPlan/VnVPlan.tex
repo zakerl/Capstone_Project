@@ -17,10 +17,10 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{Project Title: System Verification and Validation Plan for \progname{}}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -28,11 +28,11 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
+  \midrule
+  Date 1              & 1.0           & Notes       \\
+  Date 2              & 1.1           & Notes       \\
+  \bottomrule
 \end{tabularx}
 
 \newpage
@@ -50,11 +50,11 @@ Date 2 & 1.1 & Notes\\
 \section{Symbols, Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
+\begin{tabular}{l l}
+  \toprule
+  \textbf{symbol} & \textbf{description} \\
+  \midrule
+  T               & Test                 \\
   \bottomrule
 \end{tabular}\\
 
@@ -105,10 +105,30 @@ This document ... \wss{provide an introductory blurb and roadmap of the
   You shoud do more than list names.  You should say what each person's role is
   for the project's verification.  A table is a good way to summarize this information.}
 
+\begin{tabular}{|m{5em}|m{5em}|m{25em}|}
+  \hline
+  \textbf{Name}     & \textbf{Role}           & \textbf{Description}                                                                                                                                                                        \\
+  \hline
+  Dr Luciano Macedo & End user                & She will be our end user, verifying all the user requirements in every sprints.                                                                                                             \\
+  \hline
+  Johnathan Hai     & Test-cases tester       & There will be a set of test cases pre-defined for every function. He will be testing the specific functions against the test cases.                                                         \\
+  \hline
+  Jessica Bae       & Black Box tester        & She will be testing the specific functions without knowing how the internal workflow is structured.                                                                                         \\
+  \hline
+  Labeeb Zaker      & Remote codebase manager & He will be ensuring that the codebase on github has no flaws, maintaining CI/CD reviewing every new code added to ensure it performs desired function without any possible cases of errors. \\
+  \hline
+  Nish Shah         & Automated tester        & He will be maintaining the automated testing scripts to run certain functions against test cases that are repititive and tedious.                                                           \\
+  \hline
+  Anish Rangarajan  & Hardware tester         & He will be uploading the code onto the microcontroller and ensure no unexpected anomaly occurs.                                                                                             \\
+  \hline
+  Oliver Foote      & White Box tester        & He will be testing the internal workflow such that for a given input, an expected output is returned.                                                                                       \\
+  \hline
+\end{tabular}
+
 \subsection{SRS Verification Plan}
 
 \wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
+  ad hoc feedback from reviewers, like your classmates, or you may plan for
   something more rigorous/systematic.}
 
 \wss{Maybe create an SRS checklist?}
@@ -150,7 +170,7 @@ This document ... \wss{provide an introductory blurb and roadmap of the
   Python.}
 
 \wss{If you have already done this in the development plan, you can point to
-that document.}
+  that document.}
 
 \wss{The details of this section will likely evolve as you get closer to the
   implementation.}
@@ -162,13 +182,13 @@ that document.}
   here.}
 
 \wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+  the requirements document captures the right requirements.  Maybe task based
+  inspection?}
 
 \wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}
-	
+
 \subsection{Tests for Functional Requirements}
 
 \wss{Subsets of the tests may be in related, so this section is divided into
@@ -184,38 +204,38 @@ inspection?}
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
-		
+
 \paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Control: Manual versus Automatic
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Initial State:
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Input:
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Output: \wss{The expected result for the given inputs}
 
-How test will be performed: 
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Control: Manual versus Automatic
+
+  Initial State:
+
+  Input:
+
+  Output: \wss{The expected result for the given inputs}
+
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -234,37 +254,37 @@ How test will be performed:
   survey.  The survey will be in the Appendix.}
 
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+  format for the tests given below.}
 
 \subsubsection{Area of Testing1}
-		
+
 \paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: Functional, Dynamic, Manual, Static etc.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Initial State:
+
+  Input/Condition:
+
+  Output/Result:
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Type: Functional, Dynamic, Manual, Static etc.
+
+  Initial State:
+
+  Input:
+
+  Output:
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -280,7 +300,7 @@ How test will be performed:
 \section{Unit Test Description}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
-  philosophy for test case selection.}  
+  philosophy for test case selection.}
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
 
@@ -307,38 +327,38 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Initial State:
 
-How test will be performed: 
-					
-\item{test-id2\\}
+  Input:
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+  How test will be performed:
 
-\item{...\\}
-    
+  \item{test-id2\\}
+
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
+
+  Initial State:
+
+  Input:
+
+  Output: \wss{The expected result for the given inputs}
+
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
+
+  \item{...\\}
+
 \end{enumerate}
 
 \subsubsection{Module 2}
@@ -355,33 +375,33 @@ How test will be performed:
   mentioned functional tests.}
 
 \subsubsection{Module ?}
-		
+
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Initial State:
+
+  Input/Condition:
+
+  Output/Result:
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Type: Functional, Dynamic, Manual, Static etc.
+
+  Initial State:
+
+  Input:
+
+  Output:
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -392,7 +412,7 @@ How test will be performed:
 \subsection{Traceability Between Test Cases and Modules}
 
 \wss{Provide evidence that all of the modules have been considered.}
-				
+
 \bibliographystyle{plainnat}
 
 \bibliography{../../refs/References}
@@ -426,14 +446,14 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
   \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
+        successfully complete the verification and validation of your project?
+        Examples of possible knowledge and skills include dynamic testing knowledge,
+        static testing knowledge, specific tool usage etc.  You should look to
+        identify at least one item for each team member.
   \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+        question, what are at least two approaches to acquiring the knowledge or
+        mastering the skill?  Of the identified approaches, which will each team
+        member pursue, and why did they make this choice?
 \end{enumerate}
 
 \end{document}
