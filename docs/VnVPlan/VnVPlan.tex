@@ -11,7 +11,6 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-
 \input{../Comments}
 \input{../Common}
 
@@ -96,32 +95,28 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+Verification and Validation plan will be done on both the hardware and software side individually as well as the integration. The Researcher/end user and developers will have different roles and techniques to test the device's functionality and usability as described below.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You shoud do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
 
 \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
   \hline
   \textbf{Name}     & \textbf{Role}           & \textbf{Description}                                                                                                                                                                        \\
   \hline
-  Dr Luciano Macedo & End user                & She will be our end user, verifying all the user requirements in every sprints.                                                                                                             \\
+  Dr Luciano Macedo & End user                & Researcher who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
   \hline
-  Johnathan Hai     & Test-cases tester       & There will be a set of test cases pre-defined for every function. He will be testing the specific functions against the test cases.                                                         \\
+  Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests.                                                         \\
   \hline
-  Jessica Bae       & Black Box tester        & She will be testing the specific functions without knowing how the internal workflow is structured.                                                                                         \\
+  Jessica Bae       & Black Box tester        & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.                                                                                         \\
   \hline
-  Labeeb Zaker      & Remote codebase manager & He will be ensuring that the codebase on github has no flaws, maintaining CI/CD reviewing every new code added to ensure it performs desired function without any possible cases of errors. \\
+  Labeeb Zaker      & Remote codebase manager & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors. \\
   \hline
-  Nish Shah         & Automated tester        & He will be maintaining the automated testing scripts to run certain functions against test cases that are repititive and tedious.                                                           \\
+  Nish Shah         & Automated tester        & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py).                                                          \\
   \hline
-  Anish Rangarajan  & Hardware tester         & He will be uploading the code onto the microcontroller and ensure no unexpected anomaly occurs.                                                                                             \\
+  Anish Rangarajan  & Hardware \& Automated tester    & Verification and testing of embedded development in C using Cunit and bullseye coverage for unit testing framework and code coverage.\\
   \hline
-  Oliver Foote      & White Box tester        & He will be testing the internal workflow such that for a given input, an expected output is returned.                                                                                       \\
+  Oliver Foote      & White Box \& Database testing        & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality. \\
   \hline
 \end{tabular}
 
@@ -132,6 +127,12 @@ This document ... \wss{provide an introductory blurb and roadmap of the
   something more rigorous/systematic.}
 
 \wss{Maybe create an SRS checklist?}
+
+The SRS verification plan will follow a strict checklist for Functional and Non-functional requirements. The Non-functional requirements are important for SRS verification as requirements such as safety and comfort have to be taken into account for participants who will be wearing the device. The SRS verification plan will also involve an ad hoc feedback approach. This is to make sure all the requirements and goals receive several test-cases that could help with the SRS verification plan. 
+
+Checklist for SRS verification Plan:
+
+
 
 \subsection{Design Verification Plan}
 
@@ -174,6 +175,25 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \wss{The details of this section will likely evolve as you get closer to the
   implementation.}
+
+Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan, (reference dev plan>>>) the following unit testing frameworks, profiling tools and linters will be used for verification of code:
+
+\begin{itemize}
+\item Python: 
+	\begin{itemize}
+		 \item unittest will be used as the Unit testing framework for Python to cover test automation, aggregation of tests (integration 							testing) and independence of tests from the reporting framework.
+		\item Coverage.py will be used to measure code coverage and to gauge the effectiveness of tests performed.
+		\item Pylint will be used as the linter/static code analyser which will check for errors and enforce a coding standard.
+	\end{itemize}
+\item C: 
+	\begin{itemize}
+	\item CUnit will be used as a unit testing framework for embedded system development.
+	\item Bullseye coverage will be used for C code coverage analysis.
+	\item lint will be used as the linter/static code analyser for development in C.
+	\end{itemize}
+\item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
+\item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
+\end{itemize}
 
 \subsection{Software Validation Plan}
 
