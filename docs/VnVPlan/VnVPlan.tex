@@ -178,51 +178,299 @@ inspection?}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
-
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Device should stay on during the monitoring period - \textbf{R1}}
+
+The following tests will check the whether the device will maintain an "ON" state throughout the duration of the monitoring period. The primary tests will involve different monitoring periods with valid inputs, invalid inputs, dates from the past or too far into the future beyond what the battery life can sustain (HC2).
 		
-\paragraph{Title for Test}
+\paragraph{Duration Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+	\item{DT\_1: Regular Inputs\\}
+	
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"]  : ["03-11-2022", "05:30:PM"].
+		
+		Output: Device turns off after Monitoring Period.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by passing in the Monitoring Period and ensuring that the device maintains power throughout this period.
+					
+	\item{DT\_2: Invalid Inputs\\}
+	
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["3rd November 2022", "Five Thirty PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		
+		Test Case Derivation: Every Function returns an error code.
+		
+		How test will be performed: The test is performed by passing an invalid input and ensuring the appropriate error code is returned.
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+	\item{DT\_2: Earlier Date\\}
+		
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["01-1-1999", "05:30:PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		
+		Test Case Derivation: Every Function returns an error code.
+		
+		How test will be performed: The test is performed by passing an old date (prior to current date).
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+	\item{DT\_3: Date beyond capabilities\\}
+		
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["9-12-2300", "05:30:PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		
+		Test Case Derivation: Every Function returns an error code.
+		
+		How test will be performed: The test is performed by passing a date greater than what the battery life of the device can support.
 
 \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Area of Testing2}
+\subsubsection{Date should track Minor Movements - \textbf{R2}}
+The following tests are run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved,rotated oriented etc. and checking if the status of the Sensors is valid.
 
-...
+\paragraph{Minor Tracking Test}
+\begin{enumerate}
+	\item{MTT\_1: Regular Movement \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is worn with all systems working.
+							
+		Input: Wearer performs activities at a regular/normal pace.
+		
+		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.
 
+	\item{MTT\_2: Slow Movement \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is worn with all systems working.
+							
+		Input: Wearer performs activities at a very slow pace.
+		
+		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at very slow. This is done to ensure that the device can 						work under scenarios in which users have limited mobility.	
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Device prompts user when activity is detected - \textbf{R3}}
+
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+		
+\paragraph{Prompt Tests}
+\begin{enumerate}
+	\item{PT\_1: Test Prompt \\}
+	
+		Control: Manual 
+							
+		Initial State: Device has just been reconfigured.
+							
+		Input: Device is turned on for the first time.
+		
+		Output: Test Prompt is displayed.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.
+
+	\item{PT\_2: Activity Prompt \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in the idle state.
+							
+		Input: Activity has been detected.
+		
+		Output: Specific activity prompt is displayed.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Device is wearable - \textbf{R4}}
+
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+		
+\paragraph{Prompt Tests}
+\begin{enumerate}
+	\item{PT\_1: Test Prompt \\}
+	
+		Control: Manual 
+							
+		Initial State: Device has just been reconfigured.
+							
+		Input: Device is turned on for the first time.
+		
+		Output: Test Prompt is displayed.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.
+
+	\item{PT\_2: Activity Prompt \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in the idle state.
+							
+		Input: Activity has been detected.
+		
+		Output: Specific activity prompt is displayed.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Customizable Thresholds - \textbf{R5}}
+
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+		
+\paragraph{Threshold Tests}
+\begin{enumerate}
+	\item{TT\_1: Regular Inputs \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Regular values for thresholds within limits.
+		
+		Output: Config File generated succesfully.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting valid values for the thresholds.
+
+	\item{TT\_2: Below lower limit \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Values for thresholds below lower limits.
+		
+		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds above allowable limits.
+
+	\item{TT\_3: Above Upper limit \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Values for thresholds above upper limits.
+		
+		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds below allowable limits.
+
+	\item{TT\_4: Invalid Value \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Invalid values for thresholds.
+		
+		Output: Config File generates a BED\_ERR\_INVALID\_DATA.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting invalid values for the thresholds.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Data Storage - \textbf{R5}}
+
+The following tests will be done to ensure that data is stored when appropriate. Tests include checking when storage buffer is full, when prompts are generated and when sensor data needs to be logged. 
+
+	\item{DST\_1: Storage Buffer Full \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Values for thresholds above upper limits.
+		
+		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds below allowable limits.
+
+	\item{DST\_2: Prompt Generated \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Invalid values for thresholds.
+		
+		Output: Config File generates a BED\_ERR\_INVALID\_DATA.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting invalid values for the thresholds.
+
+	\item{DST\_3: Sensor Storage \\}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Invalid values for thresholds.
+		
+		Output: Config File generates a BED\_ERR\_INVALID\_DATA.
+		
+		Test Case Derivation: N/A.
+							
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting invalid values for the thresholds.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tests for Nonfunctional Requirements}
 
 \wss{The nonfunctional requirements for accuracy will likely just reference the
@@ -393,9 +641,9 @@ How test will be performed:
 
 \wss{Provide evidence that all of the modules have been considered.}
 				
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
 
-\bibliography{../../refs/References}
+%\bibliography{../../refs/References}
 
 \newpage
 
