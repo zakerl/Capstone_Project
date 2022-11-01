@@ -316,7 +316,7 @@ This section will test the saftey of the device concerning electircal components
 
 \begin{enumerate}
 
-\item{ST-1\\}
+\item{ST-1: High Voltage\\}
 
 Control: Manual 
 
@@ -324,11 +324,40 @@ Initial State: Device begins in "off" mode.
 
 Input: When device is turned on a voltage over expected voltage is applied.
 
-Output: Device detects high voltage and sends it to ground.
+Output: Device detects high voltage and indicates that voltage is high using indicator LED, breaker or fuse trips or voltage is sent to ground.
 
 Test Case Derivation: N/A
 
 How test will be performed: Use a power supply to over volt the system. 
+
+\item{ST-2: Normal Voltage\\}
+
+Control: Manual
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a normal voltage is applied.
+
+Output: Device powers on, no issues are detected.
+
+Test Case Derivation:
+
+How test will be performed: Use power supply to provide the expected voltage to the device.
+
+\item{ST-3: Low Voltage\\}
+
+Control: Manual
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a voltage below the expected amount is applied.
+
+Output: If device powers on, indicator LED indicates that the voltage is lower than expected, device goes into power saving mode
+
+Test Case Derivation:
+
+How test will be performed: Use power supply to provide a lower than expected voltage to the device.
+
 
 \end{enumerate}
 
@@ -338,9 +367,10 @@ This section will test the reusability of the various systems of the device
 
 \begin{enumerate}
 
-\item{RT-1\\}
+\item{RT-1: Battery Charge/Discharge\\}
 
 Control: Manual
+
 Initial State: Battery is fully discharged
 
 Input: Connect battery to the charging cable 
@@ -351,6 +381,16 @@ Test Case Derivation: N/A
 
 How test will be performed: Battery component will be isolated from device and tested to charge and discharge in multiple cycles
 
+\item{RT-2: Drop test for durability\\}
+
+Control: Manual
+Initial State: Device is powered on.
+Input: Device is dropped from 5 feet in the air
+Output: Device and all sensors continue to work as expected
+Test Case Derivation:
+How test will be performed: Device will be dropped from 5 feet and sensors are tested for proper functioning. Test will be repeated 5 times.
+
+
 \end{enumerate}
 
 \subsubsection{Privacy Tests}
@@ -359,19 +399,14 @@ This section test the privacy of the users data
 
 \begin{enumerate}
 
-\item{PT-1\\}
+\item{PT-1: Records Safety Test\\}
 
 Control: Manual
-
-Initial State: Database is full of dummy data and device is powered on
-
-Input: Deliver malicious code to the device through data cable.
-
-Output: Data is not able to be accessed without administrative security key
-
+Initial State: Device is powered on.
+Input: Data transfer cable is plugged in from device to a generic PC, someone tries to access the database.
+Output: Database inaccessible and requests administrative key.
 Test Case Derivation: N/A
-
-How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the admin security key, they will attempt to access the device.
+How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the admin security key, they will attempt to access the database.
 
 \end{enumerate}
 
