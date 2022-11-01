@@ -280,9 +280,9 @@ How test will be performed: A group of university students to be asked to read t
 
 \end{enumerate}
 
-\begin{enumerate}
-
 \subsubsection{Performance}
+
+\begin{enumerate}
 
 \item{test-id1\\}
 
@@ -310,11 +310,110 @@ How test will be performed: 2 group members of Back End Developers each wear the
 
 \end{enumerate}
 
+\subsubsection{Saftey Tests}
+
+This section will test the saftey of the device concerning electircal components and sharps hazards involving hardware
+
+\begin{enumerate}
+
+\item{ST-1\\}
+
+Control: Manual 
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a voltage over expected voltage is applied.
+
+Output: Device detects high voltage and sends it to ground.
+
+Test Case Derivation: N/A
+
+How test will be performed: Use a power supply to over volt the system. 
+
+\end{enumerate}
+
+\subsubsection{Reusability Tests}
+
+This section will test the reusability of the various systems of the device
+
+\begin{enumerate}
+
+\item{RT-1\\}
+
+Control: Manual
+Initial State: Battery is fully discharged
+
+Input: Connect battery to the charging cable 
+
+Output: Battery is fully charged without issue
+
+Test Case Derivation: N/A
+
+How test will be performed: Battery component will be isolated from device and tested to charge and discharge in multiple cycles
+
+\end{enumerate}
+
+\subsubsection{Privacy Tests}
+
+This section test the privacy of the users data 
+
+\begin{enumerate}
+
+\item{PT-1\\}
+
+Control: Manual
+
+Initial State: Database is full of dummy data and device is powered on
+
+Input: Deliver malicious code to the device through data cable.
+
+Output: Data is not able to be accessed without administrative security key
+
+Test Case Derivation: N/A
+
+How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the admin security key, they will attempt to access the device.
+
+\end{enumerate}
+
+
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
   requirements.}
 
+%Traceability Matrix, needs lot of updating, it also doesn't function rn...
+\noindent
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+	& \ref{A1}& \ref{A2}& \ref{A3}& \ref{A4} \\
+\hline          %   1   2    3   4  
+\ref{R1}       &   &   &   & X  \\ \hline
+\ref{R2}       &   & X&   &    \\ \hline
+\ref{R3}       & X& X&   & X  \\ \hline
+\ref{R4}       &   & X&   & X  \\ \hline
+\ref{R5}       &   &   &   &    \\ \hline
+\ref{R6}       &   &   & X&    \\ \hline
+\ref{R7}       & X&   & X&     \\ \hline
+\ref{NFR1} &   & X&   &    \\ \hline
+\ref{NFR2} & X& X&   & X \\ \hline
+\ref{NFR3} &   &   & X&     \\ \hline
+\ref{NFR4} &   & X& X&     \\ \hline
+\ref{NFR5} &   X&   &   &      \\ \hline
+\ref{NFR6} &   &  X &   &X     \\ \hline
+\ref{NFR7} &   &  X &   &     \\ \hline
+\ref{NFR8} &  X &   &   &X     \\ \hline
+\ref{NFR9} & X  &   &X  &X      \\ \hline
+\ref{NFR10}&  & X  &   &      \\
+\hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections between NFR's etc.}
+\label{Table:A_trace}
+\end{table}
+
+\newpage
 \section{Unit Test Description}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
