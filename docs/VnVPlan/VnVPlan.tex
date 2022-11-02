@@ -3,6 +3,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{zref-xr,zref-user}
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -48,36 +51,25 @@ Date 2 & 1.1 & Notes\\
 \newpage
 
 \section{Symbols, Abbreviations and Acronyms}
-
+%The test plan is \href{file:../SRS/SRS}{here}.
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-	  \toprule		
-		  \textbf{Symbol} & \textbf{Description}\\
-		  \midrule 
-		  DT 						& Duration Test\\
-		  MTT 					& Minor Tracking Test\\
-		  PT 						& Prompt Test\\
-		  TT 						& Threshold Test\\
-		  DST 					& Data Storage Test\\
-		  DXT 					& Data Extraction Test\\
-		  HC\#					& Hardware Constraint \#\\ 
-	  \bottomrule
-\end{tabular}\\\\
-
-\begin{flushleft} 
+\begin{table}[H]
 	\begin{tabular}{l l} 
 		  \toprule		
-			  \textbf{Error} & \textbf{Description}\\
+			  \textbf{Symbol} & \textbf{Description}\\
 			  \midrule 
-			  BED\_ERR\_NONE 					& Represents no errors\\
-			  BED\_ERR\_INVALID\_DATA			& Represents invalid data being used/stored\\
-			  BED\_ERR\_INVALID\_DATA\_SIZE 		& Represents insufficient size for data storage\\
-			  BED\_ERR\_OUT\_OF\_BOUNDS 		& Represents value of data past allowable limits\\
-			  BED\_ERR\_MEMORY\_FULL 			& Represents full internal memory buffer\\
-	
+			  DT 						& Duration Test\\
+			  MTT 					& Minor Tracking Test\\
+			  PT 						& Prompt Test\\
+			  TT 						& Threshold Test\\
+			  DST 					& Data Storage Test\\
+			  DXT 					& Data Extraction Test\\
+			  HC\#					& Hardware Constraint \#\\ 
 		  \bottomrule
-	\end{tabular}\\
-\end{flushleft} 
+	\end{tabular}\\\\
+\caption{\label{Syb}Table of Symbols}
+\end{table}
+
 \wss{symbols, abbreviations or acronyms --- you can simply reference the SRS
   \citep{SRS} tables, if appropriate}
 
@@ -278,7 +270,8 @@ The following tests are run to ensure that the device is able to track activitie
 		
 		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
 
-		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.\\
+
 
 	\item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
 	
@@ -290,7 +283,8 @@ The following tests are run to ensure that the device is able to track activitie
 		
 		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
 		
-		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a very slow pace. This is done to ensure that the device can 						work under scenarios in which users have limited mobility.	
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a very slow pace. This is done to ensure that the device can 					work under scenarios in which users have limited mobility.\\
+
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,8 +304,10 @@ The following tests will be done to ensure that the proper info is prompted to t
 		
 		Output: Test Prompt is displayed.
 
-		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.
-
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.\\
+		Test Prompt: Is this Device on?\\
+		Possible Answers: Yes or No
+		
 	\item{\textbf{PT\_2: Activity Prompt} \\}\label{PT2}
 	
 		Control: Manual 
@@ -322,7 +318,10 @@ The following tests will be done to ensure that the proper info is prompted to t
 		
 		Output: Specific activity prompt is displayed.
 							
-		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.
+		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.\\\\
+		Tracked Activity: Participant slows down or comes to a stop.\\
+		Activity Prompt: Are you in pain?\\
+		Possible Answers: Yes or No
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -342,7 +341,10 @@ The following tests will be done to ensure that the proper info is prompted to t
 		
 		Output: Config File generated successfully.
 		
-		How test will be performed: The test is performed by setting the device to configuration mode and then setting valid values for the thresholds.
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting valid values for the thresholds.\\
+		eg: \\
+		Speed Threshold:\\
+		Limits: 0m/s \textless Threshold \textless 5m/s
 
 	\item{\textbf{TT\_2: Below lower limit} \\}\label{TT2}
 	
@@ -420,7 +422,15 @@ The following tests will be done to ensure that data is stored when appropriate.
 		
 		Output: Prompt Response is saved into the internal memory.
 		
-		How test will be performed: The test is performed by performing a registered activity and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.
+		How test will be performed: The test is performed by performing a registered activity and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.\\
+		eg: Registered Activity: Participant slows down or comes to a stop for an extended period of time\\
+		Prompt Generated: \\
+		Are you in pain?\\
+		Possible Answers: Yes or No\\
+		\\
+		Prompt Generated: \\
+		Do You need assistance?\\
+		Possible Answers: Yes or No\\
 
 	\item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
 	
@@ -450,7 +460,7 @@ The following tests will be done to ensure that can be extracted and presented i
 		Output: Extracted data is sent to the Host Software where it is converted to a presentable form.
 
 		How test will be performed: The test is performed by first running the device as intended and waiting for a small monitoring period to finish. After this the device is connected to the Host Software with the 				help of the Device Manager Driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
-
+		
 	\item{\textbf{DXT\_2: Extracting No Data} \\}\label{DXT2}
 	
 		Control: Manual 
@@ -463,7 +473,7 @@ The following tests will be done to ensure that can be extracted and presented i
 
 		How test will be performed: The test is performed by first deleting all the contents of the internal memory prior to connection with the Host Software. Once connected and the extraction process begins, the 				system should return an error due to no data being present to extract.
 
-	\item{\textbf{DXT\_3: Extracting No Data} \\}\label{DXT3}
+	\item{\textbf{DXT\_3: Extracting Corrupted Data} \\}\label{DXT3}
 	
 		Control: Manual 
 							
@@ -660,33 +670,43 @@ This is where you can place additional information.
 
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
+\begin{flushleft} 
+	\begin{table}[H]
+		\begin{tabular}{l l} 
+			  \toprule		
+				  \textbf{Error} & \textbf{Description}\\
+				  \midrule 
+				  BED\_ERR\_NONE 					& Represents no errors\\
+				  BED\_ERR\_INVALID\_DATA			& Represents invalid data being used/stored\\
+				  BED\_ERR\_INVALID\_DATA\_SIZE 		& Represents insufficient size for data storage\\
+				  BED\_ERR\_OUT\_OF\_BOUNDS 		& Represents value of data past allowable limits\\
+				  BED\_ERR\_MEMORY\_FULL 			& Represents full internal memory buffer\\
+		
+			  \bottomrule
+		\end{tabular}\\
+		\caption{\label{Err}Table of Errors}
 
+	\end{table}
+\end{flushleft} 
 \subsection{Usability Survey Questions?}
 
 \wss{This is a section that would be appropriate for some projects.}
-
 \newpage{}
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+	\begin{enumerate}
+	  \item What knowledge and skills will the team collectively need to acquire to
+	  successfully complete the verification and validation of your project?
+	  Examples of possible knowledge and skills include dynamic testing knowledge,
+	  static testing knowledge, specific tool usage etc.  You should look to
+	  identify at least one item for each team member.
+	  \item For each of the knowledge areas and skills identified in the previous
+	  question, what are at least two approaches to acquiring the knowledge or
+	  mastering the skill?  Of the identified approaches, which will each team
+	  member pursue, and why did they make this choice?
+	\end{enumerate}
 
 \end{document}
