@@ -30,8 +30,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2022-11-02 & 1.0 & Initial Documentation\\
 \bottomrule
 \end{tabularx}
 
@@ -74,25 +73,44 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+Researchers at the School of Rehabilitation Sciences (SReS) at McMaster University are interested in performing Ecological Momentary Assessment (EMA) for victims of spinal disorders and back pain. EMA aims to study the thoughts, experiences, and behaviours of a participant's daily life by repeatedly collecting data in an individual's normal environment, at or close to the time they carry out that behaviour.\\
+
+The type of EMA that the SReS is interested in is focused on analyzing the daily activities and symptoms of mostly-older adults with mobility and spinal issues. They wish to track that participant's walking activity as they go about their daily life, along with prompting participants with questions when relevant events occur. The answers to event-based prompts will be combined with activity monitoring data to form a better picture about the experience this participant has with their spinal and mobility issues.\\
+
+The [name of device] will perform EMA analysis in a manner which even older participants can use, integrated into one package which gathers relevant data about a participant's activities and allows them to easily report what is currently going on and how they feel. They also are looking for a way to access EMA data in various ways. This includes graphical representations of the data which are meaningful to researchers, along with the raw data itself. This data could be activity data, symptoms reporting data, both types of data collated together, and so on. \\
+
+This document is intended to describe the plan for verification and validation of the device. Here, verification and validation are both technical terms with very specific meanings.\\
+
+Verification involves checking whether or not the specifications which were described in the planning phase of the project are implemented correctly by the final system designed. Validation involves checking whether or not the product actually fulfills the needs of the end user of the device. In the words of Barry Boehm, verification asks, "Are we building the product right?" and validation asks, "Are we building the right product?"\cite{pham_1999}.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The objectives aimed to be accomplished by this verification and validation are to:
+
+\begin{itemize}
+\item Validate if user requirements truly represent the goals of the stakeholders of [name of device].
+\item Validate if the input provided by the operators of [name of device] meet the established rules and constraints.
+\item Verify if the high-level design of the device correctly fulfills the specifications of the functional and non-functional requirements.
+\item Verify if the components of the device (e.g. source code, database, physical construction, user interface, etc.) fulfill the specifications of the design. 
+\item Discover any faults, failures, or malfunctions in the [name of device].
+\end{itemize}
 
 \subsection{Relevant Documentation}
 
+Please refer to the following documentation for reference and more information:
 \wss{Reference relevant documentation.  This will definitely include your SRS
   and your other project documents (design documents, like MG, MIS, etc).  You
   can include these even before they are written, since by the time the project
   is done, they will be written.}
-
-\citet{SRS}
+\begin{itemize}
+\item Development Plan: \citet{Development_Plan}
+\item Problem Statement \& Goals: \citet{Prob_n_Goals}
+\item SRS: \citet{SRS}
+\item Hazard Analysis: \citet{Hazard_Analysis}
+\item VnV Plan: \citet{VnV_Plan}
+\item Reflection: \citet{Reflection}
+\item User Guide: \citet{User_Guide}
+\end{itemize}
 
 \section{Plan}
 
@@ -415,25 +433,68 @@ Their values are defined in this section for easy maintenance.
 \newpage{}
 \section*{Appendix --- Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
 \begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+  \item \textit{What knowledge and skills will the team collectively need to acquire to
+        successfully complete this capstone project?  Examples of possible knowledge
+        to acquire include domain specific knowledge from the domain of your
+        application, or software engineering knowledge, mechatronics knowledge or
+        computer science knowledge.  Skills may be related to technology, or writing,
+        or presentation, or team management, etc.  You should look to identify at
+        least one item for each team member.}\\
 
+	Approximately a third of this project's timeline has passed at this point. So far, team members have spent the vast majority of their time generating documentation for this project. In the process of doing so, the team has garnered a good sense of the learning styles, working styles, and habits of each individual team member.\\
+
+Now that the planning phase has largely passed, now is the right moment to utilize this newfound knowledge about the team to maximum effect. Team \#1 is lucky; each of its team members is deeply committed to achieving excellence in this project. As a result, they are willing to use knowledge about the strengths, weaknesses, and differences of each member in the aim of working as efficiently and effectively as possible. Synergy has become the greatest strength for Team \#1, on top of the large collection of diverse skills held by Team \#1's individual members.\\
+
+Naturally, identifying the advantages of collaboration in Team \#1 also sheds light on potential blind spots. For this specific team, these blind spots mostly rest within the "soft skills", as team members already are quite proficient with the tools and hard skills necessary to bring this project to fruition.\\
+
+These soft skills are:
+	\begin{itemize}
+	\item \textbf{Jessica:} Critical Thinking
+	\item \textbf{Oliver:} Engagement During Meetings
+	\item \textbf{Jonathan:} Time Management
+	\item \textbf{Anish:} Open-mindedness
+	\item \textbf{Nish:} Leadership
+	\item \textbf{Labeeb:} Communication
+	\end{itemize}
+
+Developing these skills will be essential to the success of the project. It is the responsibility of each individual team member to work on their skills, but it is also necessary for the rest of the team to support them appropriately and make considerations to help fill any holes left behind.
+	
+  \item \textit{For each of the knowledge areas and skills identified in the previous
+        question, what are at least two approaches to acquiring the knowledge or
+        mastering the skill?  Of the identified approaches, which will each team
+        member pursue, and why did they make this choice?}
+	\begin{itemize}
+	\item \textbf{Critical Thinking:}
+		\begin{enumerate}
+		\item \textit{For Jessica:} Consider the "why" for each important decision made in the project.
+		\item \textit{For the Team:} Host design review sessions regularly to look back and determine whether or not the project is headed in the right direction.
+		\end{enumerate}
+	\item \textbf{Engagement During Meetings:}
+		\begin{enumerate}
+		\item \textit{For Oliver:} Chair a third of all meetings going forward.
+		\item \textit{For the Team:} Assign a portion of every meeting to questions and feedback, without any other tasks preempting this section.
+		\end{enumerate}
+	\item \textbf{Time Management:}
+		\begin{enumerate}
+		\item \textit{For Jonathan:} Set up automated reminders and schedules for capstone related tasks.
+		\item \textit{For the Team:} Parcel work into sections in which the workload required is easily understood and planned for.
+		\end{enumerate}
+	\item \textbf{Open-mindedness:}
+		\begin{enumerate}
+		\item \textit{For Anish:} Attach equivalent value to ideas that conflict with your own, and weigh objective pros and cons.
+		\item \textit{For the Team:} Actively promote "devil's advocate" mindsets when making important decisions.
+		\end{enumerate}
+	\item \textbf{Leadership:}
+		\begin{enumerate}
+		\item \textit{For Nish:} Ensure input at least once into every major decision made by the team.
+		\item \textit{For the Team:} Whenever making an important decision, ask each individual member for their opinion.
+		\end{enumerate}
+	\item \textbf{Communication:}
+		\begin{enumerate}
+		\item \textit{For Labeeb:} Raise every concern that comes to mind. Regardless of size or importance.
+		\item \textit{For the Team:} Create a section on the Trello board specifically for non-objective related concerns.
+		\end{enumerate}
+	\end{itemize}
+\end{enumerate}
 \end{document}
