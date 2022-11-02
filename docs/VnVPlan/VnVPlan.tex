@@ -15,7 +15,7 @@
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
 \usepackage{hyphenat}
-
+\usepackage{pifont}
 \input{../Comments}
 \input{../Common}
 
@@ -163,12 +163,12 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
   \\
   \hline
   General feedback and discussion & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
-  \item Verify System constrains for hardware and software.
-  \item Monitored and controlled variables are consistent.
-  \item Comparison to existing solutions is unambiguous.
-  \item Project Goals are relevant to description of device.
-  \item Requirements (functional \& non-functional) are prioritized and verified.
-  \item Event handling and FSM is verified and correct.
+  \item[\ding{111}] Verify System constrains for hardware and software.
+  \item[\ding{111}] Monitored and controlled variables are consistent.
+  \item[\ding{111}] Comparison to existing solutions is unambiguous.
+  \item[\ding{111}] Project Goals are relevant to description of device.
+  \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
+  \item[\ding{111}] Event handling and FSM is verified and correct.
   \end{itemize}               & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers.\\
   \hline
   General System Description 4.1-4.3  & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                & Will be done by team member Jonathan Hai.                                                                                                             \\
@@ -220,7 +220,7 @@ Dynamic code testing will help identify exploitable vulnerabilities. The followi
 
 \subsection{Automated Testing and Verification Tools}\label{Automation}
 
-Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan, (reference dev plan>>>) the following unit testing frameworks, profiling tools and linters will be used for verification of code:
+Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan \cite{Development_Plan} the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
 \begin{itemize}
 \item Python: 
