@@ -106,7 +106,7 @@ Verification and Validation plan will be done on both the hardware and software 
   \hline
   Dr Luciano Macedo & End user                & Researcher who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
   \hline
-  Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests.                                                         \\
+  Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification. \\
   \hline
   Jessica Bae       & Black Box tester        & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.                                                                                         \\
   \hline
@@ -114,15 +114,15 @@ Verification and Validation plan will be done on both the hardware and software 
   \hline
   Nish Shah         & Automated tester        & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py).                                                          \\
   \hline
-  Anish Rangarajan  & Hardware \& Automated tester    & Verification and testing of embedded development in C using Cunit and bullseye coverage for unit testing framework and code coverage.\\
+  Anish Rangarajan  & Hardware \& Automated tester    & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.\\
   \hline
   Oliver Foote      & White Box \& Database testing        & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality. \\
   \hline
 \end{tabular}
 
-\subsection{SRS Verification Plan}
+\subsection{SRS Verification Plan}\label{SRS_verification}
 
-The SRS verification plan will follow a checklist based on task inspection for the SRS and will also involve an ad hoc feedback approach. This is to make sure all the requirements and goals receive several test-cases that could help with the SRS verification plan. The checklist provided below is for sections of the SRS that are vital which require feedback for the product to function as required.
+The SRS verification plan will follow a checklist for reviewers based on an ad hoc approach. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
 
 
 \begin{center}
@@ -132,7 +132,14 @@ The SRS verification plan will follow a checklist based on task inspection for t
   \textbf{Section of SRS}     & \textbf{Description}           & \textbf{Approach of Feedback}                                                                                                                                                                       
   \\
   \hline
-  General feedback and discussion & The verification will be done for the entire SRS by going through it section by section and making sure it is correct. This will be based on an ad hoc approach.               & Will be done by team member Oliver Foote, Stakeholder Dr Luciana Macedo and classmates. \\
+  General feedback and discussion & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
+  \item Verify System constrains for hardware and software.
+  \item Monitored and controlled variables are consistent.
+  \item Comparison to existing solutions is unambiguous.
+  \item Project Goals are relevant to description of device.
+  \item Requirements (functional \& non-functional) are prioritized and verified.
+  \item Event handling and FSM is verified and correct.
+  \end{itemize}               & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers.\\
   \hline
   General System Description 4.1-4.3  & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                & Will be done by team member Jonathan Hai.                                                                                                             \\
   \hline
@@ -165,29 +172,23 @@ The SRS verification plan will follow a checklist based on task inspection for t
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+The implementation verification plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
+The following methods will be used for static code analysis:
+\begin{itemize}
+\item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
+\item Weekly code review with entire team for system-level software design.
+\item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
+\item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
+\end{itemize}
+Dynamic code testing will help identify exploitable vulnerabilities. The following methods will be used for dynamic code analysis:
+\begin{itemize}
+\item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
+\item Running modular code separately against variety of inputs to find bugs in code.
+\item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
+\end{itemize}
 
-\wss{In this section you would also give any details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
-  inspection, static analyzers, etc.}
 
-\subsection{Automated Testing and Verification Tools}
-
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-  that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\subsection{Automated Testing and Verification Tools}\label{Automation}
 
 Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan, (reference dev plan>>>) the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
@@ -210,15 +211,7 @@ Automated testing and verification tools will be based on the different programm
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-  the requirements document captures the right requirements.  Maybe task based
-  inspection?}
-
-\wss{This section might reference back to the SRS verification section.}
+There will be no plan for Software validation since there is no external data used and all the software-related validation is covered in  section \ref{SRS_verification}.
 
 \section{System Test Description}
 
