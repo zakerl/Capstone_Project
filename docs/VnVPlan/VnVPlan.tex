@@ -236,57 +236,94 @@ How test will be performed:
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
 format for the tests given below.}
 
-\subsubsection{Usability}
-		
-\paragraph{Title for Test}
+\subsubsection{Device should be accurate}
+The following set of tests will ensure that the device can recognize its state and perform its main functionality in accurate manner.
+
+\paragraph{Accuracy\\}
+
+The following functional requirements test cases are applicable for accuracy:
+
+\begin{itemize}
+\item MTT\_1: Regular Movement
+\item MTT\_2: Slow Movement
+\item PT\_1: Test Prompt
+\item PT\_2: Activity Prompt
+\end{itemize}
+
+\subsubsection{Device should be user-frendly}
+The following set of tests will ensure that the device is usable by target user population and cause no problems in terms of maintenance and user interactions.		
+
+\paragraph{Usability}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item\textbf{{UT\_1: Intuitive UI\\}}
 
 Type: Manual, Static
 					
 Initial State: The device is turned on and a question prompt is generated on screen.
 					
-Input/Condition: Users are asked to answer the questionnaire set without assistance in less than 1 minute.
+Input/Condition: Testers are asked to answer the questionnaire set without assistance in less than 1 minute.
 					
-Output/Result: All users are able to answer their prompt successfully.
+Output/Result: All testers are able to answer their prompt successfully.
 					
-How test will be performed: A test group of people with age of 40 or older to be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute. These questions might relate to EMA studies but it's not a requirement that the test questions are EMA research specific.
+How test will be performed: A test group of people with age of 40 or older to be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute. These questions will randomly be selected from the following 10 questions.
+
+\begin{itemize}
+\item Are you a dog person or a cat person?
+\item Are you currently inside of a building?
+\item Are you currently a student?
+\item Did you make your bed this morning?
+\item Do you feel tired right now?
+\item Do you prefer coffe or tea?
+\item Do you have a G driver's license?
+\item Do you feel sleepy right now?
+\item Which is better: Summer vs Winter
+\item Is it daytime right now?
+\end{itemize}
 					
-\item{test-id2\\}
+\item\textbf{{UT\_2: Comfortable Device\\}}
 
 Type: Manual, Static
 					
 Initial State: The device is turned on and left on idle mode.
 					
-Input: Users are asked to wear the device for 1 day.
+Input: Testers are asked to wear the device for 24 hours.
 					
-Output: Users fill out a survey form regarding the comfort of the deivce on their body.
+Output: Testers fill out a survey form regarding the comfort of the deivce on their body.
 					
-How test will be performed: At the end of the 1 day cycle, users will be asked to fill out an online form indicating how comfortable they felt the device was regards to weight, shape, stability, etc.
+How test will be performed: At the end of their 1 day cycle, testers will be asked to fill out an online form indicating how comfortable they felt the device was regards to weight, shape, stability, etc. The following questions will be asked.
 
-\item{test-id3\\}
+\begin{itemize}
+\item Did the device every fall off? If so, please record the following for each case: What you were doing each time? When did the incident happen?
+\item How do you feel the weight of the device was? Was it too heavy or too light?
+\item How do you feel the texture of the device was? Did you find it uncomfortable in any way?
+\end{itemize}
+
+\item\textbf{{UT\_3: Reusability\\}}
 
 Type: Manual, Static
 					
-Initial State: The device is turned on off.
+Initial State: The device is cleaned using isopropyl alcohol wipes.
 					
-Input: Users are asked to clean the device.
+Input: Testers visually inspect how clean the device is.
 					
-Output: The device is cleaned without any harm to it.
+Output: The device is deemed clean and the device is not harmed.
 					
-How test will be performed: A group of university students to be asked to read the manual and clean the device. All students should be able to understand the manual and clean the device succesfully without any assistance.s
+How test will be performed: 1 member of Back End Developers will clean the device and 5 other members will inspect and judge if the device is clean enough to be reused. Amongst the 5 inspecting members, 1 member will then turn on the device to make sure that there was no harm done to the device while cleaning it.
 
 \end{enumerate}
 
+
+
+\subsubsection{Device is efficient and competitive}
+The following set of questions will ensure that the device is capable of meeting user expectations.
+
+\paragraph{Performance}
 \begin{enumerate}
+\item\textbf{{PT\_1: Data Transfer Time\\}}
 
-\subsubsection{Performance}
-
-\item{test-id1\\}
-
-Type: 
+Type: Automatic, dynamic
 					
 Initial State: The device has collected a complete set of data.
 					
@@ -296,17 +333,17 @@ Output: Data transfer to finish within the specified parameter, TRASFERTIME.
 					
 How test will be performed: 2 group members of Back End Developers to each perform data trasnfer test 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFERTIME.
 
-\item{test-id2\\}
+\item\textbf{{PT\_2: Battery Life\\}}
 
-Type: 
+Type: Automatic, Static
 					
 Initial State: The device is turned on and left on idle mode.
 					
-Input: Users wear the device for 10 days.
+Input: Testers wear the device for standard monitoring period.
 					
 Output: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERYLIFE.
 					
-How test will be performed: 2 group members of Back End Developers each wear the device for 10 days under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
+How test will be performed: 2 group members of Back End Developers each wear the device for standard monitoring period under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
 
 \end{enumerate}
 
@@ -440,6 +477,10 @@ How test will be performed:
 \section{Appendix}
 
 This is where you can place additional information.
+
+\subsection{Parameters}
+TRANSFERTIME: \\
+BATTERYLIFE: \\
 
 \subsection{Symbolic Parameters}
 
