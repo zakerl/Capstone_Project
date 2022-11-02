@@ -11,16 +11,20 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{caption}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
+\usepackage{hyphenat}
 
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{Project Title: System Verification and Validation Plan for \progname{}}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -28,10 +32,12 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 2022-11-02 & 1.0 & Initial Documentation\\
 \bottomrule
+
 \end{tabularx}
 
 \newpage
@@ -49,11 +55,11 @@
 \section{Symbols, Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
+\begin{tabular}{l l}
+  \toprule
+  \textbf{symbol} & \textbf{description} \\
+  \midrule
+  T               & Test                 \\
   \bottomrule
 \end{tabular}\\
 
@@ -114,23 +120,70 @@ Please refer to the following documentation for reference and more information:
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+Verification and Validation plan will be done on both the hardware and software side individually as well as the system integration. The Researcher/Stakeholders and Back End developers will have different roles and techniques to test the device's functionality and usability as described below.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You shoud do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+The following table defines the roles for the stakeholder and Back End Developers team for Verification and Validation.
+\begin{center}
+\begin{tabular}{|m{5em}|m{5em}|m{25em}|}
 
-\subsection{SRS Verification Plan}
+  \hline
+  \textbf{Name}     & \textbf{Role}           & \textbf{Description}                                                                                                                                                                        \\
+  \hline
+  Dr Luciano Macedo & End user                & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
+  \hline
+  Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification. \\
+  \hline
+  Jessica Bae       & Black Box tester        & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.                                                                                         \\
+  \hline
+  Labeeb Zaker      & Remote codebase manager & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors. \\
+  \hline
+  Nish Shah         & Automated tester        & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py).                                                          \\
+  \hline
+  Anish Rangarajan  & Hardware \& Automated tester    & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.\\
+  \hline
+  Oliver Foote      & White Box \& Database testing        & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality. \\
+  \hline
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
+\end{tabular}
+  \captionof{table}{Team roles for Verification and Validation.}
+  \end{center}
 
-\wss{Maybe create an SRS checklist?}
+\subsection{SRS Verification Plan}\label{SRS_verification}
 
+The SRS verification plan will follow a checklist for reviewers based on an ad hoc approach. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
+
+
+\begin{center}
+\begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|} 
+
+  \hline
+  \textbf{Section of SRS}     & \textbf{Description}           & \textbf{Approach of Feedback}                                                                                                                                                                       
+  \\
+  \hline
+  General feedback and discussion & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
+  \item Verify System constrains for hardware and software.
+  \item Monitored and controlled variables are consistent.
+  \item Comparison to existing solutions is unambiguous.
+  \item Project Goals are relevant to description of device.
+  \item Requirements (functional \& non-functional) are prioritized and verified.
+  \item Event handling and FSM is verified and correct.
+  \end{itemize}               & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers.\\
+  \hline
+  General System Description 4.1-4.3  & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                & Will be done by team member Jonathan Hai.                                                                                                             \\
+  \hline
+  Section 5 Definitions and variables     & Verifying if terminology and the use of monitored and controlled variables is consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project.        & Will be done by team member  Nish Shah.\\
+  \hline
+  Required behavior and Requirements       & Validation of Functional and Non-functional requirements and to verify if the requirements are classified correctly. Checking required behavior as well.       & Will be done by team member Anish Rangarajan.                                                                                         \\
+  \hline
+  Section 8-12 Traceability matrices and normal operation      & Verification of matrices and graphs according to Requirements and also verifying if normal operation covers the required goals of the device. & Will be done by team member Labeeb Zaker.\\
+  \hline
+  Section 14-16        & Verification of FSM, Legal factors and Phase in Plan.       & Will be done by team member Jessica bae.                                                          \\
+  \hline
+\end{tabular}
+  \end{center}
+\captionof{table}{SRS verification checklist and task based inspection}
 \subsection{Design Verification Plan}
 
 \wss{Plans for design verification}
@@ -149,44 +202,49 @@ Please refer to the following documentation for reference and more information:
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
+The following methods will be used for static code analysis:
+\begin{itemize}
+\item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
+\item Weekly code review with entire team for system-level software design.
+\item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
+\item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
+\end{itemize}
+Dynamic code testing will help identify exploitable vulnerabilities. The following methods will be used for dynamic code analysis:
+\begin{itemize}
+\item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
+\item Running modular code separately against variety of inputs to find bugs in code.
+\item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
+\end{itemize}
 
-\wss{In this section you would also give any details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
-  inspection, static analyzers, etc.}
 
-\subsection{Automated Testing and Verification Tools}
+\subsection{Automated Testing and Verification Tools}\label{Automation}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan, (reference dev plan>>>) the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\begin{itemize}
+\item Python: 
+	\begin{itemize}
+		 \item unittest will be used as the Unit testing framework for Python to cover test automation, aggregation of tests (integration 							testing) and independence of tests from the reporting framework.
+		\item Coverage.py will be used to measure code coverage and to gauge the effectiveness of tests performed.
+		\item Pylint will be used as the linter/static code analyser which will check for errors and enforce a coding standard.
+	\end{itemize}
+\item C: 
+	\begin{itemize}
+	\item CUnit will be used as a unit testing framework for embedded system development.
+	\item Bullseye coverage will be used for C code coverage analysis.
+	\item lint will be used as the linter/static code analyser for development in C.
+	\end{itemize}
+\item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
+\item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
+\end{itemize}
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{This section might reference back to the SRS verification section.}
+There will be no plan for Software validation since there is no external data used and all the software-related validation is covered in  section \ref{SRS_verification}.
 
 \section{System Test Description}
-	
+
 \subsection{Tests for Functional Requirements}
 
 \wss{Subsets of the tests may be in related, so this section is divided into
@@ -202,38 +260,38 @@ inspection?}
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
-		
+
 \paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Control: Manual versus Automatic
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Initial State:
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Input:
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Output: \wss{The expected result for the given inputs}
 
-How test will be performed: 
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Control: Manual versus Automatic
+
+  Initial State:
+
+  Input:
+
+  Output: \wss{The expected result for the given inputs}
+
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -252,37 +310,37 @@ How test will be performed:
   survey.  The survey will be in the Appendix.}
 
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+  format for the tests given below.}
 
 \subsubsection{Area of Testing1}
-		
+
 \paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: Functional, Dynamic, Manual, Static etc.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Initial State:
+
+  Input/Condition:
+
+  Output/Result:
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Type: Functional, Dynamic, Manual, Static etc.
+
+  Initial State:
+
+  Input:
+
+  Output:
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -298,7 +356,7 @@ How test will be performed:
 \section{Unit Test Description}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
-  philosophy for test case selection.}  
+  philosophy for test case selection.}
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
 
@@ -325,38 +383,38 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Initial State:
 
-How test will be performed: 
-					
-\item{test-id2\\}
+  Input:
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+  How test will be performed:
 
-\item{...\\}
-    
+  \item{test-id2\\}
+
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
+
+  Initial State:
+
+  Input:
+
+  Output: \wss{The expected result for the given inputs}
+
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
+
+  \item{...\\}
+
 \end{enumerate}
 
 \subsubsection{Module 2}
@@ -373,33 +431,33 @@ How test will be performed:
   mentioned functional tests.}
 
 \subsubsection{Module ?}
-		
+
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Initial State:
+
+  Input/Condition:
+
+  Output/Result:
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Type: Functional, Dynamic, Manual, Static etc.
+
+  Initial State:
+
+  Input:
+
+  Output:
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -410,7 +468,7 @@ How test will be performed:
 \subsection{Traceability Between Test Cases and Modules}
 
 \wss{Provide evidence that all of the modules have been considered.}
-				
+
 \bibliographystyle{plainnat}
 
 \bibliography{../../refs/References}
