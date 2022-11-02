@@ -11,6 +11,11 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{caption}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
+\usepackage{hyphenat}
+
 \input{../Comments}
 \input{../Common}
 
@@ -95,16 +100,18 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \section{Plan}
 
-Verification and Validation plan will be done on both the hardware and software side individually as well as the integration. The Researcher/end user and developers will have different roles and techniques to test the device's functionality and usability as described below.
+Verification and Validation plan will be done on both the hardware and software side individually as well as the system integration. The Researcher/Stakeholders and Back End developers will have different roles and techniques to test the device's functionality and usability as described below.
 
 \subsection{Verification and Validation Team}
 
-
+The following table defines the roles for the stakeholder and Back End Developers team for Verification and Validation.
+\begin{center}
 \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
+
   \hline
   \textbf{Name}     & \textbf{Role}           & \textbf{Description}                                                                                                                                                                        \\
   \hline
-  Dr Luciano Macedo & End user                & Researcher who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
+  Dr Luciano Macedo & End user                & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
   \hline
   Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification. \\
   \hline
@@ -118,7 +125,10 @@ Verification and Validation plan will be done on both the hardware and software 
   \hline
   Oliver Foote      & White Box \& Database testing        & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality. \\
   \hline
+
 \end{tabular}
+  \captionof{table}{Team roles for Verification and Validation.}
+  \end{center}
 
 \subsection{SRS Verification Plan}\label{SRS_verification}
 
@@ -126,7 +136,7 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
 
 
 \begin{center}
-\begin{tabular}{|p{3cm}|p{8cm}|p{4cm}|} 
+\begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|} 
 
   \hline
   \textbf{Section of SRS}     & \textbf{Description}           & \textbf{Approach of Feedback}                                                                                                                                                                       
@@ -153,7 +163,7 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
   \hline
 \end{tabular}
   \end{center}
-
+\captionof{table}{SRS verification checklist and task based inspection}
 \subsection{Design Verification Plan}
 
 \wss{Plans for design verification}
@@ -172,7 +182,7 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
 
 \subsection{Implementation Verification Plan}
 
-The implementation verification plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
+The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
 The following methods will be used for static code analysis:
 \begin{itemize}
 \item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
