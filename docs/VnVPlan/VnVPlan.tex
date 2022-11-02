@@ -237,86 +237,14 @@ How test will be performed:
 format for the tests given below.}
 
 \subsubsection{Usability}
-		
-\paragraph{Title for Test}
+
+\subsubsection{Hardware Saftey Tests}
+
+These tests are designed to test the saftey of the device concerning electircal components and hardware. It is important that the users of our device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that our indicator LED functions as expected under certain conditions.
 
 \begin{enumerate}
 
-\item{test-id1\\}
-
-Type: Manual, Static
-					
-Initial State: The device is turned on and a question prompt is generated on screen.
-					
-Input/Condition: Users are asked to answer the questionnaire set without assistance in less than 1 minute.
-					
-Output/Result: All users are able to answer their prompt successfully.
-					
-How test will be performed: A test group of people with age of 40 or older to be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute. These questions might relate to EMA studies but it's not a requirement that the test questions are EMA research specific.
-					
-\item{test-id2\\}
-
-Type: Manual, Static
-					
-Initial State: The device is turned on and left on idle mode.
-					
-Input: Users are asked to wear the device for 1 day.
-					
-Output: Users fill out a survey form regarding the comfort of the deivce on their body.
-					
-How test will be performed: At the end of the 1 day cycle, users will be asked to fill out an online form indicating how comfortable they felt the device was regards to weight, shape, stability, etc.
-
-\item{test-id3\\}
-
-Type: Manual, Static
-					
-Initial State: The device is turned on off.
-					
-Input: Users are asked to clean the device.
-					
-Output: The device is cleaned without any harm to it.
-					
-How test will be performed: A group of university students to be asked to read the manual and clean the device. All students should be able to understand the manual and clean the device succesfully without any assistance.s
-
-\end{enumerate}
-
-\subsubsection{Performance}
-
-\begin{enumerate}
-
-\item{test-id1\\}
-
-Type: 
-					
-Initial State: The device has collected a complete set of data.
-					
-Input: The device is connected to the host software and connection is established for data transfer.
-					
-Output: Data transfer to finish within the specified parameter, TRASFERTIME.
-					
-How test will be performed: 2 group members of Back End Developers to each perform data trasnfer test 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFERTIME.
-
-\item{test-id2\\}
-
-Type: 
-					
-Initial State: The device is turned on and left on idle mode.
-					
-Input: Users wear the device for 10 days.
-					
-Output: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERYLIFE.
-					
-How test will be performed: 2 group members of Back End Developers each wear the device for 10 days under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
-
-\end{enumerate}
-
-\subsubsection{Saftey Tests}
-
-This section will test the saftey of the device concerning electircal components and sharps hazards involving hardware
-
-\begin{enumerate}
-
-\item{ST-1: High Voltage\\}
+\item{HST-1: High Voltage\\}
 
 Control: Manual 
 
@@ -330,7 +258,7 @@ Test Case Derivation: N/A
 
 How test will be performed: Use a power supply to over volt the system. 
 
-\item{ST-2: Normal Voltage\\}
+\item{HST-2: Normal Voltage\\}
 
 Control: Manual
 
@@ -344,7 +272,7 @@ Test Case Derivation:
 
 How test will be performed: Use power supply to provide the expected voltage to the device.
 
-\item{ST-3: Low Voltage\\}
+\item{HST-3: Low Voltage\\}
 
 Control: Manual
 
@@ -358,55 +286,66 @@ Test Case Derivation:
 
 How test will be performed: Use power supply to provide a lower than expected voltage to the device.
 
+\item{HST-4: Frequency Detection\\}
+
+Control: Manual
+
+Initial State: Device begins in off mode
+
+Input: Device is turned on in normal operating state
+
+Output: Frequency analysis conducted on the circuitry components
+
+Test Case Derivation: N/A
+
+How test will be performed: Using a frequency analysis software such as NI Multisim and an Oscilloscope graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
 
 \end{enumerate}
 
 \subsubsection{Reusability Tests}
 
-This section will test the reusability of the various systems of the device
+These tests will test the reusability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
 
 \begin{enumerate}
 
+%add another test or gear test toward charge protection, circuitry to stop overcharging/discharging.
+
 \item{RT-1: Battery Charge/Discharge\\}
 
-Control: Manual
+Control: Manual.
 
-Initial State: Battery is fully discharged
+Initial State: Battery is fully discharged.
 
-Input: Connect battery to the charging cable 
+Input: Connect battery to the charging cable.
 
-Output: Battery is fully charged without issue
+Output: Battery is fully charged without issue.
 
 Test Case Derivation: N/A
 
-How test will be performed: Battery component will be isolated from device and tested to charge and discharge in multiple cycles
-
-\item{RT-2: Drop test for durability\\}
-
-Control: Manual
-Initial State: Device is powered on.
-Input: Device is dropped from 5 feet in the air
-Output: Device and all sensors continue to work as expected
-Test Case Derivation:
-How test will be performed: Device will be dropped from 5 feet and sensors are tested for proper functioning. Test will be repeated 5 times.
-
+How test will be performed: Battery component will be isolated from device and fully charged and discharged 5 times.
 
 \end{enumerate}
 
-\subsubsection{Privacy Tests}
+\subsubsection{Data Security Tests}
 
-This section test the privacy of the users data 
+These tests are designed to test the security of our system and the accessibility of important medical records. Ensuring that only certain people are able to access these records is a vital part of our design, and ensuring that records cannot be modified is also important for research data integrity. 
 
 \begin{enumerate}
 
 \item{PT-1: Records Safety Test\\}
 
 Control: Manual
+
 Initial State: Device is powered on.
-Input: Data transfer cable is plugged in from device to a generic PC, someone tries to access the database.
-Output: Database inaccessible and requests administrative key.
+
+Input: Data transfer cable is plugged in from device to a generic PC, a volunteer tries to access the database and modify the data within.
+
+Output: Database inaccessible and requests administrative security key, volunteer is unable to access or modify the data.
+
 Test Case Derivation: N/A
-How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the admin security key, they will attempt to access the database.
+
+How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the administrator security key, they will attempt to access the database. 
+
 
 \end{enumerate}
 
