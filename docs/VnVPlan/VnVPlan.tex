@@ -18,7 +18,6 @@
 \usepackage{pifont}
 \input{../Comments}
 \input{../Common}
-
 \begin{document}
 
 \title{Project Title: System Verification and Validation Plan for \progname{}}
@@ -33,11 +32,10 @@
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-2022-11-02 & 1.0 & Initial Documentation\\
-\bottomrule
-
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes}           \\
+  \midrule
+  2022-11-02          & 1.0           & Initial Documentation \\
+  \bottomrule
 \end{tabularx}
 
 \newpage
@@ -94,11 +92,11 @@ Verification involves checking whether or not the specifications which were desc
 The objectives aimed to be accomplished by this verification and validation are to:
 
 \begin{itemize}
-\item Validate if user requirements truly represent the goals of the stakeholders of [name of device].
-\item Validate if the input provided by the operators of [name of device] meet the established rules and constraints.
-\item Verify if the high-level design of the device correctly fulfills the specifications of the functional and non-functional requirements.
-\item Verify if the components of the device (e.g. source code, database, physical construction, user interface, etc.) fulfill the specifications of the design. 
-\item Discover any faults, failures, or malfunctions in the [name of device].
+  \item Validate if user requirements truly represent the goals of the stakeholders of [name of device].
+  \item Validate if the input provided by the operators of [name of device] meet the established rules and constraints.
+  \item Verify if the high-level design of the device correctly fulfills the specifications of the functional and non-functional requirements.
+  \item Verify if the components of the device (e.g. source code, database, physical construction, user interface, etc.) fulfill the specifications of the design.
+  \item Discover any faults, failures, or malfunctions in the [name of device].
 \end{itemize}
 
 \subsection{Relevant Documentation}
@@ -109,13 +107,13 @@ Please refer to the following documentation for reference and more information:
   can include these even before they are written, since by the time the project
   is done, they will be written.}
 \begin{itemize}
-\item Development Plan: \citet{Development_Plan}
-\item Problem Statement \& Goals: \citet{Prob_n_Goals}
-\item SRS: \citet{SRS}
-\item Hazard Analysis: \citet{Hazard_Analysis}
-\item VnV Plan: \citet{VnV_Plan}
-\item Reflection: \citet{Reflection}
-\item User Guide: \citet{User_Guide}
+  \item Development Plan: \citet{Development_Plan}
+  \item Problem Statement \& Goals: \citet{Prob_n_Goals}
+  \item SRS: \citet{SRS}
+  \item Hazard Analysis: \citet{Hazard_Analysis}
+  \item VnV Plan: \citet{VnV_Plan}
+  \item Reflection: \citet{Reflection}
+  \item User Guide: \citet{User_Guide}
 \end{itemize}
 
 \section{Plan}
@@ -126,29 +124,28 @@ Verification and Validation plan will be done on both the hardware and software 
 
 The following table defines the roles for the stakeholder and Back End Developers team for Verification and Validation.
 \begin{center}
-\begin{tabular}{|m{5em}|m{5em}|m{25em}|}
+  \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
 
-  \hline
-  \textbf{Name}     & \textbf{Role}           & \textbf{Description}                                                                                                                                                                        \\
-  \hline
-  Dr Luciano Macedo & End user                & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                             \\
-  \hline
-  Johnathan Hai     & Subsystem tester       & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification. \\
-  \hline
-  Jessica Bae       & Black Box tester        & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.                                                                                         \\
-  \hline
-  Labeeb Zaker      & Remote codebase manager & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors. \\
-  \hline
-  Nish Shah         & Automated tester        & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py).                                                          \\
-  \hline
-  Anish Rangarajan  & Hardware \& Automated tester    & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.\\
-  \hline
-  Oliver Foote      & White Box \& Database testing        & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality. \\
-  \hline
-
-\end{tabular}
+    \hline
+    \label{4_1}\textbf{Name} & \textbf{Role}                 & \textbf{Description}                                                                                                                                                                                                                                                \\
+    \hline
+    Dr Luciano Macedo        & End user                      & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                                                                       \\
+    \hline
+    Johnathan Hai            & Subsystem tester              & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification.            \\
+    \hline
+    Jessica Bae              & Black Box tester              & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.        \\
+    \hline
+    Labeeb Zaker             & Remote codebase manager       & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors.                                                                                              \\
+    \hline
+    Nish Shah                & Automated tester              & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py). \\
+    \hline
+    Anish Rangarajan         & Hardware \& Automated tester  & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.                                                                                                                      \\
+    \hline
+    Oliver Foote             & White Box \& Database testing & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality.                                                                               \\
+    \hline
+  \end{tabular}
   \captionof{table}{Team roles for Verification and Validation.}
-  \end{center}
+\end{center}
 
 \subsection{SRS Verification Plan}\label{SRS_verification}
 
@@ -156,65 +153,77 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
 
 
 \begin{center}
-\begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|} 
+  \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
 
-  \hline
-  \textbf{Section of SRS}     & \textbf{Description}           & \textbf{Approach of Feedback}                                                                                                                                                                       
-  \\
-  \hline
-  General feedback and discussion & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
-  \item[\ding{111}] Verify System constrains for hardware and software.
-  \item[\ding{111}] Monitored and controlled variables are consistent.
-  \item[\ding{111}] Comparison to existing solutions is unambiguous.
-  \item[\ding{111}] Project Goals are relevant to description of device.
-  \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
-  \item[\ding{111}] Event handling and FSM is verified and correct.
-  \end{itemize}               & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers.\\
-  \hline
-  General System Description 4.1-4.3  & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                & Will be done by team member Jonathan Hai.                                                                                                             \\
-  \hline
-  Section 5 Definitions and variables     & Verifying if terminology and the use of monitored and controlled variables is consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project.        & Will be done by team member  Nish Shah.\\
-  \hline
-  Required behavior and Requirements       & Validation of Functional and Non-functional requirements and to verify if the requirements are classified correctly. Checking required behavior as well.       & Will be done by team member Anish Rangarajan.                                                                                         \\
-  \hline
-  Section 8-12 Traceability matrices and normal operation      & Verification of matrices and graphs according to Requirements and also verifying if normal operation covers the required goals of the device. & Will be done by team member Labeeb Zaker.\\
-  \hline
-  Section 14-16        & Verification of FSM, Legal factors and Phase in Plan.       & Will be done by team member Jessica bae.                                                          \\
-  \hline
-\end{tabular}
-  \end{center}
+    \hline
+    \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
+    \\
+    \hline
+    General feedback and discussion                         & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
+                                                                                                                                                       \item[\ding{111}] Verify System constrains for hardware and software.
+                                                                                                                                                       \item[\ding{111}] Monitored and controlled variables are consistent.
+                                                                                                                                                       \item[\ding{111}] Comparison to existing solutions is unambiguous.
+                                                                                                                                                       \item[\ding{111}] Project Goals are relevant to description of device.
+                                                                                                                                                       \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
+                                                                                                                                                       \item[\ding{111}] Event handling and FSM is verified and correct.
+                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers. \\
+    \hline
+    General System Description 4.1-4.3                      & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
+    \hline
+    Section 5 Definitions and variables                     & Verifying if terminology and the use of monitored and controlled variables is consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
+    \hline
+    Required behavior and Requirements                      & Validation of Functional and Non-functional requirements and to verify if the requirements are classified correctly. Checking required behavior as well.                              & Will be done by team member Anish Rangarajan.                                                \\
+    \hline
+    Section 8-12 Traceability matrices and normal operation & Verification of matrices and graphs according to Requirements and also verifying if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
+    \hline
+    Section 14-16                                           & Verification of FSM, Legal factors and Phase in Plan.                                                                                                                                 & Will be done by team member Jessica bae.                                                     \\
+    \hline
+  \end{tabular}
+\end{center}
 \captionof{table}{SRS verification checklist and task based inspection}
 \subsection{Design Verification Plan}
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
+\begin{tabular}{|p{2cm}|p{8cm}|p{4cm}|}
+  \hline
+  \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
+  \hline
+  Response Feedback Test                  & This test will cover most of our sensor tests. We will set up scenarios, going beyond thresholds to observe if we get an expected feedback as a result.                                                                                                                                                              & Performed by Developers and Dr. Macedo \\
+  \hline
+  User Interface Test                     & This test is where we will be testing all of our buttons rigorously, ensuring the buttons work as expected. We will also be ensuring that the screen size is visible and scaled well to fit the screen.                                                                                                              & Performed by Developers                \\
+  \hline
+  Durability Test                         & Ideally a faulty sensor should not impact all the other sensors. The way to verify this isn't the case is forcefully damaging a sensor, and adding it to the circuitry. We then check if the tracked values from other sensors are impacted.                                                                         & Performed by Developers                \\
+  \hline
+  Database Scalability Test               & Since it's live data being stored, there are approximately 1000 requests per second being made to our database with the large chunks of data. We will be creating a scenario using postman where we are feeding as many requests as possible to our database and ensure our database is able to handle the requests. & Performed by Developers                \\
+  \hline
+  Hardware Communication                  & Valgrind will be used at every stage to see how the memory is being allocated, which processes are using, we will also be using an execution tracker perhaps to ensure our workflow is working as expected.                                                                                                          & Performed by Developers                \\
+  \hline
+\end{tabular}
+\pagebreak
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be verified.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
+Since VNV plan document mostly covers about how to validate our device works, through verification of different test cases. The only way to verify this document is checking all such scenarios and getting expected results.\\
+\\The following will be done to verify VnV plan:\\
+\begin{itemize}
+  \item[\ding{111}] Each member has their own verification tasks to verify as per \hyperref[4_1]{4.1} throughout the development phase. They have to ensure the tests don't fail at any of the expected scenarios and works as expected from user's point of view.
+  \item[\ding{111}] Each member has to verify the SRS requirements through their assigned tasks which can be found in \hyperref[SRS_verification]{4.2}. The variables need to be controlled accordingly and specific scenarios needed to be tested to ensure functionality without errors.
+  \item[\ding{111}] Verify each component of the design in \hyperref[sec_4_3]{4.3} as being developed, so that we can guarantee unit testing is successful before system testing.
+  \item[\ding{111}] Ensure that everyone attends the code-review meetings. The member who fails to join the review, a reviewer will be scheduled to review later. Tests against all scenarios to ensure all cases work.
+  \item[\ding{111}] All the functional requirements have test cases that can be found in \hyperref[sec_5_1]{5.1}. Verify all the test cases, ensure that the outputs are expected and within bounds. Check during tests, that the variables are being controlled and monitored accordingly.
+\end{itemize}
 \subsection{Implementation Verification Plan}
 
 The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
 The following methods will be used for static code analysis:
 \begin{itemize}
-\item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
-\item Weekly code review with entire team for system-level software design.
-\item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
-\item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
+  \item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
+  \item Weekly code review with entire team for system-level software design.
+  \item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
+  \item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
 \end{itemize}
 Dynamic code testing will help identify exploitable vulnerabilities. The following methods will be used for dynamic code analysis:
 \begin{itemize}
-\item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
-\item Running modular code separately against variety of inputs to find bugs in code.
-\item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
+  \item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
+  \item Running modular code separately against variety of inputs to find bugs in code.
+  \item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
 \end{itemize}
 
 
@@ -223,20 +232,20 @@ Dynamic code testing will help identify exploitable vulnerabilities. The followi
 Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan \cite{Development_Plan} the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
 \begin{itemize}
-\item Python: 
-	\begin{itemize}
-		 \item unittest will be used as the Unit testing framework for Python to cover test automation, aggregation of tests (integration 							testing) and independence of tests from the reporting framework.
-		\item Coverage.py will be used to measure code coverage and to gauge the effectiveness of tests performed.
-		\item Pylint will be used as the linter/static code analyser which will check for errors and enforce a coding standard.
-	\end{itemize}
-\item C: 
-	\begin{itemize}
-	\item CUnit will be used as a unit testing framework for embedded system development.
-	\item Bullseye coverage will be used for C code coverage analysis.
-	\item lint will be used as the linter/static code analyser for development in C.
-	\end{itemize}
-\item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
-\item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
+  \item Python:
+        \begin{itemize}
+          \item unittest will be used as the Unit testing framework for Python to cover test automation, aggregation of tests (integration 							testing) and independence of tests from the reporting framework.
+          \item Coverage.py will be used to measure code coverage and to gauge the effectiveness of tests performed.
+          \item Pylint will be used as the linter/static code analyser which will check for errors and enforce a coding standard.
+        \end{itemize}
+  \item C:
+        \begin{itemize}
+          \item CUnit will be used as a unit testing framework for embedded system development.
+          \item Bullseye coverage will be used for C code coverage analysis.
+          \item lint will be used as the linter/static code analyser for development in C.
+        \end{itemize}
+  \item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
+  \item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
 \end{itemize}
 
 \subsection{Software Validation Plan}
@@ -493,66 +502,66 @@ Their values are defined in this section for easy maintenance.
 
 \begin{enumerate}
   \item \textit{What knowledge and skills will the team collectively need to acquire to
-        successfully complete this capstone project?  Examples of possible knowledge
-        to acquire include domain specific knowledge from the domain of your
-        application, or software engineering knowledge, mechatronics knowledge or
-        computer science knowledge.  Skills may be related to technology, or writing,
-        or presentation, or team management, etc.  You should look to identify at
-        least one item for each team member.}\\
+          successfully complete this capstone project?  Examples of possible knowledge
+          to acquire include domain specific knowledge from the domain of your
+          application, or software engineering knowledge, mechatronics knowledge or
+          computer science knowledge.  Skills may be related to technology, or writing,
+          or presentation, or team management, etc.  You should look to identify at
+          least one item for each team member.}\\
 
-	Approximately a third of this project's timeline has passed at this point. So far, team members have spent the vast majority of their time generating documentation for this project. In the process of doing so, the team has garnered a good sense of the learning styles, working styles, and habits of each individual team member.\\
+        Approximately a third of this project's timeline has passed at this point. So far, team members have spent the vast majority of their time generating documentation for this project. In the process of doing so, the team has garnered a good sense of the learning styles, working styles, and habits of each individual team member.\\
 
-Now that the planning phase has largely passed, now is the right moment to utilize this newfound knowledge about the team to maximum effect. Team \#1 is lucky; each of its team members is deeply committed to achieving excellence in this project. As a result, they are willing to use knowledge about the strengths, weaknesses, and differences of each member in the aim of working as efficiently and effectively as possible. Synergy has become the greatest strength for Team \#1, on top of the large collection of diverse skills held by Team \#1's individual members.\\
+        Now that the planning phase has largely passed, now is the right moment to utilize this newfound knowledge about the team to maximum effect. Team \#1 is lucky; each of its team members is deeply committed to achieving excellence in this project. As a result, they are willing to use knowledge about the strengths, weaknesses, and differences of each member in the aim of working as efficiently and effectively as possible. Synergy has become the greatest strength for Team \#1, on top of the large collection of diverse skills held by Team \#1's individual members.\\
 
-Naturally, identifying the advantages of collaboration in Team \#1 also sheds light on potential blind spots. For this specific team, these blind spots mostly rest within the "soft skills", as team members already are quite proficient with the tools and hard skills necessary to bring this project to fruition.\\
+        Naturally, identifying the advantages of collaboration in Team \#1 also sheds light on potential blind spots. For this specific team, these blind spots mostly rest within the "soft skills", as team members already are quite proficient with the tools and hard skills necessary to bring this project to fruition.\\
 
-These soft skills are:
-	\begin{itemize}
-	\item \textbf{Jessica:} Critical Thinking
-	\item \textbf{Oliver:} Engagement During Meetings
-	\item \textbf{Jonathan:} Time Management
-	\item \textbf{Anish:} Open-mindedness
-	\item \textbf{Nish:} Leadership
-	\item \textbf{Labeeb:} Communication
-	\end{itemize}
+        These soft skills are:
+        \begin{itemize}
+          \item \textbf{Jessica:} Critical Thinking
+          \item \textbf{Oliver:} Engagement During Meetings
+          \item \textbf{Jonathan:} Time Management
+          \item \textbf{Anish:} Open-mindedness
+          \item \textbf{Nish:} Leadership
+          \item \textbf{Labeeb:} Communication
+        \end{itemize}
 
-Developing these skills will be essential to the success of the project. It is the responsibility of each individual team member to work on their skills, but it is also necessary for the rest of the team to support them appropriately and make considerations to help fill any holes left behind.
-	
+        Developing these skills will be essential to the success of the project. It is the responsibility of each individual team member to work on their skills, but it is also necessary for the rest of the team to support them appropriately and make considerations to help fill any holes left behind.
+
   \item \textit{For each of the knowledge areas and skills identified in the previous
-        question, what are at least two approaches to acquiring the knowledge or
-        mastering the skill?  Of the identified approaches, which will each team
-        member pursue, and why did they make this choice?}
-	\begin{itemize}
-	\item \textbf{Critical Thinking:}
-		\begin{enumerate}
-		\item \textit{For Jessica:} Consider the "why" for each important decision made in the project.
-		\item \textit{For the Team:} Host design review sessions regularly to look back and determine whether or not the project is headed in the right direction.
-		\end{enumerate}
-	\item \textbf{Engagement During Meetings:}
-		\begin{enumerate}
-		\item \textit{For Oliver:} Chair a third of all meetings going forward.
-		\item \textit{For the Team:} Assign a portion of every meeting to questions and feedback, without any other tasks preempting this section.
-		\end{enumerate}
-	\item \textbf{Time Management:}
-		\begin{enumerate}
-		\item \textit{For Jonathan:} Set up automated reminders and schedules for capstone related tasks.
-		\item \textit{For the Team:} Parcel work into sections in which the workload required is easily understood and planned for.
-		\end{enumerate}
-	\item \textbf{Open-mindedness:}
-		\begin{enumerate}
-		\item \textit{For Anish:} Attach equivalent value to ideas that conflict with your own, and weigh objective pros and cons.
-		\item \textit{For the Team:} Actively promote "devil's advocate" mindsets when making important decisions.
-		\end{enumerate}
-	\item \textbf{Leadership:}
-		\begin{enumerate}
-		\item \textit{For Nish:} Ensure input at least once into every major decision made by the team.
-		\item \textit{For the Team:} Whenever making an important decision, ask each individual member for their opinion.
-		\end{enumerate}
-	\item \textbf{Communication:}
-		\begin{enumerate}
-		\item \textit{For Labeeb:} Raise every concern that comes to mind. Regardless of size or importance.
-		\item \textit{For the Team:} Create a section on the Trello board specifically for non-objective related concerns.
-		\end{enumerate}
-	\end{itemize}
+          question, what are at least two approaches to acquiring the knowledge or
+          mastering the skill?  Of the identified approaches, which will each team
+          member pursue, and why did they make this choice?}
+        \begin{itemize}
+          \item \textbf{Critical Thinking:}
+                \begin{enumerate}
+                  \item \textit{For Jessica:} Consider the "why" for each important decision made in the project.
+                  \item \textit{For the Team:} Host design review sessions regularly to look back and determine whether or not the project is headed in the right direction.
+                \end{enumerate}
+          \item \textbf{Engagement During Meetings:}
+                \begin{enumerate}
+                  \item \textit{For Oliver:} Chair a third of all meetings going forward.
+                  \item \textit{For the Team:} Assign a portion of every meeting to questions and feedback, without any other tasks preempting this section.
+                \end{enumerate}
+          \item \textbf{Time Management:}
+                \begin{enumerate}
+                  \item \textit{For Jonathan:} Set up automated reminders and schedules for capstone related tasks.
+                  \item \textit{For the Team:} Parcel work into sections in which the workload required is easily understood and planned for.
+                \end{enumerate}
+          \item \textbf{Open-mindedness:}
+                \begin{enumerate}
+                  \item \textit{For Anish:} Attach equivalent value to ideas that conflict with your own, and weigh objective pros and cons.
+                  \item \textit{For the Team:} Actively promote "devil's advocate" mindsets when making important decisions.
+                \end{enumerate}
+          \item \textbf{Leadership:}
+                \begin{enumerate}
+                  \item \textit{For Nish:} Ensure input at least once into every major decision made by the team.
+                  \item \textit{For the Team:} Whenever making an important decision, ask each individual member for their opinion.
+                \end{enumerate}
+          \item \textbf{Communication:}
+                \begin{enumerate}
+                  \item \textit{For Labeeb:} Raise every concern that comes to mind. Regardless of size or importance.
+                  \item \textit{For the Team:} Create a section on the Trello board specifically for non-objective related concerns.
+                \end{enumerate}
+        \end{itemize}
 \end{enumerate}
 \end{document}
