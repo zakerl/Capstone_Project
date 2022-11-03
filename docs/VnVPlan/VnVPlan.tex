@@ -3,6 +3,9 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{zref-xr,zref-user}
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -11,16 +14,19 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-
+\usepackage{caption}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
+\usepackage{hyphenat}
+\usepackage{pifont}
 \input{../Comments}
 \input{../Common}
-
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{Project Title: System Verification and Validation Plan for \progname{}}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -28,11 +34,11 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes}           \\
+  \midrule
+  2022-11-02          & 1.0           & Initial Documentation \\
+  \bottomrule
 \end{tabularx}
 
 \newpage
@@ -48,15 +54,26 @@ Date 2 & 1.1 & Notes\\
 \newpage
 
 \section{Symbols, Abbreviations and Acronyms}
-
+%The test plan is \href{file:../SRS/SRS}{here}.
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
+
+\begin{table}[H]
+	\begin{tabular}{l l} 
+		  \toprule		
+			  \textbf{Symbol} & \textbf{Description}\\
+			  \midrule 
+			  DT 						& Duration Test\\
+			  MTT 					& Minor Tracking Test\\
+			  PT 						& Prompt Test\\
+			  TT 						& Threshold Test\\
+			  DST 					& Data Storage Test\\
+			  DXT 					& Data Extraction Test\\
+			  HC\#					& Hardware Constraint \#\\ 
+		  \bottomrule
+	\end{tabular}\\\\
+\caption{\label{Syb}Table of Symbols}
+\end{table}
+
 
 \wss{symbols, abbreviations or acronyms --- you can simply reference the SRS
   \citep{SRS} tables, if appropriate}
@@ -74,101 +91,183 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+Researchers at the School of Rehabilitation Sciences (SReS) at McMaster University are interested in performing Ecological Momentary Assessment (EMA) for victims of spinal disorders and back pain. EMA aims to study the thoughts, experiences, and behaviours of a participant's daily life by repeatedly collecting data in an individual's normal environment, at or close to the time they carry out that behaviour.\\
+
+The type of EMA that the SReS is interested in is focused on analyzing the daily activities and symptoms of mostly-older adults with mobility and spinal issues. They wish to track that participant's walking activity as they go about their daily life, along with prompting participants with questions when relevant events occur. The answers to event-based prompts will be combined with activity monitoring data to form a better picture about the experience this participant has with their spinal and mobility issues.\\
+
+The [name of device] will perform EMA analysis in a manner which even older participants can use, integrated into one package which gathers relevant data about a participant's activities and allows them to easily report what is currently going on and how they feel. They also are looking for a way to access EMA data in various ways. This includes graphical representations of the data which are meaningful to researchers, along with the raw data itself. This data could be activity data, symptoms reporting data, both types of data collated together, and so on. \\
+
+This document is intended to describe the plan for verification and validation of the device. Here, verification and validation are both technical terms with very specific meanings.\\
+
+Verification involves checking whether or not the specifications which were described in the planning phase of the project are implemented correctly by the final system designed. Validation involves checking whether or not the product actually fulfills the needs of the end user of the device. In the words of Barry Boehm, verification asks, "Are we building the product right?" and validation asks, "Are we building the right product?"\cite{pham_1999}.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The objectives aimed to be accomplished by this verification and validation are to:
+
+\begin{itemize}
+  \item Validate if user requirements truly represent the goals of the stakeholders of [name of device].
+  \item Validate if the input provided by the operators of [name of device] meet the established rules and constraints.
+  \item Verify if the high-level design of the device correctly fulfills the specifications of the functional and non-functional requirements.
+  \item Verify if the components of the device (e.g. source code, database, physical construction, user interface, etc.) fulfill the specifications of the design.
+  \item Discover any faults, failures, or malfunctions in the [name of device].
+\end{itemize}
 
 \subsection{Relevant Documentation}
 
+Please refer to the following documentation for reference and more information:
 \wss{Reference relevant documentation.  This will definitely include your SRS
   and your other project documents (design documents, like MG, MIS, etc).  You
   can include these even before they are written, since by the time the project
   is done, they will be written.}
-
-\citet{SRS}
+\begin{itemize}
+  \item Development Plan: \citet{Development_Plan}
+  \item Problem Statement \& Goals: \citet{Prob_n_Goals}
+  \item SRS: \citet{SRS}
+  \item Hazard Analysis: \citet{Hazard_Analysis}
+  \item VnV Plan: \citet{VnV_Plan}
+  \item Reflection: \citet{Reflection}
+  \item User Guide: \citet{User_Guide}
+\end{itemize}
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+Verification and Validation plan will be done on both the hardware and software side individually as well as the system integration. The Researcher/Stakeholders and Back End developers will have different roles and techniques to test the device's functionality and usability as described below.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You shoud do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+The following table defines the roles for the stakeholder and Back End Developers team for Verification and Validation.
+\begin{center}
+  \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
 
-\subsection{SRS Verification Plan}
+    \hline
+    \label{4_1}\textbf{Name} & \textbf{Role}                 & \textbf{Description}                                                                                                                                                                                                                                                \\
+    \hline
+    Dr Luciano Macedo        & End user                      & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                                                                       \\
+    \hline
+    Johnathan Hai            & Subsystem tester              & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification.            \\
+    \hline
+    Jessica Bae              & Black Box tester              & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.        \\
+    \hline
+    Labeeb Zaker             & Remote codebase manager       & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors.                                                                                              \\
+    \hline
+    Nish Shah                & Automated tester              & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py). \\
+    \hline
+    Anish Rangarajan         & Hardware \& Automated tester  & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.                                                                                                                      \\
+    \hline
+    Oliver Foote             & White Box \& Database testing & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality.                                                                               \\
+    \hline
+  \end{tabular}
+  \captionof{table}{Team roles for Verification and Validation.}
+\end{center}
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
+\subsection{SRS Verification Plan}\label{SRS_verification}
 
-\wss{Maybe create an SRS checklist?}
+The SRS verification plan will follow a checklist for reviewers based on an ad hoc approach. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
 
+
+\begin{center}
+  \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
+
+    \hline
+    \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
+    \\
+    \hline
+    General feedback and discussion                         & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
+                                                                                                                                                       \item[\ding{111}] Verify System constrains for hardware and software.
+                                                                                                                                                       \item[\ding{111}] Monitored and controlled variables are consistent.
+                                                                                                                                                       \item[\ding{111}] Comparison to existing solutions is unambiguous.
+                                                                                                                                                       \item[\ding{111}] Project Goals are relevant to description of device.
+                                                                                                                                                       \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
+                                                                                                                                                       \item[\ding{111}] Event handling and FSM is verified and correct.
+                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers. \\
+    \hline
+    General System Description 4.1-4.3                      & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
+    \hline
+    Section 5 Definitions and variables                     & Verifying if terminology and the use of monitored and controlled variables is consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
+    \hline
+    Required behavior and Requirements                      & Validation of Functional and Non-functional requirements and to verify if the requirements are classified correctly. Checking required behavior as well.                              & Will be done by team member Anish Rangarajan.                                                \\
+    \hline
+    Section 8-12 Traceability matrices and normal operation & Verification of matrices and graphs according to Requirements and also verifying if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
+    \hline
+    Section 14-16                                           & Verification of FSM, Legal factors and Phase in Plan.                                                                                                                                 & Will be done by team member Jessica bae.                                                     \\
+    \hline
+  \end{tabular}
+\end{center}
+\captionof{table}{SRS verification checklist and task based inspection}
 \subsection{Design Verification Plan}
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
+\begin{tabular}{|p{2cm}|p{8cm}|p{4cm}|}
+  \hline
+  \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
+  \hline
+  Response Feedback Test                  & This test will cover most of our sensor tests. We will set up scenarios, going beyond thresholds to observe if we get an expected feedback as a result.                                                                                                                                                              & Performed by Developers and Dr. Macedo \\
+  \hline
+  User Interface Test                     & This test is where we will be testing all of our buttons rigorously, ensuring the buttons work as expected. We will also be ensuring that the screen size is visible and scaled well to fit the screen.                                                                                                              & Performed by Developers                \\
+  \hline
+  Durability Test                         & Ideally a faulty sensor should not impact all the other sensors. The way to verify this isn't the case is forcefully damaging a sensor, and adding it to the circuitry. We then check if the tracked values from other sensors are impacted.                                                                         & Performed by Developers                \\
+  \hline
+  Database Scalability Test               & Since it's live data being stored, there are approximately 1000 requests per second being made to our database with the large chunks of data. We will be creating a scenario using postman where we are feeding as many requests as possible to our database and ensure our database is able to handle the requests. & Performed by Developers                \\
+  \hline
+  Hardware Communication                  & Valgrind will be used at every stage to see how the memory is being allocated, which processes are using, we will also be using an execution tracker perhaps to ensure our workflow is working as expected.                                                                                                          & Performed by Developers                \\
+  \hline
+\end{tabular}
+\pagebreak
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be verified.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
+Since VNV plan document mostly covers about how to validate our device works, through verification of different test cases. The only way to verify this document is checking all such scenarios and getting expected results.\\
+\\The following will be done to verify VnV plan:\\
+\begin{itemize}
+  \item[\ding{111}] Each member has their own verification tasks to verify as per \hyperref[4_1]{4.1} throughout the development phase. They have to ensure the tests don't fail at any of the expected scenarios and works as expected from user's point of view.
+  \item[\ding{111}] Each member has to verify the SRS requirements through their assigned tasks which can be found in \hyperref[SRS_verification]{4.2}. The variables need to be controlled accordingly and specific scenarios needed to be tested to ensure functionality without errors.
+  \item[\ding{111}] Verify each component of the design in \hyperref[sec_4_3]{4.3} as being developed, so that we can guarantee unit testing is successful before system testing.
+  \item[\ding{111}] Ensure that everyone attends the code-review meetings. The member who fails to join the review, a reviewer will be scheduled to review later. Tests against all scenarios to ensure all cases work.
+  \item[\ding{111}] All the functional requirements have test cases that can be found in \hyperref[sec_5_1]{5.1}. Verify all the test cases, ensure that the outputs are expected and within bounds. Check during tests, that the variables are being controlled and monitored accordingly.
+\end{itemize}
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
+The following methods will be used for static code analysis:
+\begin{itemize}
+  \item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
+  \item Weekly code review with entire team for system-level software design.
+  \item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
+  \item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
+\end{itemize}
+Dynamic code testing will help identify exploitable vulnerabilities. The following methods will be used for dynamic code analysis:
+\begin{itemize}
+  \item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
+  \item Running modular code separately against variety of inputs to find bugs in code.
+  \item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
+\end{itemize}
 
-\wss{In this section you would also give any details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
-  inspection, static analyzers, etc.}
 
-\subsection{Automated Testing and Verification Tools}
+\subsection{Automated Testing and Verification Tools}\label{Automation}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan \cite{Development_Plan} the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\begin{itemize}
+  \item Python:
+        \begin{itemize}
+          \item unittest will be used as the Unit testing framework for Python to cover test automation, aggregation of tests (integration 							testing) and independence of tests from the reporting framework.
+          \item Coverage.py will be used to measure code coverage and to gauge the effectiveness of tests performed.
+          \item Pylint will be used as the linter/static code analyser which will check for errors and enforce a coding standard.
+        \end{itemize}
+  \item C:
+        \begin{itemize}
+          \item CUnit will be used as a unit testing framework for embedded system development.
+          \item Bullseye coverage will be used for C code coverage analysis.
+          \item lint will be used as the linter/static code analyser for development in C.
+        \end{itemize}
+  \item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
+  \item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
+\end{itemize}
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{This section might reference back to the SRS verification section.}
+There will be no plan for Software validation since there is no external data used and all the software-related validation is covered in  section \ref{SRS_verification}.
 
 \section{System Test Description}
-	
+
 \subsection{Tests for Functional Requirements}
 
 \wss{Subsets of the tests may be in related, so this section is divided into
@@ -178,51 +277,303 @@ inspection?}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
-
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Device should stay on during the monitoring period}
+
+The following tests will check the whether the device will maintain an "ON" state throughout the duration of the monitoring period. The primary tests will involve different monitoring periods with valid inputs, invalid inputs, dates from the past or too far into the future beyond what the battery life can sustain (HC2).
 		
-\paragraph{Title for Test}
+\paragraph{Duration Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+	\item{\textbf{DT\_1: Regular Inputs}\\}\label{DT1}
+		
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"]  : ["03-11-2022", "05:30:PM"].
+		
+		Output: Device turns off after Monitoring Period.
+							
+		How test will be performed: The test is performed by passing in the Monitoring Period and ensuring that the device maintains power throughout this period.
+					
+	\item{\textbf{DT\_2: Invalid Inputs}\\}\label{DT2}
+	
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["3rd November 2022", "Five Thirty PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		
+		How test will be performed: The test is performed by passing an invalid input and ensuring the appropriate error code is returned.
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+	\item{\textbf{DT\_3: Earlier Date}\\}\label{DT3}
+		
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["01-1-1999", "05:30:PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		
+		How test will be performed: The test is performed by passing an old date (prior to current date).
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+	\item{\textbf{DT\_4: Date beyond capabilities}\\}\label{DT4}
+		
+		Control: Manual 
+							
+		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
+							
+		Input: Monitoring Period ["Date","Time"] : ["9-12-2300", "05:30:PM"].
+							
+		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+		How test will be performed: The test is performed by passing a date greater than what the battery life of the device can support.
 
 \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Area of Testing2}
+\subsubsection{Device should track Minor Movements}
+The following tests are run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved,rotated oriented etc. and checking if the status of the Sensors is valid.
 
-...
+\paragraph{Minor Tracking Test}
+\begin{enumerate}
+	\item{\textbf{MTT\_1: Regular Movement} \\}\label{MTT1}
+	
+		Control: Manual 
+							
+		Initial State: Device is worn with all systems working.
+							
+		Input: Wearer performs activities at a regular/normal pace.
+		
+		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
 
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.\\
+
+
+	\item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
+	
+		Control: Manual 
+							
+		Initial State: Device is worn with all systems working.
+							
+		Input: Wearer performs activities at a very slow pace.
+		
+		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
+		
+		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a very slow pace. This is done to ensure that the device can 					work under scenarios in which users have limited mobility.\\
+
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Device prompts user when activity is detected}
+
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+		
+\paragraph{Prompt Tests}
+\begin{enumerate}
+	\item{\textbf{PT\_1: Test Prompt} \\}\label{PT1}
+	
+		Control: Manual 
+							
+		Initial State: Device has just been reconfigured.
+							
+		Input: Device is turned on for the first time.
+		
+		Output: Test Prompt is displayed.
+
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.\\
+		Test Prompt: Is this Device on?\\
+		Possible Answers: Yes or No
+		
+	\item{\textbf{PT\_2: Activity Prompt} \\}\label{PT2}
+	
+		Control: Manual 
+							
+		Initial State: Device is in the idle state.
+							
+		Input: Activity has been detected.
+		
+		Output: Specific activity prompt is displayed.
+							
+		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.\\\\
+		Tracked Activity: Participant slows down or comes to a stop.\\
+		Activity Prompt: Are you in pain?\\
+		Possible Answers: Yes or No
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Customizable Thresholds}
+
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+		
+\paragraph{Threshold Tests}
+\begin{enumerate}
+	\item{\textbf{TT\_1: Regular Inputs} \\}\label{TT1}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Regular values for thresholds within limits.
+		
+		Output: Config File generated successfully.
+		
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting valid values for the thresholds.\\
+		eg: \\
+		Speed Threshold:\\
+		Limits: 0m/s \textless Threshold \textless 5m/s
+
+	\item{\textbf{TT\_2: Below lower limit} \\}\label{TT2}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Values for thresholds below lower limits.
+		
+		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds above allowable limits.
+
+	\item{\textbf{TT\_3: Above Upper limit }\\}\label{TT3}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Values for thresholds above upper limits.
+		
+		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+		
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds below allowable limits.
+
+	\item{\textbf{TT\_4: Invalid Value} \\}\label{TT4}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: Invalid values for thresholds.
+		
+		Output: Config File generates a BED\_ERR\_INVALID\_DATA.
+		
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting invalid values for the thresholds.
+
+	\item{\textbf{TT\_5: No Value} \\}\label{TT5}
+	
+		Control: Manual 
+							
+		Initial State: Device is in Configuration mode.
+							
+		Input: No values for thresholds.
+		
+		Output: Config File generates a BED\_ERR\_INVALID\_DATA.
+
+		How test will be performed: The test is performed by setting the device to configuration mode and then setting no values for the thresholds.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Data Storage}
+
+The following tests will be done to ensure that data is stored when appropriate. Tests include checking when storage buffer is full, when prompts are generated and when sensor data needs to be logged. 
+\begin{enumerate}
+	\item{\textbf{DST\_1: Storage Buffer Full} \\}\label{DST1}
+	
+		Control: Manual 
+							
+		Initial State: Device is in an idle state.
+							
+		Input: Activity detected causing prompt to be generated (Internal storage is full).
+		
+		Output: Data Storage system generates a BED\_ERR\_MEMORY\_FULL
+		
+		How test will be performed: The test is performed by first loading the internal memory buffer with garbage values so that it is nearly/completely full. Then a registered activity is triggered generating a 					prompt. Once this is answered, the system will not have enough memory to store the new values thus resulting in an error.
+
+	\item{\textbf{DST\_2: Prompt Generated} \\}\label{DST2}
+	
+		Control: Manual 
+							
+		Initial State: Device is in an idle state.
+							
+		Input: Activity detected causing prompt to be generated.
+		
+		Output: Prompt Response is saved into the internal memory.
+		
+		How test will be performed: The test is performed by performing a registered activity and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.\\
+		eg: Registered Activity: Participant slows down or comes to a stop for an extended period of time\\
+		Prompt Generated: \\
+		Are you in pain?\\
+		Possible Answers: Yes or No\\
+		\\
+		Prompt Generated: \\
+		Do you need assistance?\\
+		Possible Answers: Yes or No\\
+
+	\item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
+	
+		Control: Manual 
+							
+		Initial State: Device is in an idle state.
+							
+		Input: Activity detected causing prompt to be generated.
+		
+		Output: Specific sensor values that triggered a prompt are stored in the internal memory.
+							
+		How test will be performed: The test is performed by performing a registered activity and ensuring that the sensor values that caused the prompt are stored in the internal storage buffer.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Data Extraction}
+
+The following tests will be done to ensure that can be extracted and presented in a graphical manner deemed acceptable for the purpose of EMA analysis.
+\begin{enumerate}
+	\item{\textbf{DXT\_1: Extracting Data} \\}\label{DXT1}
+	
+		Control: Manual 
+							
+		Initial State: Device is connected to the device manager.
+							
+		Input: Command that tells the device manager to extract all data from the internal memory.
+		
+		Output: Extracted data is sent to the Host Software where it is converted to a presentable form.
+
+		How test will be performed: The test is performed by first running the device as intended and waiting for a small monitoring period to finish. After this the device is connected to the Host Software with the 				help of the Device Manager Driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
+		
+	\item{\textbf{DXT\_2: Extracting No Data} \\}\label{DXT2}
+	
+		Control: Manual 
+							
+		Initial State: Device is connected to the device manager.
+							
+		Input: Command that tells the device manager to extract all data from the internal memory.
+		
+		Output: Device Manager returns a BED\_ERR\_EMPTY\_DATA error
+
+		How test will be performed: The test is performed by first deleting all the contents of the internal memory prior to connection with the Host Software. Once connected and the extraction process begins, the 				system should return an error due to no data being present to extract.
+
+	\item{\textbf{DXT\_3: Extracting Corrupted Data} \\}\label{DXT3}
+	
+		Control: Manual 
+							
+		Initial State: Device is connected to the device manager.
+							
+		Input: Command that tells the device manager to extract all data from the internal memory.
+		
+		Output: Device Manager returns a BED\_ERR\_INVALID\_DATA error
+
+		How test will be performed: The test is performed by first deleting all the contents of the internal memory and filling it with garbage values prior to connection with the Host Software. Once connected and 				the extraction process begins, the system should return an error due to corrupted data being present to extract.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tests for Nonfunctional Requirements}
 
 \wss{The nonfunctional requirements for accuracy will likely just reference the
@@ -234,7 +585,8 @@ How test will be performed:
   survey.  The survey will be in the Appendix.}
 
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+  format for the tests given below.}
+
 
 \subsubsection{Device should be accurate}
 The following set of tests will ensure that the device can recognize its state and perform its main functionality in accurate manner.
@@ -355,7 +707,7 @@ How test will be performed: 2 group members of Back End Developers each wear the
 \section{Unit Test Description}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
-  philosophy for test case selection.}  
+  philosophy for test case selection.}
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
 
@@ -382,38 +734,38 @@ How test will be performed: 2 group members of Back End Developers each wear the
 
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Initial State:
 
-How test will be performed: 
-					
-\item{test-id2\\}
+  Input:
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+  Output: \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+  How test will be performed:
 
-\item{...\\}
-    
+  \item{test-id2\\}
+
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
+
+  Initial State:
+
+  Input:
+
+  Output: \wss{The expected result for the given inputs}
+
+  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+  How test will be performed:
+
+  \item{...\\}
+
 \end{enumerate}
 
 \subsubsection{Module 2}
@@ -430,33 +782,33 @@ How test will be performed:
   mentioned functional tests.}
 
 \subsubsection{Module ?}
-		
+
 \begin{enumerate}
 
-\item{test-id1\\}
+  \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+    be automatic}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Initial State:
+
+  Input/Condition:
+
+  Output/Result:
+
+  How test will be performed:
+
+  \item{test-id2\\}
+
+  Type: Functional, Dynamic, Manual, Static etc.
+
+  Initial State:
+
+  Input:
+
+  Output:
+
+  How test will be performed:
 
 \end{enumerate}
 
@@ -467,10 +819,11 @@ How test will be performed:
 \subsection{Traceability Between Test Cases and Modules}
 
 \wss{Provide evidence that all of the modules have been considered.}
-				
+
+
 \bibliographystyle{plainnat}
 
-\bibliography{../../refs/References}
+%\bibliography{../../refs/References}
 
 \newpage
 
@@ -486,33 +839,94 @@ BATTERYLIFE: \\
 
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
+\begin{flushleft} 
+	\begin{table}[H]
+		\begin{tabular}{l l} 
+			  \toprule		
+				  \textbf{Error} & \textbf{Description}\\
+				  \midrule 
+				  BED\_ERR\_NONE 					& Represents no errors\\
+				  BED\_ERR\_INVALID\_DATA			& Represents invalid data being used/stored\\
+				  BED\_ERR\_INVALID\_DATA\_SIZE 		& Represents insufficient size for data storage\\
+				  BED\_ERR\_OUT\_OF\_BOUNDS 		& Represents value of data past allowable limits\\
+				  BED\_ERR\_MEMORY\_FULL 			& Represents full internal memory buffer\\
+		
+			  \bottomrule
+		\end{tabular}\\
+		\caption{\label{Err}Table of Errors}
 
+	\end{table}
+\end{flushleft} 
 \subsection{Usability Survey Questions?}
 
 \wss{This is a section that would be appropriate for some projects.}
 
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \newpage{}
 \section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+  \item \textit{What knowledge and skills will the team collectively need to acquire to
+          successfully complete this capstone project?  Examples of possible knowledge
+          to acquire include domain specific knowledge from the domain of your
+          application, or software engineering knowledge, mechatronics knowledge or
+          computer science knowledge.  Skills may be related to technology, or writing,
+          or presentation, or team management, etc.  You should look to identify at
+          least one item for each team member.}\\
 
+        Approximately a third of this project's timeline has passed at this point. So far, team members have spent the vast majority of their time generating documentation for this project. In the process of doing so, the team has garnered a good sense of the learning styles, working styles, and habits of each individual team member.\\
+
+        Now that the planning phase has largely passed, now is the right moment to utilize this newfound knowledge about the team to maximum effect. Team \#1 is lucky; each of its team members is deeply committed to achieving excellence in this project. As a result, they are willing to use knowledge about the strengths, weaknesses, and differences of each member in the aim of working as efficiently and effectively as possible. Synergy has become the greatest strength for Team \#1, on top of the large collection of diverse skills held by Team \#1's individual members.\\
+
+        Naturally, identifying the advantages of collaboration in Team \#1 also sheds light on potential blind spots. For this specific team, these blind spots mostly rest within the "soft skills", as team members already are quite proficient with the tools and hard skills necessary to bring this project to fruition.\\
+
+        These soft skills are:
+        \begin{itemize}
+          \item \textbf{Jessica:} Critical Thinking
+          \item \textbf{Oliver:} Engagement During Meetings
+          \item \textbf{Jonathan:} Time Management
+          \item \textbf{Anish:} Open-mindedness
+          \item \textbf{Nish:} Leadership
+          \item \textbf{Labeeb:} Communication
+        \end{itemize}
+
+        Developing these skills will be essential to the success of the project. It is the responsibility of each individual team member to work on their skills, but it is also necessary for the rest of the team to support them appropriately and make considerations to help fill any holes left behind.
+
+  \item \textit{For each of the knowledge areas and skills identified in the previous
+          question, what are at least two approaches to acquiring the knowledge or
+          mastering the skill?  Of the identified approaches, which will each team
+          member pursue, and why did they make this choice?}
+        \begin{itemize}
+          \item \textbf{Critical Thinking:}
+                \begin{enumerate}
+                  \item \textit{For Jessica:} Consider the "why" for each important decision made in the project.
+                  \item \textit{For the Team:} Host design review sessions regularly to look back and determine whether or not the project is headed in the right direction.
+                \end{enumerate}
+          \item \textbf{Engagement During Meetings:}
+                \begin{enumerate}
+                  \item \textit{For Oliver:} Chair a third of all meetings going forward.
+                  \item \textit{For the Team:} Assign a portion of every meeting to questions and feedback, without any other tasks preempting this section.
+                \end{enumerate}
+          \item \textbf{Time Management:}
+                \begin{enumerate}
+                  \item \textit{For Jonathan:} Set up automated reminders and schedules for capstone related tasks.
+                  \item \textit{For the Team:} Parcel work into sections in which the workload required is easily understood and planned for.
+                \end{enumerate}
+          \item \textbf{Open-mindedness:}
+                \begin{enumerate}
+                  \item \textit{For Anish:} Attach equivalent value to ideas that conflict with your own, and weigh objective pros and cons.
+                  \item \textit{For the Team:} Actively promote "devil's advocate" mindsets when making important decisions.
+                \end{enumerate}
+          \item \textbf{Leadership:}
+                \begin{enumerate}
+                  \item \textit{For Nish:} Ensure input at least once into every major decision made by the team.
+                  \item \textit{For the Team:} Whenever making an important decision, ask each individual member for their opinion.
+                \end{enumerate}
+          \item \textbf{Communication:}
+                \begin{enumerate}
+                  \item \textit{For Labeeb:} Raise every concern that comes to mind. Regardless of size or importance.
+                  \item \textit{For the Team:} Create a section on the Trello board specifically for non-objective related concerns.
+                \end{enumerate}
+        \end{itemize}
+\end{enumerate}
 \end{document}

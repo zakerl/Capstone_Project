@@ -17,7 +17,7 @@
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{color, colortbl}
-
+\usepackage{float}
 \usepackage[round]{natbib}
 %\usepackage{helvet}
 %\usepackage[none]{hyphenat}
@@ -143,18 +143,22 @@
 \pagenumbering{roman}
 
 \tableofcontents
-
+\listoffigures
+\listoftables
 ~\newpage
 
 \section*{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
-  \midrule
-  October 5th, 2022              & 1.0           & Initial Revision       \\
-  \bottomrule
-\end{tabularx}
-
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
+	  \toprule {\bf Date} 		  & {\bf Version}	 & {\bf Notes} \\
+	  \midrule
+	  October 5th, 2022              & 1.0           		& Initial Revision       \\
+	  November 1st, 2022		  & 1.1           		& Added extra sections,new requriements and hyperlinking\\   
+	  \bottomrule
+	\end{tabularx}
+	\caption{\label{revHist}Revision History}
+\end{table}
 ~\newpage
 \pagebreak
 \section{Reference Material}
@@ -171,49 +175,48 @@ description of the unit and the SI name.
 
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
-
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass	& kilogram\\
-    \si{\second} & time & second\\
-    \si{\degree} & angle & degree\\
-    \si{\radian} & angle & radian\\
-    \si{\V} & potential & volts\\
-    \si{\ampere} & current & ampere\\
-    \si{\ohm} & resistance & ohm (\si\ohm = \si{\V\per\ampere})\\
-    \si{\F} & capacitance & farad\\
-    \si{\H} & inductance & henry\\
-    N & force & newton (N = \si{\kilogram\metre\per\square\second})\\
-    Pa & pressure & pascals (Pa = N\si{\per\square\metre})\\
-    \si{\Hz} & frequency & hertz\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
-    \bottomrule
-  \end{tabular}
-  
+	\begin{table}[H]
+	  \noindent\begin{tabular}{l l l} 
+	    \toprule		
+	    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+	    \midrule 
+	    \si{\metre} & length & metre\\
+	    \si{\kilogram} & mass	& kilogram\\
+	    \si{\second} & time & second\\
+	    \si{\degree} & angle & degree\\
+	    \si{\radian} & angle & radian\\
+	    \si{\V} & potential & volts\\
+	    \si{\ampere} & current & ampere\\
+	    \si{\ohm} & resistance & ohm (\si\ohm = \si{\V\per\ampere})\\
+	    \si{\F} & capacitance & farad\\
+	    \si{\H} & inductance & henry\\
+	    N & force & newton (N = \si{\kilogram\metre\per\square\second})\\
+	    Pa & pressure & pascals (Pa = N\si{\per\square\metre})\\
+	    \si{\Hz} & frequency & hertz\\
+	    \si{\joule} & energy & joule\\
+	    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+	    \bottomrule
+	  \end{tabular}
+	\caption{\label{tabUnit}Table of Basic Units}
+	\end{table}  
   ~\newline
 Below are some derived units that do not use a specific SI symbol.
 ~\newline
 
   \renewcommand{\arraystretch}{1.2}
-%\begin{table}[ht]
-  \noindent \begin{tabular}{l l} 
-    \toprule		
-    \textbf{Derived unit} & \textbf{SI}\\
-    \midrule 
-    area  & \si{\square\metre}\\
-    volume & \si{\cubic\metre}\\
-    velocity &  \si{\metre\per\second}\\
-    acceleration &  \si{\metre\per\square\second}\\    
-    \bottomrule
-  \end{tabular}
-  
-  %	\caption{Provide a caption}
-%\end{table}
-
+\begin{table}[H]
+	 \noindent \begin{tabular}{l l} 
+	    \toprule		
+	    \textbf{Derived unit} & \textbf{SI}\\
+	    \midrule 
+	    area  & \si{\square\metre}\\
+	    volume & \si{\cubic\metre}\\
+	    velocity &  \si{\metre\per\second}\\
+	    acceleration &  \si{\metre\per\square\second}\\    
+	    \bottomrule
+	  \end{tabular}
+	\caption{\label{devUnit}Table of Derived Units}  
+\end{table}
 
 \subsection{Table of Symbols}
 
@@ -221,70 +224,75 @@ The table that follows summarizes the symbols used in this document along with
 their units.  The choice of symbols was made to be consistent with kinematics and existing documentation of existing activity trackers. The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
-%\noindent \begin{tabularx}{1.0\textwidth}{l l X}
-\noindent \begin{longtable*}{l l p{12cm}} \toprule
 
-\textbf{symbol} & \textbf{unit} & \textbf{description}\\
-\midrule
-$f_c$ & \si{\Hz} & clock frequency of microcontroller\\
-$m_{tracker}$ & \si\g & mass of activity tracker (device)\\
-$a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
-$A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
-$V_{battery}$ & \si\V & supplied voltage of battery\\
-
-\bottomrule
-
-\end{longtable*}
+\begin{table}[H]
+	\noindent\begin{longtable*}{l l p{12cm}} \toprule
+	
+	\textbf{symbol} & \textbf{unit} & \textbf{description}\\
+	\midrule
+	$f_c$ & \si{\Hz} & clock frequency of microcontroller\\
+	$m_{tracker}$ & \si\g & mass of activity tracker (device)\\
+	$a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
+	$A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
+	$V_{battery}$ & \si\V & supplied voltage of battery\\
+	
+	\bottomrule
+	\end{longtable*}
+	\caption{\label{symb}Table of Symbols}  
+\end{table}
 
 \subsection{Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  A & Assumption\\
-  ACC & Acceleration\\
-  BAR & Barometer\\
-  CSV & Comma-Separated Values\\
-  CV & Controlled Variables\\
-  DD & Data Definition\\
-  EMA & Ecological Momentary Assessment\\
-  FSM & Finite State Machine\\
-  GD & General Definition\\
-  GS & Goal Statement\\
-  GYR & Gyrometer\\
-  IM & Instance Model\\
-  LC & Likely Change\\
-  LSS & Lumbar Spinal Stenosis\\
-  MV & Monitored Variables\\
-  NFR & Non-Functional Requirements\\
-  OOP & Object Oriented Programming\\
-  PID & Proportional-integral-derivative\\
-  PS & Physical System Description\\
-  R & Requirement\\
-  SI & Syst\`{e}me International d'Unit\'{e}s\\
-  SReS & School of Rehabilitation Sciences\\
-  SRS & Software Requirements Specification\\
-
-  \bottomrule
-\end{tabular}\\
-
+\begin{table}[H]
+	\noindent\begin{tabular}{l l} 
+	  \toprule		
+	  \textbf{symbol} & \textbf{description}\\
+	  \midrule 
+	  A & Assumption\\
+	  ACC & Acceleration\\
+	  BAR & Barometer\\
+	  CSV & Comma-Separated Values\\
+	  CV & Controlled Variables\\
+	  DD & Data Definition\\
+	  EMA & Ecological Momentary Assessment\\
+	  FSM & Finite State Machine\\
+	  GD & General Definition\\
+	  GS & Goal Statement\\
+	  GYR & Gyrometer\\
+	  IM & Instance Model\\
+	  LC & Likely Change\\
+	  LSS & Lumbar Spinal Stenosis\\
+	  MV & Monitored Variables\\
+	  NFR & Non-Functional Requirements\\
+	  OOP & Object Oriented Programming\\
+	  PID & Proportional-integral-derivative\\
+	  PS & Physical System Description\\
+	  R & Requirement\\
+	  SI & Syst\`{e}me International d'Unit\'{e}s\\
+	  SReS & School of Rehabilitation Sciences\\
+	  SRS & Software Requirements Specification\\
+	
+	  \bottomrule
+	\end{tabular}\\
+	\caption{\label{abbacr}Table of Abbreviations and Acronyms}  
+\end{table}
 
 \subsection{Constants}
 Below are the constant that will be used in the device.
 \renewcommand{\arraystretch}{1.2}
-%\noindent \begin{tabularx}{1.0\textwidth}{l l X}
-\noindent \begin{longtable*}{l l p{12cm}} \toprule
+\begin{table}[H]
+	\noindent \begin{longtable*}{l l p{12cm}} \toprule
+	
+	\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
+	\midrule
+	$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
+	$f_{arduino}$ &16 \si{MHz} & clock frequency of arduino uno\\
+	\bottomrule
+	\end{longtable*}
+	\caption{\label{const}Table of Constants} 
+\end{table}
 
-\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
-\midrule
-$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
-$f_{arduino}$ &16 \si{MHz} & clock frequency of arduino uno\\
-\bottomrule
-
-\end{longtable*}
 
 \subsection{Mathematical Notation}
 N/A
@@ -405,16 +413,16 @@ The design will consist of both a hardware and a software system. The constraint
 \begin{itemize}
 \item \textbf{Hardware}: 
 	\begin{itemize}
-		\item The system must weigh less than 100g to facilitate being lightweight and comfortable.
-		\item The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
-		\item The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
+		\label{HC1}\item[HC1:] The system must weigh less than 100g to facilitate being lightweight and comfortable.
+		\label{HC2}\item[HC2:] The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
+		\label{HC3}\item[HC3:] The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
 	\end{itemize}
 
 \item \textbf{Software} :
 	\begin{itemize}
-		\item The system will have hard time constrainsts so as to store data and prompt users with low latency .
-		\item To maintain privacy, the system will only store data for two weeks after which the data will be deleted.
-		\item The system must prompt users based on activities and not based on time of day. 
+		\label{SC1}\item[SC1:] The system will have hard time constrainsts so as to store data and prompt users with low latency .
+		\label{SC2}\item[SC2:] To maintain privacy, the system will only store data for two weeks after which the data will be deleted.
+		\label{SC3}\item[SC3:] The system must prompt users based on activities and not based on time of day. 
 	\end{itemize}
 \end{itemize}
 
@@ -443,47 +451,51 @@ easier to correctly understand the requirements:
 
 \end{itemize}
 \subsubsection{Monitored variables}
-\begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
+\begin{table}[H]
+\begin{tabular}{ |p{9em}|p{25em}|p{6em}| }
   \hline
   \rowcolor{LightCyan}
-  \textbf{Monitored Variable}       & \textbf{Description}                                                                                                                                                                          & \textbf{Units}           \\
+  \textbf{Monitored Variable}       	& \textbf{Description}                                                                                                                                                                         			 	& \textbf{Units}\\
   \hline
-  m\textunderscore batteryLife      & This signal is used to monitor the battery life.                                                                                                                                              & Integer(\%)              \\
-  \hline
-
-  m\textunderscore modeUser         & This signal is used to indicate who is the user. There are only two types of users: participant and researcher. Mode for participant is 0 and 1 for researcher.                               & Boolean                  \\
-  \hline
-  m\textunderscore ActivityDetected  & This signal is used to monitor the current state of the participant.                                                                                            	& struct(Boolean, Integer)                  \\
-  \hline
-  m\textunderscore promptAnswered   & This signal is used to monitor the state of the participant response to the activity prompt.                                                                                  & Boolean                  \\
-  \hline
-  m\textunderscore monitorPer       & This signal is used to monitor the duration, the participant has been monitored since the device has been turned on.                                                                          & Integer (number of days) \\
-  \hline
-  m\textunderscore valConnect       & This signal is used to indicate whether the researcher's system can be validated as a host.                 & Boolean                  \\
+  \label{mBat}m\_ batteryLife      	& This signal is used to monitor the battery life.                                                                                                                                    				& Integer(\%)\\
   \hline
 
-  m\textunderscore senCalVal        & This signal is used to indicate whether the sensors have been calibrated successfully according to the researcher's constraints.                                                              & Boolean                  \\
+   \label{mMod}m\_ modeUser        	& This signal is used to indicate who is the user. There are only two types of users: participant and researcher. Mode for participant is 0 and 1 for researcher.   	& Boolean \\
+  \hline
+  \label{mAct}m\_ ActivityDetected  	& This signal is used to monitor the current state of the participant.                                                                                            						& struct(Boolean, Integer)\\
+  \hline
+  \label{mPro}m\_ promptAnswered   	& This signal is used to monitor the state of the participant response to the activity prompt.                                                                                  			& Boolean\\
+  \hline
+ \label{mMon} m\_ monitorPer       	& This signal is used to monitor the duration, the participant has been monitored since the device has been turned on.                                        			&Integer (number of days)\\
+  \hline
+ \label{mVal}m\_ valConnect       	& This signal is used to indicate whether the researcher's system can be validated as a host.                 											& Boolean\\
+  \hline
+
+ \label{mSen} m\_ senCalVal        	& This signal is used to indicate whether the sensors have been calibrated successfully according to the researcher's constraints.                                                & Boolean\\
   \hline
 \end{tabular}
 \\
 \linebreak
 \linebreak
+\caption{\label{monVar}Table of Monitored Variables}  
+\end{table}
 
 \subsubsection{Controlled variables}
+\begin{table}
 \begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
   \hline
-
   \rowcolor{LightCyan}
   \textbf{Controlled Variable} & \textbf{Description}                                                                                                          & \textbf{Units}           \\
   \hline
-  c\textunderscore batteryLife & This is the battery threshold that the battery life should be above to indicate that the device is good for usage             & Integer(\%)              \\
+  \label{cBat}c\_batteryLife & This is the battery threshold that the battery life should be above to indicate that the device is good for usage             & Integer(\%)              \\
   \hline
-  c\textunderscore monitorPer  & This is the monitoring period set for participants by the researcher. The device shall be collecting data within this period. & Integer (number of days) \\
+  \label{cMon}c\_monitorPer  & This is the monitoring period set for participants by the researcher. The device shall be collecting data within this period. & Integer (number of days) \\
   \hline
-  c\textunderscore modeResearcher   & This flag is used to control what the software does. There are 3 different actions: for Calibration, Accessing patient records, and Accessing data collected. & Integer                  \\
+  \label{cMod}c\_modeResearcher   & This flag is used to control what the software does. There are 3 different actions: for Calibration, Accessing patient records, and Accessing data collected. & Integer                  \\
   \hline
 \end{tabular}
-
+\caption{\label{conVar}Table of Controlled Variables}  
+\end{table}
 \subsubsection{Comparison to existing solutions}
 Most of the solutions are just softwares when installed, uses phone sensor data to cause an intervention. They are very dependent on mobile phone sensors, meaning if there are no sensors on the phone, the software application becomes obsolete.
 The app might also have to be open 24/7 or running in background to be able to read live sensor data.  Some of the current solutions involved a time-based EMA trigger
@@ -504,10 +516,10 @@ It will be very cheap and specific to the purpose, thus ensuring better performa
 
 \begin{itemize}
 
-  \item[PS1:] The display screen will be around 2500 mm$^2$. This will be the interface between the user and the system.
-  \item[PS2:] The bracket around the screen will be approximately 2700 mm$^2$. This will be an added layer of protection against the screen to avoid damages to the screen itself.
-  \item[PS3:] The weight of the device will be around 100 grams. This is because of the additional weight coming from the straps and embedded sensors. The resultant force will be in the direction of arm, since arm weighs approximately 3.5 kg, making the device lightweight.
-  \item[PS4:] The strap will be approximately 75mm long on the short side and 140 mm long on the long side, so that it sits perfectly and comfortably on the user's wrist.
+  \label{PS1}\item[PS1:] The display screen will be around 2500 mm$^2$. This will be the interface between the user and the system.
+  \label{PS2}\item[PS2:] The bracket around the screen will be approximately 2700 mm$^2$. This will be an added layer of protection against the screen to avoid damages to the screen itself.
+  \label{PS3}\item[PS3:] The weight of the device will be around 100 grams. This is because of the additional weight coming from the straps and embedded sensors. The resultant force will be in the direction of arm, since arm weighs approximately 3.5 kg, making the device lightweight.
+  \label{PS4}\item[PS4:] The strap will be approximately 75mm long on the short side and 140 mm long on the long side, so that it sits perfectly and comfortably on the user's wrist.
 
 \end{itemize}
 
@@ -515,10 +527,10 @@ It will be very cheap and specific to the purpose, thus ensuring better performa
 \subsubsection{Goal Statements}
 \begin{itemize}
 
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Minor movement tracking}: The idea is to be able to capture very subtle, minor movements, as most activity trackers are incapable of doing it. Since our target audience have limited movements, the device needs to be sensitive to capturing minor motion since that would produce the desired data.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Event-based prompting}: Based on desired trigger events, the user would be prompted to complete the EMA.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Simple User Interface}: We want to be able to design a very intuitive User interface, one that would be very interactive and easy to navigate around. This would result in quicker and more accurate survey submissions as they are prompted.
-  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \textbf{Graph Representation}: Researchers desire to be able to capture the trends in the behaviours over a set time. Graphical outputs are the best method to capture and understand the behaviour of certain dependent variables.
+  \label{GS1} \item[GS1:] \textbf{Minor movement tracking}: The idea is to be able to capture very subtle, minor movements, as most activity trackers are incapable of doing it. Since our target audience have limited movements, the device needs to be sensitive to capturing minor motion since that would produce the desired data.
+   \label{GS2}\item[GS2:] \textbf{Event-based prompting}: Based on desired trigger events, the user would be prompted to complete the EMA.
+   \label{GS3}\item[GS3:] \textbf{Simple User Interface}: We want to be able to design a very intuitive User interface, one that would be very interactive and easy to navigate around. This would result in quicker and more accurate survey submissions as they are prompted.
+   \label{GS4}\item[GS4:] \textbf{Graph Representation}: Researchers desire to be able to capture the trends in the behaviours over a set time. Graphical outputs are the best method to capture and understand the behaviour of certain dependent variables.
 
 \end{itemize}
 
@@ -582,7 +594,6 @@ N/A
 \section{Required Behavior}
 
 The activity tracking system should have the following required behavior: \\
-Feels redundant guys....
 
 \begin{itemize}
 \item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
@@ -606,7 +617,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R1} & Device should be able to turn on and off at the choice of the researcher/user. \\ [0.5ex]
+ R1 \label{R1} & Device stays on during the monitoring period. \\ [0.5ex]
  \hline
  Rationale &  The User/Researcher would want to turn on/off the device when not in use.\\ 
  \hline
@@ -618,7 +629,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R2} (Prority) & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
+ R2 \label{R2} (Prority) & Device has to track minor movements of user such that activity is recorded appropriately.\\ [0.5ex]
  \hline
  Rationale &  The device will have to track minor movements as a lot of the participants have limited mobility.\\ 
  \hline
@@ -630,7 +641,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R3}(Prority) &Device has to notify the user when the software detects a registered activity relavent to EMA standards and that is signficant or promptable.\\ [0.5ex]
+ R3 \label{R3}(Prority) &Device has to notify the user when the software detects a registered activity relavent to EMA standards and that is signficant or promptable.\\ [0.5ex]
  \hline
  Rationale &  The device will have to prompt the user if activity stops to check if they are in pain.\\ 
  \hline
@@ -642,7 +653,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
+ R4 \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
  \hline
  Rationale &  The system will be attached to an individual's body part (wrist, lower back, etc.) in order to detect activity.\\ 
  \hline
@@ -654,7 +665,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic manner.\\ [0.5ex]
+ R5 \label{R5} &Input thresholds should be customizable in the software of the device in a simplistic manner.\\ [0.5ex]
  \hline
  Rationale & The Researcher should be able to change input thresholds in order to tweak the device's settings.\\ 
  \hline
@@ -666,7 +677,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R6} (Prority) &The device will store all relavent data every time an activity takes place or a prompt is answered on the device.\\ [0.5ex]
+ R6 \label{R6} (Prority) &The device will store all relavent data every time an activity takes place or a prompt is answered on the device.\\ [0.5ex]
  \hline
  Rationale & The data will have to be stored in the on-board memory of the device so that the researcher can extract it.\\ 
  \hline
@@ -678,7 +689,7 @@ Below are the functional requirements of the device as well as the rationale.
 \begin{center}
 \begin{tabular}{|l|p{14cm}|}
  \hline
- R\refstepcounter{reqnum}\thereqnum \label{R7} (Prority) &The data stored on the device will be able to be extracted such that the data is interpretable in the form of graphical representation and raw data.\\[0.5ex]
+ R7 \label{R7} (Prority) &The data stored on the device will be able to be extracted such that the data is interpretable in the form of graphical representation and raw data.\\[0.5ex]
  \hline
  Rationale & The researches require data in formats conducive to conducting clinical EMA studies. These formats are most commonly spreadsheet or graphical forms.\\ 
  \hline
@@ -686,37 +697,38 @@ Below are the functional requirements of the device as well as the rationale.
 \end{center}
 
 \subsection{Likely/Unlikely Changes for Functional Requirements}    
-
-\begin{tabularx}{1.05\textwidth} { 
-  | >{\raggedright\arraybackslash}X 
-  | >{\centering\arraybackslash}X 
-  | >{\centering\arraybackslash}X 
-  | >{\raggedleft\arraybackslash}X | }
- \hline
- Requirement & Likelihood of Change& Rationale & Ways to Change \\
- \hline
- R1  & Very Unlikely  & Key Implementation & N/A  \\
- \hline
- R2  & Likely  &Degree of tracking& Change tracking reesolution.  \\
- \hline
- R3  & Very Unlikely  & Key Implementation & N/A  \\
- \hline
- R4  & Unlikely  & Key Implementation & N/A  \\
-\hline
- R5  & Unlikely & Key Implementation &  N/A \\
- \hline
- R6  & Very Unlikely  & Key Implementation & N/A  \\
-\hline
- R7  & Unlikely  & Ensures data reaches Researcher & Method of data storage can be changed.  \\
-\hline
-\end{tabularx}
-
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 Requirement & Likelihood of Change& Rationale & Ways to Change \\
+		 \hline
+		 R1  & Very Unlikely  & Key Implementation & N/A  \\
+		 \hline
+		 R2  & Likely  &Degree of tracking& Change tracking reesolution.  \\
+		 \hline
+		 R3  & Very Unlikely  & Key Implementation & N/A  \\
+		 \hline
+		 R4  & Unlikely  & Key Implementation & N/A  \\
+		\hline
+		 R5  & Unlikely & Key Implementation &  N/A \\
+		 \hline
+		 R6  & Very Unlikely  & Key Implementation & N/A  \\
+		\hline
+		 R7  & Unlikely  & Ensures data reaches Researcher & Method of data storage can be changed.  \\
+		\hline
+	\end{tabularx}
+\caption{\label{likChanges}Table of Likely and Unlikely Changes}  
+\end{table}
 
 \subsection{Nonfunctional Requirements}
 
 \noindent \begin{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR1}:]
+\item[NFR1 \label{NFR1}:]
   \textbf{Accuracy:} The accuracy of the data collected during each EMA session by this device must meet the level needed for academic research based on said results. This includes results from sensors capturing participant activity, answers provided by participants from event prompting, timestamps of data inputs, geolocation information, and any other information pertinent to the form of EMA being performed.\\
 
 \underline{Rationale:} Should the EMA data coming from the system be considered inaccurate or incomplete, this system is effectively rendered moot as it is intended to be used in a research setting.\\
@@ -724,7 +736,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} The data recorded, stored, and submitted by the system should be accurate to a level considered satisfactory to standard EMA studies conducted by the SReS.\\
 
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR2}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
+\item[NFR2 \label{NFR2}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
 
 
 \underline{Rationale:} As many of the participants may be older adults, they may be unfamiliar with modern activity tracking technology. It is unreasoneable to expect such participants to be able to use the functions of this system unless it is explicitly designed to be useable at any level of experience with technology. Also, we don't wanna waste the time of the researchers or introduce unneccessary complexity into operating this system which may introduce erroneous inputs or data interpretations based on confusing interfaces.\\
@@ -732,14 +744,14 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Fit Criterion:} The system's interfaces (both to the researchers and the participants) should fit the guidelines of HCI standards, with an emphasis on making this system more useable for those unfamiliar with modern technology.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR3}:]
+\item[NFR3 \label{NFR3}:]
   \textbf{Maintainability:} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.\\
 
 \underline{Rationale:} As many of the participants may be older adults, maintenance of this system may be daunting to those unfamilar with modern technology. In addition, any downtime due to maintenance needs during each EMA period will result in a loss of valuable EMA data.\\
 
 \underline{Fit Criterion:} Once activated, the system should perform all of its functions continuously without error for a period of 7 days.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR4}:]
+\item[NFR4 \label{NFR4}:]
   \textbf{Portability:} The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
 
 \underline{Rationale:} Ecological Momentary Assessment (EMA) is meant to be performed at almost all points of a participant's daily routine. If the system is bulky, difficult to maneuver around or wear, or heavy, a participant's movement and actions will be hindered and they will be unable to provide EMA data accurately.\\
@@ -748,7 +760,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} Has been tested in each individual environment where EMA will be taking place with satisfactory results regarding its portability.\\
 
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR5}:]
+\item[NFR5 \label{NFR5}:]
   \textbf{Cleanability:} Each portion of this device must be capable of being cleaned, sanitized, and made hygenic before and after each period of EMA which it is used for. As each component of the device is constructed and used in a different manner, the different needs each component has in order to render it clean must be considered as well.\\
 
 
@@ -757,7 +769,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} Can be sterilized, cleaned, or treated safely and in a manner satisfactory to the standards of the participants and researchers of the SReS.\\
 
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR6}:]
+\item[NFR6 \label{NFR6}:]
   \textbf{Safety:} The system must be designed in a way which prevents any harm or injury (whether it be physical, emotional, or mental) from coming to the participants as a result of the useage of the device and its information collection methods. This includes physical characteristics which prevent immediate injury (removal of sharp objects, useage of soft materials), physical characteristics which prevent long-term adverse health effects (human-safe materials, safe levels of noise production), or any other considerations that need to be taken in order to prevent harm to the participant.\\
 
 
@@ -765,14 +777,14 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Fit Criterion:} The system conforms to the health and safety standards deemed appropriate by the SReS.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR7}:]
+\item[NFR7 \label{NFR7}:]
   \textbf{Reusability:} The system must be capable of being reused for an appropriate number of times. This means that the system must be capable of completing its functions without error after each period of EMA without need for significant upkeep other than regular maintenance (charging the battery, cleaning the device, scrubbing data from the system, etc.)\\
 
 \underline{Rationale:} Researchers at the SReS intend to use this system for a vast number of EMA periods, and for multiple different forms of research which EMA may assist with. Thi system must be designed to be able to sustain its functions for whatever purposes and periods of time which the researchers need.\\
 
 \underline{Fit Criterion:} Can be used for 3 consecutive EMA study periods without need for significant maintenance.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR8}:]
+\item[NFR8 \label{NFR8}:]
   \textbf{Privacy:} This system must protect the data collected from the participants from being accessed or distributed to inappropriate entities or people. \\
 
 
@@ -780,14 +792,14 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Fit Criterion:} Data is collected, distributed, and then erased from the system according to modern data privacy standards.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR9}:]
+\item[NFR9 \label{NFR9}:]
   \textbf{Accessibility:} This device must be accessible to any participant who is partaking in EMA. Regardless of disability, mental or physical status, a participant must be capable of utilizing this device for EMA with the full ability to collect and respond to prompts in accordance with EMA principles. This includes designing the system's phyical portion with accessibility needs in mind, along with designing the system's software, user interface, and data collection portions to allow any participant to be able to use it.\\
 
 \underline{Rationale:} If this device is exclusionary to those with special accessibility needs, then it is severly limited in its use for EMA. According to the user characteristics, this device will mostly be used for those suffering from musculo-skeletal disorders, and many of these participants may be suffering from additional disabilities as well.\\
 
 \underline{Fit Criterion:} The system has been verified to perform in accordance to modern accessibility standards, for both the physical component of the system, and the data collection/software component of the system.\\
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR10}:]
+\item[NFR10 \label{NFR10}:]
   \textbf{Non-Disruptiveness:} The system must be designed in a way which allows participants to provide EMA data without significant impact or change to their activities or daily life. This includes bulky constructions which they must spend effort in considering while moving around, significant visual or auditory disruptions which may startle, distract, or annoy participants, embarassing or aesthetically unpleasant constructs, or any other disturbances that they must make considerations for.\\
 
 \underline{Rationale:} It is of paramount importance that this device does not disrupt the daily activities of participants in order to preserve their dignity, and allow them to perform the necessary tasks of their daily lives. In addition, the less the system disrupts their daily activities, the more accurate the picture will be that the system captures of what those daily acitivities are and their relevance to EMA.\\
@@ -809,55 +821,55 @@ between different requriements and assumptions in the document.
 \noindent
 \begin{landscape}
 \begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c}
-\hline
-	& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4} \\
-\hline          %   1   2    3   4  
-\frref{R1}       &   &   &   & X  \\ \hline
-\frref{R2}       &   & X&   &    \\ \hline
-\frref{R3}       & X& X&   & X  \\ \hline
-\frref{R4}       &   & X&   & X  \\ \hline
-\frref{R5}       &   &   &   &    \\ \hline
-\frref{R6}       &   &   & X&    \\ \hline
-\frref{R7}       & X&   & X&     \\ \hline
-\nfrref{NFR1} &   & X&   &    \\ \hline
-\nfrref{NFR2} & X& X&   & X \\ \hline
-\nfrref{NFR3} &   &   & X&     \\ \hline
-\nfrref{NFR4} &   & X& X&     \\ \hline
-\nfrref{NFR5} &   X&   &   &      \\ \hline
-\nfrref{NFR6} &   &  X &   &X     \\ \hline
-\nfrref{NFR7} &   &  X &   &     \\ \hline
-\nfrref{NFR8} &  X &   &   &X     \\ \hline
-\nfrref{NFR9} & X  &   &X  &X      \\ \hline
-\nfrref{NFR10}&  & X  &   &      \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
-\label{Table:A_trace}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c}
+	\hline
+		& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4} \\
+	\hline          %   1   2    3   4  
+	\frref{R1}       &   &   &   & X  \\ \hline
+	\frref{R2}       &   & X&   &    \\ \hline
+	\frref{R3}       & X& X&   & X  \\ \hline
+	\frref{R4}       &   & X&   & X  \\ \hline
+	\frref{R5}       &   &   &   &    \\ \hline
+	\frref{R6}       &   &   & X&    \\ \hline
+	\frref{R7}       & X&   & X&     \\ \hline
+	\nfrref{NFR1} &   & X&   &    \\ \hline
+	\nfrref{NFR2} & X& X&   & X \\ \hline
+	\nfrref{NFR3} &   &   & X&     \\ \hline
+	\nfrref{NFR4} &   & X& X&     \\ \hline
+	\nfrref{NFR5} &   X&   &   &      \\ \hline
+	\nfrref{NFR6} &   &  X &   &X     \\ \hline
+	\nfrref{NFR7} &   &  X &   &     \\ \hline
+	\nfrref{NFR8} &  X &   &   &X     \\ \hline
+	\nfrref{NFR9} & X  &   &X  &X      \\ \hline
+	\nfrref{NFR10}&  & X  &   &      \\
+	\hline
+	\end{tabular}
+	\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
+	\label{Table:A_trace}
 \end{table}
 \end{landscape}
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} \\
-\hline                    %1   2   3    4   5   6    7   8    9  10  
-\nfrref{NFR1}         &   & X& X&   &   &   & X\\ \hline
-\nfrref{NFR2}         & X&   & X& X&  X&   & X\\ \hline
-\nfrref{NFR3}         & X&   &   &   &   & X&   \\ \hline
-\nfrref{NFR4}         &   & X&   & X&   &   &   \\ \hline
-\nfrref{NFR5}         &   &   &   &  X &   &   &   \\ \hline
-\nfrref{NFR6}         &  X &  X &   &  X &   &   &   \\ \hline
-\nfrref{NFR7}         &   &   &   & X  &   &   &X   \\ \hline
-\nfrref{NFR8}         &   &   X&   &   &   & X  &X   \\ \hline
-\nfrref{NFR9}         &   X&   &   &   &   &   &   \\ \hline 
-\nfrref{NFR10}       &  X &   & X  & X  & X  &   &   \\ 
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
-\label{Table:R_trace}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\hline
+		& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} \\
+	\hline                    %1   2   3    4   5   6    7   8    9  10  
+	\nfrref{NFR1}         &   & X& X&   &   &   & X\\ \hline
+	\nfrref{NFR2}         & X&   & X& X&  X&   & X\\ \hline
+	\nfrref{NFR3}         & X&   &   &   &   & X&   \\ \hline
+	\nfrref{NFR4}         &   & X&   & X&   &   &   \\ \hline
+	\nfrref{NFR5}         &   &   &   &  X &   &   &   \\ \hline
+	\nfrref{NFR6}         &  X &  X &   &  X &   &   &   \\ \hline
+	\nfrref{NFR7}         &   &   &   & X  &   &   &X   \\ \hline
+	\nfrref{NFR8}         &   &   X&   &   &   & X  &X   \\ \hline
+	\nfrref{NFR9}         &   X&   &   &   &   &   &   \\ \hline 
+	\nfrref{NFR10}       &  X &   & X  & X  & X  &   &   \\ 
+	\hline
+	\end{tabular}
+	\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
+	\label{Table:R_trace}
 
 \end{table}
 
@@ -890,6 +902,7 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 
 \item Costs:
 		\begin{center}
+		\begin{table}[H]
 			\begin{tabular}{ |c|c|c| } 
 				 \hline
 				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (\$CAD)} \\ 
@@ -915,6 +928,8 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 				 	& \textbf{Average Total Cost}								& \$110.5 \\ 
 				 \hline
 			\end{tabular}
+		\caption{\label{bom}Bill of Materials}  
+		\end{table}
 		\end{center}
 
 \item Risks:
