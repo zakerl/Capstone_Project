@@ -19,6 +19,7 @@
 \usepackage{helvet}
 \usepackage{hyphenat}
 \usepackage{pifont}
+\renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 \begin{document}
@@ -48,8 +49,6 @@
 \listoftables
 \wss{Remove this section if it isn't needed}
 
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -64,28 +63,26 @@
 			  \midrule 
 			  DT 						& Duration Test\\
 			  MTT 					& Minor Tracking Test\\
-			  PT 						& Prompt Test\\
+			  PRT 					& Prompt Test\\
 			  TT 						& Threshold Test\\
 			  DST 					& Data Storage Test\\
 			  DXT 					& Data Extraction Test\\
 			  HC\#					& Hardware Constraint \#\\ 
+			  SAST					& Static Application Security Testing\\			
+			  DAST					& Dynamic Application Security Testing\\
+			  UT						& Usability Test\\
+			  PT						& Performance Test\\
+			  HST					& Hardware Safety Test\\
+			  RT						& Re-usability Test\\
+			  DSQT					& Data Security Test\\
 		  \bottomrule
 	\end{tabular}\\\\
 \caption{\label{Syb}Table of Symbols}
 \end{table}
 
-
-\wss{symbols, abbreviations or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
-
 \newpage
 
 \pagenumbering{arabic}
-
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
 
 \section{General Information}
 
@@ -116,10 +113,7 @@ The objectives aimed to be accomplished by this verification and validation are 
 \subsection{Relevant Documentation}
 
 Please refer to the following documentation for reference and more information:
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
+
 \begin{itemize}
   \item Development Plan: \citet{Development_Plan}
   \item Problem Statement \& Goals: \citet{Prob_n_Goals}
@@ -195,34 +189,39 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
   \end{tabular}
 \end{center}
 \captionof{table}{SRS verification checklist and task based inspection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Design Verification Plan}
 \begin{tabular}{|p{2cm}|p{8cm}|p{4cm}|}
   \hline
   \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
   \hline
-  Response Feedback Test                  & This test will cover most of our sensor tests. We will set up scenarios, going beyond thresholds to observe if we get an expected feedback as a result.                                                                                                                                                              & Performed by Developers and Dr. Macedo \\
+  Response Feedback Test                  & This test will test the majority of the sensors of the system. Sensor input will be pushed beyond the established boundaries in different testing scenarios, with feedback being observed for erraneous or strange readings.
+ & Performed by Anish Rangarajan and Stakeholders\\
   \hline
-  User Interface Test                     & This test is where we will be testing all of our buttons rigorously, ensuring the buttons work as expected. We will also be ensuring that the screen size is visible and scaled well to fit the screen.                                                                                                              & Performed by Developers                \\
+  User Interface Test                     & Different elements of the user interface will tested by manipulating said elements in all possible scenarios. In addition, characteristics such as screen size, brightness, and visibility will be tested in different visual environments to determine whether or not they are visible in the correct ranges of use.                                                                                                              & Performed by Nish Shah                \\
   \hline
-  Durability Test                         & Ideally a faulty sensor should not impact all the other sensors. The way to verify this isn't the case is forcefully damaging a sensor, and adding it to the circuitry. We then check if the tracked values from other sensors are impacted.                                                                         & Performed by Developers                \\
+  Durability Test                         & Each sensor will be tested for failure independence. Should one sensor fail, it must not impact the functionality of any other sensors of the system. To test this, individual sensors will be rendered non-functional, and other sensor values will be checked for erroneous readings.                                                                         & Performed by Jonathan Hai                \\
   \hline
-  Database Scalability Test               & Since it's live data being stored, there are approximately 1000 requests per second being made to our database with the large chunks of data. We will be creating a scenario using postman where we are feeding as many requests as possible to our database and ensure our database is able to handle the requests. & Performed by Developers                \\
+  Database Scalability Test               & This system's database will be tested for volume overload issues. Postman (a request tool) will be used to feed as many requests as possible to the database. The database will then be monitored for faults and errors. & Performed by Labeeb Zaker                \\
   \hline
-  Hardware Communication                  & Valgrind will be used at every stage to see how the memory is being allocated, which processes are using, we will also be using an execution tracker perhaps to ensure our workflow is working as expected.                                                                                                          & Performed by Developers                \\
+  Hardware Communication                  & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by Jessica Bae                \\
   \hline
 \end{tabular}
 \pagebreak
 \subsection{Verification and Validation Plan Verification Plan}
 
-Since VNV plan document mostly covers about how to validate our device works, through verification of different test cases. The only way to verify this document is checking all such scenarios and getting expected results.\\
-\\The following will be done to verify VnV plan:\\
+Since the VNV plan document mostly covers about how to validate whether or not the device functions properly, through verification of different test cases. The only way to verify this document is to check all such scenarios and expected results.\\
+\\The following will be done to verify the VnV plan:\\
 \begin{itemize}
-  \item[\ding{111}] Each member has their own verification tasks to verify as per \hyperref[4_1]{4.1} throughout the development phase. They have to ensure the tests don't fail at any of the expected scenarios and works as expected from user's point of view.
-  \item[\ding{111}] Each member has to verify the SRS requirements through their assigned tasks which can be found in \hyperref[SRS_verification]{4.2}. The variables need to be controlled accordingly and specific scenarios needed to be tested to ensure functionality without errors.
-  \item[\ding{111}] Verify each component of the design in \hyperref[sec_4_3]{4.3} as being developed, so that we can guarantee unit testing is successful before system testing.
-  \item[\ding{111}] Ensure that everyone attends the code-review meetings. The member who fails to join the review, a reviewer will be scheduled to review later. Tests against all scenarios to ensure all cases work.
-  \item[\ding{111}] All the functional requirements have test cases that can be found in \hyperref[sec_5_1]{5.1}. Verify all the test cases, ensure that the outputs are expected and within bounds. Check during tests, that the variables are being controlled and monitored accordingly.
+  \item[\ding{111}] Each task will be verified as per \hyperref[4_1]{4.1} throughout the development phase. Verifiers must ensure that tests do not fail at any of the expected scenarios and works as expected from user's point of view.
+  \item[\ding{111}] Each section of the SRS will be verified as per \hyperref[SRS_verification]{4.2}. Each variable needs to be controlled accordingly and specific scenarios need to be tested to ensure functionality without errors.
+  \item[\ding{111}] Each component of the design must be verified as per \hyperref[sec_4_3]{4.3} as it is being developed, so that can unit testing can be performed and evaluated before system testing.
+  \item[\ding{111}] Code-review meetings must be attended by all code evaluators. The evaluator who fails to join the review, the review will be rescheduled. Tests will be performed against all possible scenarios to ensure all cases work as intended.
+  \item[\ding{111}] All test cases for each functional requirement as per \hyperref[sec_5_1]{5.1} must be verified accordingly by ensuring that the outputs are expected and within bounds, and that variables are being properly controlled and monitored.
 \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Implementation Verification Plan}
 
 The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
@@ -268,28 +267,13 @@ There will be no plan for Software validation since there is no external data us
 
 \section{System Test Description}
 
-\subsection{Tests for Functional Requirements}
-
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-
+\subsection{Tests for Functional Requirements}\label{sec_5_1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Device should stay on during the monitoring period}
+\subsubsection{Duration Test}
 
 The following tests will check the whether the device will maintain an "ON" state throughout the duration of the monitoring period. The primary tests will involve different monitoring periods with valid inputs, invalid inputs, dates from the past or too far into the future beyond what the battery life can sustain (HC2).
 		
-\paragraph{Duration Test}
-
 \begin{enumerate}
 
 	\item{\textbf{DT\_1: Regular Inputs}\\}\label{DT1}
@@ -376,13 +360,12 @@ The following tests are run to ensure that the device is able to track activitie
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Device prompts user when activity is detected}
+\subsubsection{Prompt Tests}
 
 The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
-		
-\paragraph{Prompt Tests}
+
 \begin{enumerate}
-	\item{\textbf{PT\_1: Test Prompt} \\}\label{PT1}
+	\item{\textbf{PRT\_1: Test Prompt} \\}\label{PRT1}
 	
 		Control: Manual 
 							
@@ -392,11 +375,11 @@ The following tests will be done to ensure that the proper info is prompted to t
 		
 		Output: Test Prompt is displayed.
 
-		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.\\
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.\\\\
 		Test Prompt: Is this Device on?\\
 		Possible Answers: Yes or No
 		
-	\item{\textbf{PT\_2: Activity Prompt} \\}\label{PT2}
+	\item{\textbf{PRT\_2: Activity Prompt} \\}\label{PRT2}
 	
 		Control: Manual 
 							
@@ -417,7 +400,6 @@ The following tests will be done to ensure that the proper info is prompted to t
 
 The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
 		
-\paragraph{Threshold Tests}
 \begin{enumerate}
 	\item{\textbf{TT\_1: Regular Inputs} \\}\label{TT1}
 	
@@ -575,26 +557,13 @@ The following tests will be done to ensure that can be extracted and presented i
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tests for Nonfunctional Requirements}
-
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-  format for the tests given below.}
-
-
-\subsubsection{Hardware Saftey Tests}
+\subsubsection{Hardware Safety }
 
 These tests are designed to test the saftey of the device concerning electircal components and hardware. It is important that the users of our device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that our indicator LED functions as expected under certain conditions.
 
 \begin{enumerate}
 
-\item{HST-1: High Voltage\\}
+\item{\textbf{HST\_1: High Voltage}}\label{HST1}
 
 Control: Manual 
 
@@ -608,7 +577,7 @@ Test Case Derivation: N/A
 
 How test will be performed: Use a power supply to over volt the system. 
 
-\item{HST-2: Normal Voltage\\}
+\item{\textbf{HST\_2: Normal Voltage}}\label{HST2}
 
 Control: Manual
 
@@ -622,7 +591,7 @@ Test Case Derivation:
 
 How test will be performed: Use power supply to provide the expected voltage to the device.
 
-\item{HST-3: Low Voltage\\}
+\item{\textbf{HST\_3: Low Voltage}}\label{HST3}
 
 Control: Manual
 
@@ -636,7 +605,7 @@ Test Case Derivation:
 
 How test will be performed: Use power supply to provide a lower than expected voltage to the device.
 
-\item{HST-4: Frequency Detection\\}
+\item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
 
 Control: Manual
 
@@ -652,15 +621,15 @@ How test will be performed: Using a frequency analysis software such as NI Multi
 
 \end{enumerate}
 
-\subsubsection{Reusability Tests}
+\subsubsection{Re-usability}
 
-These tests will test the reusability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
+These tests will test the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
 
 \begin{enumerate}
 
 %add another test or gear test toward charge protection, circuitry to stop overcharging/discharging.
 
-\item{RT-1: Battery Charge/Discharge\\}
+\item{\textbf{RT\_1: Battery Charge/Discharge}}\label{RT1}
 
 Control: Manual.
 
@@ -676,28 +645,22 @@ How test will be performed: Battery component will be isolated from device and f
 
 \end{enumerate}
 
-\subsubsection{Device should be accurate}
+\subsubsection{Accuracy}
 The following set of tests will ensure that the device can recognize its state and perform its main functionality in accurate manner.
-
-\paragraph{Accuracy\\}
-
 The following functional requirements test cases are applicable for accuracy:
 
 \begin{itemize}
-\item MTT\_1: Regular Movement
-\item MTT\_2: Slow Movement
-\item PT\_1: Test Prompt
-\item PT\_2: Activity Prompt
+\item MTT\_1: \hyperref[MTT1]{Regular Movement}
+\item MTT\_2: \hyperref[MTT2]{Slow Movement}
+\item PRT\_1: \hyperref[PRT1]{Test Prompt}
+\item PRT\_2: \hyperref[PRT2]{Activity Prompt}
 \end{itemize}
 
-\subsubsection{Device should be user-frendly}
+\subsubsection{Usability}
 The following set of tests will ensure that the device is usable by target user population and cause no problems in terms of maintenance and user interactions.		
-
-\paragraph{Usability}
-
 \begin{enumerate}
 
-\item\textbf{{UT\_1: Intuitive UI\\}}
+\item\textbf{{UT\_1: Intuitive UI\\}}\label{UT1}
 
 Type: Manual, Static
 					
@@ -722,7 +685,7 @@ How test will be performed: A test group of people with age of 40 or older to be
 \item Is it daytime right now?
 \end{itemize}
 					
-\item\textbf{{UT\_2: Comfortable Device\\}}
+\item\textbf{{UT\_2: Comfortable Device\\}}\label{UT2}
 
 Type: Manual, Static
 					
@@ -730,7 +693,7 @@ Initial State: The device is turned on and left on idle mode.
 					
 Input: Testers are asked to wear the device for 24 hours.
 					
-Output: Testers fill out a survey form regarding the comfort of the deivce on their body.
+Output: Testers fill out a survey form regarding the comfort of the device on their body.
 					
 How test will be performed: At the end of their 1 day cycle, testers will be asked to fill out an online form indicating how comfortable they felt the device was regards to weight, shape, stability, etc. The following questions will be asked.
 
@@ -740,7 +703,7 @@ How test will be performed: At the end of their 1 day cycle, testers will be ask
 \item How do you feel the texture of the device was? Did you find it uncomfortable in any way?
 \end{itemize}
 
-\item\textbf{{UT\_3: Reusability\\}}
+\item\textbf{{UT\_3: Reusability\\}}\label{UT3}
 
 Type: Manual, Static
 					
@@ -756,12 +719,10 @@ How test will be performed: 1 member of Back End Developers will clean the devic
 
 
 
-\subsubsection{Device is efficient and competitive}
+\subsubsection{Performance}
 The following set of questions will ensure that the device is capable of meeting user expectations.
-
-\paragraph{Performance}
 \begin{enumerate}
-\item\textbf{{PT\_1: Data Transfer Time\\}}
+\item\textbf{{PT\_1: Data Transfer Time\\}}\label{PT1}
 
 Type: Automatic, dynamic
 					
@@ -769,11 +730,11 @@ Initial State: The device has collected a complete set of data.
 					
 Input: The device is connected to the host software and connection is established for data transfer.
 					
-Output: Data transfer to finish within the specified parameter, TRASFERTIME.
+Output: Data transfer to finish within the specified parameter, TRASFER\_TIME.
 					
-How test will be performed: 2 group members of Back End Developers to each perform data trasnfer test 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFERTIME.
+How test will be performed: 2 group members of Back End Developers to each perform data trasnfer test 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFER\_TIME.
 
-\item\textbf{{PT\_2: Battery Life\\}}
+\item\textbf{{PT\_2: Battery Life\\}}\label{PT2}
 
 Type: Automatic, Static
 					
@@ -781,7 +742,7 @@ Initial State: The device is turned on and left on idle mode.
 					
 Input: Testers wear the device for standard monitoring period.
 					
-Output: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERYLIFE.
+Output: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERY\_LIFE.
 					
 How test will be performed: 2 group members of Back End Developers each wear the device for standard monitoring period under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
 
@@ -793,7 +754,7 @@ These tests are designed to test the security of our system and the accessibilit
 
 \begin{enumerate}
 
-\item{PT-1: Records Safety Test\\}
+\item{\textbf{DSQT\_1: Records Safety Test}}\label{DSQT1}
 
 Control: Manual
 
@@ -814,161 +775,94 @@ How test will be performed: Device will be given to a volunteer with technical k
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
-
 %Traceability Matrix, needs lot of updating, it also doesn't function rn...
+
 \noindent
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c}
-\hline
-	& \ref{A1}& \ref{A2}& \ref{A3}& \ref{A4} \\
-\hline          %   1   2    3   4  
-\ref{R1}       &   &   &   & X  \\ \hline
-\ref{R2}       &   & X&   &    \\ \hline
-\ref{R3}       & X& X&   & X  \\ \hline
-\ref{R4}       &   & X&   & X  \\ \hline
-\ref{R5}       &   &   &   &    \\ \hline
-\ref{R6}       &   &   & X&    \\ \hline
-\ref{R7}       & X&   & X&     \\ \hline
-\ref{NFR1} &   & X&   &    \\ \hline
-\ref{NFR2} & X& X&   & X \\ \hline
-\ref{NFR3} &   &   & X&     \\ \hline
-\ref{NFR4} &   & X& X&     \\ \hline
-\ref{NFR5} &   X&   &   &      \\ \hline
-\ref{NFR6} &   &  X &   &X     \\ \hline
-\ref{NFR7} &   &  X &   &     \\ \hline
-\ref{NFR8} &  X &   &   &X     \\ \hline
-\ref{NFR9} & X  &   &X  &X      \\ \hline
-\ref{NFR10}&  & X  &   &      \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections between NFR's etc.}
-\label{Table:A_trace}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+		& \hyperref[DT1]{DT1}& \hyperref[DT2]{DT2}&\hyperref[DT3]{DT3}& \hyperref[DT4]{DT4} &\hyperref[MTT1]{MTT1}&\hyperref[MTT2]{MTT2}&\hyperref[PRT1]{PRT1}&\hyperref[PRT2]{PRT2}&\hyperref[TT1]{TT1} \\
+	\hline       
+	\textbf{R1}         &X&X&X&X&&&&& \\ \hline
+	\textbf{R2}         &&&&&X&X&&&\\ \hline
+	\textbf{R3}         &&&&&&&X&X& \\ \hline
+	\textbf{R4}         &&&&&&&&&X\\ \hline
+	\textbf{R5}         &&&&&&&&& \\ \hline
+	\textbf{R6}         &&&&&&&&&\\ \hline
+	\textbf{NFR1}     &&&&&X&X&X&X& \\ \hline
+	\textbf{NFR12}   &&&&&&&X&&\\ \hline
+	\hline
+	\end{tabular}
+	\caption{ Requirements Traceability Matrix Pt1}
+	\label{Table:A_trace}
 \end{table}
 
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[TT2]{TT2}&\hyperref[TT3]{TT3}& \hyperref[TT4]{TT4} &\hyperref[TT5]{TT5}&\hyperref[DST1]{DST1}&\hyperref[DST2]{DST2}&\hyperref[DST3]{DST3}&\hyperref[DXT1]{DXT1}&\hyperref[DXT2]{DXT2}&\hyperref[DXT3]{DXT3} \\
+	\hline     
+	\textbf{R1}         &&&&&&&&&& \\ \hline
+	\textbf{R2}       	 &&&&&&&&&&\\ \hline
+	\textbf{R3}         &&&&&&&&&& \\ \hline
+	\textbf{R4}         &X&X&X&X&&&&&&\\ \hline
+	\textbf{R5}          &&&&&X&X&X&&& \\ \hline
+	\textbf{R6}         &&&&&&&&X&X&X\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Requirements Traceability Matrix Pt2}
+	\label{Table:B_trace}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3} &\hyperref[HST4]{HST4}&\hyperref[RT1]{RT1}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
+	\hline       
+	\textbf{NFR2}         &&&&&&X&X&X&&&\\ \hline
+	\textbf{NFR3}         &&&&&&&&&&X& \\ \hline
+	\textbf{NFR4}         &&&&&&&X&&&&\\ \hline
+	\textbf{NFR5}         &&&&&&&&X&&& \\ \hline
+	\textbf{NFR6}         &X&X&X&X&&&&&&&\\ \hline
+	\textbf{NFR7}         &&&&&X&&&&&&\\ \hline
+	\textbf{NFR8}         &&&&&&&&&&&X\\ \hline
+	\textbf{NFR9}         &&&&&&X&&&&&\\ \hline
+	\textbf{NFR10}       &&&&&&&X&&&&\\ \hline
+	\textbf{NFR11}       &X&X&X&X&X&&&&&&\\ \hline
+	\textbf{NFR13}       &&&&&&&&&X&&\\ \hline
+	\textbf{NFR14}       &&&&&&&&&&&X\\ \hline
+	\hline
+	\end{tabular}
+	\caption{Requirements Traceability Matrix Pt3}
+	\label{Table:C_trace}
+\end{table}
 \newpage
 \section{Unit Test Description}
-
-\wss{Reference your MIS (detailed design document) and explain your overall
-  philosophy for test case selection.}
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
-
+To be revised after the MIS.
 \subsection{Unit Testing Scope}
-
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
-
+To be revised after the MIS.
 \subsection{Tests for Functional Requirements}
-
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
-
+To be revised after the MIS.
 \subsubsection{Module 1}
-
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
-
-\begin{enumerate}
-
-  \item{test-id1\\}
-
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-
-  Initial State:
-
-  Input:
-
-  Output: \wss{The expected result for the given inputs}
-
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-  How test will be performed:
-
-  \item{test-id2\\}
-
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-
-  Initial State:
-
-  Input:
-
-  Output: \wss{The expected result for the given inputs}
-
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-  How test will be performed:
-
-  \item{...\\}
-
-\end{enumerate}
-
+To be revised after the MIS.
 \subsubsection{Module 2}
-
-...
-
+To be revised after the MIS.
 \subsection{Tests for Nonfunctional Requirements}
-
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
-
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
-
+To be revised after the MIS.
 \subsubsection{Module ?}
-
-\begin{enumerate}
-
-  \item{test-id1\\}
-
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-
-  Initial State:
-
-  Input/Condition:
-
-  Output/Result:
-
-  How test will be performed:
-
-  \item{test-id2\\}
-
-  Type: Functional, Dynamic, Manual, Static etc.
-
-  Initial State:
-
-  Input:
-
-  Output:
-
-  How test will be performed:
-
-\end{enumerate}
-
+To be revised after the MIS.
 \subsubsection{Module ?}
-
-...
-
+To be revised after the MIS.
 \subsection{Traceability Between Test Cases and Modules}
-
-\wss{Provide evidence that all of the modules have been considered.}
-
-
+To be revised after the MIS.
 \bibliographystyle{plainnat}
 
-%\bibliography{../../refs/References}
+\bibliography{../../refs/References}
 
 \newpage
 
@@ -976,14 +870,14 @@ How test will be performed: Device will be given to a volunteer with technical k
 
 This is where you can place additional information.
 
-\subsection{Parameters}
-TRANSFERTIME: \\
-BATTERYLIFE: \\
-
 \subsection{Symbolic Parameters}
-
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+Their values are defined in this section for easy maintenance.\\\\
+
+TRANSFER\_TIME: Maximimum amount of time to transfer all data to the Host Software.\\
+BATTERY\_LIFE: Represents the minimum battery life requirement for the device.\\
+
+
 \begin{flushleft} 
 	\begin{table}[H]
 		\begin{tabular}{l l} 
