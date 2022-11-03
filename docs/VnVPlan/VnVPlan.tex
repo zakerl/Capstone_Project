@@ -47,9 +47,6 @@
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-
 \newpage
 
 \section{Symbols, Abbreviations and Acronyms}
@@ -92,7 +89,7 @@ Researchers at the School of Rehabilitation Sciences (SReS) at McMaster Universi
 
 The type of EMA that the SReS is interested in is focused on analyzing the daily activities and symptoms of mostly-older adults with mobility and spinal issues. They wish to track that participant's walking activity as they go about their daily life, along with prompting participants with questions when relevant events occur. The answers to event-based prompts will be combined with activity monitoring data to form a better picture about the experience this participant has with their spinal and mobility issues.\\
 
-The [name of device] will perform EMA analysis in a manner which even older participants can use, integrated into one package which gathers relevant data about a participant's activities and allows them to easily report what is currently going on and how they feel. They also are looking for a way to access EMA data in various ways. This includes graphical representations of the data which are meaningful to researchers, along with the raw data itself. This data could be activity data, symptoms reporting data, both types of data collated together, and so on. \\
+The EMAnator will perform EMA analysis in a manner which even older participants can use, integrated into one package which gathers relevant data about a participant's activities and allows them to easily report what is currently going on and how they feel. They also are looking for a way to access EMA data in various ways. This includes graphical representations of the data which are meaningful to researchers, along with the raw data itself. This data could be activity data, symptoms reporting data, both types of data collated together, and so on. \\
 
 This document is intended to describe the plan for verification and validation of the device. Here, verification and validation are both technical terms with very specific meanings.\\
 
@@ -103,11 +100,11 @@ Verification involves checking whether or not the specifications which were desc
 The objectives aimed to be accomplished by this verification and validation are to:
 
 \begin{itemize}
-  \item Validate if user requirements truly represent the goals of the stakeholders of [name of device].
-  \item Validate if the input provided by the operators of [name of device] meet the established rules and constraints.
+  \item Validate if user requirements truly represent the goals of the stakeholders of the EMAnator.
+  \item Validate if the input provided by the operators of the device meet the established rules and constraints.
   \item Verify if the high-level design of the device correctly fulfills the specifications of the functional and non-functional requirements.
   \item Verify if the components of the device (e.g. source code, database, physical construction, user interface, etc.) fulfill the specifications of the design.
-  \item Discover any faults, failures, or malfunctions in the [name of device].
+  \item Discover any faults, failures, or malfunctions in the device.
 \end{itemize}
 
 \subsection{Relevant Documentation}
@@ -126,38 +123,38 @@ Please refer to the following documentation for reference and more information:
 
 \section{Plan}
 
-Verification and Validation plan will be done on both the hardware and software side individually as well as the system integration. The Researcher/Stakeholders and Back End developers will have different roles and techniques to test the device's functionality and usability as described below.
+The Verification and Validation plan will be done on both the hardware and software side individually as well as on the system integration side. The Researchers, Stakeholders and the Back End Developers will have different roles and techniques to test the device's functionality and usability as described below.
 
 \subsection{Verification and Validation Team}
 
-The following table defines the roles for the stakeholder and Back End Developers team for Verification and Validation.
+The following table defines the different roles for the stakeholders and the Back End Developers for verification and validation.
 \begin{center}
   \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
 
     \hline
     \label{4_1}\textbf{Name} & \textbf{Role}                 & \textbf{Description}                                                                                                                                                                                                                                                \\
     \hline
-    Dr Luciano Macedo        & End user                      & Stakeholder who will be the end user, verifying all the user requirements and functionality in every sprints.                                                                                                                                                       \\
+    Dr Luciano Macedo        & End user                      & The stakeholder. She and her team of researchers will verify all the user requirements and functionality according to each sprint.                                                                                                                                                       \\
     \hline
-    Johnathan Hai            & Subsystem tester              & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification.            \\
+    Jonathan Hai            & Subsystem tester              & There will be a set of test cases pre-defined for every functional requirement. Jonathan will be testing the specific functions against the test cases using unit testing, integration testing and boundary condition tests as well as SRS verification.            \\
     \hline
-    Jessica Bae              & Black Box tester              & Testing the specific functions without knowing how the internal workflow is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.        \\
+    Jessica Bae              & Black Box tester              & Jessica will test the specific functions of the device without knowing how the internal workflow of said device is structured. This will include stress testing for I/O for all subsytems and boundary condition testing. Valgrind will also be used for code profiling and debugging memory leaks.        \\
     \hline
-    Labeeb Zaker             & Remote codebase manager       & Ensuring the codebase on GitHub has no flaws, maintaining CI/CD, reviewing every commit added to ensure it meets the requirements without any possible case of errors.                                                                                              \\
+    Labeeb Zaker             & Remote codebase manager       & Labeeb will ensure the codebase on GitHub has no flaws, maintain CI/CD, and review every commit added to ensure it meets the requirements without any errors.                                                                                              \\
     \hline
-    Nish Shah                & Automated tester              & Maintaining the automated testing scripts to run certain functions against test cases that are repetitive to keep checking code is functional. Primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py). \\
+    Nish Shah                & Automated tester              & Nish will monitor and maintain the automated testing scripts to run certain functions against test cases that are repetitive to continuously check if the system's code functions as intended. This will be done primarily using Python code coverage tools and unit testing frameworks for code development (unittest, Coverage.py). \\
     \hline
-    Anish Rangarajan         & Hardware \& Automated tester  & Verification and testing of embedded development/hardware in C using Cunit and bullseye coverage for unit testing framework and code coverage.                                                                                                                      \\
+    Anish Rangarajan         & Hardware \& Automated tester  & Anish will verify and test embedded hardware designs in C using Cunit and bullseye coverage for unit testing framework and code coverage.                                                                                                                      \\
     \hline
-    Oliver Foote             & White Box \& Database testing & Testing the internal workflow such that for a given set of inputs, an expected output is returned. Database validation using Orion for stress test of I/O and database functionality.                                                                               \\
+    Oliver Foote             & White Box \& Database testing & Oliver will test the internal workflow for valid outputs. Database validation will be performed using Orion for stress testing of I/O and database functionality.                                                                               \\
     \hline
   \end{tabular}
-  \captionof{table}{Team roles for Verification and Validation.}
+  \captionof{table}{Team roles for verification and validation.}
 \end{center}
 
 \subsection{SRS Verification Plan}\label{SRS_verification}
 
-The SRS verification plan will follow a checklist for reviewers based on an ad hoc approach. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
+The SRS will be verified according to a checklist. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
 
 
 \begin{center}
@@ -168,23 +165,23 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
     \\
     \hline
     General feedback and discussion                         & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
-                                                                                                                                                       \item[\ding{111}] Verify System constrains for hardware and software.
+                                                                                                                                                       \item[\ding{111}] System constrains for hardware and software are valid.
                                                                                                                                                        \item[\ding{111}] Monitored and controlled variables are consistent.
                                                                                                                                                        \item[\ding{111}] Comparison to existing solutions is unambiguous.
                                                                                                                                                        \item[\ding{111}] Project Goals are relevant to description of device.
                                                                                                                                                        \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
                                                                                                                                                        \item[\ding{111}] Event handling and FSM is verified and correct.
-                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and Back-end Developers. \\
+                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and the Back End Developers. \\
     \hline
-    General System Description 4.1-4.3                      & The verification for this section would be checking if System constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
+    General System Description 4.1-4.3                      & The verification for this section will be performed by checking if system constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
     \hline
-    Section 5 Definitions and variables                     & Verifying if terminology and the use of monitored and controlled variables is consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
+    Section 5 Definitions and variables                     &  Terminology and the use of monitored and controlled variables must be verified to be consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
     \hline
-    Required behavior and Requirements                      & Validation of Functional and Non-functional requirements and to verify if the requirements are classified correctly. Checking required behavior as well.                              & Will be done by team member Anish Rangarajan.                                                \\
+    Required behaviour and requirements                      & Functional and non-functional requirements must be verified. In addition, the requirements must be checked to see if they are classified correctly. Checking required behaviour as well.                              & Will be done by team member Anish Rangarajan.                                                \\
     \hline
-    Section 8-12 Traceability matrices and normal operation & Verification of matrices and graphs according to Requirements and also verifying if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
+    Section 8-12 Traceability matrices and normal operation &  Matrices and graphs must be verified according to requirements. In addition, verification must be performed to see if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
     \hline
-    Section 14-16                                           & Verification of FSM, Legal factors and Phase in Plan.                                                                                                                                 & Will be done by team member Jessica bae.                                                     \\
+    Section 14-16                                           & The FSM, Legal factors and Phase in Plan must be verified.                                                                                                                                 & Will be done by team member Jessica Bae.                                                     \\
     \hline
   \end{tabular}
 \end{center}
@@ -197,7 +194,7 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
   \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
   \hline
   Response Feedback Test                  & This test will test the majority of the sensors of the system. Sensor input will be pushed beyond the established boundaries in different testing scenarios, with feedback being observed for erraneous or strange readings.
- & Performed by Anish Rangarajan and Stakeholders\\
+ & Performed by Anish Rangarajan and stakeholders\\
   \hline
   User Interface Test                     & Different elements of the user interface will tested by manipulating said elements in all possible scenarios. In addition, characteristics such as screen size, brightness, and visibility will be tested in different visual environments to determine whether or not they are visible in the correct ranges of use.                                                                                                              & Performed by Nish Shah                \\
   \hline
@@ -205,44 +202,45 @@ The SRS verification plan will follow a checklist for reviewers based on an ad h
   \hline
   Database Scalability Test               & This system's database will be tested for volume overload issues. Postman (a request tool) will be used to feed as many requests as possible to the database. The database will then be monitored for faults and errors. & Performed by Labeeb Zaker                \\
   \hline
-  Hardware Communication                  & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by Jessica Bae                \\
+  Hardware Communication Test                & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by Jessica Bae                \\
   \hline
 \end{tabular}
+\captionof{table}{Plan for verification of the design of the system.}
 \pagebreak
 \subsection{Verification and Validation Plan Verification Plan}
 
-Since the VNV plan document mostly covers about how to validate whether or not the device functions properly, through verification of different test cases. The only way to verify this document is to check all such scenarios and expected results.\\
+Since the VnV plan document mostly covers about how to validate whether or not the device functions properly, through verification of different test cases. The only way to verify this document is to check all such scenarios and expected results.\\
 \\The following will be done to verify the VnV plan:\\
 \begin{itemize}
   \item[\ding{111}] Each task will be verified as per \hyperref[4_1]{4.1} throughout the development phase. Verifiers must ensure that tests do not fail at any of the expected scenarios and works as expected from user's point of view.
   \item[\ding{111}] Each section of the SRS will be verified as per \hyperref[SRS_verification]{4.2}. Each variable needs to be controlled accordingly and specific scenarios need to be tested to ensure functionality without errors.
   \item[\ding{111}] Each component of the design must be verified as per \hyperref[sec_4_3]{4.3} as it is being developed, so that can unit testing can be performed and evaluated before system testing.
-  \item[\ding{111}] Code-review meetings must be attended by all code evaluators. The evaluator who fails to join the review, the review will be rescheduled. Tests will be performed against all possible scenarios to ensure all cases work as intended.
+  \item[\ding{111}] Code-review meetings must be attended by all code evaluators. If an evaluator fails to join the review, the review will be rescheduled. Tests will be performed against all possible scenarios to ensure all cases work as intended.
   \item[\ding{111}] All test cases for each functional requirement as per \hyperref[sec_5_1]{5.1} must be verified accordingly by ensuring that the outputs are expected and within bounds, and that variables are being properly controlled and monitored.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Implementation Verification Plan}
 
-The Implementation Verification Plan will involve static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the Implementation verification plan.\\
+The Implementation Verification Plan will utilize static and dynamic code analysis as the debugging methods to find bugs early in development. The checklist below can be used in development to follow the implementation verification plan.\\
 The following methods will be used for static code analysis:
 \begin{itemize}
   \item Bi-weekly code review with sub-teams (hardware, software, frontend/backend) for code walk through.
   \item Weekly code review with entire team for system-level software design.
-  \item Use a SAST tool to scan source code, binary and byte code to reveal vulnerabilities.
-  \item Use static analysis tools such as Pylint, lint described in \ref{Automation} to find bugs in code.
+  \item A SAST tool will be used to scan source code, binary and byte code to reveal vulnerabilities.
+  \item Static analysis tools such as Pylint and lint described in \ref{Automation} will be used to find bugs in code.
 \end{itemize}
 Dynamic code testing will help identify exploitable vulnerabilities. The following methods will be used for dynamic code analysis:
 \begin{itemize}
-  \item Use a DAST tool as a black-box tester which inputs malicious SQL queries, Long input strings and invalid data to exploit assumptions made by developers.
-  \item Running modular code separately against variety of inputs to find bugs in code.
-  \item Use open source tools based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
+  \item A DAST tool will be used as a black-box tester. It will input malicious SQL queries, long input strings and invalid data to exploit assumptions made by the developers.
+  \item Modular code will  be run separately against a variety of inputs to find bugs in code.
+  \item Open source tools will be used based on the programming language (CrossHair for Python, CHAP for C) to provide a comprehensive view of performance and security of the device.
 \end{itemize}
 
 
 \subsection{Automated Testing and Verification Tools}\label{Automation}
 
-Automated testing and verification tools will be based on the different programming languages and tools used in the development of the device. As covered in the development plan \cite{Development_Plan} the following unit testing frameworks, profiling tools and linters will be used for verification of code:
+Automated testing and verification tools will be selected based on the different programming languages and tools used in the development of the device. As covered in the development plan \cite{Development_Plan} the following unit testing frameworks, profiling tools and linters will be used for verification of code:
 
 \begin{itemize}
   \item Python:
@@ -258,7 +256,7 @@ Automated testing and verification tools will be based on the different programm
           \item lint will be used as the linter/static code analyser for development in C.
         \end{itemize}
   \item Valgrind will be used for Python (pytest-valgrind) and C as a debugging tool for code profiling.
-  \item SQL/Database testing: Orion will be used to stress test an I/O coverage and to make sure the database functions as expected.
+  \item Orion will be used for SQL/Database testing. It will be used to stress test I/O coverage and to make sure the database functions as expected.
 \end{itemize}
 
 \subsection{Software Validation Plan}
@@ -272,55 +270,55 @@ There will be no plan for Software validation since there is no external data us
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Duration Test}
 
-The following tests will check the whether the device will maintain an "ON" state throughout the duration of the monitoring period. The primary tests will involve different monitoring periods with valid inputs, invalid inputs, dates from the past or too far into the future beyond what the battery life can sustain (HC2).
+The following tests will check whether the device will maintain an "ON" state throughout the duration of the monitoring period. The primary tests will involve different monitoring periods with valid inputs, invalid inputs, past dates, or dates too far into the future beyond what the battery life can sustain (HC2).
 		
 \begin{enumerate}
 
 	\item{\textbf{DT\_1: Regular Inputs}\\}\label{DT1}
 		
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
 							
 		Input: Monitoring Period ["Date","Time"]  : ["03-11-2022", "05:30:PM"].
 		
-		Output: Device turns off after Monitoring Period.
+		Output: Device turns off after monitoring period.
 							
-		How test will be performed: The test is performed by passing in the Monitoring Period and ensuring that the device maintains power throughout this period.
+		How test will be performed: The test is performed by passing in a valid monitoring period and ensuring that the device maintains power throughout this period.
 					
 	\item{\textbf{DT\_2: Invalid Inputs}\\}\label{DT2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
 							
-		Input: Monitoring Period ["Date","Time"] : ["3rd November 2022", "Five Thirty PM"].
+		Input: Monitoring period ["Date","Time"] : ["3rd November 2022", "Five Thirty PM"].
 							
-		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		Output: Device returns an error code to the error handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
 		
 		How test will be performed: The test is performed by passing an invalid input and ensuring the appropriate error code is returned.
 
 	\item{\textbf{DT\_3: Earlier Date}\\}\label{DT3}
 		
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
 							
-		Input: Monitoring Period ["Date","Time"] : ["01-1-1999", "05:30:PM"].
+		Input: Monitoring period ["Date","Time"] : ["01-1-1999", "05:30:PM"].
 							
-		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		Output: Device returns an error code to the error handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
 		
 		How test will be performed: The test is performed by passing an old date (prior to current date).
 
-	\item{\textbf{DT\_4: Date beyond capabilities}\\}\label{DT4}
+	\item{\textbf{DT\_4: Date Beyond Capabilities}\\}\label{DT4}
 		
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device waits for the monitoring period to be set up in the configuration of the device.
 							
-		Input: Monitoring Period ["Date","Time"] : ["9-12-2300", "05:30:PM"].
+		Input: Monitoring period ["Date","Time"] : ["9-12-2300", "05:30:PM"].
 							
-		Output: Device returns an error code to the Error Handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
+		Output: Device returns an error code to the error handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
 
 		How test will be performed: The test is performed by passing a date greater than what the battery life of the device can support.
 
@@ -328,32 +326,32 @@ The following tests will check the whether the device will maintain an "ON" stat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Device should track Minor Movements}
-The following tests are run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved,rotated oriented etc. and checking if the status of the Sensors is valid.
+The following tests will be run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved, rotated, oriented etc. and checking if the status of the sensors is valid.
 
 \paragraph{Minor Tracking Test}
 \begin{enumerate}
 	\item{\textbf{MTT\_1: Regular Movement} \\}\label{MTT1}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is worn with all systems working.
 							
-		Input: Wearer performs activities at a regular/normal pace.
+		Input: Tester performs activities at a regular/normal pace.
 		
-		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
+		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE).
 
 		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.\\
 
 
 	\item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is worn with all systems working.
 							
-		Input: Wearer performs activities at a very slow pace.
+		Input: Tester performs activities at a very slow pace.
 		
-		Output: Status returned by the Sensor Array is no error (BED\_ERR\_NONE).
+		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE).
 		
 		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a very slow pace. This is done to ensure that the device can 					work under scenarios in which users have limited mobility.\\
 
@@ -362,12 +360,12 @@ The following tests are run to ensure that the device is able to track activitie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Prompt Tests}
 
-The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, and generating prompts for different activities.
 
 \begin{enumerate}
 	\item{\textbf{PRT\_1: Test Prompt} \\}\label{PRT1}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device has just been reconfigured.
 							
@@ -375,13 +373,13 @@ The following tests will be done to ensure that the proper info is prompted to t
 		
 		Output: Test Prompt is displayed.
 
-		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the user should receive a test prompt that will confirm that the 				prompting system is working correctly.\\\\
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the tester should receive a test prompt that will confirm that the 				prompting system is working correctly.\\\\
 		Test Prompt: Is this Device on?\\
 		Possible Answers: Yes or No
 		
 	\item{\textbf{PRT\_2: Activity Prompt} \\}\label{PRT2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in the idle state.
 							
@@ -390,7 +388,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 		Output: Specific activity prompt is displayed.
 							
 		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.\\\\
-		Tracked Activity: Participant slows down or comes to a stop.\\
+		Tracked Activity: Tester slows down or comes to a stop.\\
 		Activity Prompt: Are you in pain?\\
 		Possible Answers: Yes or No
 \end{enumerate}
@@ -403,7 +401,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 \begin{enumerate}
 	\item{\textbf{TT\_1: Regular Inputs} \\}\label{TT1}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in Configuration mode.
 							
@@ -416,9 +414,9 @@ The following tests will be done to ensure that the proper info is prompted to t
 		Speed Threshold:\\
 		Limits: 0m/s \textless Threshold \textless 5m/s
 
-	\item{\textbf{TT\_2: Below lower limit} \\}\label{TT2}
+	\item{\textbf{TT\_2: Below Lower Limit} \\}\label{TT2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in Configuration mode.
 							
@@ -430,7 +428,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 
 	\item{\textbf{TT\_3: Above Upper limit }\\}\label{TT3}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in Configuration mode.
 							
@@ -442,7 +440,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 
 	\item{\textbf{TT\_4: Invalid Value} \\}\label{TT4}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in Configuration mode.
 							
@@ -454,7 +452,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 
 	\item{\textbf{TT\_5: No Value} \\}\label{TT5}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in Configuration mode.
 							
@@ -472,7 +470,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 \begin{enumerate}
 	\item{\textbf{DST\_1: Storage Buffer Full} \\}\label{DST1}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in an idle state.
 							
@@ -484,7 +482,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 
 	\item{\textbf{DST\_2: Prompt Generated} \\}\label{DST2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in an idle state.
 							
@@ -504,7 +502,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 
 	\item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is in an idle state.
 							
@@ -517,15 +515,15 @@ The following tests will be done to ensure that data is stored when appropriate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Data Extraction}
 
-The following tests will be done to ensure that can be extracted and presented in a graphical manner deemed acceptable for the purpose of EMA analysis.
+The following tests will be done to ensure that data can be extracted and presented in a graphical manner deemed acceptable for the purpose of EMA analysis.
 \begin{enumerate}
 	\item{\textbf{DXT\_1: Extracting Data} \\}\label{DXT1}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is connected to the device manager.
 							
-		Input: Command that tells the device manager to extract all data from the internal memory.
+		Input: A command that tells the device manager to extract all data from the internal memory.
 		
 		Output: Extracted data is sent to the Host Software where it is converted to a presentable form.
 
@@ -533,11 +531,11 @@ The following tests will be done to ensure that can be extracted and presented i
 		
 	\item{\textbf{DXT\_2: Extracting No Data} \\}\label{DXT2}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is connected to the device manager.
 							
-		Input: Command that tells the device manager to extract all data from the internal memory.
+		Input: A command that tells the device manager to extract all data from the internal memory.
 		
 		Output: Device Manager returns a BED\_ERR\_EMPTY\_DATA error
 
@@ -545,11 +543,11 @@ The following tests will be done to ensure that can be extracted and presented i
 
 	\item{\textbf{DXT\_3: Extracting Corrupted Data} \\}\label{DXT3}
 	
-		Control: Manual 
+		Control: Manual, Dynamic
 							
 		Initial State: Device is connected to the device manager.
 							
-		Input: Command that tells the device manager to extract all data from the internal memory.
+		Input: A command that tells the device manager to extract all data from the internal memory.
 		
 		Output: Device Manager returns a BED\_ERR\_INVALID\_DATA error
 
@@ -559,27 +557,27 @@ The following tests will be done to ensure that can be extracted and presented i
 \subsection{Tests for Nonfunctional Requirements}
 \subsubsection{Hardware Safety }
 
-These tests are designed to test the saftey of the device concerning electircal components and hardware. It is important that the users of our device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that our indicator LED functions as expected under certain conditions.
+These tests are designed to test the safety of the device concerning electrical components and hardware. It is important that the users of the device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that the indicator LED functions as expected under certain conditions.
 
 \begin{enumerate}
 
 \item{\textbf{HST\_1: High Voltage}}\label{HST1}
 
-Control: Manual 
+Control: Manual, Dynamic
 
 Initial State: Device begins in "off" mode.
 
-Input: When device is turned on a voltage over expected voltage is applied.
+Input: When the device is turned on a voltage over expected voltage is applied.
 
-Output: Device detects high voltage and indicates that voltage is high using indicator LED, breaker or fuse trips or voltage is sent to ground.
+Output: Device detects high voltage and indicates that voltage is high using an indicator LED. The breaker or fuse then trips or the voltage is sent to ground.
 
 Test Case Derivation: N/A
 
-How test will be performed: Use a power supply to over volt the system. 
+How test will be performed: Use a power supply to oversupply the system with voltage. 
 
 \item{\textbf{HST\_2: Normal Voltage}}\label{HST2}
 
-Control: Manual
+Control: Manual, Dynamic
 
 Initial State: Device begins in "off" mode.
 
@@ -587,19 +585,19 @@ Input: When device is turned on a normal voltage is applied.
 
 Output: Device powers on, no issues are detected.
 
-Test Case Derivation:
+Test Case Derivation: N/A
 
-How test will be performed: Use power supply to provide the expected voltage to the device.
+How test will be performed: The power supply will be used to provide the expected voltage to the device.
 
 \item{\textbf{HST\_3: Low Voltage}}\label{HST3}
 
-Control: Manual
+Control: Manual, Dynamic
 
 Initial State: Device begins in "off" mode.
 
 Input: When device is turned on a voltage below the expected amount is applied.
 
-Output: If device powers on, indicator LED indicates that the voltage is lower than expected, device goes into power saving mode
+Output: If device powers on, indicator LED indicates that the voltage is lower than expected, device goes into power saving mode.
 
 Test Case Derivation:
 
@@ -607,7 +605,7 @@ How test will be performed: Use power supply to provide a lower than expected vo
 
 \item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
 
-Control: Manual
+Control: Manual, Dynamic
 
 Initial State: Device begins in off mode
 
@@ -617,13 +615,13 @@ Output: Frequency analysis conducted on the circuitry components
 
 Test Case Derivation: N/A
 
-How test will be performed: Using a frequency analysis software such as NI Multisim and an Oscilloscope graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
+How test will be performed: Using a frequency analysis software such as NI Multisim and an Oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
 
 \end{enumerate}
 
 \subsubsection{Re-usability}
 
-These tests will test the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
+These tests will evaluate the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
 
 \begin{enumerate}
 
@@ -631,7 +629,7 @@ These tests will test the re-usability of various hardware systems of the device
 
 \item{\textbf{RT\_1: Battery Charge/Discharge}}\label{RT1}
 
-Control: Manual.
+Control: Manual, Dynamic
 
 Initial State: Battery is fully discharged.
 
@@ -670,7 +668,7 @@ Input/Condition: Testers are asked to answer the questionnaire set without assis
 					
 Output/Result: All testers are able to answer their prompt successfully.
 					
-How test will be performed: A test group of people with age of 40 or older to be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute. These questions will randomly be selected from the following 10 questions.
+How test will be performed: A test group of people with age of 40 or older will be asked to receive a powered-on EMAnator and asked to respond to a set of 3 questions in 1 minute. These questions will randomly be selected from the following 10 questions.
 
 \begin{itemize}
 \item Are you a dog person or a cat person?
@@ -678,7 +676,7 @@ How test will be performed: A test group of people with age of 40 or older to be
 \item Are you currently a student?
 \item Did you make your bed this morning?
 \item Do you feel tired right now?
-\item Do you prefer coffe or tea?
+\item Do you prefer coffee or tea?
 \item Do you have a G driver's license?
 \item Do you feel sleepy right now?
 \item Which is better: Summer vs Winter
@@ -699,8 +697,8 @@ How test will be performed: At the end of their 1 day cycle, testers will be ask
 
 \begin{itemize}
 \item Did the device every fall off? If so, please record the following for each case: What you were doing each time? When did the incident happen?
-\item How do you feel the weight of the device was? Was it too heavy or too light?
-\item How do you feel the texture of the device was? Did you find it uncomfortable in any way?
+\item How do you feel regarding the weight of the device? Was it too heavy or too light?
+\item How do you feel regarding the texture of the device? Did you find it uncomfortable in any way?
 \end{itemize}
 
 \item\textbf{{UT\_3: Reusability\\}}\label{UT3}
@@ -713,7 +711,7 @@ Input: Testers visually inspect how clean the device is.
 					
 Output: The device is deemed clean and the device is not harmed.
 					
-How test will be performed: 1 member of Back End Developers will clean the device and 5 other members will inspect and judge if the device is clean enough to be reused. Amongst the 5 inspecting members, 1 member will then turn on the device to make sure that there was no harm done to the device while cleaning it.
+How test will be performed: 1 member of Back End Developers will clean the device and 5 other members will inspect and judge if the device is clean enough to be reused. Among the 5 inspecting members, 1 member will then turn on the device to make sure that there was no harm done to the device while cleaning it.
 
 \end{enumerate}
 
@@ -724,7 +722,7 @@ The following set of questions will ensure that the device is capable of meeting
 \begin{enumerate}
 \item\textbf{{PT\_1: Data Transfer Time\\}}\label{PT1}
 
-Type: Automatic, dynamic
+Type: Automatic, Dynamic
 					
 Initial State: The device has collected a complete set of data.
 					
@@ -732,7 +730,7 @@ Input: The device is connected to the host software and connection is establishe
 					
 Output: Data transfer to finish within the specified parameter, TRASFER\_TIME.
 					
-How test will be performed: 2 group members of Back End Developers to each perform data trasnfer test 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFER\_TIME.
+How test will be performed: 2 group members of the Back End Developers will each perform data transfer tests 3 times and record the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFER\_TIME.
 
 \item\textbf{{PT\_2: Battery Life\\}}\label{PT2}
 
@@ -744,29 +742,29 @@ Input: Testers wear the device for standard monitoring period.
 					
 Output: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERY\_LIFE.
 					
-How test will be performed: 2 group members of Back End Developers each wear the device for standard monitoring period under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
+How test will be performed: 2 group members of the Back End Developers each wear the device for standard monitoring period under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
 
 \end{enumerate}
 
 \subsubsection{Data Security Tests}
 
-These tests are designed to test the security of our system and the accessibility of important medical records. Ensuring that only certain people are able to access these records is a vital part of our design, and ensuring that records cannot be modified is also important for research data integrity. 
+These tests are designed to test the security of the system and the accessibility of important medical records. Ensuring that only certain people are able to access these records is a vital part of the design, and ensuring that records cannot be modified is also important for research data integrity. 
 
 \begin{enumerate}
 
 \item{\textbf{DSQT\_1: Records Safety Test}}\label{DSQT1}
 
-Control: Manual
+Control: Manual, Dynamic
 
 Initial State: Device is powered on.
 
 Input: Data transfer cable is plugged in from device to a generic PC, a volunteer tries to access the database and modify the data within.
 
-Output: Database inaccessible and requests administrative security key, volunteer is unable to access or modify the data.
+Output: Database inaccessible and requests an administrative security key. The volunteer should be unable to access or modify the data.
 
 Test Case Derivation: N/A
 
-How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the administrator security key, they will attempt to access the database. 
+How test will be performed: Device will be given to a volunteer with technical know-how who does not have access to the administrator security key. They will attempt to access the database. 
 
 
 \end{enumerate}
@@ -866,15 +864,12 @@ To be revised after the MIS.
 
 \newpage
 
-\section{Appendix}
 
-This is where you can place additional information.
-
-\subsection{Symbolic Parameters}
+\section*{Appendix --- Symbolic Parameters}
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.\\\\
 
-TRANSFER\_TIME: Maximimum amount of time to transfer all data to the Host Software.\\
+TRANSFER\_TIME: Maximum acceptable amount of time to transfer all data to the Host Software.\\
 BATTERY\_LIFE: Represents the minimum battery life requirement for the device.\\
 
 
@@ -896,9 +891,6 @@ BATTERY\_LIFE: Represents the minimum battery life requirement for the device.\\
 
 	\end{table}
 \end{flushleft} 
-\subsection{Usability Survey Questions?}
-
-\wss{This is a section that would be appropriate for some projects.}
 
 
 \newpage{}
@@ -953,7 +945,7 @@ BATTERY\_LIFE: Represents the minimum battery life requirement for the device.\\
                 \end{enumerate}
           \item \textbf{Open-mindedness:}
                 \begin{enumerate}
-                  \item \textit{For Anish:} Attach equivalent value to ideas that conflict with your own, and weigh objective pros and cons.
+                  \item \textit{For Anish:} Attach equivalent value to conflicting ideas, and weigh objective pros and cons.
                   \item \textit{For the Team:} Actively promote "devil's advocate" mindsets when making important decisions.
                 \end{enumerate}
           \item \textbf{Leadership:}
