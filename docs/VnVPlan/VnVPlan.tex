@@ -588,6 +588,92 @@ The following tests will be done to ensure that can be extracted and presented i
   format for the tests given below.}
 
 
+\subsubsection{Hardware Saftey Tests}
+
+These tests are designed to test the saftey of the device concerning electircal components and hardware. It is important that the users of our device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that our indicator LED functions as expected under certain conditions.
+
+\begin{enumerate}
+
+\item{HST-1: High Voltage\\}
+
+Control: Manual 
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a voltage over expected voltage is applied.
+
+Output: Device detects high voltage and indicates that voltage is high using indicator LED, breaker or fuse trips or voltage is sent to ground.
+
+Test Case Derivation: N/A
+
+How test will be performed: Use a power supply to over volt the system. 
+
+\item{HST-2: Normal Voltage\\}
+
+Control: Manual
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a normal voltage is applied.
+
+Output: Device powers on, no issues are detected.
+
+Test Case Derivation:
+
+How test will be performed: Use power supply to provide the expected voltage to the device.
+
+\item{HST-3: Low Voltage\\}
+
+Control: Manual
+
+Initial State: Device begins in "off" mode.
+
+Input: When device is turned on a voltage below the expected amount is applied.
+
+Output: If device powers on, indicator LED indicates that the voltage is lower than expected, device goes into power saving mode
+
+Test Case Derivation:
+
+How test will be performed: Use power supply to provide a lower than expected voltage to the device.
+
+\item{HST-4: Frequency Detection\\}
+
+Control: Manual
+
+Initial State: Device begins in off mode
+
+Input: Device is turned on in normal operating state
+
+Output: Frequency analysis conducted on the circuitry components
+
+Test Case Derivation: N/A
+
+How test will be performed: Using a frequency analysis software such as NI Multisim and an Oscilloscope graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
+
+\end{enumerate}
+
+\subsubsection{Reusability Tests}
+
+These tests will test the reusability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
+
+\begin{enumerate}
+
+%add another test or gear test toward charge protection, circuitry to stop overcharging/discharging.
+
+\item{RT-1: Battery Charge/Discharge\\}
+
+Control: Manual.
+
+Initial State: Battery is fully discharged.
+
+Input: Connect battery to the charging cable.
+
+Output: Battery is fully charged without issue.
+
+Test Case Derivation: N/A
+
+How test will be performed: Battery component will be isolated from device and fully charged and discharged 5 times.
+
 \subsubsection{Device should be accurate}
 The following set of tests will ensure that the device can recognize its state and perform its main functionality in accurate manner.
 
@@ -699,11 +785,68 @@ How test will be performed: 2 group members of Back End Developers each wear the
 
 \end{enumerate}
 
+\subsubsection{Data Security Tests}
+
+These tests are designed to test the security of our system and the accessibility of important medical records. Ensuring that only certain people are able to access these records is a vital part of our design, and ensuring that records cannot be modified is also important for research data integrity. 
+
+\begin{enumerate}
+
+\item{PT-1: Records Safety Test\\}
+
+Control: Manual
+
+Initial State: Device is powered on.
+
+Input: Data transfer cable is plugged in from device to a generic PC, a volunteer tries to access the database and modify the data within.
+
+Output: Database inaccessible and requests administrative security key, volunteer is unable to access or modify the data.
+
+Test Case Derivation: N/A
+
+How test will be performed: Device will be given to a volunteer with technical knowhow who does not have access to the administrator security key, they will attempt to access the database. 
+
+
+\end{enumerate}
+
+
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
   requirements.}
 
+%Traceability Matrix, needs lot of updating, it also doesn't function rn...
+\noindent
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+	& \ref{A1}& \ref{A2}& \ref{A3}& \ref{A4} \\
+\hline          %   1   2    3   4  
+\ref{R1}       &   &   &   & X  \\ \hline
+\ref{R2}       &   & X&   &    \\ \hline
+\ref{R3}       & X& X&   & X  \\ \hline
+\ref{R4}       &   & X&   & X  \\ \hline
+\ref{R5}       &   &   &   &    \\ \hline
+\ref{R6}       &   &   & X&    \\ \hline
+\ref{R7}       & X&   & X&     \\ \hline
+\ref{NFR1} &   & X&   &    \\ \hline
+\ref{NFR2} & X& X&   & X \\ \hline
+\ref{NFR3} &   &   & X&     \\ \hline
+\ref{NFR4} &   & X& X&     \\ \hline
+\ref{NFR5} &   X&   &   &      \\ \hline
+\ref{NFR6} &   &  X &   &X     \\ \hline
+\ref{NFR7} &   &  X &   &     \\ \hline
+\ref{NFR8} &  X &   &   &X     \\ \hline
+\ref{NFR9} & X  &   &X  &X      \\ \hline
+\ref{NFR10}&  & X  &   &      \\
+\hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections between NFR's etc.}
+\label{Table:A_trace}
+\end{table}
+
+\newpage
 \section{Unit Test Description}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
