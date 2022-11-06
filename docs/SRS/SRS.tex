@@ -155,6 +155,7 @@
 	  \midrule
 	  October 5th, 2022              & 1.0           		& Initial Revision       \\
 	  November 1st, 2022		  & 1.1           		& Added extra sections,new requriements and hyperlinking\\   
+	  November 5th, 2022           & 1.2                       & Additional non-functional requirements added pertaining to hazard analysis\\
 	  \bottomrule
 	\end{tabularx}
 	\caption{\label{revHist}Revision History}
@@ -805,6 +806,37 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Rationale:} It is of paramount importance that this device does not disrupt the daily activities of participants in order to preserve their dignity, and allow them to perform the necessary tasks of their daily lives. In addition, the less the system disrupts their daily activities, the more accurate the picture will be that the system captures of what those daily acitivities are and their relevance to EMA.\\
 
 \underline{Fit Criterion:} The system must be rated sufficiently non-disruptive to the daily lives of the participants using the system during testing.\\
+
+\item[NFR11 \label{NFR11}:]
+  \textbf{Hardware Safety:} The system must be designed with certain saftey criteria in mind. To ensure the hardware is safe is it important that the device have sufficent tollerances for Current, Voltage, and Temperature. Fuses or breakers will be used in the circuitry in case of high current draw. The battery will have charge protection to prevent overcharging/discharging. Additionally, the intensity of emitted frequencies will be in line with safe levels.\\
+
+\underline{Rationale:} Saftey is a top priority. Causing no harm to society is an important part of an engineers code of ethics. Ensuring that the device can be used safely will inherintly make participants feel safe about the use of the device.\\
+
+\underline{Fit Criterion:} The hardware systems must be designed to ensure that participants are not harmed under normal usage of the device.\\
+
+\item[NFR12 \label{NFR12}:]
+  \textbf{Messaging:} The system should be able to deliver messages to the participant on the state of the device. These messages can be in the form of prompts or visual signals using LED indicator lights. They should be intuitive to understand and help particpants solve problems on their own without the assistance of the engineering team or the researchers.\\
+
+\underline{Rationale:} Straightforward messaging can help the partipants better navigate using the device, or may be able to tell them if the device is having an issue.\\
+
+\underline{Fit Criterion:} The goal is under normal operation that messaging will not be necessary. But if the system does malfunction, having associated indications to help diagnose these problems is an important step in making the device user friendly.\\
+
+
+\item[NFR13 \label{NFR13}:]
+  \textbf{Hardware Performance:} Ensuring that the hardware of the device is performing up to expected requirements is important. Some of these performance metrics include the speed of data transfer and the battery life of the device. Specifications have been discussed with researchers by comparing devices like FitBits or Garmin watches with respect to performance and battery life.\\
+
+\underline{Rationale:} Perfomance is not just important as a goal for usability, but it is important to ensure that the data which is being collected can be collected in real-time so that the data is accurate and properly displays to the researchers the information they are trying to gather.\\
+
+\underline{Fit Criterion:} The battery should last beyond the recommended timelines which will be testing during volunteer tests and the data should have a transfer speed that allows for real-time information to be collected and aggregated.\\
+
+
+\item[NFR14 \label{NFR14}:]
+  \textbf{Data Security:} The system must ensure that security of participants data is paramount. Since the device will be handling health records it is important that the device keep the data secured. The data should be well protected so that someone with a high capability in techonlogy would not be able to access the data without a security key.\\
+
+\underline{Rationale:} Health records can be used for malicious reasons, and privacy in general is very important to the particpants.\\
+
+\underline{Fit Criterion:} The data should not be accessible by anyone without a physical security key.\\
+
 
 \end{itemize}
 
