@@ -12,7 +12,7 @@ class SampleApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (MainMenu, HostSfwr, Records):
+        for F in (MainMenu, HostSfwr, Records, Configuration, DataView):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -85,6 +85,13 @@ class HostSfwr(tk.Frame):
             btnHandle = tk.Button(
                 master=frame, text=btnNamesList[i], width=50)
             btnHandle.pack(fill=tk.BOTH, expand=True)
+        # For going back to main menu
+        frame_m = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_m.pack(expand=True, fill=tk.BOTH)
+        btnHandle = tk.Button(
+            master=frame_m, text="Back to Main Menu", width=50, command=lambda: controller.show_frame("MainMenu"))
+        btnHandle.pack(fill=tk.BOTH, expand=False)
 
 
 class Records(tk.Frame):
@@ -124,6 +131,90 @@ class Records(tk.Frame):
         label_a.pack(side=tk.LEFT, padx=((30, 0)))
         entry_a = tk.Entry(master=frame_a, width=40)
         entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+        # For going back to main menu
+        frame_m = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_m.pack(expand=True, fill=tk.BOTH)
+        btnHandle = tk.Button(
+            master=frame_m, text="Back to Main Menu", width=50, command=lambda: controller.show_frame("MainMenu"))
+        btnHandle.pack(fill=tk.BOTH, expand=False)
+
+class Configuration(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        greeting = tk.Label(master=self, text="Configuration")
+        greeting.pack(fill=tk.X)
+        frame_a = tk.Frame(master=self, height=200,
+                           bg="grey")
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Number of activities", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+        frame_a = tk.Frame(master=self, height=200,
+                           bg="grey")
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Type of activity", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+        frame_a = tk.Frame(master=self, height=200,
+                           bg="grey")
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Threshold setting", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+        frame_a = tk.Frame(master=self, height=200,
+                           bg="grey")
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Setting 2", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+        # For going back to main menu
+        frame_m = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_m.pack(expand=True, fill=tk.BOTH)
+        btnHandle = tk.Button(
+            master=frame_m, text="Back to Main Menu", width=50, command=lambda: controller.show_frame("MainMenu"))
+        btnHandle.pack(fill=tk.BOTH, expand=False)
+
+
+class DataView(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        greeting = tk.Label(master=self, text="Data View")
+        greeting.pack(fill=tk.X)
+
+        frame_a = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_a.pack(expand=True, fill=tk.BOTH)
+
+        tk.Button(frame_a, text= "Load Data",height=2, width=15).pack()
+
+
+        label_a = tk.Label(master=frame_a, text="Number of activities", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
+
+
+        
+        # For going back to main menu
+        frame_m = tk.Frame(master=self, height=200,
+                           padx=250, pady=50,  bg='grey')
+        frame_m.pack(expand=True, fill=tk.BOTH)
+        btnHandle = tk.Button(
+            master=frame_m, text="Back to Main Menu", width=20, command=lambda: controller.show_frame("MainMenu"))
+        btnHandle.pack(fill=tk.BOTH, expand=False)
 
 
 app = SampleApp()
