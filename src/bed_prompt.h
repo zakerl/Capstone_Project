@@ -1,8 +1,13 @@
 /* Header file for the Prompt System */
 
+/* Includes*/
+#include <stdint.h>
 #include <stdio.h>
 
+/* Definitions*/
 #define PROMPT_NUMBER     2
+
+/* Structure Definitions */
 typedef struct PROMPT_Tag
 {
   uint16_t    prompt_id;        /* Represents the type of prompt*/  
@@ -11,4 +16,10 @@ typedef struct PROMPT_Tag
   char*       prompt_response;  /* Represents the users response*/
 }Prompt;
 
-void bed_init_prompt();
+/*Global Declaration*/
+Prompt prompts[PROMPT_NUMBER] = 
+                        {
+                          { 1, 0, "Are you in pain",        "N/A"},
+                          { 2, 0, "Where do you feel pain",  "N/A"}
+                        }; 
+
