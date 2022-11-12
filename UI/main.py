@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from tkinter.filedialog import asksaveasfile
 
 class SampleApp(tk.Tk):
 
@@ -201,13 +201,30 @@ class DataView(tk.Frame):
         tk.Button(frame_a, text= "Load Data",height=2, width=15).pack()
 
 
-        label_a = tk.Label(master=frame_a, text="Number of activities", bg="grey")
+        # Entry 1 
+        frame_a = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Entry 1", bg="grey")
         label_a.pack(side=tk.LEFT, padx=((30, 0)))
         entry_a = tk.Entry(master=frame_a, width=40)
         entry_a.pack(fill=tk.X, expand=True, padx=30)
 
+        # Entry 2
+        frame_a = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        label_a = tk.Label(master=frame_a, text="Entry 2", bg="grey")
+        label_a.pack(side=tk.LEFT, padx=((30, 0)))
+        entry_a = tk.Entry(master=frame_a, width=40)
+        entry_a.pack(fill=tk.X, expand=True, padx=30)
 
-        
+        # Saving to CSV
+        frame_a = tk.Frame(master=self, height=200,
+                           padx=100, pady=50,  bg='grey')
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        tk.Button(frame_a, text= "Save as DataView.csv",height=2, width=25, command= lambda:self.save_file()).pack()
+
         # For going back to main menu
         frame_m = tk.Frame(master=self, height=200,
                            padx=250, pady=50,  bg='grey')
@@ -215,6 +232,10 @@ class DataView(tk.Frame):
         btnHandle = tk.Button(
             master=frame_m, text="Back to Main Menu", width=20, command=lambda: controller.show_frame("MainMenu"))
         btnHandle.pack(fill=tk.BOTH, expand=False)
+
+    def save_file(self):
+        f = asksaveasfile(initialfile = 'DataView.csv', defaultextension=".csv",filetypes=[("Csv files","*.csv")])
+       
 
 
 app = SampleApp()
