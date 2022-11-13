@@ -178,14 +178,17 @@ class Configuration(tk.Frame):
         entry_a = tk.Entry(master=frame_a, width=40)
         entry_a.pack(fill=tk.X, expand=True, padx=30)
 
-        # For going back to main menu
-        frame_m = tk.Frame(master=self, height=200,
-                           padx=100, pady=50,  bg='grey')
-        frame_m.pack(expand=True, fill=tk.BOTH)
-        btnHandle = tk.Button(
-            master=frame_m, text="Back to Main Menu", width=50, command=lambda: controller.show_frame("MainMenu"))
-        btnHandle.pack(fill=tk.BOTH, expand=False)
+        # Saving to Config file
+        frame_a = tk.Frame(master=self, height=200,
+                           padx=100, pady=10,  bg='grey')
+        frame_a.pack(expand=True, fill=tk.BOTH)
+        tk.Button(frame_a, text= "Save Config file",height=2, width=25, command= lambda:self.save_file()).pack()
 
+        # For going back to main menu
+        tk.Button(master=frame_a, text="Back to Main Menu", height=2, width=25, command=lambda: controller.show_frame("MainMenu")).pack(pady=25)
+
+    def save_file(self):
+        f = asksaveasfile(initialfile = 'Config.txt', defaultextension=".txt",filetypes=[("Text files","*.txt")])
 
 class DataView(tk.Frame):
     def __init__(self, parent, controller):
@@ -226,12 +229,7 @@ class DataView(tk.Frame):
         tk.Button(frame_a, text= "Save as DataView.csv",height=2, width=25, command= lambda:self.save_file()).pack()
 
         # For going back to main menu
-        frame_m = tk.Frame(master=self, height=200,
-                           padx=250, pady=50,  bg='grey')
-        frame_m.pack(expand=True, fill=tk.BOTH)
-        btnHandle = tk.Button(
-            master=frame_m, text="Back to Main Menu", width=20, command=lambda: controller.show_frame("MainMenu"))
-        btnHandle.pack(fill=tk.BOTH, expand=False)
+        tk.Button(master=frame_a, text="Back to Main Menu", height=2, width=25, command=lambda: controller.show_frame("MainMenu")).pack(pady=25)
 
     def save_file(self):
         f = asksaveasfile(initialfile = 'DataView.csv', defaultextension=".csv",filetypes=[("Csv files","*.csv")])
