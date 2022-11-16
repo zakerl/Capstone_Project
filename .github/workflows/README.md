@@ -23,3 +23,14 @@
 - After merging. do >>>git checkout main | git pull. Confirm your changes work on main.
 
 #### 5. Repeat as needed
+
+### Reviwer Table 
+
+| Coder         | Reviewer 1    | Reviewer 2    |
+| ------------- | ------------- | ------------- |
+| Oliver        | Nish          | Anish         |
+| Labeeb        | Jessica       | Nish          |
+| Jessica       | Labeeb        | Johnathan     |
+| Johnathan     | Oliver        | Anish         |
+| Nish          | Labeeb        | Jessica       |
+| Anish         | Johnathan     | Oliver        |
