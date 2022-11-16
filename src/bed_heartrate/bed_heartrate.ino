@@ -1,4 +1,4 @@
-#define samp_siz 4
+#define samp_siz 20
 #define rise_threshold 4
 
 // Pulse Monitor Test Script
