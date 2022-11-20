@@ -65,9 +65,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "DataView"))
 
     def showRecordWindow(self, MainWindow):
-        self.RecordWindow = QtWidgets.QMainWindow()
-        ui = UI_RecordWindow()
-        ui.setupUi(self.RecordWindow)
+        self.RecordWindow = UI_RecordWindow()
         self.RecordWindow.show()
         MainWindow.hide()
 
