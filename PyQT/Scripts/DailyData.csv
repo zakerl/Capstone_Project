@@ -1,0 +1,6 @@
+Participant ID,Steps,Heart rate,Active time (mins),Type of Activity,Prompt generated,Are you in pain?,Pain level (1-10)
+1,50,100,6,walking,Yes,Yes,2
+2,10,70,1,walking,No,N/A,N/A
+3,0,67,1,Movement detected,Yes,No,N/A
+4,10,70,1,walking,No,N/A,N/A
+5,200,110,10,walking,Yes,Yes,6
