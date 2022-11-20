@@ -14,7 +14,7 @@ scriptDir = dirname(realpath(__file__))
 
 
 class UI_RecordWindow(QWidget, Ui_Form):
-    def __init__(self,MainWindow):
+    def __init__(self, MainWindow):
         super(UI_RecordWindow, self).__init__()
         QWidget.__init__(self)
         self.setupUi(self)
@@ -73,35 +73,40 @@ class UI_RecordWindow(QWidget, Ui_Form):
     def search(self):
         if(len(self.all_data) == 0):
             return
-        name = self.NameLabel.text()
+        firstName = self.FirstNameLabel.text()
+        lastName = self.LastNameLabel.text()
         age = self.AgeLabel.text()
-        studyID = self.StudyLabel.text()
+        ParticipantID = self.PIDLabel.text()
         gender = self.GenderLabel.text()
         weight = self.WeightLabel.text()
         height = self.HeightLabel.text()
-        contactInfo = self.ContactLabel.text()
+        PhnNumber = self.PhnNumberLabel.text()
+        Email = self.EmailLabel.text()
+        Address = self.AddrLabel.text()
+        MonitorPer = self.MonitorPeriodLabel.text()
         trackerID = self.TrackerLabel.text()
         ref_dict = {
-            "Name": name,
+            "First Name": firstName,
+            "Last Name": lastName,
             "Age": age,
-            "Study ID": studyID,
+            "Participant ID": ParticipantID,
             "Gender": gender,
-            "Weight": weight,
-            "Height": height,
-            "Contact Info": contactInfo,
-            "Tracker ID": trackerID
+            "Weight (kgs)": weight,
+            "Height (cm)": height,
+            "Phone number": PhnNumber,
+            "Email ID": Email,
+            "Address": Address,
+            "Monitoring Period": MonitorPer,
+            "Tracker model": trackerID
         }
 
         # searchResults = [row for row in self.all_data if]
         headerNames = list(self.all_data.columns)
         filteredData = self.all_data
-
-        if(name != ""):
-            filteredData = filteredData[filteredData["Name"] == name]
         for i in headerNames:
             filteredData[i] = filteredData[i].astype(str).str.replace(
                 ".0", "", regex=False)
-            if i.lower() != "Name".lower() and ref_dict[i] != "":
+            if ref_dict[i] != "":
                 filteredData = filteredData[filteredData[i] ==
                                             ref_dict[i]]
 
@@ -119,5 +124,4 @@ class UI_RecordWindow(QWidget, Ui_Form):
 
     def BackToMain(self):
         self.MainWindow.show()
-        self.hide()     
-
+        self.hide()
