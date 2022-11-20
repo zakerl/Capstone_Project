@@ -1,23 +1,191 @@
+/* Implementation file for display driver*/
+
 /*Includes*/
 #include "bed_display.h"
 #include "bed_prompt.h"
+#include "bed_rtc.h"
 /*
     Author    : Anish Rangarajan
     Date      : 11/11/2022
-    Defintion : Initializes the display system  
+    Defintion : Initializes the display system.
 */
 int32_t bed_init_display()
 {
-  oled.setFont(&FreeSans9pt7b);
   int32_t b32_error_code = BED_ERR_NONE;
-  
-  Wire.begin();
+  b32_error_code = bed_get_i2c_status(SCREEN_ADDRESS);
+
   if (!oled.begin(SSD1306_SWITCHCAPVCC,SCREEN_ADDRESS))
+  {
     b32_error_code = BED_ERR_DISPLAY_SYSTEM;
-    
-  delay(1000);
-  bed_splash_screen();
+    while (1) delay(10);
+  }
+  else
+  {   
+    oled.setFont(&FreeSans9pt7b);
+    delay(1000);
+    bed_splash_screen(); 
+  }
   return b32_error_code;
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/12/2022
+    Defintion : Uses activity flag to generate a prompt.  
+*/
+int32_t bed_display_prompt(uint16_t bed_activity_flag)
+{
+  char *response;
+  int32_t b32_error_code = BED_ERR_NONE;
+  for(int i=0; i < PROMPT_NUMBER; i++)
+    {
+      if (prompts[i].prompt_id == bed_activity_flag)
+        {
+          prompts[i].prompt_triggered = 1;
+          //bed_scroll_text(prompts[i].prompt_question,true);
+          bed_format_prompt(prompts[i].prompt_question);
+          bed_display_responses();
+      
+          response = bed_select_response(selState);
+          if(respState == HIGH)
+          {
+            prompts[i].prompt_response = response;
+            Serial.println(prompts[i].prompt_response);
+            bed_display_one_line("Thank You", 0, 30, true);
+            delay(200);
+            bed_splash_screen();
+            return b32_error_code;
+          }
+        }
+    }
+
+    b32_error_code = BED_ERR_INVALID_DATA;
+    return b32_error_code;
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/12/2022
+    Defintion : Used to select the response for the prompt.  
+*/
+
+char* bed_select_response(uint8_t buttonState)
+{
+
+  if (buttonState == HIGH) 
+    buttonFlag = !buttonFlag;
+
+  if(buttonFlag == 1)  
+  {
+    bed_display_one_line("___", 10, 60, false);
+    bed_display_one_line("___", 80, 60, false, BLACK);
+    return "YES";
+  }
+
+  else 
+  {
+    bed_display_one_line("___", 80, 60, false);
+    bed_display_one_line("___", 10, 60, false, BLACK);
+    return "NO";
+  }
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/12/2022
+    Defintion : Formats prompt so that it can be displayed properly on the screen.  
+*/
+void bed_format_prompt(char *prompt_question)
+{
+  uint16_t prompt_len = strlen(prompt_question);
+  
+  char word[20];
+  oled.clearDisplay();
+  oled.setCursor(0, 13);
+  oled.setTextWrap(true);
+  for(int i=0,j=0; i <= prompt_len; i++)
+  {
+    if(isspace(prompt_question[i]) || prompt_question[i] == '\0' )
+      {
+        word[j] = '\0';
+        uint16_t word_len = (strlen(word));
+        if (oled.getCursorX() + word_len * CHARACTER_SIZE >= oled.width())
+        {
+          uint16_t remSize = (prompt_len - i + word_len)* CHARACTER_SIZE;
+          oled.setCursor( (oled.width() - remSize)/2, oled.getCursorY() + 20);
+        }
+        oled.print(word);
+        oled.print(" ");
+        oled.display();
+        strcpy(word, "");
+        j=0;
+      }
+    else 
+    {
+      word[j] = prompt_question[i];
+      j++;
+    }
+  }
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/13/2022
+    Defintion : Display one line of text on the given coordinates.
+*/
+void bed_display_one_line(char* displayText, uint8_t coordX, uint8_t coordY, uint8_t clearFlag)
+{
+  if(clearFlag)
+    oled.clearDisplay();
+    
+  oled.setTextColor(WHITE);
+  oled.setCursor(coordX, coordY);
+  oled.print(displayText);
+  oled.display();
+}
+
+void bed_display_one_line(String displayText, uint8_t coordX, uint8_t coordY, uint8_t clearFlag, uint8_t textColor)
+{
+  if(clearFlag)
+    oled.clearDisplay();
+    
+  oled.setTextColor(textColor);
+  oled.setCursor(coordX, coordY);
+  oled.print(displayText);
+  oled.display();
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/13/2022
+    Defintion : Overloaded function to Display one line of text on the given coordinates with specific color.
+*/
+void bed_display_one_line(char* displayText, uint8_t coordX, uint8_t coordY, uint8_t clearFlag, uint8_t textColor)
+{
+  if(clearFlag)
+    oled.clearDisplay();
+
+  oled.setTextColor(textColor);
+  oled.setCursor(coordX, coordY);
+  oled.print(displayText);
+  oled.display();
+}
+
+/*
+    Author    : Anish Rangarajan
+    Date      : 11/13/2022
+    Defintion : Overloaded function to Display one line of text on the given coordinates with specific color and text wrap.
+*/
+void bed_display_one_line(char* displayText, uint8_t coordX, uint8_t coordY, uint8_t clearFlag, uint8_t textColor, uint8_t textWrap)
+{
+  if(clearFlag)
+    oled.clearDisplay();
+
+  oled.setTextColor(textColor);
+  oled.setCursor(coordX, coordY);
+  oled.setTextWrap(textWrap);
+  oled.print(displayText);
+  oled.display();
 }
 
 /*
@@ -25,45 +193,27 @@ int32_t bed_init_display()
     Date      : 11/12/2022
     Defintion : Scrolls provided text on the screen.  
 */
-
 void bed_scroll_text(char* scrollText, uint8_t scrollFlag)
 {
   int x, minX;
   x = oled.width();
-  minX = -6 * TEXT_SIZE * strlen(scrollText);  // 12 = 6 pixels/character 
+  minX = -1 * CHARACTER_SIZE * strlen(scrollText);  // 12 = 6 pixels/character 
   
   while(scrollFlag == true)
   {
     oled.clearDisplay();
     oled.setCursor(x, 30);
     oled.setTextWrap(false);
-    oled.println(scrollText);
+    oled.print(scrollText);
     oled.display();
     x=x-3; // scroll speed, make more positive to slow down the scroll
+
     if(x < minX)
       {
-        oled.clearDisplay();
-        oled.setTextSize(TEXT_SIZE);
-        oled.setCursor(0, 20);
-        oled.setTextWrap(true);
-        oled.print(scrollText);
-        oled.display();
+        bed_format_prompt(scrollText);
         break;
       }
   }
-}
-/*
-    Author    : Anish Rangarajan
-    Date      : 11/12/2022
-    Defintion : Displays possible responses on the screen  
-*/
-void bed_display_responses()
-{
-  oled.setCursor(10, 50);
-  oled.print("YES");
-  oled.setCursor(80, 50);
-  oled.print("NO");
-  oled.display();
 }
 
 /*
@@ -73,86 +223,43 @@ void bed_display_responses()
 */
 void bed_splash_screen()
 {
-  
-  oled.clearDisplay();
-  oled.setTextColor(WHITE);
-  oled.setTextSize(TEXT_SIZE);
-  oled.setCursor(0, 20);
-  oled.print("BACK");
-  oled.setCursor(0, 40);
-  oled.print("END");
-  oled.setCursor(0, 60);
-  oled.print("DEVELOPERS");
-  oled.display();
+  bed_display_one_line("Back"       , 0, 20, true);
+  bed_display_one_line("End"        , 0, 40, false);
+  bed_display_one_line("Developers" , 0, 60, false);
   delay(1000);
 }
 
 /*
     Author    : Anish Rangarajan
     Date      : 11/12/2022
-    Defintion : Used to select the response for the prompt.  
+    Defintion : Displays possible responses on the screen.  
 */
-
-void bed_select_response(int buttonState)
+void bed_display_responses()
 {
-
-  if (buttonState == HIGH) 
-    buttonFlag = !buttonFlag;
-
-  if(buttonFlag == 1)  
-  {
-    oled.setTextColor(WHITE);
-    oled.setCursor(10, 55);
-    oled.print("___");
-    
-    oled.setTextColor(BLACK);
-    oled.setCursor(80, 55);
-    oled.print("___");
-    oled.display();
-  }
-  else 
-  {
-    oled.setTextColor(WHITE);
-    oled.setCursor(80, 55);
-    oled.print("___");
-    
-    oled.setTextColor(BLACK);
-    oled.setCursor(10, 55);
-    oled.print("___");
-    oled.display();
-  }
-  
-  
-
+  bed_display_one_line("YES", 10, 58, false);
+  bed_display_one_line("NO", 80, 58, false);
 }
 
 /*
     Author    : Anish Rangarajan
-    Date      : 11/12/2022
-    Defintion : Uses activity flag to generate a prompt. Saves answer to a text file.  
+    Date      : 11/19/2022
+    Defintion : Displays Date and Time.  
 */
-int32_t bed_display_prompt(uint16_t bed_activity_flag)
+void bed_display_date_time()
 {
-
-  
-  int32_t b32_error_code = BED_ERR_NONE;
-  for(int i=0; i < PROMPT_NUMBER; i++)
-    {
-      if (prompts[i].prompt_id == bed_activity_flag)
-        {
-          prompts[i].prompt_triggered = 1;
-          bed_scroll_text(prompts[i].prompt_question,true);
-          bed_display_responses();
-          while(prompts[i].prompt_response == "N/A")
-          {
-            buttonState = digitalRead(buttonPin);
-            Serial.println(buttonState);
-            bed_select_response(buttonState);
-            delay(100);
-          }
-        }
-    }
+  oled.fillRect(0, 0, 128, 25, WHITE);
+  String date = (String)rtc_date_time.rtc_year +"-"+ (String)rtc_date_time.rtc_month +"-"+ (String)rtc_date_time.rtc_day;
+  bed_display_one_line(date, 20, 20, false, BLACK);
+  oled.fillRect(0, 35, 128, 25, WHITE);
+  String time = (String)rtc_date_time.rtc_hour +":"+ (String)rtc_date_time.rtc_min +":"+ (String)rtc_date_time.rtc_sec;
+  bed_display_one_line(time, 20, 55, false, BLACK);
 }
+
+
+
+
+
+
 
 
 
