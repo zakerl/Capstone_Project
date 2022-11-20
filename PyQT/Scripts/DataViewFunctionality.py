@@ -11,15 +11,18 @@ import numpy as np
 
 scriptDir = dirname(realpath(__file__))
 
+
 class UI_DataView(QWidget, Ui_DataView):
-    def __init__(self):
+    def __init__(self,MainWindow):
         super(UI_DataView, self).__init__()
         QWidget.__init__(self)
         self.setupUi(self)
+        self.MainWindow = MainWindow
         self.all_data = []
         self.LoadData.clicked.connect(self.OpenFile)
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
+        self.MainMenu.clicked.connect(self.BackToMain)
 
     def OpenFile(self):
         try:
@@ -112,3 +115,6 @@ class UI_DataView(QWidget, Ui_DataView):
         self.tableWidget.resizeColumnsToContents()
         self.tableWidget.resizeRowsToContents()
 
+    def BackToMain(self):
+        self.MainWindow.show()
+        self.hide()     

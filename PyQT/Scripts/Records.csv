@@ -1,12 +1,11 @@
-Name,Age,Study ID,Gender,Weight,Height,Contact Info,Tracker ID
-Jack,60,1,M,75,170,(615) 476-8637,10
-Rose,65,2,F,70,166,(389) 699-9355,9
-Ashley,63,3,M,90,190,(698) 275-0857,8
-May,75,4,F,85,180,(651) 557-5572,7
-Halo,72,5,M,83,183,(658) 735-0322,6
-Deku,77,6,F,95,187,(601) 847-4224,5
-Nolan,79,7,M,92.5,193.3,(849) 730-7854,4
-Jamie,80,8,F,63.9,160,(493) 612-1320,3
-Jean,80,9,M,77,178,(260) 208-7360,2
-Lyon,70,10,F,83,181,(755) 891-1202,1
-Jamie,90,8,M,63.9,160,(779) 574-4077,3
+First Name,Last Name,Age,Participant ID,Gender,Weight (kgs),Height (cm),Phone number,Email ID,Address,Monitoring Period,Tracker model
+Jack,Jones,60,1,Male,75,180,(338) 437-5840,jack@gmail.com,8710 Hilltop St.,13,1
+Rose,Lindt,65,2,Female,63,150,(864) 315-3964,rose@gmail.com,"Mundelein, IL 60060",12,2
+Ashley,Dunder,63,3,Female,57,160,(238) 233-4530,ashley@gmail.com,9022 Jennings Drive,15,1
+May,Potter,75,4,Prefer Not to Say,80,172,(990) 200-7813,may@gmail.com,"North Miami Beach, FL 33160",15,1
+Halo,Robert,72,5,Male,95,175,(650) 673-8814,halo@gmail.com,50 Wellington Street,12,3
+Deku,Johnson,77,6,Male,68,179,(742) 841-0802,deku@gmail.com,"Fort Lee, NJ 07024",10,1
+Nolan,Lee,79,7,Non-binary,70,185,(517) 932-8615,nolan@gmail.com,296 SE. Spruce Street,20,1
+Jamie,Lynn,80,8,Male,89,156,(578) 754-9619,jamie@gmail.com,"Montclair, NJ 07042",7,4
+Jean,Jackson,80,9,Female,62,164,(444) 437-2745,jean@gmail.com,31 South Hill Ave.,9,1
+Lyon,Herbert,70,10,Male,87,186,(548) 377-1277,lyon@gmail.com,"Fort Mill, SC 29708",10,1

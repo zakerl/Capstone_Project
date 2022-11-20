@@ -14,14 +14,16 @@ scriptDir = dirname(realpath(__file__))
 
 
 class UI_RecordWindow(QWidget, Ui_Form):
-    def __init__(self):
+    def __init__(self,MainWindow):
         super(UI_RecordWindow, self).__init__()
         QWidget.__init__(self)
         self.setupUi(self)
+        self.MainWindow = MainWindow
         self.all_data = []
         self.ButtonOpen.clicked.connect(self.OpenFile)
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
+        self.MainMenu.clicked.connect(self.BackToMain)
 
     def OpenFile(self):
         try:
@@ -115,8 +117,7 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.tableWidget.resizeColumnsToContents()
         self.tableWidget.resizeRowsToContents()
 
+    def BackToMain(self):
+        self.MainWindow.show()
+        self.hide()     
 
-# app = QApplication(sys.argv)
-# sheet = UI_RecordWindow()
-# sheet.show()
-# sys.exit(app.exec_())

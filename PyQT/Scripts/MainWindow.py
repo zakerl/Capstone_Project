@@ -92,12 +92,12 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "DataView"))
 
     def showRecordWindow(self, MainWindow):
-        self.RecordWindow = UI_RecordWindow()
+        self.RecordWindow = UI_RecordWindow(MainWindow)
         self.RecordWindow.show()
         MainWindow.hide()
 
     def showDataView(self, MainWindow):
-        self.DataView = UI_DataView()
+        self.DataView = UI_DataView(MainWindow)
         self.DataView.show()
         MainWindow.hide()       
 
