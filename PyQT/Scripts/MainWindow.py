@@ -15,38 +15,56 @@ from ViewRecord import *
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1005, 1055)
+        MainWindow.resize(803, 928)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setVerticalSpacing(100)
         self.gridLayout.setObjectName("gridLayout")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setSizeConstraint(
-            QtWidgets.QLayout.SetDefaultConstraint)
-        self.verticalLayout.setSpacing(1)
-        self.verticalLayout.setObjectName("verticalLayout")
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setObjectName("pushButton")
-        self.verticalLayout.addWidget(
-            self.pushButton, 0, QtCore.Qt.AlignHCenter)
+        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 0, 2, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 1, 0, 1, 1)
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout.addWidget(
-            self.pushButton_2, 0, QtCore.Qt.AlignHCenter)
+        self.gridLayout.addWidget(self.pushButton_2, 1, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 1, 2, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem4, 2, 0, 1, 1)
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 2, 1, 1, 1)
         self.pushButton_3.clicked.connect(
             lambda: self.showRecordWindow(MainWindow))
-        self.verticalLayout.addWidget(
-            self.pushButton_3, 0, QtCore.Qt.AlignHCenter)
+        spacerItem5 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem5, 2, 2, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem6, 3, 0, 1, 1)
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout.addWidget(
-            self.pushButton_4, 0, QtCore.Qt.AlignHCenter)
-        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.pushButton_4, 3, 1, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(
+            40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem7, 3, 2, 1, 1)
+        self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1005, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 803, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
