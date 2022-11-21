@@ -1,37 +1,69 @@
+#include <stdio.h>
+#include "bed_errors.h"
+
 #define samp_siz 20
 #define rise_threshold 4
 
-// Pulse Monitor Test Script
 int sensorPin = 0;
-
-void setup() {
-    Serial.begin(9600);
-}
-
-void loop ()
-{
-    float reads[samp_siz], sum;
+float reads[samp_siz], sum;
     long int now, ptr;
-    float last, reader, start;
+    float mov_avg, reader, start;
     float first, second, third, before, print_value;
     bool rising;
     int rise_count;
     int n;
     long int last_beat;
 
+/*  
+    Author: Jonathan Hai
+    Date: 2022-11-16
+    Definition: Initializes heart rate sensor.
+*/
+int32_t bed_init_HR(){
+    
+
+    int32_t HR_init_error_code = BED_ERR_NONE;
+
+    // float reads[samp_siz], sum;
+    // long int now, ptr;
+    // float last, reader, start;
+    // float first, second, third, before, print_value;
+    // bool rising;
+    // int rise_count;
+    // int n;
+    // long int last_beat;
+
     for (int i = 0; i < samp_siz; i++)
       reads[i] = 0;
     sum = 0;
     ptr = 0;
 
+    //Error code currently is being pressured by powerful entities to say all is well.
+    if(false){
+        HR_init_error_code = BED_ERR_HEART_RATE;
+    }
+    return HR_init_error_code;
+}
+
+/*  
+    Author: Jonathan Hai
+    Date: 2022-11-16
+    Definition: Reads analog pin for input from heart rate sensor, plots onto Arduino serial plotter.
+*/
+
+int32_t bed_HR_serial_plot(){
+
+    int32_t HR_loop_error_code = BED_ERR_NONE;
+
+    //This is a VERY BAD WAY TO DO THIS! BAD! but it works. so. uh. yep.
     while(1)
     {
       // calculate an average of the sensor
       // during a 20 ms period (this will eliminate
       // the 50 Hz noise caused by electric light
-      n = 0;
-      start = millis();
-      reader = 0.;
+      int32_t n = 0;
+      float start = millis();
+      float reader = 0;
       do
       {
         reader += analogRead (sensorPin);
@@ -47,11 +79,11 @@ void loop ()
       sum -= reads[ptr];
       sum += reader;
       reads[ptr] = reader;
-      last = sum / samp_siz;
-      // now last holds the average of the values in the array
+      mov_avg = sum / samp_siz;
+      // now mov_avg holds the average of the values in the array
 
       // check for a rising curve (= a heart beat)
-      if (last > before)
+      if (mov_avg > before)
       {
         rise_count++;
         if (!rising && rise_count > rise_threshold)
@@ -82,13 +114,15 @@ void loop ()
         rising = false;
         rise_count = 0;
       }
-      before = last;
+      before = mov_avg;
       
       
       ptr++;
       ptr %= samp_siz;
 
     }
+    if(false){
+        HR_loop_error_code = BED_ERR_HEART_RATE;
+    }
+    return HR_loop_error_code;
 }
-
- 
