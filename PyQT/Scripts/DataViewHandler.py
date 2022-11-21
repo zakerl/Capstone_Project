@@ -14,6 +14,24 @@ class UI_DataView(QWidget, Ui_DataView):
         self.setupUi(self)
         self.MainWindow = MainWindow
         self.all_data = []
+        # Rounding buttons
+        self.LoadData.setFixedHeight(31)
+        self.BtnDescribe.setFixedHeight(31)
+        self.ButtonSearch.setFixedHeight(31)
+        self.MainMenu.setFixedHeight(31)
+        self.HeartGraph.setFixedHeight(31)
+        self.HeartGraph.setFixedWidth(185)
+        self.spinBox.setFixedHeight(31)
+        # Rounding text boxes
+        self.IDLabel.setFixedHeight(22)
+        self.StepsLabel.setFixedHeight(22)
+        self.HeartRateLabel.setFixedHeight(22)
+        self.TimeLabel.setFixedHeight(22)
+        self.ActivityTypeLabel.setFixedHeight(22)
+        self.PromptLabel.setFixedHeight(22)
+        self.PainLabel.setFixedHeight(22)
+        self.PainLevelLabel.setFixedHeight(22)
+        # Event handlers for buttons
         self.LoadData.clicked.connect(self.OpenFile)
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
