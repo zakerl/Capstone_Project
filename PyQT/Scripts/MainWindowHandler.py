@@ -15,20 +15,22 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
 
-        self.bg_color = "#777"
-        self.circle_color = '#DDD'
-        self.active_color = "00BCFF"
-        self.toggleBtn.setFixedWidth(28)
+        self.toggleBtn.setFixedWidth(100)
+        self.pushButton.setCheckable(True)
 
         self.pushButton.setFixedWidth(140)
         self.pushButton_2.setFixedWidth(140)
         self.pushButton_3.setFixedWidth(140)
         self.pushButton_4.setFixedWidth(140)
 
+        self.toggleBtn.setFixedHeight(31)
         self.pushButton.setFixedHeight(31)
         self.pushButton_2.setFixedHeight(31)
         self.pushButton_3.setFixedHeight(31)
         self.pushButton_4.setFixedHeight(31)
+
+        self.pushButton.clicked.connect(
+            self.connect)
         #==================================================#
         # Addeed event to Records button
 
@@ -52,16 +54,12 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.DataView.show()
         MainWindow.hide()
 
-    def paintEvent(self, a0: QtGui.QPaintEvent):
-        p = QPainter(self.toggleBtn)
-        p.setRenderHint(QPainter.Antialiasing)
-        p.setPen(Qt.NoPen)
-        rect = QRect(0, 0, self.toggleBtn.width(), self.toggleBtn.height())
-        p.setBrush(QColor(self.bg_color))
-        p.drawRoundedRect(0, 0, rect.width(), self.toggleBtn.height(
-        ), self.toggleBtn.height()/2, self.toggleBtn.height()/2)
-
-        p.end()
+    def connect(self):
+        if(self.pushButton.isChecked()):
+            self.toggleBtn.setText("Connected")
+            style = "background-color: lightgreen"
+            self.toggleBtn.setStyleSheet(
+                self.toggleBtn.styleSheet() + "\n" + style)
 
 
 if __name__ == "__main__":

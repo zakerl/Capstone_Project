@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(814, 869)
+        MainWindow.resize(841, 869)
         MainWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -76,15 +76,16 @@ class Ui_MainWindow(object):
         spacerItem9 = QtWidgets.QSpacerItem(40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem9, 1, 3, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 1, 0, 1, 1)
-        self.toggleBtn = QtWidgets.QCheckBox(self.centralwidget)
-        self.toggleBtn.setText("")
-        self.toggleBtn.setObjectName("toggleBtn")
-        self.gridLayout_2.addWidget(self.toggleBtn, 0, 2, 1, 1)
         spacerItem10 = QtWidgets.QSpacerItem(382, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem10, 0, 0, 1, 1)
+        self.toggleBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.toggleBtn.setStyleSheet("background-color: rgb(170, 0, 0);\n"
+"border-radius: 15px;")
+        self.toggleBtn.setObjectName("toggleBtn")
+        self.gridLayout_2.addWidget(self.toggleBtn, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 814, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 841, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -101,6 +102,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(_translate("MainWindow", "Records"))
         self.pushButton.setText(_translate("MainWindow", "Connect to Tracker"))
         self.pushButton_4.setText(_translate("MainWindow", "DataView"))
+        self.toggleBtn.setText(_translate("MainWindow", "Disconnected"))
 
 
 if __name__ == "__main__":
