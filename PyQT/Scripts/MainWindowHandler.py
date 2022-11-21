@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from MainWindow import *
 from ViewRecord import *
 from DataViewHandler import *
+from ConfigurationHandler import *
 
 
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
@@ -31,6 +32,9 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
         self.pushButton.clicked.connect(
             self.connect)
+
+        self.pushButton_2.clicked.connect(
+            lambda: self.showConfigView(self.MainWindow))
         #==================================================#
         # Addeed event to Records button
 
@@ -52,6 +56,11 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     def showDataView(self, MainWindow):
         self.DataView = UI_DataView(MainWindow)
         self.DataView.show()
+        MainWindow.hide()
+
+    def showConfigView(self, MainWindow):
+        self.ConfigView = UI_ConfigWindow(MainWindow)
+        self.ConfigView.show()
         MainWindow.hide()
 
     def connect(self):

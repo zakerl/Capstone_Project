@@ -5,11 +5,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import pandas as pd
-from PyQt5.uic import loadUiType
 from ViewRecord_2 import *
 import numpy as np
 
-scriptDir = dirname(realpath(__file__))
+#scriptDir = dirname(realpath(__file__))
 #From_Main, _ = loadUiType(join(dirname(__file__), "ViewRecord_2.ui"))
 
 
