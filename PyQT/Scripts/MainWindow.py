@@ -11,7 +11,8 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ViewRecord import *
 from DataViewFunctionality import *
-
+from DataViewLogin2 import *
+from CreateRecords2 import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -39,6 +40,13 @@ class Ui_MainWindow(object):
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName("pushButton_2")
         self.gridLayout.addWidget(self.pushButton_2, 1, 1, 1, 1)
+
+        #==================================================#
+        # Addeed event to Create Records Button
+        self.pushButton_2.clicked.connect(
+            lambda: self.showCreateRecords(MainWindow))
+        #==================================================#
+
         spacerItem3 = QtWidgets.QSpacerItem(
             40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem3, 1, 2, 1, 1)
@@ -63,9 +71,9 @@ class Ui_MainWindow(object):
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout.addWidget(self.pushButton_4, 3, 1, 1, 1)
         #==================================================#
-        # Added event to Dataview button
+        # Open login page
         self.pushButton_4.clicked.connect(
-        lambda: self.showDataView(MainWindow))
+        lambda: self.showLogin())
         #==================================================#
         spacerItem7 = QtWidgets.QSpacerItem(
             40, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -87,20 +95,23 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Connect to Tracker"))
-        self.pushButton_2.setText(_translate("MainWindow", "Configuration"))
+        self.pushButton_2.setText(_translate("MainWindow", "Create Records"))
         self.pushButton_3.setText(_translate("MainWindow", "Records"))
         self.pushButton_4.setText(_translate("MainWindow", "DataView"))
+
+    def showCreateRecords(self, MainWindow):
+        self.DataView = UI_CreateWindow(MainWindow)
+        self.DataView.show()
+        MainWindow.hide() 
 
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
         self.RecordWindow.show()
-        MainWindow.hide()
-
-    def showDataView(self, MainWindow):
-        self.DataView = UI_DataView(MainWindow)
-        self.DataView.show()
-        MainWindow.hide()       
-
+        MainWindow.hide()   
+     
+    def showLogin(self):
+        self.DataLogin = UI_DataViewLogin(MainWindow)
+        self.DataLogin.show() 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
