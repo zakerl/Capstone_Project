@@ -48,7 +48,7 @@ void loop() {
     // Serial.print(totalvector);
     // Serial.println("");
 
-    if (totalvector > 3){
+    if (totalvector > 0.5){
       Steps++;
       Serial.print("Steps:");
       Serial.print(Steps);
