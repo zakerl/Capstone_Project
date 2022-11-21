@@ -34,8 +34,16 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
     def transpositionEncrypt(self,msg):
         cipher = ""
         k_indx = 0
-    
+
+        # Take note of empty spaces in the input
+        badIndex = []
+
         msg_len = float(len(msg))
+        intLength = int(len(msg))
+        for i in range(intLength):
+            if (msg[i] == " "):
+                badIndex.append(i)
+        
         msg_lst = list(msg)
         key_lst = sorted(list(key))
     
@@ -57,9 +65,9 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
                             for row in matrix])
             k_indx += 1
     
-        return cipher
+        return cipher, badIndex
     
-    def transpositionDecrypt(self,cipher):
+    def transpositionDecrypt(self,cipher, badIndex):
         msg = ""
 
         k_indx = 0
@@ -98,40 +106,60 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         if null_count > 0:
             return msg[: -null_count]
     
-        eliminate = "y"
-        for char in eliminate:
-            msg = msg.replace(char, "")
+        intLength = int(msg_len)
+        indexLength = int(len(badIndex))
 
         return msg
 
     def caesarEncrypt(self,text,keylength):
         result = ""
 
-        for i in range(len(text)):
-            char = text[i]
-            # Encrypt uppercase characters
-            if (char.isupper()):
-                result += chr((ord(char) + keylength-65) % 26 + 65)
-    
-            # Encrypt lowercase characters
+        for c in text:
+            if c.isupper(): 
+                result += chr((ord(c) + keylength-65) % 26 + 65)
+
+            elif c.islower(): 
+                result += chr((ord(c) + keylength - 97) % 26 + 97)
+
+            elif c.isdigit():
+                c_new = (int(c) + keylength) % 10
+                result += str(c_new)
+
             else:
-                result += chr((ord(char) + keylength - 97) % 26 + 97)
+                result += c
                     
         return result
 
     def caeserDecrypt(self,text, keylength):
-        return self.caesarEncrypt(text,26-keylength)
+        result = ""
+
+        newKey = 26-keylength
+        for c in text:
+            if c.isupper(): 
+                result += chr((ord(c) + newKey-65) % 26 + 65)
+
+            elif c.islower(): 
+                result += chr((ord(c) + newKey - 97) % 26 + 97)
+
+            elif c.isdigit():
+                c_new = (int(c) - keylength) % 10
+                result += str(c_new)
+
+            else:
+                result += c
+
+        return result
 
     def encryption(self,entry):
         keylength = s
-        partiallyCiphered = self.transpositionEncrypt(entry)
+        partiallyCiphered, badIndex = self.transpositionEncrypt(entry)
         ciphered = self.caesarEncrypt(partiallyCiphered, keylength)
-        return ciphered
+        return ciphered, badIndex
 
-    def decryption(self,entry):
+    def decryption(self,entry, badIndex):
         keylength = s
         partiallyDeciphered = self.caeserDecrypt(entry, keylength)
-        deciphered = self.transpositionDecrypt(partiallyDeciphered)
+        deciphered = self.transpositionDecrypt(partiallyDeciphered, badIndex)
         return deciphered
 
     def save_file(self):
@@ -147,7 +175,15 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             temporaryAge = inputAge.replace(char, "")
             temporaryID = inputID.replace(char, "")
 
-        if (not inputName.isalpha() and not temporaryName.isalpha()):
+        if (inputName == "" or inputAge == ""or inputID == ""):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Error")
+            msg.setInformativeText('Missing Inputs!')
+            msg.setWindowTitle("Error")
+            msg.exec_()
+        
+        elif (not inputName.isalpha() and not temporaryName.isalpha()):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Error")
@@ -170,19 +206,11 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             msg.setInformativeText('Device ID must be in numbers!')
             msg.setWindowTitle("Error")
             msg.exec_()
-        
-        elif (inputName == "" or inputAge == ""or inputID == ""):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Error")
-            msg.setInformativeText('Missing Inputs!')
-            msg.setWindowTitle("Error")
-            msg.exec_()
 
         else:
-            cipheredName = self.encryption(inputName)
-            cipheredAge = self.encryption(inputAge)
-            cipheredID = self.encryption(inputID)
+            cipheredName, badIndex = self.encryption(inputName)
+            cipheredAge, badIndex = self.encryption(inputAge)
+            cipheredID, badIndex = self.encryption(inputID)
 
             filepath = os.path.join(r'C:\Users\jessi\Desktop\MECHTRON_4TB6\GitBranch\Capstone_Project\PyQT\Scripts', 'encrypted.txt')
 
@@ -194,9 +222,9 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             filepath2 = os.path.join(r'C:\Users\jessi\Desktop\MECHTRON_4TB6\GitBranch\Capstone_Project\PyQT\Scripts', 'decrypted.txt')
 
             with open(filepath2, 'w') as f: 
-                f.write("Name: " + self.decryption(cipheredName)+ "\n")
-                f.write("Age: " + self.decryption(cipheredAge)+ "\n")
-                f.write("ID: " + self.decryption(cipheredID)+ "\n")
+                f.write("Name: " + self.decryption(cipheredName, badIndex)+ "\n")
+                f.write("Age: " + self.decryption(cipheredAge, badIndex)+ "\n")
+                f.write("ID: " + self.decryption(cipheredID, badIndex)+ "\n")
 
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
