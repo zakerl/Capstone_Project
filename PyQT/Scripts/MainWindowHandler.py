@@ -14,7 +14,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
-
+        self.connected = False
         self.toggleBtn.setFixedWidth(100)
         self.pushButton.setCheckable(True)
 
@@ -55,11 +55,13 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         MainWindow.hide()
 
     def connect(self):
-        if(self.pushButton.isChecked()):
-            self.toggleBtn.setText("Connected")
-            style = "background-color: lightgreen"
-            self.toggleBtn.setStyleSheet(
-                self.toggleBtn.styleSheet() + "\n" + style)
+        if(not(self.connected)):
+            if(self.pushButton.isChecked()):
+                self.connected = True
+                self.toggleBtn.setText("Connected")
+                style = "background-color: lightgreen"
+                self.toggleBtn.setStyleSheet(
+                    self.toggleBtn.styleSheet() + "\n" + style)
 
 
 if __name__ == "__main__":
