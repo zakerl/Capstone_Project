@@ -7,6 +7,7 @@ from PyQt5.QtCore import *
 import pandas as pd
 from PyQt5.uic import loadUiType
 from DataView import *
+from GraphViewHandler import *
 import numpy as np
 
 scriptDir = dirname(realpath(__file__))
@@ -23,6 +24,7 @@ class UI_DataView(QWidget, Ui_DataView):
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
         self.MainMenu.clicked.connect(self.BackToMain)
+        self.HeartGraph.clicked.connect(self.OpenHeartGraph)
 
     def OpenFile(self):
         try:
@@ -118,3 +120,8 @@ class UI_DataView(QWidget, Ui_DataView):
     def BackToMain(self):
         self.MainWindow.show()
         self.hide()     
+
+    def OpenHeartGraph(self):
+        self.GraphView = UI_GraphView(self.MainWindow)
+        self.GraphView.show()
+        self.MainWindow.hide()    

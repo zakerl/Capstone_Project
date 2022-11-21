@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>844</width>
-    <height>800</height>
+    <width>995</width>
+    <height>927</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="3">
+     <item row="0" column="4">
       <widget class="QPushButton" name="LoadData">
        <property name="text">
         <string>Load CSV</string>
@@ -65,7 +65,7 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="2">
+     <item row="1" column="2" colspan="2">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Participant ID</string>
@@ -75,7 +75,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="3" colspan="2">
+     <item row="1" column="4">
       <widget class="QLineEdit" name="IDLabel"/>
      </item>
      <item row="1" column="6">
@@ -114,7 +114,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3" colspan="2">
+     <item row="2" column="4">
       <widget class="QLineEdit" name="StepsLabel"/>
      </item>
      <item row="2" column="6">
@@ -143,7 +143,7 @@
        </property>
       </spacer>
      </item>
-     <item row="3" column="2">
+     <item row="3" column="2" colspan="2">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Heart rate</string>
@@ -153,7 +153,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="3" colspan="2">
+     <item row="3" column="4">
       <widget class="QLineEdit" name="HeartRateLabel"/>
      </item>
      <item row="3" column="6">
@@ -182,7 +182,7 @@
        </property>
       </spacer>
      </item>
-     <item row="4" column="2">
+     <item row="4" column="2" colspan="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Active time (mins)</string>
@@ -192,7 +192,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="3" colspan="2">
+     <item row="4" column="4">
       <widget class="QLineEdit" name="TimeLabel"/>
      </item>
      <item row="4" column="6">
@@ -221,7 +221,7 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="2">
+     <item row="5" column="2" colspan="2">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Type of Activity</string>
@@ -231,7 +231,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="3" colspan="2">
+     <item row="5" column="4">
       <widget class="QLineEdit" name="ActivityTypeLabel"/>
      </item>
      <item row="5" column="6">
@@ -260,7 +260,7 @@
        </property>
       </spacer>
      </item>
-     <item row="6" column="2">
+     <item row="6" column="2" colspan="2">
       <widget class="QLabel" name="label_7">
        <property name="text">
         <string>Prompt generated</string>
@@ -270,7 +270,7 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="3" colspan="2">
+     <item row="6" column="4">
       <widget class="QLineEdit" name="PromptLabel"/>
      </item>
      <item row="6" column="6">
@@ -299,7 +299,7 @@
        </property>
       </spacer>
      </item>
-     <item row="7" column="2">
+     <item row="7" column="2" colspan="2">
       <widget class="QLabel" name="label_8">
        <property name="text">
         <string>Are you in pain?</string>
@@ -309,7 +309,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="3" colspan="2">
+     <item row="7" column="4">
       <widget class="QLineEdit" name="PainLabel"/>
      </item>
      <item row="7" column="6">
@@ -338,7 +338,7 @@
        </property>
       </spacer>
      </item>
-     <item row="8" column="2">
+     <item row="8" column="2" colspan="2">
       <widget class="QLabel" name="label_9">
        <property name="text">
         <string>Pain level (1-10)</string>
@@ -348,7 +348,7 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="3" colspan="2">
+     <item row="8" column="4">
       <widget class="QLineEdit" name="PainLevelLabel"/>
      </item>
      <item row="8" column="6">
@@ -377,7 +377,7 @@
        </property>
       </spacer>
      </item>
-     <item row="9" column="3">
+     <item row="9" column="4">
       <widget class="QPushButton" name="ButtonSearch">
        <property name="text">
         <string>Search</string>
@@ -456,7 +456,7 @@
        </widget>
       </widget>
      </item>
-     <item row="11" column="0" colspan="2">
+     <item row="11" column="0">
       <spacer name="horizontalSpacer_23">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -468,6 +468,13 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="11" column="4">
+      <widget class="QPushButton" name="MainMenu">
+       <property name="text">
+        <string>Back to Main Menu</string>
+       </property>
+      </widget>
      </item>
      <item row="11" column="6">
       <spacer name="horizontalSpacer_22">
@@ -482,12 +489,38 @@
        </property>
       </spacer>
      </item>
-     <item row="11" column="3">
-      <widget class="QPushButton" name="MainMenu">
+     <item row="12" column="0">
+      <spacer name="horizontalSpacer_25">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="12" column="3" colspan="2">
+      <widget class="QPushButton" name="HeartGraph">
        <property name="text">
-        <string>Back to Main Menu</string>
+        <string>Graph for HeartRate vs Time</string>
        </property>
       </widget>
+     </item>
+     <item row="12" column="6">
+      <spacer name="horizontalSpacer_24">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

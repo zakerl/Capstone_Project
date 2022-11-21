@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from MainWindow import *
 from ViewRecord import *
-from DataViewFunctionality import *
+from DataViewHandler import *
 
 
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
