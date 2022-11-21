@@ -212,14 +212,14 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             cipheredAge, badIndex = self.encryption(inputAge)
             cipheredID, badIndex = self.encryption(inputID)
 
-            filepath = os.path.join(r'C:\Users\jessi\Desktop\MECHTRON_4TB6\GitBranch\Capstone_Project\PyQT\Scripts', 'encrypted.txt')
+            filepath = os.path.join(scriptDir, 'encrypted.txt')
 
             with open(filepath, 'w') as f: 
                 f.write("Encrypted Name: " + cipheredName + "\n")
                 f.write("Encrypted Age: " + cipheredAge + "\n")
                 f.write("Encrypted ID: " + cipheredID + "\n")
 
-            filepath2 = os.path.join(r'C:\Users\jessi\Desktop\MECHTRON_4TB6\GitBranch\Capstone_Project\PyQT\Scripts', 'decrypted.txt')
+            filepath2 = os.path.join(scriptDir, 'decrypted.txt')
 
             with open(filepath2, 'w') as f: 
                 f.write("Name: " + self.decryption(cipheredName, badIndex)+ "\n")

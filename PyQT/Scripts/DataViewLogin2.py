@@ -33,7 +33,8 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         username = self.lineEdit.text()
         password = self.lineEdit_2.text()
 
-        with open(r"C:\Users\jessi\Desktop\MECHTRON_4TB6\GitBranch\Capstone_Project\PyQT\Scripts\credentials.txt") as f:
+        filepath = os.path.join(scriptDir, "credentials.txt")
+        with open(filepath) as f:
             lines = f.readlines()
 
         if lines[0].strip() == username and lines[1].strip() == password:
