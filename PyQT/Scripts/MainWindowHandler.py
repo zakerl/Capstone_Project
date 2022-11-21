@@ -1,0 +1,73 @@
+import os
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from MainWindow import *
+from ViewRecord import *
+from DataViewFunctionality import *
+
+
+class UI_MainWindowHandler(QWidget, Ui_MainWindow):
+    def __init__(self, MainWindow):
+        super(UI_MainWindowHandler, self).__init__()
+        QWidget.__init__(self)
+        self.MainWindow = MainWindow
+        self.setupUi(self.MainWindow)
+
+        self.bg_color = "#777"
+        self.circle_color = '#DDD'
+        self.active_color = "00BCFF"
+        self.toggleBtn.setFixedWidth(28)
+
+        self.pushButton.setFixedWidth(140)
+        self.pushButton_2.setFixedWidth(140)
+        self.pushButton_3.setFixedWidth(140)
+        self.pushButton_4.setFixedWidth(140)
+
+        self.pushButton.setFixedHeight(31)
+        self.pushButton_2.setFixedHeight(31)
+        self.pushButton_3.setFixedHeight(31)
+        self.pushButton_4.setFixedHeight(31)
+        #==================================================#
+        # Addeed event to Records button
+
+        self.pushButton_3.clicked.connect(
+            lambda: self.showRecordWindow(self.MainWindow))
+        #==================================================#
+
+        #==================================================#
+        # Added event to Dataview button
+        self.pushButton_4.clicked.connect(
+            lambda: self.showDataView(self.MainWindow))
+        #==================================================#
+
+    def showRecordWindow(self, MainWindow):
+        self.RecordWindow = UI_RecordWindow(MainWindow)
+        self.RecordWindow.show()
+        MainWindow.hide()
+
+    def showDataView(self, MainWindow):
+        self.DataView = UI_DataView(MainWindow)
+        self.DataView.show()
+        MainWindow.hide()
+
+    def paintEvent(self, a0: QtGui.QPaintEvent):
+        p = QPainter(self.toggleBtn)
+        p.setRenderHint(QPainter.Antialiasing)
+        p.setPen(Qt.NoPen)
+        rect = QRect(0, 0, self.toggleBtn.width(), self.toggleBtn.height())
+        p.setBrush(QColor(self.bg_color))
+        p.drawRoundedRect(0, 0, rect.width(), self.toggleBtn.height(
+        ), self.toggleBtn.height()/2, self.toggleBtn.height()/2)
+
+        p.end()
+
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = UI_MainWindowHandler(MainWindow)
+    # ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
