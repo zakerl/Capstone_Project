@@ -1,6 +1,11 @@
-Participant ID,Steps,Heart rate,Active time (mins),Type of Activity,Prompt generated,Are you in pain?,Pain level (1-10)
-1,50,100,6,walking,Yes,Yes,2
-2,10,70,1,walking,No,N/A,N/A
-3,0,67,1,Movement detected,Yes,No,N/A
-4,10,70,1,walking,No,N/A,N/A
-5,200,110,10,walking,Yes,Yes,6
+Participant ID,Time,Steps,Heart rate,Active time (mins),Type of Activity,Prompt generated,Are you in pain?,Pain level (1-10)
+1,7:22,20,69,1,walking,No,N/A,N/A
+1,9:20,50,100,6,walking,Yes,Yes,2
+1,11:18,30,85,5,Movement detected ,Yes,Yes,4
+1,13:12,10,70,1,walking,No,N/A,N/A
+1,16:29,0,67,1,Movement detected,Yes,No,N/A
+1,17:46,10,70,1,walking,No,N/A,N/A
+1,19:05,200,110,10,walking,Yes,Yes,6
+1,21:53,0,80,0,Idle,No,N/A,N/A
+1,22:00,0,65,0,Idle,No,N/A,N/A
+1,22:38,20,70,2,walking,Yes,No,N/A

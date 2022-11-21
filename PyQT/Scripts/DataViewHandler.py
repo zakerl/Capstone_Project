@@ -1,14 +1,8 @@
 import os
 import sys
-from os.path import dirname, realpath, join
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-import pandas as pd
 from PyQt5.uic import loadUiType
 from DataView import *
 from GraphViewHandler import *
-import numpy as np
 
 scriptDir = dirname(realpath(__file__))
 
