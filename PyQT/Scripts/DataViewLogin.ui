@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(198, 198, 198)</string>
+   <string notr="true">background-color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -26,7 +26,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font-size: 20pt;</string>
+    <string notr="true">font-size: 20pt;
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Data View Login</string>
@@ -45,26 +46,40 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font-size: 14pt;</string>
+    <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
    </property>
    <property name="text">
     <string>Username</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>260</y>
-     <width>121</width>
-     <height>51</height>
+     <y>270</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font-size: 14pt;</string>
+    <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
    </property>
    <property name="text">
     <string>Password</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -77,7 +92,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
@@ -90,7 +106,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -103,8 +120,11 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(214, 214, 214);
-font-size: 12pt;</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
    </property>
    <property name="text">
     <string>Enter</string>
