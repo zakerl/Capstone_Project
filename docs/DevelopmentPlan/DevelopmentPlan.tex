@@ -36,7 +36,7 @@ September 26 & N/A & Initial documentation\\
 \maketitle
 
 \section{Team Meeting Plan}
-Weekly meetings are to be held every Saturday at 8:00PM, and additional meetings are to be planned as needed. Any meetings requiring the attendance of the team's supervisor will have to be planned based on Dr. Macedo's availability. In cases where some team members are absent, each absent member is expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Note-taker is expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
+Weekly meetings are to be held every Wednesday evening, and additional meetings are to be planned as needed. Any meetings requiring the attendance of the team's supervisor will have to be planned based on Dr. Macedo's availability. In cases where some team members are absent, each absent member is expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Note-taker is expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
 
 \pagebreak
 
@@ -88,29 +88,27 @@ The task of reviewing rubrics, and each subcomponents of the project will not be
 
 \section{Proof of Concept Demonstration Plan}
 
-The risks for the success of the project lie primarily within the software that is designed. The hardware component in which data is collected will be designed with a relatively simplistic plug-and-play approach with the goal of feeding data to the software component of the project. Several off-the-shelf sensors will be used to reduce the development overhead and the many possible problems that developing a complex electromechanic system can involve. However, a proof-of-concept demonstration is still necessary regarding the ergonomics of the project. Should the hardware take on the form of wearable technology (as is currently planned), a demonstration is necessary to show that the system is possible to be worn comfortably, safely, and unintrusively during the user's daily activities.\\
+The risks for the success of the project lie primarily within the software that is designed. The hardware component in which data is collected will be designed with a relatively simplistic plug-and-play approach with the goal of feeding data to the software component of the project. Several off-the-shelf sensors will be used to reduce the development overhead and the many possible problems that developing a complex electromechanic system can involve. However, a proof-of-concept demonstration is still necessary regarding the activity tracking aspect of the project.\\
 
-The software system will be the lynchpin of the project. Its goal will be to take the various events detected by the hardware system that are relevant to Ecological Momentary Assessment (EMA) and handle them accordingly. This will involve logging timestamps, locations, environmental factors, and other momentary information, and prompting the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and the momentary data. Finally it will send off the data to the team of physicians handling the user's EMA at the end of the monitoring period.\\
+The hardware system will be the lynchpin of the project. Its goal will be to take the various events detected by the sensors that are relevant to Ecological Momentary Assessment (EMA) and handle them accordingly. This will involve logging timestamps, environmental factors, activity information, and other momentary data. It will then prompt the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and the momentary data. Finally it will send off the data to the team of physicians handling the user's EMA at the end of the monitoring period.\\
 
-Other than the ergonomics, if the hardware component of the system is incapable of sending data and handling output from the software, continuing with the project involves finding a new method of data collection and transfer. If the software component of the system is incapable of responding to data inputs from the hardware, processing said data, and returning meaningful results, then the goal of the entire project is rendered moot.\\
+Other than the sensor array, if the hardware component of the system is incapable of sending data and handling output from the software, continuing with the project involves finding a new method of data collection and transfer. If the software component of the system is incapable of responding to data inputs from the hardware, processing said data, and returning meaningful results, then the goal of the entire project is rendered moot.\\
 
 The goal for the proof of concept demo will be to demonstrate a functional EMA-enabled software system that can respond to events relevant to EMA, and respond accordingly. This software system will be run locally on a team member's computer. It will be capable of:\\
 
 \begin{itemize}
-\item Accepting inputs in the form of momentary data from events that are triggered as a simulation of real EMA events (such as limps, falls, strange movement patterns, etc.)
+\item Accepting inputs in the form of momentary data from events that are triggered as a simulation of real EMA events.
 \item Prompting the user to answer relevant self-survey questions.
 \item Displaying information and intaking information from the user simplistically according to common HCI guidelines.
-\item Processing the inbound EMA and survey data and producing results meaningful to the physicians responsible for the user's EMA.
 \item Producing graphical representations of said EMA data.
-\item Sending the processed data and representations to the physicians responsible for the user's EMA.
-\item Notifying the user about relevant information as a result of processing data (confirmations that data has been sent, recommendations for activity or rest, etc.)
+\item Storing the processed data and representations for the physicians responsible for the user's EMA.
 \end{itemize}
 
 Regarding the hardware component of the project, it will be:\\
 
 \begin{itemize}
-\item Useable/wearable in a safe, comfortable, and non-intrusive manner optimized for human well-being and overall system performance.
-\item Placed in a position to collect data relevant to EMA display data regarding EMA related activities.
+\item Displaying prompt information and accept user prompt input.
+\item Collecting data relevant data associated with EMA related activities.
 \end{itemize}
 
 \section{Technology}
@@ -122,7 +120,6 @@ The following tools shall be used for development in software, embedded systems 
 \item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
 \item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
 \item SQL will be used for DBMS and storing data for activity-based tracking.
-\item R will be used for statistical computing and data analysis.
 \end{itemize}
 \item Platforms for development:
 \begin{itemize}
@@ -130,8 +127,7 @@ The following tools shall be used for development in software, embedded systems 
 \item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc).
 \item STM32Cube IDE for STM32 development. 
 \item Autodesk Inventor may be used for creating models for the device and finishing product.
-\item MySQL will be used as the platform for interacting with the Database.
-\item The R environment will be used for data manipulation, calculation and graphical display\\\\
+\item MySQL will be used as the platform for interacting with the Database.\\\\
 \end{itemize}
 
 \item Version control platforms:
@@ -159,14 +155,13 @@ The following tools shall be used for development in software, embedded systems 
 \item OpenCV: Open Source computer vision library capable of performing image and video manipulation.
 \item Numpy, pandas: Libraries with Python for number and matrix computation/manipulation.
 \item HAL libraries: Should we pursue using an ARM architecture chip, the HAL libraries will allow for ease of coding.
-\item tkinter: Default python UI library.
+\item pyQT: Python UI library.
 \item Several Arduino Sensor libraries to use for interacting with accelerators and other wireless modules.
 \end{itemize}
 \item Tools to use for project:
 \begin{itemize}
 \item 3D printer and slicer tools for rapid prototyping.
 \item Soldering station and Glue Gun.
-\item Wood working tools (Hand Saws and Power Sanding ) if necessary.
 \end{itemize}
 \end{enumerate}
 
