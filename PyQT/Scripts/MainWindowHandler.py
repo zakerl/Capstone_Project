@@ -7,6 +7,8 @@ from MainWindow import *
 from ViewRecord import *
 from DataViewHandler import *
 from ConfigurationHandler import *
+from CreateRecordsHandler import *
+from DataViewLoginHandler import *
 
 
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
@@ -20,22 +22,30 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.pushButton.setCheckable(True)
 
         self.pushButton.setFixedWidth(190)
+        self.buttonCreate.setFixedWidth(190)
         self.pushButton_2.setFixedWidth(190)
         self.pushButton_3.setFixedWidth(190)
         self.pushButton_4.setFixedWidth(190)
 
         self.toggleBtn.setFixedHeight(31)
         self.pushButton.setFixedHeight(31)
+        self.buttonCreate.setFixedHeight(31)
         self.pushButton_2.setFixedHeight(31)
         self.pushButton_3.setFixedHeight(31)
         self.pushButton_4.setFixedHeight(31)
 
+
         self.pushButton.clicked.connect(
             self.connect)
-
+        # Conifg button
         self.pushButton_2.clicked.connect(
             lambda: self.showConfigView(self.MainWindow))
         #==================================================#
+        # Create record button
+        #==================================================#
+        self.buttonCreate.clicked.connect(
+            lambda: self.showCreateRecords(self.MainWindow)
+        )
         # Addeed event to Records button
 
         self.pushButton_3.clicked.connect(
@@ -53,10 +63,15 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.RecordWindow.show()
         MainWindow.hide()
 
-    def showDataView(self, MainWindow):
-        self.DataView = UI_DataView(MainWindow)
-        self.DataView.show()
+    def showCreateRecords(self, MainWindow):
+        self.CreateWindow = UI_CreateWindow(MainWindow)
+        self.CreateWindow.show()
         MainWindow.hide()
+
+    def showDataView(self, MainWindow):
+        self.DataView = UI_DataViewLogin(MainWindow)
+        self.DataView.show()
+        #MainWindow.hide()
 
     def showConfigView(self, MainWindow):
         self.ConfigView = UI_ConfigWindow(MainWindow)
