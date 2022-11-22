@@ -19,10 +19,10 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.toggleBtn.setFixedWidth(100)
         self.pushButton.setCheckable(True)
 
-        self.pushButton.setFixedWidth(140)
-        self.pushButton_2.setFixedWidth(140)
-        self.pushButton_3.setFixedWidth(140)
-        self.pushButton_4.setFixedWidth(140)
+        self.pushButton.setFixedWidth(190)
+        self.pushButton_2.setFixedWidth(190)
+        self.pushButton_3.setFixedWidth(190)
+        self.pushButton_4.setFixedWidth(190)
 
         self.toggleBtn.setFixedHeight(31)
         self.pushButton.setFixedHeight(31)
