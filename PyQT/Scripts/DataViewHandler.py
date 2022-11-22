@@ -8,7 +8,7 @@ scriptDir = dirname(realpath(__file__))
 
 
 class UI_DataView(QWidget, Ui_DataView):
-    def __init__(self,MainWindow):
+    def __init__(self, MainWindow):
         super(UI_DataView, self).__init__()
         QWidget.__init__(self)
         self.setupUi(self)
@@ -94,9 +94,11 @@ class UI_DataView(QWidget, Ui_DataView):
         Prompt = self.PromptLabel.text()
         Pain = self.PainLabel.text()
         PainLevel = self.PainLevelLabel.text()
+        Time = self.TimeLabel.text()
         ref_dict = {
             "Participant ID": ID,
             "Steps": Steps,
+            "Time": Time,
             "Heart rate": HeartRate,
             "Active time (mins)": ActivityTime,
             "Type of Activity": ActivityType,
@@ -131,9 +133,9 @@ class UI_DataView(QWidget, Ui_DataView):
 
     def BackToMain(self):
         self.MainWindow.show()
-        self.hide()     
+        self.hide()
 
     def OpenHeartGraph(self):
         self.GraphView = UI_GraphView(self.MainWindow)
         self.GraphView.show()
-        self.MainWindow.hide()    
+        self.MainWindow.hide()
