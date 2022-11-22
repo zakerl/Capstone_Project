@@ -23,9 +23,10 @@
 #define CHARACTER_SIZE          TEXT_SIZE * PIXELS_PER_CHARACTER                              /* Size of each character in pixels                                                                           */
 
 /* Global Declarations*/
-Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);                        /* Global declaration of the oled object*/
 uint8_t selState    = 0;                                                                      /* Current State of the select button                                                                         */
 uint8_t respState   = 0;                                                                      /* Current State of the response button                                                                       */
+uint8_t promptState = 0;
 uint8_t buttonFlag  = 0;                                                                      /* Flag variable linked with button state                                                                     */
 
 /*Function Declarations*/         

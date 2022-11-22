@@ -36,28 +36,13 @@ int32_t bed_init_rtc()
 
 void bed_display_info()
 {
-    DateTime now = rtc.now();
+    now = rtc.now();
     rtc_date_time.rtc_year   = now.year();
     rtc_date_time.rtc_month  = now.month();
     rtc_date_time.rtc_day    = now.day();
     rtc_date_time.rtc_hour   = now.hour();
     rtc_date_time.rtc_min    = now.minute();
     rtc_date_time.rtc_sec    = now.second();
-    Serial.print(now.year(), DEC);
-    Serial.print('/');
-    Serial.print(now.month(), DEC);
-    Serial.print('/');
-    Serial.print(now.day(), DEC);
-    Serial.print("(");
-    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
-    Serial.print(") ");
-    Serial.print(now.hour(), DEC);
-    Serial.print(':');
-    Serial.print(now.minute(), DEC);
-    Serial.print(':');
-    Serial.print(now.second(), DEC);
-    Serial.println();
-    delay(1000);
 }
 /*
     Author    : Anish Rangarajan

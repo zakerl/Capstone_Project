@@ -20,7 +20,8 @@ int32_t bed_init_display()
     while (1) delay(10);
   }
   else
-  {   
+  {
+    b32_error_code = BED_ERR_NONE;
     oled.setFont(&FreeSans9pt7b);
     delay(1000);
     bed_splash_screen(); 
@@ -35,6 +36,7 @@ int32_t bed_init_display()
 */
 int32_t bed_display_prompt(uint16_t bed_activity_flag)
 {
+  oled.clearDisplay();
   char *response;
   int32_t b32_error_code = BED_ERR_NONE;
   for(int i=0; i < PROMPT_NUMBER; i++)
@@ -42,19 +44,24 @@ int32_t bed_display_prompt(uint16_t bed_activity_flag)
       if (prompts[i].prompt_id == bed_activity_flag)
         {
           prompts[i].prompt_triggered = 1;
-          //bed_scroll_text(prompts[i].prompt_question,true);
           bed_format_prompt(prompts[i].prompt_question);
           bed_display_responses();
-      
-          response = bed_select_response(selState);
-          if(respState == HIGH)
+          while (prompts[i].prompt_response == "N/A") 
           {
-            prompts[i].prompt_response = response;
-            Serial.println(prompts[i].prompt_response);
-            bed_display_one_line("Thank You", 0, 30, true);
-            delay(200);
-            bed_splash_screen();
-            return b32_error_code;
+            selState    = digitalRead(BED_SEL_BTN);
+            respState   = digitalRead(BED_RESP_BTN);  
+            response    = bed_select_response(selState);
+            Serial.println(response);
+            if(respState == HIGH)
+            {
+              prompts[i].prompt_response = response;
+              Serial.println(prompts[i].prompt_response);
+              bed_display_one_line("Thank You", 0, 30, true);
+              delay(200);
+              bed_splash_screen();
+              prompts[i].prompt_response = "N/A";
+              return b32_error_code;
+            }
           }
         }
     }
@@ -102,6 +109,7 @@ void bed_format_prompt(char *prompt_question)
   char word[20];
   oled.clearDisplay();
   oled.setCursor(0, 13);
+  oled.setTextColor(WHITE);
   oled.setTextWrap(true);
   for(int i=0,j=0; i <= prompt_len; i++)
   {
@@ -248,11 +256,25 @@ void bed_display_responses()
 void bed_display_date_time()
 {
   oled.fillRect(0, 0, 128, 25, WHITE);
-  String date = (String)rtc_date_time.rtc_year +"-"+ (String)rtc_date_time.rtc_month +"-"+ (String)rtc_date_time.rtc_day;
-  bed_display_one_line(date, 20, 20, false, BLACK);
   oled.fillRect(0, 35, 128, 25, WHITE);
-  String time = (String)rtc_date_time.rtc_hour +":"+ (String)rtc_date_time.rtc_min +":"+ (String)rtc_date_time.rtc_sec;
-  bed_display_one_line(time, 20, 55, false, BLACK);
+
+  oled.setTextColor(BLACK);
+  oled.setCursor(20, 20);
+  oled.print(rtc_date_time.rtc_year);
+  oled.print(":");
+  oled.print(rtc_date_time.rtc_month);
+  oled.print(":");
+  oled.print(rtc_date_time.rtc_day);
+
+  oled.setCursor(20, 55);
+  oled.print(rtc_date_time.rtc_hour);
+  oled.print(":");
+  oled.print(rtc_date_time.rtc_min);
+  oled.print(":");
+  oled.print(rtc_date_time.rtc_sec);
+
+  oled.display();
+
 }
 
 
