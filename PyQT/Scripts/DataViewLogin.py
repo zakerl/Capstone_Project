@@ -9,39 +9,55 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import *
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(480, 555)
-        Dialog.setStyleSheet("background-color: rgb(198, 198, 198)")
+        Dialog.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(120, 30, 251, 71))
-        self.label.setStyleSheet("font-size: 20pt;")
+        self.label.setStyleSheet("font-size: 20pt;\n"
+"color: rgb(255, 255, 255);")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setGeometry(QtCore.QRect(50, 180, 101, 41))
-        self.label_2.setStyleSheet("font-size: 14pt;")
+        self.label_2.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+"font: 9pt \"Microsoft YaHei UI\";\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-radius: 15px;")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(50, 260, 121, 51))
-        self.label_3.setStyleSheet("font-size: 14pt;")
+        self.label_3.setGeometry(QtCore.QRect(50, 270, 101, 41))
+        self.label_3.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+"font: 9pt \"Microsoft YaHei UI\";\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-radius: 15px;")
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(170, 180, 261, 41))
-        self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit.setStyleSheet("background-color: rgb(209, 209, 209);\n"
+"border-radius: 11px;")
         self.lineEdit.setObjectName("lineEdit")
         self.lineEdit_2 = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_2.setGeometry(QtCore.QRect(170, 270, 261, 41))
-        self.lineEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.lineEdit_2.setStyleSheet("background-color: rgb(209, 209, 209);\n"
+"border-radius: 11px;")
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_2.setEchoMode(QLineEdit.Password)
+        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(210, 390, 181, 41))
-        self.pushButton.setStyleSheet("background-color: rgb(214, 214, 214);\n"
-"font-size: 12pt;")
+        self.pushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+"font: 9pt \"Microsoft YaHei UI\";\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-radius: 15px;")
         self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(Dialog)
