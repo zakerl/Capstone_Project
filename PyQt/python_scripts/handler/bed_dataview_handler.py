@@ -1,8 +1,10 @@
 import os
-import sys
-from PyQt5.uic import loadUiType
 from python_pyqt.bed_dataview import *
 from bed_graph_handler import *
+
+''' Dataview is used to check data generated from device 
+    and plot meaningful graphs.
+'''
 
 scriptDir = dirname(realpath(__file__))
 
@@ -14,7 +16,9 @@ class UI_DataView(QWidget, Ui_DataView):
         self.setupUi(self)
         self.MainWindow = MainWindow
         self.all_data = []
+        #==================================================#
         # Rounding buttons
+        #==================================================#
         self.LoadData.setFixedHeight(31)
         self.BtnDescribe.setFixedHeight(31)
         self.ButtonSearch.setFixedHeight(31)
@@ -22,7 +26,9 @@ class UI_DataView(QWidget, Ui_DataView):
         self.HeartGraph.setFixedHeight(31)
         self.HeartGraph.setFixedWidth(280)
         self.spinBox.setFixedHeight(31)
+        #==================================================#
         # Rounding text boxes
+        #==================================================#
         self.IDLabel.setFixedHeight(22)
         self.StepsLabel.setFixedHeight(22)
         self.HeartRateLabel.setFixedHeight(22)
@@ -31,7 +37,9 @@ class UI_DataView(QWidget, Ui_DataView):
         self.PromptLabel.setFixedHeight(22)
         self.PainLabel.setFixedHeight(22)
         self.PainLevelLabel.setFixedHeight(22)
+        #==================================================#
         # Event handlers for buttons
+        #==================================================#
         self.LoadData.clicked.connect(self.OpenFile)
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)

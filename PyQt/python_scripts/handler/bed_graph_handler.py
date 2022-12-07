@@ -2,13 +2,11 @@ from python_pyqt.bed_graph import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
-from PyQt5 import QtWidgets, uic
-import numpy as np
 import pandas as pd
-from os.path import dirname, realpath, join
+from os.path import dirname, realpath
 
+'''Graph handler handles the graph window along with its appearance and format'''
 
 class UI_GraphView(QMainWindow, Ui_GraphWindow):
     def __init__(self,MainWindow):
@@ -27,12 +25,16 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
             df_temp = df
             time = df["Time"]
             HeartRate = df_temp["Heart rate"]
+            #==================================================#
             # Extracting hour for easy plot for POC
+            #==================================================#
             time_hour = []
             for i in time:
                 t=i.split(':')
                 time_hour.append(int(t[0]))\
-            # color of plot line
+            #==================================================#
+            # Color of plot line
+            #==================================================#
             self.plot(time_hour,HeartRate)
         except Exception as Error:
             print (Error)

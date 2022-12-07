@@ -1,15 +1,11 @@
 import os
-import sys
 from os.path import dirname, realpath, join
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import pandas as pd
 from PyQt5.uic import loadUiType
 from python_pyqt.bed_create_record import *
 import numpy as np
-import math
-from functools import partial
 from python_pyqt.bed_login import *
 from bed_dataview_handler import *
 
@@ -26,7 +22,6 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         self.pushButton.clicked.connect(lambda: self.loginAttempt())
         self.lineEdit.returnPressed.connect(lambda: self.loginAttempt())
         self.lineEdit_2.returnPressed.connect(lambda: self.loginAttempt())
-        #self.pushButton_2.clicked.connect(self.BackToMain)
 
     def loginAttempt(self):
 
@@ -58,7 +53,3 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
 
         self.lineEdit.clear()
         self.lineEdit_2.clear()
-
-    #def BackToMain(self):
-    #    self.MainWindow.show()
-    #    self.hide()

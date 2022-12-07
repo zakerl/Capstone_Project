@@ -1,12 +1,16 @@
-import os
-import sys
-from os.path import dirname, realpath, join
+from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import pandas as pd
 from python_pyqt.bed_config import *
-import numpy as np
+
+
+''' This handler script saves config information that
+    can later be used to upload data to device.
+'''
+#==================================================#
+# Current method dumps config txt to CWD
+#==================================================#
 scriptDir = dirname(realpath(__file__))
 
 
@@ -18,7 +22,9 @@ class UI_ConfigWindow(QWidget, Ui_Form):
         self.MainWindow = MainWindow
         self.MainMenuBtn.clicked.connect(self.BackToMain)
         self.SaveTxt.clicked.connect(self.saveAsTxt)
-
+        #==================================================#
+        # Setting fixed button sizes for UI
+        #==================================================#
         self.MainMenuBtn.setFixedHeight(31)
         self.SaveTxt.setFixedHeight(31)
         self.SaveTxt.setFixedWidth(170)

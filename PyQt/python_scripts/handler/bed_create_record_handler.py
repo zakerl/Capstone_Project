@@ -1,16 +1,14 @@
 import os
-import sys
-from os.path import dirname, realpath, join
+from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import pandas as pd
-from PyQt5.uic import loadUiType
 from python_pyqt.bed_create_record import *
-import numpy as np
 import math
-from functools import partial
 
+
+'''This script uses ciphering and encryption
+to create records and saves them.'''
 
 scriptDir = dirname(realpath(__file__))
 
@@ -33,8 +31,9 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
     def transpositionEncrypt(self,msg):
         cipher = ""
         k_indx = 0
-
+        #==================================================#
         # Take note of empty spaces in the input
+        #==================================================#
         badIndex = []
 
         msg_len = float(len(msg))
@@ -48,16 +47,19 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
     
         col = len(key)
         row = int(math.ceil(msg_len / col))
-    
-        # add the padding character '_' in empty
+        #==================================================#
+        # Add the padding character '_' in empty
+        #==================================================#
         fill_null = int((row * col) - msg_len)
         msg_lst.extend('_' * fill_null)
-    
+        #==================================================#
         # create Matrix and insert message and 
+        #==================================================#
         matrix = [msg_lst[i: i + col] 
                 for i in range(0, len(msg_lst), col)]
-    
+        #==================================================#
         # read matrix column-wise using key
+        #==================================================#
         for _ in range(col):
             curr_idx = key.index(key_lst[k_indx])
             cipher += ''.join([row[curr_idx] 
@@ -74,21 +76,30 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         msg_len = float(len(cipher))
         msg_lst = list(cipher)
     
-        # calculate column of the matrix
+        #==================================================#
+        # Calculate column of the matrix
+        #==================================================#
         col = len(key)
-        
-        # calculate maximum row of the matrix
+        #==================================================#
+        # Calculate maximum row of the matrix
+        #==================================================#
         row = int(math.ceil(msg_len / col))
-    
-        # convert key into list and sort alphabetically so we can access each character by its alphabetical position.
+        #==================================================#
+        # Convert key into list and sort alphabetically 
+        # so we can access each character by its 
+        # alphabetical position.
+        #==================================================#
         key_lst = sorted(list(key))
-    
-        # create an empty matrix to store deciphered message
+        #==================================================#
+        # Create an empty matrix to store deciphered message
+        #==================================================#
         dec_cipher = []
         for _ in range(row):
             dec_cipher += [[None] * col]
-    
-        # Arrange the matrix column wise according to permutation order by adding into new matrix
+        #==================================================#
+        # Arrange the matrix column wise according to 
+        # permutation order by adding into new matrix
+        #==================================================#
         for _ in range(col):
             curr_idx = key.index(key_lst[k_indx])
     
@@ -96,8 +107,9 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
                 dec_cipher[j][curr_idx] = msg_lst[msg_indx]
                 msg_indx += 1
             k_indx += 1
-    
-        # convert decrypted msg matrix into a string
+        #==================================================#
+        # Convert decrypted msg matrix into a string
+        #==================================================#
         msg = ''.join(sum(dec_cipher, []))
     
         null_count = msg.count('_')
@@ -166,8 +178,9 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         inputName = self.lineEdit.text()
         inputAge = self.lineEdit_2.text()
         inputID = self.lineEdit_3.text()
-        
+        #==================================================#
         # Having spaces in inputs is okay....
+        #==================================================#
         eliminate = " "
         for char in eliminate:
             temporaryName = inputName.replace(char, "")

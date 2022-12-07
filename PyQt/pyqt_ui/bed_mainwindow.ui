@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
-    <height>869</height>
+    <width>1114</width>
+    <height>1006</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
        </spacer>
       </item>
       <item row="4" column="1" colspan="3">
-       <widget class="QPushButton" name="buttonCreate">
+       <widget class="QPushButton" name="CreateRecordsButton">
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -48,7 +48,7 @@ border-radius: 15px;</string>
        </widget>
       </item>
       <item row="2" column="1" colspan="3">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="ConnectButton">
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -138,7 +138,7 @@ border-radius: 15px;</string>
        </spacer>
       </item>
       <item row="3" column="1" colspan="3">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="ConfigButton">
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -243,7 +243,7 @@ border-radius: 15px;</string>
        </spacer>
       </item>
       <item row="5" column="1" colspan="3">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="RecordsButton">
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -257,7 +257,7 @@ border-radius: 15px;</string>
        </widget>
       </item>
       <item row="7" column="1" colspan="3">
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="DataViewButton">
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -279,8 +279,8 @@ border-radius: 15px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>841</width>
-     <height>26</height>
+     <width>1114</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>
