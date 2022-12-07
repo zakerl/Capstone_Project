@@ -1,0 +1,5 @@
+setup.py
+python_pyqt.egg-info/PKG-INFO
+python_pyqt.egg-info/SOURCES.txt
+python_pyqt.egg-info/dependency_links.txt
+python_pyqt.egg-info/top_level.txt
