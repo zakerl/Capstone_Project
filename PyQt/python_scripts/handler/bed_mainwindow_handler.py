@@ -70,8 +70,6 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         #==================================================#
         self.DataViewButton.clicked.connect(
             lambda: self.showDataView(self.MainWindow))
-        #==================================================#
-
     '''
     Different windows open when buttons are clicked, event handler functions described below
     '''

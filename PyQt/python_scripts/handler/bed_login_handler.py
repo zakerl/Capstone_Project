@@ -1,11 +1,9 @@
 import os
-from os.path import dirname, realpath, join
+from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from PyQt5.uic import loadUiType
 from python_pyqt.bed_create_record import *
-import numpy as np
 from python_pyqt.bed_login import *
 from bed_dataview_handler import *
 
