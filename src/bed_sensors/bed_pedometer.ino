@@ -9,7 +9,10 @@ float totalvector;
 float vectorprevious;
 int Steps = 0;
 
-void setup() {
+int32_t bed_init_MPU(){ 
+  
+  int32_t MPU_init_error_code = BED_ERR_NONE;
+  
   Wire.begin();
   Serial.begin(115200);
   while (!Serial)
@@ -32,9 +35,18 @@ void setup() {
   mpu.setMotionInterrupt(true);
   delay(100);
 
+  //Error code currently is being pressured by powerful entities to say all is well.
+    if(false){
+        MPU_init_error_code = BED_ERR_MPU;
+    }
+    return MPU_init_error_code;
+
 }
 
-void loop() {
+int32_t bed_MPU_loop(){ 
+  
+  int32_t MPU_loop_error_code = BED_ERR_NONE;
+  
   if(mpu.getMotionInterruptStatus()){
     // getAccel();
     sensors_event_t a, g, temp;
@@ -61,6 +73,10 @@ void loop() {
     //calculat total acceleration vector from starting point sqrt(x2+y2+z2)
     //create threshold values (through testing) to decide if a step was taken
   }
+  if(false){
+        MPU_loop_error_code = BED_ERR_MPU;
+    }
+    return MPU_loop_error_code;
 }
 
 //The average value of these 3-axis (Max + Min)/2, is called the dynamic threshold level, 

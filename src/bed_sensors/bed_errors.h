@@ -5,3 +5,4 @@
 #define BED_ERR_INVALID_DATA                (int32_t)   -2       /*Invalid data error*/
 #define BED_ERR_DISPLAY_SYSTEM              (int32_t)   -3       /*Display system not working error*/
 #define BED_ERR_HEART_RATE                  (int32_t)   -4       /*Heart rate system not working error*/
+#define BED_ERR_MPU                         (int32_t)   -5       /*MPU system not working error*/

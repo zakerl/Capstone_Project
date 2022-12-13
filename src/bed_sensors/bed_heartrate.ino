@@ -1,27 +1,50 @@
 #include <stdio.h>
 #include "bed_errors.h"
 
-// int sensorPin = 0;
+#define samp_siz 20
+#define rise_threshold 4
 
-void setup() {
-    Serial.begin(9600);
-    uint32_t HR_error_code;
-    HR_error_code = bed_init_HR();
-    if(HR_error_code != BED_ERR_NONE)
-    {
-        Serial.print("Program Failed due to heart rate init error:\t");
-        Serial.println((int16_t)HR_error_code);
+int sensorPin = 0;
+float reads[samp_siz], sum;
+    long int now, ptr;
+    float mov_avg, reader, start;
+    float first, second, third, before, print_value;
+    bool rising;
+    int rise_count;
+    int n;
+    long int last_beat;
+
+/*  
+    Author: Jonathan Hai
+    Date: 2022-11-16
+    Definition: Initializes heart rate sensor.
+*/
+int32_t bed_init_HR(){
+    
+
+    int32_t HR_init_error_code = BED_ERR_NONE;
+
+    for (int i = 0; i < samp_siz; i++)
+      reads[i] = 0;
+    sum = 0;
+    ptr = 0;
+
+    //Error code currently is being pressured by powerful entities to say all is well.
+    if(false){
+        HR_init_error_code = BED_ERR_HEART_RATE;
     }
-    HR_error_code = bed_HR_serial_plot();
-    if(HR_error_code != BED_ERR_NONE)
-    {
-        Serial.print("Program Failed due to heart rate loop error:\t");
-        Serial.println((int16_t)HR_error_code);
-    }
+    return HR_init_error_code;
 }
 
-void loop (){
-    
+/*  
+    Author: Jonathan Hai
+    Date: 2022-11-16
+    Definition: Reads analog pin for input from heart rate sensor, plots onto Arduino serial plotter.
+*/
+
+int32_t bed_HR_loop(){
+
+    int32_t HR_loop_error_code = BED_ERR_NONE;
       // calculate an average of the sensor
       // during a 20 ms period (this will eliminate
       // the 50 Hz noise caused by electric light
@@ -84,5 +107,8 @@ void loop (){
       ptr++;
       ptr %= samp_siz;
 
-    
+    if(false){
+        HR_loop_error_code = BED_ERR_HEART_RATE;
+    }
+    return HR_loop_error_code;
 }
