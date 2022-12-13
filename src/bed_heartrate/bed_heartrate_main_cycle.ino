@@ -63,7 +63,7 @@ void loop (){
           // Calculate the weighed average of heartbeat rate
           // according to the three last beats
           print_value = 60000. / (0.4 * first + 0.3 * second + 0.3 * third);
-          // Serial.print("Heart rate (BPM): ");
+          Serial.print("Heart rate (BPM): ");
           Serial.print(print_value);
           Serial.print('\n');
           
