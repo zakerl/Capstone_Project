@@ -1,11 +1,9 @@
-from server_db import *
-mycursor = mydb.cursor()
+import sqlite3 as sl
 
-# mycursor.execute("CREATE DATABASE BED")
-# mycursor.execute("SHOW DATABASES")
+con = sl.connect('PyQt/python_scripts/db/BED.db')
 
 create_table_records_query = "CREATE TABLE Records (FirstName VARCHAR(25) NOT NULL,\
-  LastName VARCHAR(25) NOT NULL,\
+  LastName VARCHAR(25) NOT sNULL,\
   Age int NOT NULL, \
   ParticipantID int PRIMARY KEY NOT NULL,\
   StudyID int NOT NULL, \
@@ -31,5 +29,6 @@ create_table_data_query = "CREATE TABLE DataView (Time VARCHAR(50) NOT NULL,\
   InPain VARCHAR(20),\
   PainLevel int)"
 
-# mycursor.execute(create_table_records_query)
-# mycursor.execute(create_table_data_query)
+with con:
+  con.execute(create_table_records_query)
+  con.execute(create_table_data_query)
