@@ -46,8 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+18 January 2023 & 1.0 & Revision 0 for System Design\\
 \bottomrule
 \end{tabularx}
 
@@ -129,6 +128,60 @@ your system and the environment around it.)}
 
 \section{User Interfaces}
 
+\subsection{Hardware User Interface}
+
+The device is worn by a participant on the wrist for measuring activity and generating  prompts. The following items will be shown on the display of the activity tracker:
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 Description & Behaviour of TFT Display \\
+		 \hline
+		Power up of activity tracker. & Displays Back End Developers on startup.\\
+		\hline
+		 Default behaviour, no activity tracked.  & Displays date and time.\\
+		 \hline
+		   Activity tracked. & Prompt generated on screen, for example: Are you in pain?\\
+		\hline 
+		Answering prompts using touch sensor (bezel). & Toggle between different 				options on screen. For example: (Yes/No).\\
+		\hline
+	\end{tabularx}
+\caption{\label{Hardware User Interface}Table for Hardware User Interface}  
+\end{table}
+
+
+\subsection{Software User Interface}
+
+The Software User Interface will be used by the Researcher for configuring the activity tracker according to the participant. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 Options on UI & Description\\
+		 \hline
+		Main window & Main menu that leads to different windows when clicked.\\
+		\hline
+		 Connect to tracker  & Connects to SD card for device and shows status of connection.\\
+		 \hline
+		   Create Records Window & Creates new record for particpant and stores it in a database. A record can only be created if the correct username and password is provided. \\
+		\hline 
+		Records Window & Participant records can be viewed in a tabular format and can be searched/filtered.\\
+		\hline
+		Data View Window & Data stored on SD card can be viewed and filtered. Data can also be plotted using Graph button. For example: Heart Rate vs Time.\\
+		\hline
+	\end{tabularx}
+\caption{\label{Software User Interface}Table for Software User Interface}  
+\end{table}
+
+For images of Software User Unterface, refer to Appendix.
+
 \wss{Design of user interface for software and hardware.  Attach an appendix if
 needed. Drawings, Sketches, Figma}
 
@@ -162,11 +215,6 @@ circuit diagrams, etc}
 
 \appendix
 
-\section{Interface}
-
-\wss{Include additional information related to the appearance of, and
-interaction with, the user interface}
-
 \section{Mechanical Hardware}
 
 \section{Electrical Components}
@@ -186,5 +234,62 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   design?  From all the potential options, why did you select documented design?
   (LO\_Explores)
 \end{enumerate}
+
+\section{Software Interface}
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{MainWindow}
+		\caption{Main Window}
+		\label{MainWindow} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Config}
+		\caption{Configuration Window}
+		\label{Config} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{CreateRecord}
+		\caption{Create Record Window}
+		\label{CreateRecord} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Record}
+		\caption{Record Window}
+		\label{Record} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{login}
+		\caption{Login Dialogue box}
+		\label{Login} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{DataView}
+		\caption{Data View Window}
+		\label{DataView} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Graph}
+		\caption{Generated Graph for Heart Rate vs Time}
+		\label{Graph} 
+	\end{center}
+\end{figure}
 
 \end{document}
