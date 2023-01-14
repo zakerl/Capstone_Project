@@ -139,7 +139,7 @@ The device is worn by a participant on the wrist for measuring activity and gene
 		  | >{\centering\arraybackslash}X 
 		  | >{\centering\arraybackslash}X | }
 		 \hline
-		 Description & Behaviour of TFT Display \\
+		 \textbf{Description} & \textbf{Behaviour of TFT Display} \\
 		 \hline
 		Power up of activity tracker. & Displays Back End Developers on startup.\\
 		\hline
@@ -161,6 +161,30 @@ The device is worn by a participant on the wrist for measuring activity and gene
 	\end{center}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BEDDisplay}
+		\caption{Display on activity tracker at startup}
+		\label{BEDDisplay} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCase}
+		\caption{Display with custom 3D printed case}
+		\label{DisplayCase} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayTime}
+		\caption{Display of Date/time on activity tracker.}
+		\label{DisplayTime} 
+	\end{center}
+\end{figure}
+
 \subsection{Software User Interface}
 
 The Software User Interface will be used by the Researcher for configuring the activity tracker according to the participant. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
@@ -172,7 +196,7 @@ The Software User Interface will be used by the Researcher for configuring the a
 		  | >{\centering\arraybackslash}X 
 		  | >{\centering\arraybackslash}X | }
 		 \hline
-		 Options on UI & Description\\
+		 \textbf{Options on UI} & \textbf{Description}\\
 		 \hline
 		Main window & Main menu that leads to different windows when clicked.\\
 		\hline
@@ -191,8 +215,8 @@ The Software User Interface will be used by the Researcher for configuring the a
 Below is an example of the Software User Interface for the Main window.
 \begin{figure}[H]
 	\begin{center}
-		 \includegraphics[width=0.8\textwidth]{MainWindow}
-		\caption{Main Window}
+		 \includegraphics[width=0.6\textwidth]{MainWindow}
+		\caption{Main Window for Software User Interface}
 		\label{MainWindow} 
 	\end{center}
 \end{figure}
@@ -211,6 +235,7 @@ For more examples of Software User Unterface, refer to Appendix.
 needed. Drawings, Sketches, Figma}
 
 \section{Design of Hardware}
+
 
 The table below shows hardware components that will be used in the activity tracker.
 \begin{table}[H]
@@ -234,6 +259,8 @@ The table below shows hardware components that will be used in the activity trac
 		\hline 
 		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed \\
 		\hline 
+		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
+		\hline 
 		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
 		\hline 
 		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
@@ -248,12 +275,57 @@ The table below shows hardware components that will be used in the activity trac
 \caption{\label{DesignHardware}Components of Hardware Design}  
 \end{table}
 
+
 \wss{Most relevant for mechatronics projects}
 \wss{Show what will be acquired}
 \wss{Show what will be built, with detail on fabrication and materials}
 \wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
 
 \section{Design of Electrical Components}
+
+The schematic/circuit diagrams shown below are used to generate the PCB layout.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Schematic}
+		\caption{Schematic for PCB}
+		\label{Schematic} 
+	\end{center}
+\end{figure}
+
+The custom PCB designed is shown below.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.75\textwidth]{Layout}
+		\caption{Layout of PCB design}
+		\label{Layout} 
+	\end{center}
+\end{figure}
+
+The table below shows Electrical components built into the activity tracker.
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Electrical Component} & \textbf{Description}\\
+		 \hline
+		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
+		\hline 
+		 Resistors  & Resistors built into hardware components (1k ohms, 10k ohms).\\
+		\hline
+		 Capacitors  & Capacitors built into hardware components (15pF, 100nF).\\
+		 \hline
+		 LEDs  & Various LEDs in device used to identify status of operation.\\
+		 \hline
+	\end{tabularx}
+\caption{\label{DesignElectrical}Electrical Components}  
+\end{table}
+
 
 \wss{Most relevant for mechatronics projects}
 \wss{Show what will be acquired}
