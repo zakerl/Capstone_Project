@@ -758,6 +758,8 @@ No assumptions
 
 \newpage
 
+
+
 %Data Storage Module
 
 \section{MIS of Data Storage Module} \label{mDS_1} 
@@ -841,23 +843,25 @@ Data is able to write to the SD card without corruption and in the right order. 
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Sensor Array
 
 \subsection{Uses}
 
+Moving Average Algorithm Module (Section \ref{}) %uses this module becuase the heartrate uses this module. 
 
 \subsection{Syntax}
 
-\subsubsection{Exported Constants}
-
-\subsubsection{Exported Access Programs}
-
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{2cm} p{2cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+accelerometer\_data & tuple & - & badMPUReadings, badInitAcceleration \\ %include some made up bed_errors.
+heartrate\_data & $\mathbb{R}$ & - & badHRReadings, badInitHR, badSmoothingHR \\
+pedo\_count & - & $\mathbb{R}$ & \\
+heartrate & - & $\mathbb{R}$ & \\
+prompt\_interrupt & - & bool & \\ %this will send a signal to the prompt generation module in order to tell it that an activity has been sensed. Then that module will take control (this should probably be an access routine).
+
 \hline
 \end{tabular}
 \end{center}
@@ -865,43 +869,35 @@ Data is able to write to the SD card without corruption and in the right order. 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
+%give the module memory.
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+prompt\_interrupt: bool \\
+Accel\_power: bool \\
+HR\_sensor\_power: bool \\ %%is the accelerometer and HR sensor powered.
+
 
 \subsubsection{Environment Variables}
+%interaction with device driver, screen, keyboard, file
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+HR\_smoothed: $\mathbb{R}$ \\
+Step\_smoothed: $\mathbb{R}$ \\
+
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent activity\_sensed():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: change the state of the Prompt Generation Module in order to send a prompt to the user which will be sent to the display.  
+\item exception: there is already a prompt being displayed to the user OR not enough time has elapsed between the prompts.
 \end{itemize}
-
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+data\_smoothing\_filter(): the purpose of this function is to make sure that the data coming from all the sensors is smoothed, in order to prevent a prompt from being generated erroneously and distrubing the user.
 
 \newpage
 
