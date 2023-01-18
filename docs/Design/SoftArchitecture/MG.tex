@@ -187,6 +187,7 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
+  \item [\refstepcounter{mnum} \mthemnum \label{mBM}:] Battery Management Module
   \item [\refstepcounter{mnum} \mthemnum \label{mDM}:] Device Manager Module
   \item [\refstepcounter{mnum} \mthemnum \label{mDS_1}:] Data Storage Module
   \item [\refstepcounter{mnum} \mthemnum \label{mSA}:] Sensor Array Module
@@ -206,7 +207,8 @@ actually be implemented.
     \textbf{Level 1}                                      & \textbf{Level 2}         \\
     \midrule
 
-    {Hardware-Hiding Module}                              & Device Manager           \\
+    {Hardware-Hiding Module}                              & Battery Management       \\
+                                                          & Device Manager           \\
                                                           & Data Storage             \\
                                                           & Sensor Array             \\
 
@@ -259,6 +261,14 @@ to be implemented.
   system. This module provides the interface between the hardware and the
   software. So, the system can use it to display outputs or to accept inputs.
   \item[Implemented By:] OS
+\end{description}
+
+\subsubsection{Batter Management System (\mref{mBM})}
+\begin{description}
+  \item[Secrets:] Array to store data
+  \item[Services:] This module provides the interface between the hardware and the
+    software for the battery status. The battery levels will be used to determine whether the device should be charging or not. This module will also shut down inactive processes so that battery life can be saved.
+  \item[Implemented By:] Firmware
 \end{description}
 
 \subsubsection{Device Manager (\mref{mDM})}
