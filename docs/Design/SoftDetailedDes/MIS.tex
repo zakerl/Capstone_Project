@@ -703,7 +703,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsection{Module}
 
-bed_DeviceManager
+Device Manager 
 
 \subsection{Uses}
 
@@ -730,23 +730,22 @@ device manager & - & - & - \\
 \wss{Not all modules will have state variables.  State variables give the module
   a memory.}
 
+No state variables, since the module will only work in the sense that it is calling upon other modules. 
+
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+No external interaction with environment
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+No assumptions
 
 \subsubsection{Access Routine Semantics}
 
-\noindent bed_devicemanager():
+\noindent bed\_devicemanager():
 \begin{itemize}
 \item transition:   
-\item output: when powered on, the device manager will output the date and time using the display system module. It will also be responsible for modifying the state of the prompt generation module when an activity is sensed to prompt the user. %After the user completes a prompt (i.e. in the prompt generation module), the state of the data storage module will change to store their data. 
+\item output: when powered on, the device manager will call on the display system module to output the date and time. It will also be responsible for modifying the state of the prompt generation module when an activity is sensed to prompt the user. %After the user completes a prompt (i.e. in the prompt generation module), the state of the data storage module will change to store their data. 
 \item exception: \wss{if appropriate} 
 \end{itemize}
 
