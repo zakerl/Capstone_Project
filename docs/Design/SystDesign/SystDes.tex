@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{float}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -46,8 +47,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+18 January 2023 & 1.0 & Revision 0 for System Design\\
 \bottomrule
 \end{tabularx}
 
@@ -129,10 +129,152 @@ your system and the environment around it.)}
 
 \section{User Interfaces}
 
+\subsection{Hardware User Interface}
+
+The device is worn by a participant on the wrist for measuring activity and generating  prompts. The following items will be shown on the display of the activity tracker:
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Description} & \textbf{Behaviour of TFT Display} \\
+		 \hline
+		Power up of activity tracker. & Displays Back End Developers on startup.\\
+		\hline
+		 Default behaviour, no activity tracked.  & Displays date and time.\\
+		 \hline
+		   Activity tracked. & Prompt generated on screen, for example: Are you in pain?\\
+		\hline 
+		Answering prompts using touch sensor (bezel). & Toggle between different 				options on screen. For example: (Yes/No).\\
+		\hline
+	\end{tabularx}
+\caption{\label{Hardware User Interface}Components of Hardware User Interface}  
+\end{table}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{HardwareUI_FSM}
+		\caption{Finite State Machine for Hardware User Interface}
+		\label{HardwareUI_FSM} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BEDDisplay}
+		\caption{Display on activity tracker at startup}
+		\label{BEDDisplay} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCase}
+		\caption{Display with custom 3D printed case}
+		\label{DisplayCase} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayTime}
+		\caption{Display of Date/time on activity tracker.}
+		\label{DisplayTime} 
+	\end{center}
+\end{figure}
+
+\subsection{Software User Interface}
+
+The Software User Interface will be used by the Researcher for configuring the activity tracker according to the participant. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Options on UI} & \textbf{Description}\\
+		 \hline
+		Main window & Main menu that leads to different windows when clicked.\\
+		\hline
+		 Connect to tracker  & Connects to SD card for device and shows status of connection.\\
+		 \hline
+		   Create Records Window & Creates new record for particpant and stores it in a database. A record can only be created if the correct username and password is provided. \\
+		\hline 
+		Records Window & Participant records can be viewed in a tabular format and can be searched/filtered.\\
+		\hline
+		Data View Window & Data stored on SD card can be viewed and filtered. Data can also be plotted using Graph button. For example: Heart Rate vs Time.\\
+		\hline
+	\end{tabularx}
+\caption{\label{Software User Interface}Components of Software User Interface}  
+\end{table}
+
+Below is an example of the Software User Interface for the Main window.
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.6\textwidth]{MainWindow}
+		\caption{Main Window for Software User Interface}
+		\label{MainWindow} 
+	\end{center}
+\end{figure}
+
+For more examples of Software User Unterface, refer to Appendix.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{SoftwareUI_FSM}
+		\caption{Finite State Machine for Software User Interface}
+		\label{SoftwareUI_FSM} 
+	\end{center}
+\end{figure}
+
 \wss{Design of user interface for software and hardware.  Attach an appendix if
 needed. Drawings, Sketches, Figma}
 
 \section{Design of Hardware}
+
+
+The table below shows hardware components that will be used in the activity tracker.
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Hardware Component} & \textbf{Description}\\
+		 \hline
+		Custom PCB & Custom PCB designed to fit in activity tracker.  \\
+		\hline 
+		 MPU 6050 & Accelrometer/Gyroscope, off-shelf component.\\
+		\hline
+		 seeeduino xiao samd21  & off-shelf microcontroller for activity tracker.\\
+		 \hline
+		   DS1307 RTC & Real time clock, off-shelf component. \\
+		\hline
+		TFT Display & Off-shelf display used in activity tracker. \\
+		\hline 
+		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed \\
+		\hline 
+		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
+		\hline 
+		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
+		\hline 
+		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
+		\hline 
+		MicroSD card & Standard off-shelf SD card. \\
+		\hline
+		SDCARD connector 473521001& MicroSD connector (off-shelf component) \\
+		\hline
+		Watch straps & Generic watch-straps for strapping device onto the wrist. \\
+		\hline 
+	\end{tabularx}
+\caption{\label{DesignHardware}Components of Hardware Design}  
+\end{table}
+
 
 \wss{Most relevant for mechatronics projects}
 \wss{Show what will be acquired}
@@ -140,6 +282,50 @@ needed. Drawings, Sketches, Figma}
 \wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
 
 \section{Design of Electrical Components}
+
+The schematic/circuit diagrams shown below are used to generate the PCB layout.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Schematic}
+		\caption{Schematic for PCB}
+		\label{Schematic} 
+	\end{center}
+\end{figure}
+
+The custom PCB designed is shown below.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.75\textwidth]{Layout}
+		\caption{Layout of PCB design}
+		\label{Layout} 
+	\end{center}
+\end{figure}
+
+The table below shows Electrical components built into the activity tracker.
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Electrical Component} & \textbf{Description}\\
+		 \hline
+		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
+		\hline 
+		 Resistors  & Resistors built into hardware components (1k ohms, 10k ohms).\\
+		\hline
+		 Capacitors  & Capacitors built into hardware components (15pF, 100nF).\\
+		 \hline
+		 LEDs  & Various LEDs in device used to identify status of operation.\\
+		 \hline
+	\end{tabularx}
+\caption{\label{DesignElectrical}Electrical Components}  
+\end{table}
+
 
 \wss{Most relevant for mechatronics projects}
 \wss{Show what will be acquired}
@@ -162,11 +348,55 @@ circuit diagrams, etc}
 
 \appendix
 
-\section{Interface}
+\section{Software Interface}
 
-\wss{Include additional information related to the appearance of, and
-interaction with, the user interface}
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Config}
+		\caption{Configuration Window}
+		\label{Config} 
+	\end{center}
+\end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{CreateRecord}
+		\caption{Create Record Window}
+		\label{CreateRecord} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Record}
+		\caption{Record Window}
+		\label{Record} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{login}
+		\caption{Login Dialogue box}
+		\label{Login} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{DataView}
+		\caption{Data View Window}
+		\label{DataView} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Graph}
+		\caption{Generated Graph for Heart Rate vs Time}
+		\label{Graph} 
+	\end{center}
+\end{figure}
 \section{Mechanical Hardware}
 
 \section{Electrical Components}
@@ -186,5 +416,6 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   design?  From all the potential options, why did you select documented design?
   (LO\_Explores)
 \end{enumerate}
+
 
 \end{document}
