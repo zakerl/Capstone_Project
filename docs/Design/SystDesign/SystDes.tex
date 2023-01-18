@@ -58,8 +58,23 @@
 This section records information for easy reference.
 
 \subsection{Abbreviations and Acronyms}
+Please refer to the System Requirements Specification at \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{this link} for a list of abbreviations and acronyms.\\
 
-Please refer to the System Requirements Specification at \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{this link} for a list of abbreviations and acronyms.
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+	Lipo battery & Lithium polymer battery\\
+	PCB & Printed circuit board\\
+	TFT LCD Display & Thin film transistor liquid crystal display\\
+	FSM & Finite state machine\\
+	UI & User interface\\
+	CAD & Computer aided design for 3D models\\
+
+  \bottomrule
+\end{tabular}\\
+
 
 \newpage
 
@@ -162,13 +177,13 @@ The device is worn by a participant on the wrist for measuring activity and gene
 		Answering prompts using touch sensor (bezel). & Toggle between different 				options on screen. For example: (Yes/No).\\
 		\hline
 	\end{tabularx}
-\caption{\label{Hardware User Interface}Components of Hardware User Interface}  
+\caption{\label{Hardware User Interface}Components of Hardware UI}  
 \end{table}
 
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=1\textwidth]{HardwareUI_FSM}
-		\caption{Finite State Machine for Hardware User Interface}
+		\caption{FSM for Hardware UI}
 		\label{HardwareUI_FSM} 
 	\end{center}
 \end{figure}
@@ -178,14 +193,6 @@ The device is worn by a participant on the wrist for measuring activity and gene
 		 \includegraphics[width=0.5\textwidth]{BEDDisplay}
 		\caption{Display on activity tracker at startup}
 		\label{BEDDisplay} 
-	\end{center}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{center}
-		 \includegraphics[width=0.5\textwidth]{DisplayCase}
-		\caption{Display with custom 3D printed case}
-		\label{DisplayCase} 
 	\end{center}
 \end{figure}
 
@@ -221,77 +228,83 @@ The Software User Interface will be used by the Researcher for configuring the a
 		Data View Window & Data stored on SD card can be viewed and filtered. Data can also be plotted using Graph button. For example: Heart Rate vs Time.\\
 		\hline
 	\end{tabularx}
-\caption{\label{Software User Interface}Components of Software User Interface}  
+\caption{\label{Software User Interface}Components of Software UI}  
 \end{table}
 
 Below is an example of the Software User Interface for the Main window.
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.6\textwidth]{MainWindow}
-		\caption{Main Window for Software User Interface}
+		\caption{Main Window for Software UI}
 		\label{MainWindow} 
 	\end{center}
 \end{figure}
 
-For more examples of Software User Unterface, refer to Appendix.
+For more examples of the Software User Unterface, refer to Appendix \ref{Software_UI}.
 
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=1\textwidth]{SoftwareUI_FSM}
-		\caption{Finite State Machine for Software User Interface}
+		\caption{FSM for Software UI}
 		\label{SoftwareUI_FSM} 
 	\end{center}
 \end{figure}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
-
 \section{Design of Hardware}
 
-
-The table below shows hardware components that will be used in the activity tracker.
-\begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
-		 \hline
-		 \textbf{Hardware Component} & \textbf{Description}\\
-		 \hline
-		Custom PCB & Custom PCB designed to fit in activity tracker.  \\
-		\hline 
-		 MPU 6050 & Accelrometer/Gyroscope, off-shelf component.\\
-		\hline
-		 seeeduino xiao samd21  & off-shelf microcontroller for activity tracker.\\
-		 \hline
-		   DS1307 RTC & Real time clock, off-shelf component. \\
-		\hline
-		TFT Display & Off-shelf display used in activity tracker. \\
-		\hline 
-		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed \\
-		\hline 
-		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
-		\hline 
-		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
-		\hline 
-		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
-		\hline 
-		MicroSD card & Standard off-shelf SD card. \\
-		\hline
-		SDCARD connector 473521001& MicroSD connector (off-shelf component) \\
-		\hline
-		Watch straps & Generic watch-straps for strapping device onto the wrist. \\
-		\hline 
-	\end{tabularx}
-\caption{\label{DesignHardware}Components of Hardware Design}  
-\end{table}
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCase}
+		\caption{TFT Display with custom 3D printed case}
+		\label{DisplayCase} 
+	\end{center}
+\end{figure}
 
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+The touch sensor shown below will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.6\textwidth]{TouchSensor}
+		\caption{Circuit of custom built reactive touch sensor}
+		\label{TouchSensor} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{WatchCAD}
+		\caption{CAD Assembly of Touch Bezel, Display case and TFT Display}
+		\label{WatchCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{PCBTOP}
+		\caption{Top view of Custom PCB}
+		\label{PCBTOP} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{PCBBOTTOM}
+		\caption{Bottom view of Custom PCB (Lipo battery holder and SD card slot)}
+		\label{PCBBOTTOM} 
+	\end{center}
+\end{figure}
+
+Refer to Appendix \ref{MechHardware} for individual CAD designs.\\
+
+The following list of items will be custom designed and fabricated:
+\begin{itemize}
+\item{Custom PCB designed using Easy EDA and fabricated using JLCPCB.}
+\item{3D printed casing for TFT Display/activity tracker.}
+\item{Touch sensor (bezel) to navigate activity tracker.}
+\end{itemize}
+
+Refer to table \ref{DesignHardware} in Appendix for detailed information on high-level hardware components used.
 
 \section{Design of Electrical Components}
 
@@ -305,7 +318,7 @@ The schematic/circuit diagrams shown below are used to generate the PCB layout.
 	\end{center}
 \end{figure}
 
-The custom PCB designed is shown below.
+The custom designed PCB is shown below.
 
 \begin{figure}[H]
 	\begin{center}
@@ -315,41 +328,15 @@ The custom PCB designed is shown below.
 	\end{center}
 \end{figure}
 
-The table below shows Electrical components built into the activity tracker.
-
-\begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
-		 \hline
-		 \textbf{Electrical Component} & \textbf{Description}\\
-		 \hline
-		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
-		\hline 
-		 Resistors  & Resistors built into hardware components (1k ohms, 10k ohms).\\
-		\hline
-		 Capacitors  & Capacitors built into hardware components (15pF, 100nF).\\
-		 \hline
-		 LEDs  & Various LEDs in device used to identify status of operation.\\
-		 \hline
-	\end{tabularx}
-\caption{\label{DesignElectrical}Electrical Components}  
-\end{table}
-
-
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings,
-circuit diagrams, etc}
+Refer to table \ref{DesignElectrical} in Appendix for detailed information on Electrical components used in PCB design.
 
 \section{Design of Communication Protocols}
 
 \wss{If appropriate}
 
 \section{Timeline}
+
+
 
 \wss{Schedule of tasks and who is responsible}
 
@@ -361,7 +348,7 @@ circuit diagrams, etc}
 \appendix
 
 \section{Software Interface}
-
+\label{Software_UI}
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.8\textwidth]{Config}
@@ -410,8 +397,125 @@ circuit diagrams, etc}
 	\end{center}
 \end{figure}
 \section{Mechanical Hardware}
+\label{MechHardware}
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BezelCAD}
+		\caption{CAD model of touch sensor (bezel)}
+		\label{BezelCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCaseCAD}
+		\caption{CAD model of case for TFT Display}
+		\label{DisplayCaseCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{WatchCAD2}
+		\caption{CAD model of watch assembled}
+		\label{WatchCAD2} 
+	\end{center}
+\end{figure}
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Hardware Component} & \textbf{Description}\\
+		 \hline
+		Custom PCB & Custom PCB designed to fit in activity tracker.  \\
+		\hline 
+		Touch sensor module & Custom touch sensor (bezel) used to interact with activity tracker.\\
+		\hline
+		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed. \\
+		\hline 
+		AT42QT1070-SSUR & Off-shelf microchip for capacitive touch sensors, used in touch sensor schematic.\\
+		\hline
+		 MPU 6050 & Accelrometer/Gyroscope, off-shelf component.\\
+		\hline
+		 Seeeduino xiao samd21  & off-shelf microcontroller for activity tracker.\\
+		 \hline
+		   DS1307 RTC & Real time clock, off-shelf component. \\
+		\hline
+		Waveshare 1.28 LCD-192 Display & Off-shelf TFT display used in activity tracker. \\
+		\hline 
+		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
+		\hline 
+		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
+		\hline 
+		TP4056 Li-Ion BMS & Off-shelf constant-current/constant-voltage linear charge for battery, used in Lipo schematic.\\
+		\hline
+		DW01A-G & Off-shelf battery protection IC  to protect battery from overcharge, used in Lipo schematic.\\
+		\hline
+		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
+		\hline 
+		MicroSD card & Standard off-shelf SD card. \\
+		\hline
+		SDCARD connector 473521001& MicroSD connector (off-shelf component) \\
+		\hline
+		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
+		\hline 
+		Watch straps & Generic watch-straps for strapping device onto the wrist. \\
+		\hline 
+	\end{tabularx}
+\caption{\label{DesignHardware}Components of Hardware Design}  
+\end{table}
 
 \section{Electrical Components}
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Module from schematic} & \textbf{Electrical component}\\
+		\hline
+		 MPU 6050  & \begin{itemize}
+						\item{Capacitors (2nF, 10nF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		\hline
+		 Touch sensor  & \begin{itemize}
+						\item{Capacitors (0.1uF)}
+						\item{Resistors (470 ohms, 10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 IO Expander   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 RTC  & \begin{itemize}
+						\item{Capacitors (15pF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		 \hline
+		 SD CARD Module   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 Lipo Module  & \begin{itemize}
+						\item{Capacitors (100nF, 10uF)}
+						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
+						\item{FS8205 MOSFET}
+					\end{itemize}\\
+		 \hline
+		 LEDs  & Various LEDs in modules used to identify status of operation.\\
+		 \hline
+
+	\end{tabularx}
+\caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
+\end{table}
 
 \section{Communication Protocols}
 
