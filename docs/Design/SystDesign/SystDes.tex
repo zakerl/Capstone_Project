@@ -64,9 +64,7 @@ This section records information for easy reference.
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  \progname & Explanation of program name\\
-  \wss{...} & \wss{...}\\
-	Lipo battery & lithium polymer battery\\
+	Lipo battery & Lithium polymer battery\\
 	PCB & Printed circuit board\\
 	TFT LCD Display & Thin film transistor liquid crystal display\\
 	FSM & Finite state machine\\
@@ -230,9 +228,6 @@ For more examples of the Software User Unterface, refer to Appendix \ref{Softwar
 	\end{center}
 \end{figure}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
-
 \section{Design of Hardware}
 
 \begin{figure}[H]
@@ -289,12 +284,6 @@ The following list of items will be custom designed and fabricated:
 
 Refer to table \ref{DesignHardware} in Appendix for detailed information on high-level hardware components used.
 
-
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
-
 \section{Design of Electrical Components}
 
 The schematic/circuit diagrams shown below are used to generate the PCB layout.
@@ -307,7 +296,7 @@ The schematic/circuit diagrams shown below are used to generate the PCB layout.
 	\end{center}
 \end{figure}
 
-The custom PCB designed is shown below.
+The custom designed PCB is shown below.
 
 \begin{figure}[H]
 	\begin{center}
@@ -317,61 +306,7 @@ The custom PCB designed is shown below.
 	\end{center}
 \end{figure}
 
-The table below shows Electrical components built into the activity tracker.
-
-\begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
-		 \hline
-		 \textbf{Module from schematic} & \textbf{Electrical component}\\
-		\hline
-		 MPU 6050  & \begin{itemize}
-						\item{Capacitors (2nF, 10nF, 100nF)}
-						\item{Resistors (4.7k ohms)}
-					\end{itemize}\\
-		\hline
-		 Touch sensor  & \begin{itemize}
-						\item{Capacitors (0.1uF)}
-						\item{Resistors (470 ohms, 10k ohms)}
-					\end{itemize}\\
-		 \hline
-		 IO Expander   & \begin{itemize}
-						\item{Capacitors (100nF)}
-						\item{Resistors (10k ohms)}
-					\end{itemize}\\
-		 \hline
-		 RTC  & \begin{itemize}
-						\item{Capacitors (15pF, 100nF)}
-						\item{Resistors (4.7k ohms)}
-					\end{itemize}\\
-		 \hline
-		 SD CARD Module   & \begin{itemize}
-						\item{Capacitors (100nF)}
-						\item{Resistors (10k ohms)}
-					\end{itemize}\\
-		 \hline
-		 Lipo Module  & \begin{itemize}
-						\item{Capacitors (100nF, 10uF)}
-						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
-						\item{FS8205 MOSFET}
-					\end{itemize}\\
-		 \hline
-		 LEDs  & Various LEDs in modules used to identify status of operation.\\
-		 \hline
-
-	\end{tabularx}
-\caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
-\end{table}
-
-
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings,
-circuit diagrams, etc}
+Refer to table \ref{DesignElectrical} in Appendix for detailed information on Electrical components used in PCB design.
 
 \section{Design of Communication Protocols}
 
@@ -511,6 +446,52 @@ circuit diagrams, etc}
 \end{table}
 
 \section{Electrical Components}
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Module from schematic} & \textbf{Electrical component}\\
+		\hline
+		 MPU 6050  & \begin{itemize}
+						\item{Capacitors (2nF, 10nF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		\hline
+		 Touch sensor  & \begin{itemize}
+						\item{Capacitors (0.1uF)}
+						\item{Resistors (470 ohms, 10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 IO Expander   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 RTC  & \begin{itemize}
+						\item{Capacitors (15pF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		 \hline
+		 SD CARD Module   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 Lipo Module  & \begin{itemize}
+						\item{Capacitors (100nF, 10uF)}
+						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
+						\item{FS8205 MOSFET}
+					\end{itemize}\\
+		 \hline
+		 LEDs  & Various LEDs in modules used to identify status of operation.\\
+		 \hline
+
+	\end{tabularx}
+\caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
+\end{table}
 
 \section{Communication Protocols}
 
