@@ -33,7 +33,7 @@
 
 \begin{document}
 
-\title{Module Guide for \progname{}} 
+\title{Module Guide for \progname{}}
 \author{\authname}
 \date{\today}
 
@@ -44,11 +44,11 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
+  \midrule
+  Date 1              & 1.0           & Notes       \\
+  Date 2              & 1.1           & Notes       \\
+  \bottomrule
 \end{tabularx}
 
 \newpage
@@ -60,21 +60,21 @@ This section records information for easy reference.
 \subsection{Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  AC & Anticipated Change\\
-  DAG & Directed Acyclic Graph \\
-  M & Module \\
-  MG & Module Guide \\
-  OS & Operating System \\
-  R & Requirement\\
-  SC & Scientific Computing \\
-  SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
-  UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
+\begin{tabular}{l l}
+  \toprule
+  \textbf{symbol} & \textbf{description}                \\
+  \midrule
+  AC              & Anticipated Change                  \\
+  DAG             & Directed Acyclic Graph              \\
+  M               & Module                              \\
+  MG              & Module Guide                        \\
+  OS              & Operating System                    \\
+  R               & Requirement                         \\
+  SC              & Scientific Computing                \\
+  SRS             & Software Requirements Specification \\
+  \progname       & Explanation of program name         \\
+  UC              & Unlikely Change                     \\
+  \wss{etc.}      & \wss{...}                           \\
   \bottomrule
 \end{tabular}\\
 
@@ -92,6 +92,15 @@ This section records information for easy reference.
 
 \section{Introduction}
 
+This document serves as the module guide for the system currently in development by Back End Developers. It will decompose the system into modules; detailing the purpose of each individual module of the system, what resources are necessary to fulfill the requirements of each module, and the interactions between said modules. In addition, this document will list the anticipated and unlikely changes expected for the system, and the relevant traceability matrices between related components. \\
+
+This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (See document from before) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
+
+For this document to fulfill all of these requirements specified above is a difficult task, and the content of it is likely unable to capture 100\% of the information necessary to fulfill its goals to perfection. It should be obvious that engineers are by no means omniscient, not even regarding the systems that they design themselves. However, the authors of this document will still attempt to cover the relevant content in a digestible and comprehensive way, and thank the reader for their patience and good will.\\
+
+{\color{red}
+All text in red is written by the professor:\\
+
 Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
@@ -99,15 +108,15 @@ based on the principle of information hiding~\citep{Parnas1972a}.  This
 principle supports design for change, because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
-solution space is explored.  
+solution space is explored.
 
 Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
-\item System details that are likely to change independently should be the
-  secrets of separate modules.
-\item Each data structure is implemented in only one module.
-\item Any other program that requires information stored in a module's data
-  structures must obtain it by calling access programs belonging to that module.
+  \item System details that are likely to change independently should be the
+        secrets of separate modules.
+  \item Each data structure is implemented in only one module.
+  \item Any other program that requires information stored in a module's data
+        structures must obtain it by calling access programs belonging to that module.
 \end{itemize}
 
 After completing the first stage of the design, the Software Requirements
@@ -117,17 +126,17 @@ designers and maintainers to easily identify the parts of the software.  The
 potential readers of this document are as follows:
 
 \begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility, and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
+  \item New project members: This document can be a guide for a new project member
+        to easily understand the overall structure and quickly find the
+        relevant modules they are searching for.
+  \item Maintainers: The hierarchical structure of the module guide improves the
+        maintainers' understanding when they need to make changes to the system. It is
+        important for a maintainer to update the relevant sections of the document
+        after changes have been made.
+  \item Designers: Once the module guide has been written, it can be used to
+        check for consistency, feasibility, and flexibility. Designers can verify the
+        system in various ways, such as consistency among modules, feasibility of the
+        decomposition, and flexibility of the design.
 \end{itemize}
 
 The rest of the document is organized as follows. Section
@@ -140,6 +149,7 @@ modules. Section \ref{SecTM} includes two traceability matrices. One checks
 the completeness of the design against the requirements provided in the SRS. The
 other shows the relation between anticipated changes and the modules. Section
 \ref{SecUse} describes the use relation between modules.
+}
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -157,11 +167,11 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
+    hardware on which the software is running.
+  \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+    initial input data.
+  \item ...
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -174,9 +184,9 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
+    (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+  \item ...
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -187,39 +197,45 @@ below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+  \item [\refstepcounter{mnum} \mthemnum \label{mDM}:] Device Manager Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mDS_1}:] Data Storage Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mSA}:] Sensor Array Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Display System Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPG}:] Prompt Generation Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mRTC}:] Real Time Clock  Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mMAA}:] Moving Average Algorithm Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mGP}:] Graph Plotter  Module
+  \item ...
 \end{description}
 
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{Level 1}                                      & \textbf{Level 2}         \\
+    \midrule
 
-{Hardware-Hiding Module} & ~ \\
-\midrule
+    {Hardware-Hiding Module}                              & Device Manager           \\
+                                                          & Data Storage             \\
+                                                          & Sensor Array             \\
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
-\midrule
+    \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
-\bottomrule
+    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System           \\
+                                                          & Prompt Generation        \\
+                                                          & Real Time Clock          \\
 
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
+
+    \midrule
+
+    \multirow{3}{0.3\textwidth}{Software Decision Module} & Moving Average Algorithm \\
+                                                          & Graph Plotter            \\
+
+    \bottomrule
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
 \end{table}
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
@@ -244,57 +260,114 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
+  \item[Secrets:]The data structure and algorithm used to implement the virtual
   hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
+  \item[Services:]Serves as a virtual hardware used by the rest of the
   system. This module provides the interface between the hardware and the
   software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+  \item[Implemented By:] OS
+\end{description}
+
+\subsubsection{Device Manager (\mref{mDM})}
+\begin{description}
+  \item[Secrets:] Queue to store the data
+  \item[Services:] This module provides the interface between the hardware and the
+    software. The hardware will be copying the processed values into this module while the software reads from this module and produce plots for the researcher when prompted.
+  \item[Implemented By:] Firmware
+\end{description}
+
+\subsubsection{Data Storage (\mref{mDS_1})}
+\begin{description}
+  \item[Secrets:] Static array to store the data
+  \item[Services:] This module will store the data through the entire monitoring period. The data from this module will be stored in the database, so that a history of past records are maintained.
+  \item[Implemented By:] Firmware
+\end{description}
+
+\subsubsection{Sensor Array (\mref{mSA})}
+\begin{description}
+  \item[Secrets:] Static array to store the sensor data
+  \item[Services:] This module will store the raw data measured by the sensors. These are then processed on the hardware and copied to Device Manager to be read by the software.
+  \item[Implemented By:] Firmware
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
+  \item[Secrets:]The contents of the required behaviours.
+  \item[Services:]Includes programs that provide externally visible behaviour of
   the system as specified in the software requirements specification (SRS)
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+  \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Display System Module (\mref{mDS_2}) }
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+  \item[Secrets:]The error codes and screen parameters.
+  \item[Services:] This module is used to display text at desired positions on the tft display.
+    This module contains API functions that are called in the main executable to display text on the screen.
+  \item[Implemented By:] BED
+  \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Prompt Generation Module (\mref{mPG})}
+
+\begin{description}
+  \item[Secrets:]The format and structure of the prompts.
+  \item[Services:] Converts the prompt messages into the data structure used by the
+    display module. This module also stores all the prompts in the data structure specified. Multiple prompts are stored in a list that is accessed later in display module through API.
+  \item[Implemented By:] BED
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Real Time Clock Module (\mref{mRTC})}
+
+\begin{description}
+  \item[Secrets:]The format and structure of the time data structure.
+  \item[Services:] Converts the real time from the board into the data structure used by the
+    display module. The time will also be used alongside the data monitored from sensors to keep respective timestamps. It also includes API for the display module to access the time.
+  \item[Implemented By:] BED
+  \item[Type of Module:] Abstract Data Type
+\end{description}
 
 
 \subsection{Software Decision Module}
 
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+  \item[Secrets:] The design decision based on mathematical theorems, physical
+    facts, or programming considerations. The secrets of this module are
+    \emph{not} described in the SRS.
+  \item[Services:] Includes data structure and algorithms used in the system that
+    do not provide direct interaction with the user.
+    % Changes in these modules are more likely to be motivated by a desire to
+    % improve performance than by externally imposed changes.
+  \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+
+
+\subsubsection{Moving Average Algorithm (\mref{mMAA})}
+
+\begin{description}
+  \item[Secrets:] An array of the last 20 recent beats measured from sensors
+  \item[Services:] This algorithm basically calculates average of 20 different beats per minute at any point in time. It is cumulative and helps in deciding whether the EMA should be triggered.
+    % Changes in these modules are more likely to be motivated by a desire to
+    % improve performance than by externally imposed changes.
+  \item[Implemented By:] C
+\end{description}
+
+\subsubsection{Graph Plotter (\mref{mGP})}
+
+\begin{description}
+  \item[Secrets:] The data structures and algorithms to plot a graph
+  \item[Services:] This algorithm basically provides a plot of 2 parameters of interest. This can help in identifying desired trends to deal with it.
+  \item[Implemented By:] Python
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -304,50 +377,50 @@ requirements and between the modules and the anticipated changes.
 % the table should use mref, the requirements should be named, use something
 % like fref
 \begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Req.} & \textbf{Modules}\\
-\midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
-\bottomrule
-\end{tabular}
-\caption{Trace Between Requirements and Modules}
-\label{TblRT}
+  \centering
+  \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{Req.} & \textbf{Modules}                                                                           \\
+    \midrule
+    R1            & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}                                 \\
+    R2            & \mref{mInput}, \mref{mParams}                                                              \\
+    R3            & \mref{mVerify}                                                                             \\
+    R4            & \mref{mOutput}, \mref{mControl}                                                            \\
+    R5            & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot} \\
+    R6            & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot} \\
+    R7            & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}               \\
+    R8            & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}               \\
+    R9            & \mref{mVerifyOut}                                                                          \\
+    R10           & \mref{mOutput}, \mref{mODEs}, \mref{mControl}                                              \\
+    R11           & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}                              \\
+    \bottomrule
+  \end{tabular}
+  \caption{Trace Between Requirements and Modules}
+  \label{TblRT}
 \end{table}
 
 \begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{AC} & \textbf{Modules}\\
-\midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
-\bottomrule
-\end{tabular}
-\caption{Trace Between Anticipated Changes and Modules}
-\label{TblACT}
+  \centering
+  \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{AC}         & \textbf{Modules}  \\
+    \midrule
+    \acref{acHardware}  & \mref{mHH}        \\
+    \acref{acInput}     & \mref{mInput}     \\
+    \acref{acParams}    & \mref{mParams}    \\
+    \acref{acVerify}    & \mref{mVerify}    \\
+    \acref{acOutput}    & \mref{mOutput}    \\
+    \acref{acVerifyOut} & \mref{mVerifyOut} \\
+    \acref{acODEs}      & \mref{mODEs}      \\
+    \acref{acEnergy}    & \mref{mEnergy}    \\
+    \acref{acControl}   & \mref{mControl}   \\
+    \acref{acSeqDS}     & \mref{mSeqDS}     \\
+    \acref{acSolver}    & \mref{mSolver}    \\
+    \acref{acPlot}      & \mref{mPlot}      \\
+    \bottomrule
+  \end{tabular}
+  \caption{Trace Between Anticipated Changes and Modules}
+  \label{TblACT}
 \end{table}
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
@@ -364,10 +437,10 @@ system, and modules in the higher level of the hierarchy are essentially simpler
 because they use modules from the lower levels.
 
 \begin{figure}[H]
-\centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
-\caption{Use hierarchy among modules}
-\label{FigUH}
+  \centering
+  %\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+  \caption{Use hierarchy among modules}
+  \label{FigUH}
 \end{figure}
 
 %\section*{References}
@@ -382,8 +455,8 @@ The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item 
-  \item 
+  \item
+  \item
 \end{enumerate}
 
 \end{document}
