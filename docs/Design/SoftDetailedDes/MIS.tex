@@ -53,8 +53,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+January 18th, 2023 & 1.0 & Initial Documentation\\
 \bottomrule
 \end{tabularx}
 
@@ -62,9 +61,7 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+Please refer to the System Requirements Specifications document at \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{this link} for relevant symbols, abbreviations.\\
 
 \newpage
 
@@ -76,17 +73,11 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for the EMAnator; the system currently being developed by the Back End Developers designed to aid in Ecological Momentary Assessment research. This document describes the various relevant details of interfacing with each module. These details include  module descriptions, the uses of each module, the syntax of each module, and the semantics associated with each module.\\
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the System Requirement Specifications and Module Guide. The Back End Developers highly recommend a thorough read-through of each document prior to a reading of this document to attain the prerequisite knowledge necessary to fully understand this MIS. The System Requirements Specifications can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.tex}{this link}, and the Module Guide can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{this link}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -123,38 +114,36 @@ described by giving their type signature followed by their specification.
 \section{Module Decomposition}
 
 The following table is taken directly from the Module Guide document for this project.
-
 \begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{Level 1}                                      & \textbf{Level 2}         \\
+    \midrule
 
-{Hardware-Hiding} & ~ \\
-\midrule
+    {Hardware-Hiding Module}                              & Device Manager           \\
+                                                          & Data Storage             \\
+                                                          & Sensor Array             \\
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
-\midrule
+    \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
-\bottomrule
+    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System           \\
+                                                          & Prompt Generation        \\
+                                                          & Real Time Clock          \\
 
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
+
+    \midrule
+
+    \multirow{3}{0.3\textwidth}{Software Decision Module} & Moving Average Algorithm \\
+                                                          & Graph Plotter            \\
+
+    \bottomrule
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
   cross-referencing}
