@@ -114,38 +114,36 @@ described by giving their type signature followed by their specification.
 \section{Module Decomposition}
 
 The following table is taken directly from the Module Guide document for this project.
-
 \begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{Level 1}                                      & \textbf{Level 2}         \\
+    \midrule
 
-{Hardware-Hiding} & ~ \\
-\midrule
+    {Hardware-Hiding Module}                              & Device Manager           \\
+                                                          & Data Storage             \\
+                                                          & Sensor Array             \\
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
-\midrule
+    \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
-\bottomrule
+    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System           \\
+                                                          & Prompt Generation        \\
+                                                          & Real Time Clock          \\
 
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
+
+    \midrule
+
+    \multirow{3}{0.3\textwidth}{Software Decision Module} & Moving Average Algorithm \\
+                                                          & Graph Plotter            \\
+
+    \bottomrule
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
   cross-referencing}
