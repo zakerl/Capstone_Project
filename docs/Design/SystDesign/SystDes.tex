@@ -58,7 +58,7 @@
 This section records information for easy reference.
 
 \subsection{Abbreviations and Acronyms}
-Please refer to the System Requirements Specification at \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{this link} for a list of abbreviations and acronyms.\\
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} for a comprehensive list of abbreviations and acronyms.\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -71,6 +71,7 @@ Please refer to the System Requirements Specification at \href{https://github.co
 	FSM & Finite state machine\\
 	UI & User interface\\
 	CAD & Computer aided design for 3D models\\
+	SPI & Serial peripheral interface\\
 
   \bottomrule
 \end{tabular}\\
@@ -110,13 +111,13 @@ This documentation includes technical drawings, process diagrams, system and com
 This project currently has the current pieces of design documentation available:
 
 \begin{itemize}
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statment and Goals}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{System Requirements Specification}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statment and Goals}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{System Requirements Specification}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
 	\item System Design Document\\
 \end{itemize}
 
@@ -129,9 +130,11 @@ your system and the environment around it.)}
 
 \subsection{Normal Behaviour}
 
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 12.
+
 \subsection{Undesired Event Handling}
 
-\wss{How you will approach undesired events}
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 13.
 
 \subsection{Component Diagram}
 
@@ -146,15 +149,18 @@ your system and the environment around it.)}
 
 \section{System Variables}
 
-\wss{Include this section for Mechatronics projects}
-
 \subsection{Monitored Variables}
 
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 5.1.2.
 \subsection{Controlled Variables}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 5.1.3.
 
 \subsection{Constants Variables}
 
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 1.4.
 \section{User Interfaces}
+
 
 \subsection{Hardware User Interface}
 
@@ -206,7 +212,7 @@ The device is worn by a participant on the wrist for measuring activity and gene
 
 \subsection{Software User Interface}
 
-The Software User Interface will be used by the Researcher for configuring the activity tracker according to the participant. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
+The Software User Interface will be used by the Researcher for configuring the activity tracker. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
 
 \begin{table}[H]
 	\begin{tabularx}{1.05\textwidth} { 
@@ -308,7 +314,16 @@ Refer to table \ref{DesignHardware} in Appendix for detailed information on high
 
 \section{Design of Electrical Components}
 
-The schematic/circuit diagrams shown below are used to generate the PCB layout.
+The schematic/circuit diagrams shown below are used to generate the PCB layout. It consists of the following modules:
+\begin{itemize}
+\item Seeduino Micro-controller
+\item Touch sensor module
+\item IO Expander
+\item RTC
+\item MPU 6050
+\item SD card module
+\item Lipo module
+\end{itemize}
 
 \begin{figure}[H]
 	\begin{center}
@@ -328,17 +343,53 @@ The custom designed PCB is shown below.
 	\end{center}
 \end{figure}
 
-Refer to table \ref{DesignElectrical} in Appendix for detailed information on Electrical components used in PCB design.
+Refer to table \ref{DesignElectrical} in Appendix for detailed information on electrical components (module-wise) used in the PCB design.
 
 \section{Design of Communication Protocols}
 
-\wss{If appropriate}
+There are 2 standard communication protocols that are used in the project, I2C and SPI.
+The following modules use I2C communication protocol:
+\begin{itemize}
+\item Code for RTC using I2C communication.
+\item TFT display driver.
+\item MPU 6050 driver.
+\end{itemize}
+
+The IO expander module uses SPI communication protocol.
 
 \section{Timeline}
 
+The project timeline shown below as per important tasks/modules are required for the implementation of the Revision 0 demonstration:
 
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Timeline} & \textbf{Project Task} & \textbf{Team member(s) responsible and duties} & \textbf{Description}\\
+		 \hline
+		Dec 2022 - Jan 2023 & Software UI and functionality & Labeeb Zaker (backend), Nish Shah (frontend) & User friendly UI implemented with authentication and encryption working. \\
+		\hline
+		Jan 2022 & Database Management and writing to SD card & Nish Shah (DBMS), Jessica Bae (Communication protocols) & Implement database with Software UI to read, store and write data. Storing data read from sensor in proper format on SD card.\\
+		\hline
+		Dec 2022- Jan 2023 & PCB schematic design & Anish Rangarajan (General schematics), Jessica Bae (SDCARD module), Jonathan Hai (Lipo module) & Implement schematics for different modules in PCB. \\
+		\hline
+		Dec 2022 - Jan 2023 & PCB layout design & Anish Rangarajan  & Implement layout of PCB with proper routing.\\
+		\hline
+		Nov 2022 & Display drivers/CAD models & Labeeb Zaker (Drivers), Anish Rangarajan (CAD) & Display drivers for LCD display and CAD models for device.\\
+		\hline
+		Dec 2022 -Feb 2023 & Integration of all sensor modules & Jonathan Hai, Oliver Foote & Integrate all sensors and systems and create test benches to check correct 			functionality.\\
+		\hline
+			Jan-March 2023 & Fabrication of PCB and Testing  & Jessica Bae, Oliver Foote & Fabricating PCB and System-wide testing on PCB based on \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnVPlan} \\
+		\hline
+		Continuous development till March 2023 & Documentation & All team members & Various project documentations. \\
+		\hline
+	\end{tabularx}
+\caption{\label{Timeline}Timeline of project}  
+\end{table}
 
-\wss{Schedule of tasks and who is responsible}
 
 % \bibliographystyle {plainnat}
 % \bibliography{../../../refs/References}
@@ -512,7 +563,6 @@ Refer to table \ref{DesignElectrical} in Appendix for detailed information on El
 		 \hline
 		 LEDs  & Various LEDs in modules used to identify status of operation.\\
 		 \hline
-
 	\end{tabularx}
 \caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
 \end{table}
