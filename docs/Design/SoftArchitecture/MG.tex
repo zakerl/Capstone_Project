@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{helvet}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -15,7 +17,7 @@
     linkcolor=red,
     urlcolor=blue
 }
-
+\renewcommand{\familydefault}{\sfdefault}
 \input{../../Comments}
 \input{../../Common}
 
@@ -74,7 +76,6 @@ This section records information for easy reference.
   SRS             & Software Requirements Specification \\
   \progname       & Explanation of program name         \\
   UC              & Unlikely Change                     \\
-  \wss{etc.}      & \wss{...}                           \\
   \bottomrule
 \end{tabular}\\
 
@@ -94,7 +95,7 @@ This section records information for easy reference.
 
 This document serves as the module guide for the system currently in development by Back End Developers. It will decompose the system into modules; detailing the purpose of each individual module of the system, what resources are necessary to fulfill the requirements of each module, and the interactions between said modules. In addition, this document will list the anticipated and unlikely changes expected for the system, and the relevant traceability matrices between related components. \\
 
-This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (See document from before) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
+This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (see document from before) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
 
 For this document to fulfill all of these requirements specified above is a difficult task, and the content of it is likely unable to capture 100\% of the information necessary to fulfill its goals to perfection. It should be obvious that engineers are by no means omniscient, not even regarding the systems that they design themselves. However, the authors of this document will still attempt to cover the relevant content in a digestible and comprehensive way, and thank the reader for their patience and good will.\\
 
@@ -118,7 +119,6 @@ change.
     hardware on which the software is running.
   \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
     initial input data.
-  \item ...
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -133,7 +133,6 @@ decisions will be changed.
 \begin{description}
   \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
     (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-  \item ...
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -151,7 +150,6 @@ actually be implemented.
   \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Display System Module
   \item [\refstepcounter{mnum} \mthemnum \label{mPG}:] Prompt Generation Module
   \item [\refstepcounter{mnum} \mthemnum \label{mRTC}:] Real Time Clock  Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mMAA}:] Moving Average Algorithm Module
   \item [\refstepcounter{mnum} \mthemnum \label{mGP}:] Graph Plotter  Module
   \item [\refstepcounter{mnum} \mthemnum \label{mPS}:] Parameter Selection Module
   \item [\refstepcounter{mnum} \mthemnum \label{mPD}:] Physical Design Module
@@ -169,6 +167,7 @@ actually be implemented.
                                                           & Device Manager           \\
                                                           & Data Storage             \\
                                                           & Sensor Array             \\
+							  & Physical Design \\
 
     \midrule
 
@@ -179,7 +178,7 @@ actually be implemented.
 
     \midrule
 
-    \multirow{3}{0.3\textwidth}{Software Decision Module} & Moving Average Algorithm \\
+    \multirow{3}{0.3\textwidth}{Software Decision Module} & Parameter Selection \\
                                                           & Graph Plotter            \\
 
     \bottomrule
@@ -282,8 +281,8 @@ to be implemented.
 
 \begin{description}
   \item[Secrets:]The format and structure of the prompts.
-  \item[Services:] Converts the prompt messages into the data structure used by the
-    display module. This module also stores all the prompts in the data structure specified. Multiple prompts are stored in a list that is accessed later in display module through API.
+  \item[Services:] This module converts the prompt messages into the data structure used by the
+    display module. It also stores all the prompts of the data structure specified. Multiple prompts are stored in a list that is accessed later in display module through API.
   \item[Implemented By:] BED
   \item[Type of Module:] Abstract Data Type
 \end{description}
@@ -292,8 +291,8 @@ to be implemented.
 
 \begin{description}
   \item[Secrets:]The format and structure of the time data structure.
-  \item[Services:] Converts the real time from the board into the data structure used by the
-    display module. The time will also be used alongside the data monitored from sensors to keep respective timestamps. It also includes API for the display module to access the time.
+  \item[Services:] This module converts the real time from the board into the data structure used by the
+    display module. It will also be used alongside the data monitored from sensors to keep respective timestamps, and include API for the display module to access the time.
   \item[Implemented By:] BED
   \item[Type of Module:] Abstract Data Type
 \end{description}
@@ -310,18 +309,6 @@ to be implemented.
     % Changes in these modules are more likely to be motivated by a desire to
     % improve performance than by externally imposed changes.
   \item[Implemented By:] --
-\end{description}
-
-
-
-\subsubsection{Moving Average Algorithm (\mref{mMAA})}
-
-\begin{description}
-  \item[Secrets:] An array of the last 20 recent beats measured from sensors
-  \item[Services:] This algorithm basically calculates average of 20 different beats per minute at any point in time. It is cumulative and helps in deciding whether the EMA should be triggered.
-    % Changes in these modules are more likely to be motivated by a desire to
-    % improve performance than by externally imposed changes.
-  \item[Implemented By:] C
 \end{description}
 
 \subsubsection{Graph Plotter (\mref{mGP})}
@@ -354,8 +341,8 @@ requirements and between the modules and the anticipated changes.
     \textbf{Req.} & \textbf{Modules}                                                                           \\
     \midrule
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}            & \mref{mBM}, \mref{mSA}, \mref{mDS_2}, \mref{mRTC}                               \\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2}            & \mref{mSA}, \mref{mMAA}                                                              \\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3}            & \mref{mSA}, \mref{mDS_2}, \mref{mPG}, \mref{mRTC}, \mref{mMAA}                                                                             \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2}            & \mref{mSA} \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3}            & \mref{mSA}, \mref{mDS_2}, \mref{mPG}, \mref{mRTC},                                                                             \\
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{4}            & \mref{mPD}                                                    \\
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{5}            & \mref{mPS} \\
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{6}            & \mref{mDM}, \mref{mDS_1}, \mref{mSA}, \mref{mPG}\\
