@@ -148,14 +148,36 @@ Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS
 
 \subsection{Component Diagram}
 
+Refer to Section \ref{dEC}
+
 \subsection{Connection Between Requirements and Design} \label{SecConnection}
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Requirement} & \textbf{Deisgn Decisions} \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}  & The user will be reminded to charge the device during their introduction to the device and a LiPo for longer battery life. \\		 
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2} & The device integrates the heartrate sensor and the MPU accelerometer on the same pcb. Using them together in a sensor array module minor movements of the user can be tracked and then stored in the database. \\
+		\hline
+		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3} & Using the same sensor integration above the user is prompted based on researcher defined thresholds on initial device setup which is done in the local GUI. \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{4} & The device is in the form of a smartwatch. It is lightweight and intuitive for the user. \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{5} & In the local user interface, the researcher is able to configure thresholds for the input parameters that can be customized for each user. \\
+		 \hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{6}  & Using the SD card reader module data is stored when a user completes the EMA which is prompted on the watch display. \\
+		\hline 
+		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{7}& Using the device manager module and the SD card module data can be extracted and read locally by the researcher. Once read using the grapical plotter module the data can be analyzed in graphical format or extracted in raw format through an encrypted *.csv file. \\
+		\hline
+	\end{tabularx}
+\caption{\label{Hardware User Interface}Components of Hardware UI}  
+\end{table}
 
 \section{System Variables}
 
@@ -322,7 +344,7 @@ The following list of items will be custom designed and fabricated:
 
 Refer to table \ref{DesignHardware} in Appendix for detailed information on high-level hardware components used.
 
-\section{Design of Electrical Components}
+\section{Design of Electrical Components} \label{dEC}
 
 The schematic/circuit diagrams shown below are used to generate the PCB layout. It consists of the following modules:
 \begin{itemize}
