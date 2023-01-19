@@ -858,7 +858,7 @@ Moving Average Algorithm Module (Section \ref{}) %uses this module becuase the h
 \hline
 accelerometer\_data & tuple & - & badMPUReadings, badInitAcceleration \\ %include some made up bed_errors.
 heartrate\_data & $\mathbb{R}$ & - & badHRReadings, badInitHR, badSmoothingHR \\
-pedo\_count & - & $\mathbb{R}$ & \\
+pedometer\_count & - & $\mathbb{R}$ & \\
 heartrate & - & $\mathbb{R}$ & \\
 prompt\_interrupt & - & bool & \\ %this will send a signal to the prompt generation module in order to tell it that an activity has been sensed. Then that module will take control (this should probably be an access routine).
 
@@ -874,18 +874,21 @@ prompt\_interrupt & - & bool & \\ %this will send a signal to the prompt generat
 prompt\_interrupt: bool \\
 Accel\_power: bool \\
 HR\_sensor\_power: bool \\ %%is the accelerometer and HR sensor powered.
+HR\_smoothed: $\mathbb{R}$ \\
+Step\_smoothed: $\mathbb{R}$ \\
 
 
 \subsubsection{Environment Variables}
 %interaction with device driver, screen, keyboard, file
 
-HR\_smoothed: $\mathbb{R}$ \\
-Step\_smoothed: $\mathbb{R}$ \\
+is\_stored: bool \\
+is\_displayed: bool \\
 
 
 \subsubsection{Assumptions}
 
-None.
+All activity thresholds are provided from the configuration file. \\
+There is available space on the SD card. \\
 
 \subsubsection{Access Routine Semantics}
 
