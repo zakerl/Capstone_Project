@@ -107,6 +107,17 @@ This project currently has the current pieces of design documentation available:
 
 \section{Scope}
 
+This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. \\
+
+\begin{figure}[H]
+
+\begin{center}
+ \includegraphics[width=.95\textwidth]{System Context Diagram}
+\caption{System Context}
+\label{Fig_SystemContext} 
+\end{center}
+\end{figure}
+
 \wss{Include a figure that show the System Context (showing the boundary between
 your system and the environment around it.)}
 
@@ -421,12 +432,92 @@ The information in this section will be used to evaluate the team members on the
 graduate attribute of Problem Analysis and Design.  Please answer the following questions:
 
 \begin{enumerate}
-  \item What are the limitations of your solution?  Put another way, given
-  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
-  \item Give a brief overview of other design solutions you considered.  What
+  \item \textit{What are the limitations of your solution?  Put another way, given
+  unlimited resources, what could you do to make the project better? }(LO\_ProbSolutions)\\
+
+This is a difficult question to answer. Given unlimited resources, the Back End Developers would have many more options available in fundamental design, and may have pursued a different design altogether --- however going forward with this question it is assumed that this question refers to the current design on hand.\\
+
+There are many forms of "resources" that have to be managed during an engineering project. Cost, time, testing opportunities, and many more constraining factors can be considered resources. Let us consider cost and time, as those have the largest and most obvious impacts on the project.\\
+
+Given an unlimited budget, the face of the EMAnator likely would have been a touchscreen, as the cost of a touchscreen was prohibitively high and we had to find a workaround using nearby capacitive touch sensors instead. In addition, the we would have kept ordering test PCBs of our designs as we iterated through different version. This would have allowed us to test individual components and wiring routes as we constructed the final design. As cost was limited, we have to finish the whole design first, and proceed to order a very limited number of test PCBs on which we must test all aspects of our design. We will then revise the design to compensate for issues found on the test boards, order the final set, and pray that they work as intended. We would also consider added an operating system to the device to make it "smart". Currently our device has a very limited number of functions that fit tightly into our requirements. An OS would enable us to expand the functionality of our device beyond its current borders.\\
+
+If the design could have taken place over an infinite amount of time, there are additional possibilities that we could consider. Primarily, we could investigate using and shrinking down a more powerful microcontroller. Currently, the type of microcontroller that we can use is extremely limited in its capabilities. However if we wish to upgrade to a more powerful one (e.g. a Raspberry Pi), we would have to place a large number of auxiliary components necessary for the functioning of the more powerful (and more needy) processor. This would have taken a large amount of time; as finding reasonable space on a PCB and routing components like these is notoriously time consuming.\\
+
+Obviously there are many new and exciting possibilities for this project should certain resources be unlimited. But overall, we are satisfied with the design that we have made given the constraints that have been placed on us. Should we decide to continue developing this device past the capstone course, we may return to these options at a certain point.\\
+
+  \item \textit{Give a brief overview of other design solutions you considered.  What
   are the benefits and tradeoffs of those other designs compared with the chosen
-  design?  From all the potential options, why did you select documented design?
-  (LO\_Explores)
+  design?  From all the potential options, why did you select documented design?}
+  (LO\_Explores)\\
+
+During the initial phases of the design process, we encouraged each other to throw around as many design ideas as we could. Here is a short list of a few we considered, along with a few of their pros and cons:\\
+\begin{itemize}
+\item Anklet Activity Tracker\\
+	Pros:
+	\begin{itemize}
+		\item Discreet and unobstructive to daily activities.
+		\item High-quality data available regarding motion of legs (steps, jumps, falls, etc.).
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Difficult to reach for people with difficulty bending over.
+		\item If designed poorly, can potentially look like a prison ankle monitor.
+		\item Difficult for a user to read any data displayed on a screen on the anklet.
+	\end{itemize}
+\item Waist-Mounted Activity Tracker
+	Pros:
+	\begin{itemize}
+		\item Being close to the core of the user, the maximum weight weight of the device can be greatly increased.
+		\item Easy access to those with difficulty bending over, or with other movement related issues.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Located in a hard-to-hide location, and may get in the way of reaching below the waist.
+		\item Incompatible with certain clothing.
+	\end{itemize}
+\item Bracelet Activity Tracker
+	Pros:
+	\begin{itemize}
+		\item Extremely discreet.
+		\item High-quality data available regarding motion of arms (walker use, exercise, etc.).
+		\item Not obstructive to daily activities.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Interacting with a small-surface area bracelet may be difficult for those with movement issues.
+		\item Small size reduces battery capacity options.
+	\end{itemize}
+\item Full Body Suit Tracker
+	Pros:
+	\begin{itemize}
+		\item Highest fidelity data possible, collecting data from every point on the body.
+		\item Difficult to misplace.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Prohibitively expensive.
+		\item Easy to damage.
+		\item Many people would be uncomfortable wearing a full sized-body suit during all their daily activities.
+	\end{itemize}
+\item Mobile App 
+	Pros:
+	\begin{itemize}
+		\item Inexpensive.
+		\item Soft; meaning we can modify it according to new requirements whenever necessary.
+		\item Many are already extremely familiar with activity tracking apps; onboarding process will not be difficult.
+		\item Can be linked to off-the-shelf smartwatches with fantastic activity collecting technology.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Not a mechatronics solution.
+	\end{itemize}
+\end{itemize}
+Why did we pursue the smart-watch solution? For two very important reasons; end-user familiarity and end-user acceptability.\\
+
+The other solutions that we could have proceeded with may have met all the functional requirements and many of the nonfunctional requirements that we specified, but many of them are unfamiliar and possibly confusing to the end user. For example, having to wear a box around one's waist is likely a novel and strange experience to any user, and could make them uncomfortable with using the device in general. In addition, most people have worn a watch before, and are very familiar with their operations. This makes the process of learning how to use the watch simpler and more intuitive.\\
+
+A smart-watch was also deemed the most acceptable solution to an end user. It would be difficult to convince anyone to wear a sensor covered spandex suit everywhere they went in their daily life, for a period of up to 14 days. A watch is familiar, socially acceptable, and much less embarrassing than wearing a full bodied suit.
+
 \end{enumerate}
 
 
