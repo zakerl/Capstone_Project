@@ -921,7 +921,7 @@ Sensor\_Array
 
 \subsection{Uses}
 
-Data Storage Module (Section \ref{mDS_1}), Moving Average Algorithm Module (Section \ref{mMAA}) %uses this module becuase the heartrate uses this module. 
+Battery Management (Section \ref{mBM})
 
 \subsection{Syntax}
 
@@ -980,7 +980,7 @@ Disp\_Sys
 
 \subsection{Uses}
 
-Prompt Generation Module (Section \ref{mPG}), Real Time Clock Module (Section \ref{mRTC})
+Prompt Generation Module (Section \ref{mPG}), Real Time Clock Module (Section \ref{mRTC}), Battery Management (Section \ref{mBM})
 
 \subsection{Syntax}
 
@@ -1186,6 +1186,50 @@ None.
 \subsubsection{Local Functions}
 
 None.
+
+\section{MIS of Graph Plotter} \label{mGP} 
+
+\subsection{Module}
+
+Graph\_Plot
+
+\subsection{Uses}
+
+Device Manager Module (Section \ref{mDM})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+None.
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+$graph\_select$: bool
+
+\subsubsection{Environment Variables}
+
+file: a database on the host computer.
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+\item Data is in proper format and not corrupted.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+None.
+
+\subsubsection{Local Functions}
+
+$graph\_stat$: Statistical analysis function.
 
 \newpage
 
