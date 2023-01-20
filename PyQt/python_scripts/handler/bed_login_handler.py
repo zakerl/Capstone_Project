@@ -6,16 +6,18 @@ from PyQt5.QtCore import *
 from python_pyqt.bed_create_record import *
 from python_pyqt.bed_login import *
 from bed_dataview_handler import *
+from bed_mainwindow_handler import *
 
 
 scriptDir = dirname(realpath(__file__))
+
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
         super(UI_DataViewLogin, self).__init__()
         QWidget.__init__(self)
-        self.setupUi(self)
         self.MainWindow = MainWindow
+        self.setupUi(self)
         self.all_data = []
         self.pushButton.clicked.connect(lambda: self.loginAttempt())
         self.lineEdit.returnPressed.connect(lambda: self.loginAttempt())
@@ -36,11 +38,7 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
             loginValidity = 0
 
         if(loginValidity == 1):
-            
-            self.DataView = UI_DataView(self.MainWindow)
-            self.DataView.show()
-            self.hide()
-            self.MainWindow.hide()
+            self.ToMain()
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -51,3 +49,7 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
 
         self.lineEdit.clear()
         self.lineEdit_2.clear()
+
+    def ToMain(self):
+        self.MainWindow.show()
+        self.hide()

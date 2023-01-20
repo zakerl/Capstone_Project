@@ -83,13 +83,14 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.CreateWindow.show()
         MainWindow.hide()
 
-    def showDataView(self, MainWindow):
-        self.DataView = UI_DataViewLogin(MainWindow)
-        self.DataView.show()
-
     def showConfigView(self, MainWindow):
         self.ConfigView = UI_ConfigWindow(MainWindow)
         self.ConfigView.show()
+        MainWindow.hide()
+
+    def showDataView(self, MainWindow):
+        self.DataView = UI_DataView(MainWindow)
+        self.DataView.show()
         MainWindow.hide()
 
     def connect(self):
@@ -106,5 +107,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = UI_MainWindowHandler(MainWindow)
-    MainWindow.show()
+    LoginWindow = UI_DataViewLogin(MainWindow)
+    LoginWindow.show()
     sys.exit(app.exec_())
