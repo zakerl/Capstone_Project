@@ -1,4 +1,4 @@
-import os
+import sqlite3 as sl
 from python_pyqt.bed_dataview import *
 from bed_graph_handler import *
 
@@ -6,8 +6,7 @@ from bed_graph_handler import *
     and plot meaningful graphs.
 '''
 
-scriptDir = dirname(realpath(__file__))
-
+db_path = 'PyQt/python_scripts/handler/BED.db'
 
 class UI_DataView(QWidget, Ui_DataView):
     def __init__(self, MainWindow):
@@ -40,17 +39,19 @@ class UI_DataView(QWidget, Ui_DataView):
         #==================================================#
         # Event handlers for buttons
         #==================================================#
-        self.LoadData.clicked.connect(self.OpenFile)
+        self.LoadData.clicked.connect(self.LoadDb)
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
         self.MainMenu.clicked.connect(self.BackToMain)
         self.HeartGraph.clicked.connect(self.OpenHeartGraph)
 
-    def OpenFile(self):
+    def LoadDb(self):
         try:
-            path = QFileDialog.getOpenFileName(
-                self, 'Open CSV', os.getenv('HOME'), 'CSV(*.csv)')[0]
-            self.all_data = pd.read_csv(path)
+            # Access dataview table from BED database
+            con = sl.connect(db_path)
+            sql_query = pd.read_sql('SELECT * FROM DATAVIEW', con)
+            # Convert SQL to DataFrame
+            self.all_data = pd.DataFrame(sql_query)
             self.dataHead()
             header = self.tableWidget.horizontalHeader()
             header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -70,8 +71,8 @@ class UI_DataView(QWidget, Ui_DataView):
                 6, QtWidgets.QHeaderView.Stretch)
             header.setSectionResizeMode(
                 7, QtWidgets.QHeaderView.Stretch)
-        except:
-            print(path)
+        except Exception as Error:
+            print (Error)
 
     def dataHead(self):
         numRow = self.spinBox.value()
