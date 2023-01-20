@@ -1,0 +1,706 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{float}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+
+\input{../../Comments}
+\input{../../Common}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\begin{document}
+
+\title{System Design for \progname{}} 
+\author{\authname}
+\date{\today}
+
+\maketitle
+
+\pagenumbering{roman}
+
+\section{Revision History}
+
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+18 January 2023 & 1.0 & Revision 0 for System Design\\
+\bottomrule
+\end{tabularx}
+
+\newpage
+
+\section{Reference Material}
+
+This section records information for easy reference.
+
+\subsection{Abbreviations and Acronyms}
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} for a comprehensive list of abbreviations and acronyms.\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+	Lipo battery & Lithium polymer battery\\
+	PCB & Printed circuit board\\
+	TFT LCD Display & Thin film transistor liquid crystal display\\
+	FSM & Finite state machine\\
+	UI & User interface\\
+	CAD & Computer aided design for 3D models\\
+	SPI & Serial peripheral interface\\
+
+  \bottomrule
+\end{tabular}\\
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\listoftables
+
+\listoffigures
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+This document provides a detailed description of the system design for the EMAnator; the system currently under development by the Back End Developers which aims to assist researchers in performing Ecological Momentary Assessment for older adults. The goal of this design is to construct a system which fulfills all the requirements specified in the \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/SRS/SRS.pdf}{System Requirements Specification}, and that meets the needs of EMA researchers.\\
+
+This document provides the big-picture goals of the system, an overview of the project, a comprehensive list of system variables, and details regarding the user interfaces of the system. It also lists the various hardware and electrical components involved in the design of the system. Finally, it includes a high-level timeline for the development of the system. \\
+
+The design presented in this document is the result of collaboration between the Dr. Luciana Macedo of the School of Rehabilitative Sciences and the Back End Developers development team. We have discussed the project requirements and identified the best approach to meet them. This is covered in detail in the document titled \href{https://github.com/zakerl/Capstone_Project/blob/desDoc_Labeeb/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statement and Goals}.\\
+
+The Back End Developers hope this document serves as a useful guide for anyone involved in the development or deployment of the system. \\
+
+
+\section{Purpose}
+
+In general, engineering design documentation is a set of documents that outline the detailed specifications for an engineering project. It describes the design of the project, including its requirements, the materials to be used, the processes involved, the safety and environmental considerations, and the estimated costs. The purpose of engineering design documentation is to provide a comprehensive record of the project that can be consulted by engineers, oversight bodies, and other stakeholders throughout the project’s life cycle.\\
+
+This documentation includes technical drawings, process diagrams, system and component specifications, and relevant schematics and images. It also provides a basis for quality control and assurance, as well as a way to track progress and identify potential areas of improvement. It is an essential part of any engineering project, as it ensures that all stakeholders have a clear understanding of the project and the necessary steps for its successful completion.\\
+
+This project currently has the current pieces of design documentation available:
+
+\begin{itemize}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statment and Goals}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{System Requirements Specification}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
+\end{itemize}
+
+\section{Scope}
+
+This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. \\
+
+\begin{figure}[H]
+
+\begin{center}
+ \includegraphics[width=.95\textwidth]{System Context Diagram}
+\caption{System Context}
+\label{Fig_SystemContext} 
+\end{center}
+\end{figure}
+
+\wss{Include a figure that show the System Context (showing the boundary between
+your system and the environment around it.)}
+
+\section{Project Overview}
+
+\subsection{Normal Behaviour}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 12.
+
+\subsection{Undesired Event Handling}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 13.
+
+\subsection{Component Diagram}
+
+Refer to Section \ref{dEC}
+
+\subsection{Connection Between Requirements and Design} \label{SecConnection}
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Requirement} & \textbf{Deisgn Decisions} \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}  & The user will be reminded to charge the device during their introduction to the device and a LiPo for longer battery life. \\		 
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2} & The device integrates the heartrate sensor and the MPU accelerometer on the same pcb. Using them together in a sensor array module minor movements of the user can be tracked and then stored in the database. \\
+		\hline
+		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3} & Using the same sensor integration above the user is prompted based on researcher defined thresholds on initial device setup which is done in the local GUI. \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{4} & The device is in the form of a smartwatch. It is lightweight and intuitive for the user. \\
+		\hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{5} & In the local user interface, the researcher is able to configure thresholds for the input parameters that can be customized for each user. \\
+		 \hline
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{6}  & Using the SD card reader module data is stored when a user completes the EMA which is prompted on the watch display. \\
+		\hline 
+		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{7}& Using the device manager module and the SD card module data can be extracted and read locally by the researcher. Once read using the grapical plotter module the data can be analyzed in graphical format or extracted in raw format through an encrypted *.csv file. \\
+		\hline
+	\end{tabularx}
+\caption{\label{Hardware User Interface}Components of Hardware UI}  
+\end{table}
+
+\section{System Variables}
+
+\subsection{Monitored Variables}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 5.1.2.
+\subsection{Controlled Variables}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 5.1.3.
+
+\subsection{Constants Variables}
+
+Refer to \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{SRS} Section 1.4.
+\section{User Interfaces}
+
+
+\subsection{Hardware User Interface}
+
+The device is worn by a participant on the wrist for measuring activity and generating  prompts. The following items will be shown on the display of the activity tracker:
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Description} & \textbf{Behaviour of TFT Display} \\
+		 \hline
+		Power up of activity tracker. & Displays Back End Developers on startup.\\
+		\hline
+		 Default behaviour, no activity tracked.  & Displays date and time.\\
+		 \hline
+		   Activity tracked. & Prompt generated on screen, for example: Are you in pain?\\
+		\hline 
+		Answering prompts using touch sensor (bezel). & Toggle between different 				options on screen. For example: (Yes/No).\\
+		\hline
+	\end{tabularx}
+\caption{\label{Hardware User Interface}Components of Hardware UI}  
+\end{table}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{HardwareUI_FSM}
+		\caption{FSM for Hardware UI}
+		\label{HardwareUI_FSM} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BEDDisplay}
+		\caption{Display on activity tracker at startup}
+		\label{BEDDisplay} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayTime}
+		\caption{Display of Date/time on activity tracker.}
+		\label{DisplayTime} 
+	\end{center}
+\end{figure}
+
+\subsection{Software User Interface}
+
+The Software User Interface will be used by the Researcher for configuring the activity tracker. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Options on UI} & \textbf{Description}\\
+		 \hline
+		Main window & Main menu that leads to different windows when clicked.\\
+		\hline
+		 Connect to tracker  & Connects to SD card for device and shows status of connection.\\
+		 \hline
+		   Create Records Window & Creates new record for particpant and stores it in a database. A record can only be created if the correct username and password is provided. \\
+		\hline 
+		Records Window & Participant records can be viewed in a tabular format and can be searched/filtered.\\
+		\hline
+		Data View Window & Data stored on SD card can be viewed and filtered. Data can also be plotted using Graph button. For example: Heart Rate vs Time.\\
+		\hline
+	\end{tabularx}
+\caption{\label{Software User Interface}Components of Software UI}  
+\end{table}
+
+Below is an example of the Software User Interface for the Main window.
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.6\textwidth]{MainWindow}
+		\caption{Main Window for Software UI}
+		\label{MainWindow} 
+	\end{center}
+\end{figure}
+
+For more examples of the Software User Unterface, refer to Appendix \ref{Software_UI}.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{SoftwareUI_FSM}
+		\caption{FSM for Software UI}
+		\label{SoftwareUI_FSM} 
+	\end{center}
+\end{figure}
+
+\section{Design of Hardware}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCase}
+		\caption{TFT Display with custom 3D printed case}
+		\label{DisplayCase} 
+	\end{center}
+\end{figure}
+
+
+The touch sensor shown below will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.6\textwidth]{TouchSensor}
+		\caption{Circuit of custom built reactive touch sensor}
+		\label{TouchSensor} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{WatchCAD}
+		\caption{CAD Assembly of Touch Bezel, Display case and TFT Display}
+		\label{WatchCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{PCBTOP}
+		\caption{Top view of Custom PCB}
+		\label{PCBTOP} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{PCBBOTTOM}
+		\caption{Bottom view of Custom PCB (Lipo battery holder and SD card slot)}
+		\label{PCBBOTTOM} 
+	\end{center}
+\end{figure}
+
+Refer to Appendix \ref{MechHardware} for individual CAD designs.\\
+
+The following list of items will be custom designed and fabricated:
+\begin{itemize}
+\item{Custom PCB designed using \href{https://easyeda.com/}{Easy EDA} and fabricated using \href{https://jlcpcb.com/}{JLCPCB}}
+\item{3D printed casing for TFT Display/activity tracker.}
+\item{Touch sensor (bezel) to navigate activity tracker.}
+\end{itemize}
+
+Refer to table \ref{DesignHardware} in Appendix for detailed information on high-level hardware components used.
+
+\section{Design of Electrical Components} \label{dEC}
+
+The schematic/circuit diagrams shown below are used to generate the PCB layout. It consists of the following modules:
+\begin{itemize}
+\item Seeduino Micro-controller
+\item Touch sensor module
+\item IO Expander
+\item RTC
+\item MPU 6050
+\item SD card module
+\item Lipo module
+\end{itemize}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Schematic}
+		\caption{Schematic for PCB}
+		\label{Schematic} 
+	\end{center}
+\end{figure}
+
+The custom designed PCB is shown below.
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.75\textwidth]{Layout}
+		\caption{Layout of PCB design}
+		\label{Layout} 
+	\end{center}
+\end{figure}
+
+Refer to table \ref{DesignElectrical} in Appendix for detailed information on electrical components (module-wise) used in the PCB design.
+
+\section{Design of Communication Protocols}
+
+There are 2 standard communication protocols that are used in the project, I2C and SPI.
+The following modules use I2C communication protocol:
+\begin{itemize}
+\item Code for RTC using I2C communication.
+\item TFT display driver.
+\item MPU 6050 driver.
+\end{itemize}
+
+The IO expander module uses SPI communication protocol.
+
+\section{Timeline}
+
+The project timeline shown below as per important tasks/modules are required for the implementation of the Revision 0 demonstration:
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Timeline} & \textbf{Project Task} & \textbf{Team member(s) responsible and duties} & \textbf{Description}\\
+		 \hline
+		Dec 2022 - Jan 2023 & Software UI and functionality & Labeeb Zaker (backend), Nish Shah (frontend) & User friendly UI implemented with authentication and encryption working. \\
+		\hline
+		Jan 2022 & Database Management and writing to SD card & Nish Shah (DBMS), Jessica Bae (Communication protocols) & Implement database with Software UI to read, store and write data. Storing data read from sensor in proper format on SD card.\\
+		\hline
+		Dec 2022- Jan 2023 & PCB schematic design & Anish Rangarajan (General schematics), Jessica Bae (SDCARD module), Jonathan Hai (Lipo module) & Implement schematics for different modules in PCB. \\
+		\hline
+		Dec 2022 - Jan 2023 & PCB layout design & Anish Rangarajan  & Implement layout of PCB with proper routing.\\
+		\hline
+		Nov 2022 & Display drivers/CAD models & Labeeb Zaker (Drivers), Anish Rangarajan (CAD) & Display drivers for LCD display and CAD models for device.\\
+		\hline
+		Dec 2022 -Feb 2023 & Integration of all sensor modules & Jonathan Hai, Oliver Foote & Integrate all sensors and systems and create test benches to check correct 			functionality.\\
+		\hline
+			Jan-March 2023 & Fabrication of PCB and Testing  & Jessica Bae, Oliver Foote & Fabricating PCB and System-wide testing on PCB based on \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnVPlan} \\
+		\hline
+		Continuous development till March 2023 & Documentation & All team members & Various project documentations. \\
+		\hline
+	\end{tabularx}
+\caption{\label{Timeline}Timeline of project}  
+\end{table}
+
+
+% \bibliographystyle {plainnat}
+% \bibliography{../../../refs/References}
+
+\newpage{}
+
+\appendix
+
+\section{Software Interface}
+\label{Software_UI}
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Config}
+		\caption{Configuration Window}
+		\label{Config} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{CreateRecord}
+		\caption{Create Record Window}
+		\label{CreateRecord} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Record}
+		\caption{Record Window}
+		\label{Record} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{login}
+		\caption{Login Dialogue box}
+		\label{Login} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{DataView}
+		\caption{Data View Window}
+		\label{DataView} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.8\textwidth]{Graph}
+		\caption{Generated Graph for Heart Rate vs Time}
+		\label{Graph} 
+	\end{center}
+\end{figure}
+\section{Mechanical Hardware}
+\label{MechHardware}
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BezelCAD}
+		\caption{CAD model of touch sensor (bezel)}
+		\label{BezelCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{DisplayCaseCAD}
+		\caption{CAD model of case for TFT Display}
+		\label{DisplayCaseCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{WatchCAD2}
+		\caption{CAD model of watch assembled}
+		\label{WatchCAD2} 
+	\end{center}
+\end{figure}
+
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Hardware Component} & \textbf{Description}\\
+		 \hline
+		Custom PCB & Custom PCB designed to fit in activity tracker.  \\
+		\hline 
+		Touch sensor module & Custom touch sensor (bezel) used to interact with activity tracker.\\
+		\hline
+		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed. \\
+		\hline 
+		AT42QT1070-SSUR & Off-shelf microchip for capacitive touch sensors, used in touch sensor schematic.\\
+		\hline
+		 MPU 6050 & Accelrometer/Gyroscope, off-shelf component.\\
+		\hline
+		 Seeeduino xiao samd21  & off-shelf microcontroller for activity tracker.\\
+		 \hline
+		   DS1307 RTC & Real time clock, off-shelf component. \\
+		\hline
+		Waveshare 1.28 LCD-192 Display & Off-shelf TFT display used in activity tracker. \\
+		\hline 
+		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
+		\hline 
+		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
+		\hline 
+		TP4056 Li-Ion BMS & Off-shelf constant-current/constant-voltage linear charge for battery, used in Lipo schematic.\\
+		\hline
+		DW01A-G & Off-shelf battery protection IC  to protect battery from overcharge, used in Lipo schematic.\\
+		\hline
+		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
+		\hline 
+		MicroSD card & Standard off-shelf SD card. \\
+		\hline
+		SDCARD connector 473521001& MicroSD connector (off-shelf component) \\
+		\hline
+		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
+		\hline 
+		Watch straps & Generic watch-straps for strapping device onto the wrist. \\
+		\hline 
+	\end{tabularx}
+\caption{\label{DesignHardware}Components of Hardware Design}  
+\end{table}
+
+\section{Electrical Components}
+\begin{table}[H]
+	\begin{tabularx}{1.05\textwidth} { 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X 
+		  | >{\centering\arraybackslash}X | }
+		 \hline
+		 \textbf{Module from schematic} & \textbf{Electrical component}\\
+		\hline
+		 MPU 6050  & \begin{itemize}
+						\item{Capacitors (2nF, 10nF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		\hline
+		 Touch sensor  & \begin{itemize}
+						\item{Capacitors (0.1uF)}
+						\item{Resistors (470 ohms, 10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 IO Expander   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 RTC  & \begin{itemize}
+						\item{Capacitors (15pF, 100nF)}
+						\item{Resistors (4.7k ohms)}
+					\end{itemize}\\
+		 \hline
+		 SD CARD Module   & \begin{itemize}
+						\item{Capacitors (100nF)}
+						\item{Resistors (10k ohms)}
+					\end{itemize}\\
+		 \hline
+		 Lipo Module  & \begin{itemize}
+						\item{Capacitors (100nF, 10uF)}
+						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
+						\item{FS8205 MOSFET}
+					\end{itemize}\\
+		 \hline
+		 LEDs  & Various LEDs in modules used to identify status of operation.\\
+		 \hline
+	\end{tabularx}
+\caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
+\end{table}
+
+\section{Communication Protocols}
+
+\section{Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Problem Analysis and Design.  Please answer the following questions:
+
+\begin{enumerate}
+  \item \textit{What are the limitations of your solution?  Put another way, given
+  unlimited resources, what could you do to make the project better? }(LO\_ProbSolutions)\\
+
+This is a difficult question to answer. Given unlimited resources, the Back End Developers would have many more options available in fundamental design, and may have pursued a different design altogether --- however going forward with this question it is assumed that this question refers to the current design on hand.\\
+
+There are many forms of "resources" that have to be managed during an engineering project. Cost, time, testing opportunities, and many more constraining factors can be considered resources. Let us consider cost and time, as those have the largest and most obvious impacts on the project.\\
+
+Given an unlimited budget, the face of the EMAnator likely would have been a touchscreen, as the cost of a touchscreen was prohibitively high and we had to find a workaround using nearby capacitive touch sensors instead. In addition, the we would have kept ordering test PCBs of our designs as we iterated through different version. This would have allowed us to test individual components and wiring routes as we constructed the final design. As cost was limited, we have to finish the whole design first, and proceed to order a very limited number of test PCBs on which we must test all aspects of our design. We will then revise the design to compensate for issues found on the test boards, order the final set, and pray that they work as intended. We would also consider added an operating system to the device to make it "smart". Currently our device has a very limited number of functions that fit tightly into our requirements. An OS would enable us to expand the functionality of our device beyond its current borders.\\
+
+If the design could have taken place over an infinite amount of time, there are additional possibilities that we could consider. Primarily, we could investigate using and shrinking down a more powerful microcontroller. Currently, the type of microcontroller that we can use is extremely limited in its capabilities. However if we wish to upgrade to a more powerful one (e.g. a Raspberry Pi), we would have to place a large number of auxiliary components necessary for the functioning of the more powerful (and more needy) processor. This would have taken a large amount of time; as finding reasonable space on a PCB and routing components like these is notoriously time consuming.\\
+
+Obviously there are many new and exciting possibilities for this project should certain resources be unlimited. But overall, we are satisfied with the design that we have made given the constraints that have been placed on us. Should we decide to continue developing this device past the capstone course, we may return to these options at a certain point.\\
+
+  \item \textit{Give a brief overview of other design solutions you considered.  What
+  are the benefits and tradeoffs of those other designs compared with the chosen
+  design?  From all the potential options, why did you select documented design?}
+  (LO\_Explores)\\
+
+During the initial phases of the design process, we encouraged each other to throw around as many design ideas as we could. Here is a short list of a few we considered, along with a few of their pros and cons:\\
+\begin{itemize}
+\item Anklet Activity Tracker\\
+	Pros:
+	\begin{itemize}
+		\item Discreet and unobstructive to daily activities.
+		\item High-quality data available regarding motion of legs (steps, jumps, falls, etc.).
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Difficult to reach for people with difficulty bending over.
+		\item If designed poorly, can potentially look like a prison ankle monitor.
+		\item Difficult for a user to read any data displayed on a screen on the anklet.
+	\end{itemize}
+\item Waist-Mounted Activity Tracker\\
+	Pros:
+	\begin{itemize}
+		\item Being close to the core of the user, the maximum weight weight of the device can be greatly increased.
+		\item Easy access to those with difficulty bending over, or with other movement related issues.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Located in a hard-to-hide location, and may get in the way of reaching below the waist.
+		\item Incompatible with certain clothing.
+	\end{itemize}
+\item Bracelet Activity Tracker\\
+	Pros:
+	\begin{itemize}
+		\item Extremely discreet.
+		\item High-quality data available regarding motion of arms (walker use, exercise, etc.).
+		\item Not obstructive to daily activities.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Interacting with a small-surface area bracelet may be difficult for those with movement issues.
+		\item Small size reduces battery capacity options.
+	\end{itemize}
+\item Full Body Suit Tracker\\
+	Pros:
+	\begin{itemize}
+		\item Highest fidelity data possible, collecting data from every point on the body.
+		\item Difficult to misplace.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Prohibitively expensive.
+		\item Easy to damage.
+		\item Many people would be uncomfortable wearing a full sized-body suit during all their daily activities.
+	\end{itemize}
+\item Mobile App \\
+	Pros:
+	\begin{itemize}
+		\item Inexpensive.
+		\item Flexible; meaning we can modify it according to new requirements whenever necessary.
+		\item Many are already extremely familiar with activity tracking apps; onboarding process will not be difficult.
+		\item Can be linked to off-the-shelf smartwatches with fantastic activity collecting technology.
+	\end{itemize}
+	Cons:
+	\begin{itemize}
+		\item Not a mechatronics solution.
+	\end{itemize}
+\end{itemize}
+Why did we pursue the smart-watch solution? For two very important reasons; end-user familiarity and end-user acceptability.\\
+
+The other solutions that we could have proceeded with may have met all the functional requirements and many of the nonfunctional requirements that we specified, but many of them are unfamiliar and possibly confusing to the end user. For example, having to wear a box around one's waist is likely a novel and strange experience to any user, and could make them uncomfortable with using the device in general. In addition, most people have worn a watch before, and are very familiar with their operations. This makes the process of learning how to use the watch simpler and more intuitive.\\
+
+A smart-watch was also deemed the most acceptable solution to an end user. It would be difficult to convince anyone to wear a sensor covered spandex suit everywhere they went in their daily life, for a period of up to 14 days. A watch is familiar, socially acceptable, and much less embarrassing than wearing a full bodied suit similar to the figure below.
+
+\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Pink}
+		\caption{Example of Someone Experiencing a Full Body Suit}
+		\label{Pink} 
+	\end{center}
+\end{figure}
+
+\end{document}
