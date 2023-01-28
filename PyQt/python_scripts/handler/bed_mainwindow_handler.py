@@ -9,7 +9,6 @@ from bed_config_handler import *
 from bed_create_record_handler import *
 from bed_login_handler import *
 
-
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
 MainWindowHandler.py is used for handling button clicks/events to redirect to other windows.

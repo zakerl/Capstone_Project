@@ -1,3 +1,4 @@
+import sqlite3 as sl
 from python_pyqt.bed_graph import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -5,6 +6,12 @@ from PyQt5.QtCore import *
 import pyqtgraph as pg
 import pandas as pd
 from os.path import dirname, realpath
+import time
+from datetime import datetime, timedelta
+import numpy as np
+import sys
+
+db_path = 'PyQt/python_scripts/handler/BED.db'
 
 '''Graph handler handles the graph window along with its appearance and format'''
 
@@ -19,28 +26,35 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
 
     def OpenDataFile(self):
         try:
-            scriptDir = dirname(realpath(__file__))
-            FileName = scriptDir + "\DailyData.csv"
-            df = pd.read_csv(FileName)
-            df_temp = df
-            time = df["Time"]
-            HeartRate = df_temp["Heart rate"]
-            #==================================================#
+            # Access dataview table from BED database
+            con = sl.connect(db_path)
+            sql_query = pd.read_sql('SELECT TIME, HEARTRATE FROM DATAVIEW', con)
+            # Convert SQL to DataFrame
+            df = pd.DataFrame(sql_query)
+            TimeAxis = df['Time']
+            HeartRate = df["HeartRate"]
+            # ==================================================#
             # Extracting hour for easy plot for POC
-            #==================================================#
-            time_hour = []
-            for i in time:
+            # ==================================================#
+            PlotTime = []
+            for i in TimeAxis:
                 t=i.split(':')
-                time_hour.append(int(t[0]))\
-            #==================================================#
-            # Color of plot line
-            #==================================================#
-            self.plot(time_hour,HeartRate)
+                time_hour = float(t[0])
+                time_min = float(t[1])
+                # Logic for extracting and only plotting time in hour
+                if (time_min > 20 and time_hour <= 40): # Assume 1:20 is 1 and 1:40 is 2
+                    time_hour += 0.5
+                elif (time_min > 40):
+                    time_hour += 1
+                PlotTime.append(time_hour)
+            # Sorting for smooth graph
+            PlotTime.sort()
+            self.plot(PlotTime,HeartRate)
         except Exception as Error:
             print (Error)
 
 
-    def plot(self, time, HeartRate):
+    def plot(self, PlotTime, HeartRate):
         self.GraphWidget.setBackground('#221F1F')
         pen = pg.mkPen(color=(255, 0, 0),width=2, style=QtCore.Qt.DotLine)
         self.GraphWidget.setTitle("HeartRate vs Time (hour)")
@@ -48,4 +62,5 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
         self.GraphWidget.setLabel('left', 'Heart rate (bpm)', **styles)
         self.GraphWidget.setLabel('bottom', 'Time (Hour)', **styles)
         self.GraphWidget.showGrid(x=True, y=True)
-        self.GraphWidget.plot(time, HeartRate, pen=pen)
+        self.GraphWidget.plot(PlotTime, HeartRate, pen=pen)
+
