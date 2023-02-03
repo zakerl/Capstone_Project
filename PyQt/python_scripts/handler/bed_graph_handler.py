@@ -64,9 +64,9 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
         self.GraphWidget.addLegend()
         self.GraphWidget.plot(PlotTime, Yaxis, name = name,  pen = pen)
 
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = UI_GraphView(MainWindow)
-#     ui.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = UI_GraphView(MainWindow)
+    ui.show()
+    sys.exit(app.exec_())

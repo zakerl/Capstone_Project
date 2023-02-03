@@ -1,9 +1,9 @@
-import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import pandas as pd
 from python_pyqt.bed_view_record import *
+from bed_dataview_handler import *
 
 '''This script is used to add events to view records of participants.
     A csv/db is loaded an data is presented in tabular format for 
@@ -45,11 +45,12 @@ class UI_RecordWindow(QWidget, Ui_Form):
     def OpenFile(self):
         try:
             #==================================================#
-            # Opens dialog box to import csv, subject to change
+            # Access Records table from BED database
             #==================================================#
-            path = QFileDialog.getOpenFileName(
-                self, 'Open CSV', os.getenv('HOME'), 'CSV(*.csv)')[0]
-            self.all_data = pd.read_csv(path)
+            con = sl.connect(db_path)
+            sql_query = pd.read_sql('SELECT * FROM RECORDS', con)
+            # Convert SQL to DataFrame
+            self.all_data = pd.DataFrame(sql_query)
             self.dataHead()
             header = self.tableWidget.horizontalHeader()
             header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -69,8 +70,8 @@ class UI_RecordWindow(QWidget, Ui_Form):
                 6, QtWidgets.QHeaderView.Stretch)
             header.setSectionResizeMode(
                 7, QtWidgets.QHeaderView.Stretch)
-        except:
-            print(path)
+        except Exception as Error:
+            print (Error)
 
     def dataHead(self):
         numRow = self.spinBox.value()
