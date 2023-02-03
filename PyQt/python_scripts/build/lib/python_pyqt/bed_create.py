@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'PyQt/pyqt_ui/bed_create_record.ui'
+# Form implementation generated from reading ui file 'PyQt/pyqt_ui/bed_create.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
