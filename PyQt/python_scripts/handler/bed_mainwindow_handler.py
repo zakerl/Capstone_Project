@@ -1,4 +1,6 @@
 import sys
+import serial as sr
+import time
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -14,6 +16,8 @@ This script handles the MainWindow and is used to generate the Main GUI, Run Mai
 MainWindowHandler.py is used for handling button clicks/events to redirect to other windows.
 MainWindow.py is generated from MainWindow.ui (PyQt Designer) for frontend. 
 '''
+
+
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     def __init__(self, MainWindow):
         super(UI_MainWindowHandler, self).__init__()
@@ -24,10 +28,11 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.toggleBtn.setFixedWidth(100)
         self.ConnectButton.setCheckable(True)
         #==================================================#
-        # Setting fixed width and height 
+        # Setting fixed width and height
         # for buttons on MainMenu
         #==================================================#
         self.ConnectButton.setFixedWidth(190)
+        self.ReadSDCard_btn.setFixedWidth(190)
         self.CreateRecordsButton.setFixedWidth(190)
         self.ConfigButton.setFixedWidth(190)
         self.RecordsButton.setFixedWidth(190)
@@ -35,24 +40,30 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
         self.toggleBtn.setFixedHeight(31)
         self.ConnectButton.setFixedHeight(31)
+        self.ReadSDCard_btn.setFixedHeight(31)
         self.CreateRecordsButton.setFixedHeight(31)
         self.ConfigButton.setFixedHeight(31)
         self.RecordsButton.setFixedHeight(31)
         self.DataViewButton.setFixedHeight(31)
 
-        #==================================================#    
+        #==================================================#
         # Connects button (toggles connect to red/green in UI)
         #==================================================#
         self.ConnectButton.clicked.connect(
             self.connect)
+        #==================================================#
+        # Connects SDCard button to reading SD card
+        #==================================================#
+        self.ReadSDCard_btn.clicked.connect(
+            self.readSDCard)
         #==================================================#
         # Config button events opens configuration window
         #==================================================#
         self.ConfigButton.clicked.connect(
             lambda: self.showConfigView(self.MainWindow))
         #==================================================#
-        # Create record button event opens create 
-         # record window
+        # Create record button event opens create
+        # record window
         #==================================================#
         self.CreateRecordsButton.clicked.connect(
             lambda: self.showCreateRecords(self.MainWindow)
@@ -64,7 +75,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.RecordsButton.clicked.connect(
             lambda: self.showRecordWindow(self.MainWindow))
         #==================================================#
-        # Added event to Dataview button, 
+        # Added event to Dataview button,
         # opens DataView with graph
         #==================================================#
         self.DataViewButton.clicked.connect(
@@ -72,6 +83,27 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     '''
     Different windows open when buttons are clicked, event handler functions described below
     '''
+
+    def readSDCard(self):
+        print("Reading soon")
+        baudrate = 115200
+        port = "COM1"
+
+        portSerial = sr.Serial(port=port, baudrate=baudrate)
+        portSerial.timeout = None
+
+        if portSerial.is_open:
+            while True:
+                size = portSerial.inWaiting()
+                if size:
+                    data = portSerial.read(size)
+                    print(data)
+                else:
+                    print('no data')
+                time.sleep(1)
+        else:
+            print('serial not open')
+
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
         self.RecordWindow.show()

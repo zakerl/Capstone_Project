@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from python_pyqt.bed_config import *
+import serial as sr
+import time
 
 
 ''' This handler script saves config information that
@@ -63,6 +65,14 @@ class UI_ConfigWindow(QWidget, Ui_Form):
                 for i in range(len(configTxtToWrite)):
                     sentences = configTxtToWrite[i]
                     configTxtFile.write(sentences)
+            baudrate = 115200
+            port = "COM3"
+
+            portSerial = sr.Serial(port=port, baudrate=baudrate)
+            if portSerial.is_open:
+                portSerial.write(open("Config.txt", "rb").read())
+            else:
+                print('serial not open')
 
     def BackToMain(self):
         self.MainWindow.show()
