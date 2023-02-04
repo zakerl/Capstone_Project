@@ -29,6 +29,7 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.LastNameLabel.setFixedHeight(22)
         self.AgeLabel.setFixedHeight(22)
         self.PIDLabel.setFixedHeight(22)
+        self.StudyIDLabel.setFixedHeight(22)
         self.GenderLabel.setFixedHeight(22)
         self.WeightLabel.setFixedHeight(22)
         self.HeightLabel.setFixedHeight(22)
@@ -110,18 +111,19 @@ class UI_RecordWindow(QWidget, Ui_Form):
         MonitorPer = self.MonitorPeriodLabel.text()
         trackerID = self.TrackerLabel.text()
         ref_dict = {
-            "First Name": firstName,
-            "Last Name": lastName,
+            "FirstName": firstName,
+            "LastName": lastName,
             "Age": age,
-            "Participant ID": ParticipantID,
+            "ParticipantID": ParticipantID,
+            "StudyID": "",
             "Gender": gender,
-            "Weight (kgs)": weight,
-            "Height (cm)": height,
-            "Phone number": PhnNumber,
-            "Email ID": Email,
+            "Weight": weight,
+            "Height": height,
+            "PhoneNumber": PhnNumber,
+            "EmailID": Email,
             "Address": Address,
-            "Monitoring Period": MonitorPer,
-            "Tracker model": trackerID
+            "MonitoringPeriod": MonitorPer,
+            "TrackerModel": trackerID
         }
 
         headerNames = list(self.all_data.columns)

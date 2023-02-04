@@ -20,31 +20,20 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
-        self.connected = False
-        self.toggleBtn.setFixedWidth(100)
-        self.ConnectButton.setCheckable(True)
         #==================================================#
         # Setting fixed width and height 
         # for buttons on MainMenu
         #==================================================#
-        self.ConnectButton.setFixedWidth(190)
         self.CreateRecordsButton.setFixedWidth(190)
         self.ConfigButton.setFixedWidth(190)
         self.RecordsButton.setFixedWidth(190)
         self.DataViewButton.setFixedWidth(190)
 
-        self.toggleBtn.setFixedHeight(31)
-        self.ConnectButton.setFixedHeight(31)
         self.CreateRecordsButton.setFixedHeight(31)
         self.ConfigButton.setFixedHeight(31)
         self.RecordsButton.setFixedHeight(31)
         self.DataViewButton.setFixedHeight(31)
 
-        #==================================================#    
-        # Connects button (toggles connect to red/green in UI)
-        #==================================================#
-        self.ConnectButton.clicked.connect(
-            self.connect)
         #==================================================#
         # Config button events opens configuration window
         #==================================================#
@@ -91,15 +80,6 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.DataView = UI_DataView(MainWindow)
         self.DataView.show()
         MainWindow.hide()
-
-    def connect(self):
-        if(not(self.connected)):
-            if(self.ConnectButton.isChecked()):
-                self.connected = True
-                self.toggleBtn.setText("Connected")
-                style = "background-color: lightgreen"
-                self.toggleBtn.setStyleSheet(
-                    self.toggleBtn.styleSheet() + "\n" + style)
 
 
 if __name__ == "__main__":

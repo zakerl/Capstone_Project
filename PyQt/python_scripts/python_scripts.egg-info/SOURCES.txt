@@ -8,6 +8,7 @@ python_pyqt/bed_login.py
 python_pyqt/bed_mainwindow.py
 python_pyqt/bed_view_record.py
 python_pyqt/setup.py
+python_pyqt/test.py
 python_scripts.egg-info/PKG-INFO
 python_scripts.egg-info/SOURCES.txt
 python_scripts.egg-info/dependency_links.txt
