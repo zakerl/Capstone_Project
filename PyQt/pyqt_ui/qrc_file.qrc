@@ -1,5 +1,0 @@
-<RCC>
-  <qresource prefix="image">
-    <file>../python_scripts/handler/BED_logo.jpg</file>
-  </qresource>
-</RCC>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'PyQt/pyqt_ui/bed_mainwindow.ui'
+# Form implementation generated from reading ui file 'pyqt_ui/bed_mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1174, 955)
-        MainWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
+        MainWindow.setStyleSheet("background-color: rgb(34, 31, 31);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setMaximumSize(QtCore.QSize(331, 281))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("BED_logo.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("pyqt_ui\\../python_scripts/python_pyqt/BED_logo.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 1, 1, 1, 6)
@@ -36,11 +36,12 @@ class Ui_MainWindow(object):
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.gridLayout.addItem(spacerItem3, 2, 3, 1, 1)
         self.ConfigButton = QtWidgets.QPushButton(self.centralwidget)
-        self.ConfigButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.ConfigButton.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.ConfigButton.setObjectName("ConfigButton")
         self.gridLayout.addWidget(self.ConfigButton, 3, 2, 1, 2)
         spacerItem4 = QtWidgets.QSpacerItem(494, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -50,11 +51,12 @@ class Ui_MainWindow(object):
         spacerItem6 = QtWidgets.QSpacerItem(494, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem6, 4, 6, 1, 2)
         self.CreateRecordsButton = QtWidgets.QPushButton(self.centralwidget)
-        self.CreateRecordsButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.CreateRecordsButton.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.CreateRecordsButton.setObjectName("CreateRecordsButton")
         self.gridLayout.addWidget(self.CreateRecordsButton, 5, 2, 1, 2)
         spacerItem7 = QtWidgets.QSpacerItem(494, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -64,11 +66,12 @@ class Ui_MainWindow(object):
         spacerItem9 = QtWidgets.QSpacerItem(494, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem9, 6, 6, 1, 2)
         self.RecordsButton = QtWidgets.QPushButton(self.centralwidget)
-        self.RecordsButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.RecordsButton.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.RecordsButton.setObjectName("RecordsButton")
         self.gridLayout.addWidget(self.RecordsButton, 7, 2, 1, 1)
         spacerItem10 = QtWidgets.QSpacerItem(494, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -78,11 +81,12 @@ class Ui_MainWindow(object):
         spacerItem12 = QtWidgets.QSpacerItem(494, 28, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem12, 8, 6, 1, 2)
         self.DataViewButton = QtWidgets.QPushButton(self.centralwidget)
-        self.DataViewButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.DataViewButton.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.DataViewButton.setObjectName("DataViewButton")
         self.gridLayout.addWidget(self.DataViewButton, 9, 2, 1, 1)
         spacerItem13 = QtWidgets.QSpacerItem(20, 342, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)

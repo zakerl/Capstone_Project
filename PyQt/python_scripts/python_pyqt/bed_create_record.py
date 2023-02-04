@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'PyQt/pyqt_ui/bed_create_record.ui'
+# Form implementation generated from reading ui file 'pyqt_ui/bed_create_record.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -15,7 +15,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(1200, 776)
-        Dialog.setStyleSheet("background-color: rgb(0, 0, 0);")
+        Dialog.setStyleSheet("background-color: rgb(34, 31, 31);")
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(357, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -214,7 +214,7 @@ class Ui_Dialog(object):
         spacerItem25 = QtWidgets.QSpacerItem(357, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem25, 13, 0, 1, 1)
         self.CreateRecord = QtWidgets.QPushButton(Dialog)
-        self.CreateRecord.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.CreateRecord.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
@@ -222,7 +222,7 @@ class Ui_Dialog(object):
         self.CreateRecord.setObjectName("CreateRecord")
         self.gridLayout.addWidget(self.CreateRecord, 13, 1, 1, 1)
         self.MainMenu = QtWidgets.QPushButton(Dialog)
-        self.MainMenu.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.MainMenu.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"

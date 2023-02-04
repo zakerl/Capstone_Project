@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Configuration.ui'
+# Form implementation generated from reading ui file 'pyqt_ui/bed_config.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -15,7 +15,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(734, 439)
-        Form.setStyleSheet("background-color: rgb(0, 0, 0);")
+        Form.setStyleSheet("background-color: rgb(34, 31, 31);")
         self.gridLayout_4 = QtWidgets.QGridLayout(Form)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.gridLayout_3 = QtWidgets.QGridLayout()
@@ -111,7 +111,7 @@ class Ui_Form(object):
         self.Activities.setObjectName("Activities")
         self.gridLayout_3.addWidget(self.Activities, 0, 3, 1, 1)
         self.SaveTxt = QtWidgets.QPushButton(Form)
-        self.SaveTxt.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.SaveTxt.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
@@ -119,7 +119,7 @@ class Ui_Form(object):
         self.SaveTxt.setObjectName("SaveTxt")
         self.gridLayout_3.addWidget(self.SaveTxt, 6, 3, 1, 1)
         self.MainMenuBtn = QtWidgets.QPushButton(Form)
-        self.MainMenuBtn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.MainMenuBtn.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"

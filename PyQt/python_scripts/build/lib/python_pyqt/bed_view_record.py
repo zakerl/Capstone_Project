@@ -15,17 +15,18 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1209, 953)
-        Form.setStyleSheet("background-color: rgb(0, 0, 0);")
+        Form.setStyleSheet("background-color: rgb(34, 31, 31);")
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(167, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 1, 1, 2)
         self.ButtonOpen = QtWidgets.QPushButton(Form)
-        self.ButtonOpen.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.ButtonOpen.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.ButtonOpen.setObjectName("ButtonOpen")
         self.gridLayout.addWidget(self.ButtonOpen, 0, 5, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(160, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -216,11 +217,12 @@ class Ui_Form(object):
         spacerItem22 = QtWidgets.QSpacerItem(160, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem22, 15, 0, 1, 1)
         self.ButtonSearch = QtWidgets.QPushButton(Form)
-        self.ButtonSearch.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.ButtonSearch.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.ButtonSearch.setObjectName("ButtonSearch")
         self.gridLayout.addWidget(self.ButtonSearch, 15, 5, 1, 1)
         spacerItem23 = QtWidgets.QSpacerItem(161, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -255,11 +257,12 @@ class Ui_Form(object):
         font.setItalic(False)
         font.setWeight(50)
         self.BtnDescribe.setFont(font)
-        self.BtnDescribe.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.BtnDescribe.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.BtnDescribe.setObjectName("BtnDescribe")
         self.gridLayout_2.addWidget(self.BtnDescribe, 0, 3, 1, 1)
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
@@ -273,11 +276,12 @@ class Ui_Form(object):
         spacerItem24 = QtWidgets.QSpacerItem(160, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem24, 17, 3, 1, 1)
         self.MainMenu = QtWidgets.QPushButton(Form)
-        self.MainMenu.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.MainMenu.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
-"border-radius: 15px;")
+"border-radius: 15px;\n"
+"")
         self.MainMenu.setObjectName("MainMenu")
         self.gridLayout.addWidget(self.MainMenu, 17, 5, 1, 1)
 

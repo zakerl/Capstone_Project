@@ -14,8 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1232, 855)
-        Dialog.setStyleSheet("background-color: rgb(0, 0, 0);")
+        Dialog.resize(1232, 853)
+        Dialog.setStyleSheet("background-color: rgb(34, 31, 31);")
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(20, 58, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -40,7 +40,7 @@ class Ui_Dialog(object):
         spacerItem4 = QtWidgets.QSpacerItem(473, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem4, 3, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.label_2.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
@@ -64,7 +64,7 @@ class Ui_Dialog(object):
         spacerItem9 = QtWidgets.QSpacerItem(473, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem9, 5, 0, 1, 1)
         self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.label_3.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
@@ -86,7 +86,7 @@ class Ui_Dialog(object):
         spacerItem13 = QtWidgets.QSpacerItem(624, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem13, 7, 0, 1, 5)
         self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));\n"
+        self.pushButton.setStyleSheet("font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));\n"
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
