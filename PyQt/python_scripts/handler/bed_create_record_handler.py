@@ -1,5 +1,4 @@
-import os
-from os.path import dirname, realpath
+import sqlite3 as sl
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -7,7 +6,7 @@ from python_pyqt.bed_create_record import *
 
 
 '''This script stores records in database'''
-
+db_path = 'PyQt/python_scripts/handler/BED.db'
 
 class UI_CreateWindow(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
@@ -39,81 +38,57 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         self.CreateRecord.clicked.connect(lambda: self.InsertDB())
         self.MainMenu.clicked.connect(self.BackToMain)
 
-    def save_file(self):
+    def InsertDB(self):
 
-        inputName = self.lineEdit.text()
-        inputAge = self.lineEdit_2.text()
-        inputID = self.lineEdit_3.text()
-        #==================================================#
-        # Having spaces in inputs is okay....
-        #==================================================#
-        eliminate = " "
-        for char in eliminate:
-            temporaryName = inputName.replace(char, "")
-            temporaryAge = inputAge.replace(char, "")
-            temporaryID = inputID.replace(char, "")
+        FirstName = self.FirstNameLabel.text()
+        LastName = self.LastNameLabel.text()
+        Age = int(self.AgeLabel.text())
+        ParticipantID = int(self.ParticipantIDLabel.text())
+        StudyID = int(self.StudyIDLabel.text())
+        Gender = self.GenderLabel.text()
+        Weight = float(self.WeightLabel.text())
+        Height = float(self.HeightLabel.text())
+        PhoneNumber = self.PhoneNumberLabel.text()
+        EmailID = self.EmailIDLabel.text()
+        Address = self.AddressLabel.text()
+        MonitoringPeriod = int(self.MonitoringPeriodLabel.text())
+        TrackerModel = self.TrackerModelLabel.text()
 
-        if (inputName == "" or inputAge == ""or inputID == ""):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Error")
-            msg.setInformativeText('Missing Inputs!')
-            msg.setWindowTitle("Error")
-            msg.exec_()
+        try:
+            con = sl.connect(db_path)
+            cursor = con.cursor()
+            # Insert values into Records table in Database
+            insert_query = """ INSERT INTO RECORDS (FirstName, LastName, Age, ParticipantID, StudyID,
+            Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel) VALUES 
+            (?,?,?,?,?,?,?,?,?,?,?,?,?)"""
+
+            record = (FirstName, LastName, Age, ParticipantID, StudyID,
+            Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel)
+
+            cursor.execute(insert_query, record)
+            con.commit()
+            cursor.close()
+            con.close()
+
+        except con.Error as error:
+            print("Failed to insert into MySQL table {}".format(error))
+
         
-        elif (not inputName.isalpha() and not temporaryName.isalpha()):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Error")
-            msg.setInformativeText('Participant name must be in alphabets!')
-            msg.setWindowTitle("Error")
-            msg.exec_()
-        
-        elif (inputAge.isalpha() and temporaryAge.isalpha()):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Error")
-            msg.setInformativeText('Participant Age must be in numbers!')
-            msg.setWindowTitle("Error")
-            msg.exec_()
 
-        elif (inputID.isalpha() and temporaryID.isalpha()):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Error")
-            msg.setInformativeText('Device ID must be in numbers!')
-            msg.setWindowTitle("Error")
-            msg.exec_()
-
-        else:
-            cipheredName, badIndex = self.encryption(inputName)
-            cipheredAge, badIndex = self.encryption(inputAge)
-            cipheredID, badIndex = self.encryption(inputID)
-
-            filepath = os.path.join(scriptDir, 'encrypted.txt')
-
-            with open(filepath, 'w') as f: 
-                f.write("Encrypted Name: " + cipheredName + "\n")
-                f.write("Encrypted Age: " + cipheredAge + "\n")
-                f.write("Encrypted ID: " + cipheredID + "\n")
-
-            filepath2 = os.path.join(scriptDir, 'decrypted.txt')
-
-            with open(filepath2, 'w') as f: 
-                f.write("Name: " + self.decryption(cipheredName, badIndex)+ "\n")
-                f.write("Age: " + self.decryption(cipheredAge, badIndex)+ "\n")
-                f.write("ID: " + self.decryption(cipheredID, badIndex)+ "\n")
-
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Information)
-            msg.setText("Saved!")
-            msg.setInformativeText('Data is created and saved. Check the folder.')
-            msg.setWindowTitle("Saved")
-            msg.exec_()
-        
-        self.lineEdit.clear()
-        self.lineEdit_2.clear()
-        self.lineEdit_3.clear()
+        # Clear all fields when create record button is clicked 
+        self.FirstNameLabel.clear()
+        self.LastNameLabel.clear()
+        self.AgeLabel.clear()
+        ParticipantID = self.ParticipantIDLabel.clear()
+        StudyID = self.StudyIDLabel.clear()
+        Gender = self.GenderLabel.clear()
+        Weight = self.WeightLabel.clear()
+        Height = self.HeightLabel.clear()
+        PhoneNumber = self.PhoneNumberLabel.clear()
+        EmailID = self.EmailIDLabel.clear()
+        Address = self.AddressLabel.clear()
+        MonitoringPeriod = self.MonitoringPeriodLabel.clear()
+        TrackerModel = self.TrackerModelLabel.clear()
 
     def BackToMain(self):
         self.MainWindow.show()
