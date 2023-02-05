@@ -19,20 +19,26 @@ class UI_DataView(QWidget, Ui_DataView):
         # Rounding buttons
         #==================================================#
         self.LoadData.setFixedHeight(31)
+        self.LoadData.setFixedWidth(100)
         self.BtnDescribe.setFixedHeight(31)
         self.BtnDescribe.setFixedWidth(100)
         self.ButtonSearch.setFixedHeight(31)
+        self.ButtonSearch.setFixedWidth(100)
         self.MainMenu.setFixedHeight(31)
+        self.MainMenu.setFixedWidth(100)
         self.Graph.setFixedHeight(31)
+        self.Graph.setFixedWidth(100)
         self.spinBox.setFixedHeight(31)
         #==================================================#
         # Rounding text boxes
         #==================================================#
+        self.TimeLabel.setFixedHeight(22)
+        self.StudyIDLabel.setFixedHeight(22)
         self.IDLabel.setFixedHeight(22)
         self.StepsLabel.setFixedHeight(22)
         self.HeartRateLabel.setFixedHeight(22)
-        self.TimeLabel.setFixedHeight(22)
         self.ActivityTypeLabel.setFixedHeight(22)
+        self.ActivityTimeLabel.setFixedHeight(22)
         self.PromptLabel.setFixedHeight(22)
         self.PainLabel.setFixedHeight(22)
         self.PainLevelLabel.setFixedHeight(22)
