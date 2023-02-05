@@ -102,36 +102,38 @@ class UI_DataView(QWidget, Ui_DataView):
     def search(self):
         if(len(self.all_data) == 0):
             return
-        ID = self.IDLabel.text()
+        Time = self.TimeLabel.text()
+        StudyID = self.StudyIDLabel.text()
+        ParticipantID = self.IDLabel.text()
         Steps = self.StepsLabel.text()
         HeartRate = self.HeartRateLabel.text()
-        ActivityTime = self.TimeLabel.text()
+        ActivityTime = self.ActivityTimeLabel.text()
         ActivityType = self.ActivityTypeLabel.text()
         Prompt = self.PromptLabel.text()
         Pain = self.PainLabel.text()
         PainLevel = self.PainLevelLabel.text()
         Time = self.TimeLabel.text()
         ref_dict = {
-            "Participant ID": ID,
-            "Steps": Steps,
             "Time": Time,
-            "Heart rate": HeartRate,
-            "Active time (mins)": ActivityTime,
-            "Type of Activity": ActivityType,
-            "Prompt generated": Prompt,
-            "Are you in pain?": Pain,
-            "Pain level (1-10)": PainLevel
+            "StudyID": StudyID,
+            "Steps": Steps,
+            "HeartRate": HeartRate,
+            "ParticipantID": ParticipantID,
+            "ActivityTimeMins": ActivityTime,
+            "ActivityType": ActivityType,
+            "PromptGenerated": Prompt,
+            "InPain": Pain,
+            "PainLevel": PainLevel
         }
 
         headerNames = list(self.all_data.columns)
         filteredData = self.all_data
-
-        if(ID != ""):
-            filteredData = filteredData[filteredData["Participant ID"] == ID]
+        if(ParticipantID != ""):
+            filteredData = filteredData[filteredData["ParticipantID"] == ParticipantID]
         for i in headerNames:
             filteredData[i] = filteredData[i].astype(str).str.replace(
                 ".0", "", regex=False)
-            if i.lower() != "Participant ID".lower() and ref_dict[i] != "":
+            if i.lower() != "ParticipantID".lower() and ref_dict[i] != "":
                 filteredData = filteredData[filteredData[i] ==
                                             ref_dict[i]]
 
