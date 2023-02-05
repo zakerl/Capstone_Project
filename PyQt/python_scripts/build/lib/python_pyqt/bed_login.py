@@ -23,7 +23,7 @@ class Ui_Dialog(object):
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setMaximumSize(QtCore.QSize(311, 261))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap("C:/Users/Nish/Documents/Coursework/Year 4/Capstone/Login_universal/Capstone_Project/PyQt/python_scripts\python_pyqt\BED_logo.jpg"))
+        self.label_4.setPixmap(QtGui.QPixmap("C:/Users/shahn39/Documents/Capstone/cleanup_ui/Capstone_Project/PyQt/python_scripts/python_pyqt/BED_logo.jpg"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 0, 2, 1, 8)
@@ -89,6 +89,7 @@ class Ui_Dialog(object):
         self.lineEdit_2.setStyleSheet("background-color: rgb(209, 209, 209);\n"
 "border-radius: 11px;")
         self.lineEdit_2.setObjectName("lineEdit_2")
+        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
         self.gridLayout.addWidget(self.lineEdit_2, 6, 5, 1, 3)
         spacerItem13 = QtWidgets.QSpacerItem(503, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem13, 6, 8, 1, 3)
