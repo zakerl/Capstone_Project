@@ -24,8 +24,6 @@ class UI_DataView(QWidget, Ui_DataView):
         self.ButtonSearch.setFixedHeight(31)
         self.MainMenu.setFixedHeight(31)
         self.Graph.setFixedHeight(31)
-        # self.StepsGraph.setFixedHeight(31)
-        # self.ActivityGraph.setFixedHeight(31)
         self.spinBox.setFixedHeight(31)
         #==================================================#
         # Rounding text boxes
