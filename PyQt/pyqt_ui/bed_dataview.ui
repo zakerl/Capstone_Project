@@ -6,180 +6,95 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>995</width>
-    <height>927</height>
+    <width>1179</width>
+    <height>1071</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Data View</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(34, 31, 31);</string>
+   <string notr="true">background-color: rgb(1,0,1);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="3" column="5">
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="6" column="0">
-      <spacer name="horizontalSpacer_16">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="10" column="6">
-      <spacer name="horizontalSpacer_13">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="13" column="0">
-      <spacer name="horizontalSpacer_25">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="2">
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="5">
-      <spacer name="horizontalSpacer_9">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="11" column="0" colspan="7">
-      <widget class="QTabWidget" name="tabWidget">
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <property name="tabsClosable">
-        <bool>false</bool>
-       </property>
-       <property name="movable">
-        <bool>false</bool>
-       </property>
-       <property name="tabBarAutoHide">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="tab">
-        <attribute name="title">
-         <string>Data</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="2">
-          <widget class="QSpinBox" name="spinBox">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(209, 209, 209);</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label">
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 255)</string>
-           </property>
-           <property name="text">
-            <string>Rows</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QPushButton" name="BtnDescribe">
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei UI</family>
-             <pointsize>9</pointsize>
-             <weight>50</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+     <item row="0" column="3">
+      <widget class="QPushButton" name="LoadData">
+       <property name="styleSheet">
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
 color: rgb(255, 255, 255);
 border-style: solid;
 border-radius: 15px;</string>
-           </property>
-           <property name="text">
-            <string>Filter</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" colspan="4">
-          <widget class="QTableWidget" name="tableWidget">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(209, 209, 209);</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       </property>
+       <property name="text">
+        <string>Load Data</string>
+       </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <spacer name="horizontalSpacer_18">
+     <item row="0" column="4">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="1">
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Participant ID</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="IDLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <spacer name="horizontalSpacer_11">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="1">
+      <spacer name="horizontalSpacer_5">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -204,354 +119,6 @@ border-radius: 15px;</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="2">
-      <widget class="QLabel" name="label_6">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Type of Activity</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="5">
-      <spacer name="horizontalSpacer_17">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="6" column="2">
-      <widget class="QLabel" name="label_7">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Prompt generated</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <spacer name="horizontalSpacer_11">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="2">
-      <widget class="QLabel" name="label_4">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Active time (mins)</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="3">
-      <widget class="QLineEdit" name="PainLevelLabel">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209, 209, 209);
-border-radius: 11px;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <spacer name="horizontalSpacer_7">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="13" column="3">
-      <widget class="QPushButton" name="HeartGraph">
-       <property name="styleSheet">
-        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
-font: 9pt &quot;Microsoft YaHei UI&quot;;
-color: rgb(255, 255, 255);
-border-style: solid;
-border-radius: 15px;</string>
-       </property>
-       <property name="text">
-        <string>Graph for HeartRate vs Time</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="5">
-      <spacer name="horizontalSpacer_10">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="9" column="2">
-      <widget class="QLabel" name="label_9">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Pain level (1-10)</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="label_2">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Participant ID</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="3">
-      <widget class="QLineEdit" name="TimeLabel">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209, 209, 209);
-border-radius: 11px;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="10" column="2">
-      <spacer name="horizontalSpacer_12">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="5" column="5">
-      <spacer name="horizontalSpacer_15">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="13" column="5">
-      <spacer name="horizontalSpacer_24">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="9" column="5">
-      <spacer name="horizontalSpacer_21">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="12" column="3">
-      <widget class="QPushButton" name="MainMenu">
-       <property name="styleSheet">
-        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
-font: 9pt &quot;Microsoft YaHei UI&quot;;
-color: rgb(255, 255, 255);
-border-style: solid;
-border-radius: 15px;</string>
-       </property>
-       <property name="text">
-        <string>Back to Main Menu</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <spacer name="horizontalSpacer_14">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="10" column="3">
-      <widget class="QPushButton" name="ButtonSearch">
-       <property name="styleSheet">
-        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
-font: 9pt &quot;Microsoft YaHei UI&quot;;
-color: rgb(255, 255, 255);
-border-style: solid;
-border-radius: 15px;</string>
-       </property>
-       <property name="text">
-        <string>Search</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="5">
-      <spacer name="horizontalSpacer_22">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="12" column="0">
-      <spacer name="horizontalSpacer_23">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="7" column="5">
-      <spacer name="horizontalSpacer_19">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="3">
-      <widget class="QPushButton" name="LoadData">
-       <property name="styleSheet">
-        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
-font: 9pt &quot;Microsoft YaHei UI&quot;;
-color: rgb(255, 255, 255);
-border-style: solid;
-border-radius: 15px;</string>
-       </property>
-       <property name="text">
-        <string>Load CSV</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QLineEdit" name="ActivityTypeLabel">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209, 209, 209);
-border-radius: 11px;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <spacer name="horizontalSpacer_20">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="6" column="3">
-      <widget class="QLineEdit" name="PromptLabel">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209, 209, 209);
-border-radius: 11px;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="2" column="3">
       <widget class="QLineEdit" name="StepsLabel">
        <property name="styleSheet">
@@ -560,8 +127,21 @@ border-radius: 11px;</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <spacer name="horizontalSpacer_4">
+     <item row="2" column="4">
+      <spacer name="horizontalSpacer_9">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="3" column="1">
+      <spacer name="horizontalSpacer_6">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -594,6 +174,173 @@ border-radius: 11px;</string>
        </property>
       </widget>
      </item>
+     <item row="3" column="4">
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="0">
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="label_4">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Active time (mins)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QLineEdit" name="TimeLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
+      <spacer name="horizontalSpacer_10">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="1">
+      <spacer name="horizontalSpacer_14">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="2">
+      <widget class="QLabel" name="label_6">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Type of Activity</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QLineEdit" name="ActivityTypeLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="4">
+      <spacer name="horizontalSpacer_15">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="0">
+      <spacer name="horizontalSpacer_16">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="2">
+      <widget class="QLabel" name="label_7">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Prompt generated</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <widget class="QLineEdit" name="PromptLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="4">
+      <spacer name="horizontalSpacer_17">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="7" column="0">
+      <spacer name="horizontalSpacer_18">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item row="7" column="2">
       <widget class="QLabel" name="label_8">
        <property name="styleSheet">
@@ -607,8 +354,16 @@ border-radius: 11px;</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
-      <spacer name="horizontalSpacer">
+     <item row="7" column="3">
+      <widget class="QLineEdit" name="PainLabel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209, 209, 209);
+border-radius: 11px;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="4">
+      <spacer name="horizontalSpacer_19">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -620,20 +375,239 @@ border-radius: 11px;</string>
        </property>
       </spacer>
      </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="IDLabel">
+     <item row="8" column="0">
+      <spacer name="horizontalSpacer_20">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="8" column="2">
+      <widget class="QLabel" name="label_9">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Pain level (1-10)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="3">
+      <widget class="QLineEdit" name="PainLevelLabel">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(209, 209, 209);
 border-radius: 11px;</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="3">
-      <widget class="QLineEdit" name="PainLabel">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209, 209, 209);
-border-radius: 11px;</string>
+     <item row="8" column="4">
+      <spacer name="horizontalSpacer_21">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="9" column="3">
+      <widget class="QPushButton" name="ButtonSearch">
+       <property name="styleSheet">
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="4">
+      <spacer name="horizontalSpacer_13">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="11" column="0" colspan="2">
+      <spacer name="horizontalSpacer_26">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="11" column="3">
+      <widget class="QPushButton" name="Graph">
+       <property name="styleSheet">
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
+       </property>
+       <property name="text">
+        <string>Plot data</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="5">
+      <spacer name="horizontalSpacer_25">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="12" column="0" colspan="2">
+      <spacer name="horizontalSpacer_23">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="12" column="3">
+      <widget class="QPushButton" name="MainMenu">
+       <property name="styleSheet">
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
+       </property>
+       <property name="text">
+        <string>Main Menu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="5">
+      <spacer name="horizontalSpacer_24">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="10" column="0" colspan="6">
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="tabsClosable">
+        <bool>false</bool>
+       </property>
+       <property name="movable">
+        <bool>false</bool>
+       </property>
+       <property name="tabBarAutoHide">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Data</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="3">
+          <widget class="QPushButton" name="BtnDescribe">
+           <property name="font">
+            <font>
+             <family>Microsoft YaHei UI</family>
+             <pointsize>9</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;</string>
+           </property>
+           <property name="text">
+            <string>Filter</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QSpinBox" name="spinBox">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(209, 209, 209);</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="4">
+          <widget class="QTableWidget" name="tableWidget">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(209, 209, 209);</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label">
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 255, 255)</string>
+           </property>
+           <property name="text">
+            <string>Rows</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
     </layout>

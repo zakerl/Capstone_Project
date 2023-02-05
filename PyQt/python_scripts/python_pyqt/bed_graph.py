@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI/GraphView.ui'
+# Form implementation generated from reading ui file 'pyqt_ui/bed_graph.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_GraphWindow()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

@@ -20,10 +20,12 @@ class UI_DataView(QWidget, Ui_DataView):
         #==================================================#
         self.LoadData.setFixedHeight(31)
         self.BtnDescribe.setFixedHeight(31)
+        self.BtnDescribe.setFixedWidth(100)
         self.ButtonSearch.setFixedHeight(31)
         self.MainMenu.setFixedHeight(31)
-        self.HeartGraph.setFixedHeight(31)
-        self.HeartGraph.setFixedWidth(280)
+        self.Graph.setFixedHeight(31)
+        # self.StepsGraph.setFixedHeight(31)
+        # self.ActivityGraph.setFixedHeight(31)
         self.spinBox.setFixedHeight(31)
         #==================================================#
         # Rounding text boxes
@@ -43,7 +45,8 @@ class UI_DataView(QWidget, Ui_DataView):
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
         self.MainMenu.clicked.connect(self.BackToMain)
-        self.HeartGraph.clicked.connect(self.OpenHeartGraph)
+        self.Graph.clicked.connect(self.OpenGraph)
+
 
     def LoadDb(self):
         try:
@@ -144,7 +147,7 @@ class UI_DataView(QWidget, Ui_DataView):
         self.MainWindow.show()
         self.hide()
 
-    def OpenHeartGraph(self):
+    def OpenGraph(self,type):
         self.GraphView = UI_GraphView(self.MainWindow)
         self.GraphView.show()
         self.MainWindow.hide()

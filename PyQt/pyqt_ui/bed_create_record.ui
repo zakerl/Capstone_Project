@@ -14,7 +14,7 @@
    <string>Configuration</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(34, 31, 31);</string>
+   <string notr="true">background-color: rgb(1,0,1);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
