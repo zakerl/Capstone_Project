@@ -61,6 +61,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     '''
     Different windows open when buttons are clicked, event handler functions described below
     '''
+
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
         self.RecordWindow.show()
