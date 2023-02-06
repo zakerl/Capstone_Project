@@ -25,11 +25,13 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         # for buttons on MainMenu
         #==================================================#
         self.CreateRecordsButton.setFixedWidth(190)
+        self.ReadSD.setFixedWidth(190)
         self.ConfigButton.setFixedWidth(190)
         self.RecordsButton.setFixedWidth(190)
         self.DataViewButton.setFixedWidth(190)
 
         self.CreateRecordsButton.setFixedHeight(31)
+        self.ReadSD.setFixedHeight(31)
         self.ConfigButton.setFixedHeight(31)
         self.RecordsButton.setFixedHeight(31)
         self.DataViewButton.setFixedHeight(31)
