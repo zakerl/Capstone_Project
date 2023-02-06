@@ -8,6 +8,8 @@
 #define BED_ERR_INVALID_DATA_SIZE           (int32_t)   -3       /*Invalid data size error*/
 #define BED_ERR_DISPLAY_SYSTEM              (int32_t)   -4       /*Display system not working error*/
 #define BED_ERR_RTC_SYSTEM                  (int32_t)   -5       /*RTC system not working error*/
+#define BED_ERR_MPU_SYSTEM                  (int32_t)   -6       /*MPU system not working error*/
+#define BED_ERR_HR_SYSTEM                   (int32_t)   -7       /*HR system not working error*/
 
 
 #endif
