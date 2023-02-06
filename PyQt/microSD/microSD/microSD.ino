@@ -22,39 +22,37 @@ void setup() {
   //Serial.println("initialization done.");
 
   // WRITING INTO THE SD
-  myFile = SD.open("dataview.txt", FILE_WRITE);
+  // myFile = SD.open("dataview.txt", FILE_WRITE);
   
-  if (myFile) {
-    //Serial.print("Writing to test.txt...");
-    myFile.println("Time, 08:20");
-    myFile.println("Steps, 23");
-    myFile.println("HeartRate, 65");
-    myFile.println("ActivityTime, 18");
-    myFile.println("ActivityType, walking");
-    myFile.println("PromptGen, yes");
-    myFile.println("Pain, yes");
-    myFile.println("PainLevel, 7");
+  // if (myFile) {
+  //   Serial.print("Writing to test.txt...");
+  //   myFile.println("08:20");
+  //   myFile.println(4);
+  //   myFile.println(23);
+  //   myFile.println(65);
+  //   myFile.println(20);
+  //   myFile.println("18");
+  //   myFile.println("walking");
+  //   myFile.println("yes");
+  //   myFile.println("yes");
+  //   myFile.println(7);
 
-    myFile.close();
-    //Serial.println("done.");
-  } else {
-    Serial.println("error opening dataview.txt");
-  }
+  //   myFile.close();
+  //   Serial.println("done.");
+  // } else {
+  //   Serial.println("error opening dataview.txt");
+  // }
   
   
   // READ FROM THE SD
   myFile = SD.open("dataview.txt");
 
-  if (myFile) {
-    Serial.println("test.txt:");
-    
+  if (myFile) {    
     while (myFile.available()) {
     	Serial.write(myFile.read());
     }
     myFile.close();
-  } else {
-    Serial.println("error opening dataview.txt");
-  }
+  } 
 }
 
 void loop() {
