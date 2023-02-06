@@ -1,32 +1,39 @@
 import os
-import sys
-from os.path import dirname, realpath, join
+from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-import pandas as pd
-from PyQt5.uic import loadUiType
 from python_pyqt.bed_create_record import *
-import numpy as np
-import math
-from functools import partial
 from python_pyqt.bed_login import *
 from bed_dataview_handler import *
+from bed_mainwindow_handler import *
 
 
 scriptDir = dirname(realpath(__file__))
+
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
         super(UI_DataViewLogin, self).__init__()
         QWidget.__init__(self)
-        self.setupUi(self)
         self.MainWindow = MainWindow
+        self.setupUi(self)
         self.all_data = []
+        self.label_2.setFixedWidth(190)
+        self.label_3.setFixedWidth(190)
+        self.lineEdit.setFixedWidth(190)
+        self.lineEdit_2.setFixedWidth(190)
+        self.pushButton.setFixedWidth(190)
+
+        self.label_2.setFixedHeight(31)
+        self.label_3.setFixedHeight(31)
+        self.lineEdit.setFixedHeight(31)
+        self.lineEdit_2.setFixedHeight(31)
+        self.pushButton.setFixedHeight(31)
+
         self.pushButton.clicked.connect(lambda: self.loginAttempt())
         self.lineEdit.returnPressed.connect(lambda: self.loginAttempt())
         self.lineEdit_2.returnPressed.connect(lambda: self.loginAttempt())
-        #self.pushButton_2.clicked.connect(self.BackToMain)
 
     def loginAttempt(self):
 
@@ -43,11 +50,7 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
             loginValidity = 0
 
         if(loginValidity == 1):
-            
-            self.DataView = UI_DataView(self.MainWindow)
-            self.DataView.show()
-            self.hide()
-            self.MainWindow.hide()
+            self.ToMain()
         else:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -59,6 +62,6 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         self.lineEdit.clear()
         self.lineEdit_2.clear()
 
-    #def BackToMain(self):
-    #    self.MainWindow.show()
-    #    self.hide()
+    def ToMain(self):
+        self.MainWindow.show()
+        self.hide()

@@ -14,7 +14,7 @@
    <string>Configuration</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true">background-color: rgb(1,0,1);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
@@ -322,7 +322,7 @@ border-radius: 11px;</string>
      <item row="6" column="3">
       <widget class="QPushButton" name="SaveTxt">
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
 color: rgb(255, 255, 255);
 border-style: solid;
@@ -336,7 +336,7 @@ border-radius: 15px;</string>
      <item row="6" column="5">
       <widget class="QPushButton" name="MainMenuBtn">
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(61, 217, 245, 255), stop:1 rgba(240, 53, 218, 255));
+        <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
 color: rgb(255, 255, 255);
 border-style: solid;

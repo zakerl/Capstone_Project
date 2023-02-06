@@ -1,12 +1,4 @@
 setup.py
-handler/__init__.py
-handler/bed_config_handler.py
-handler/bed_create_record_handler.py
-handler/bed_dataview_handler.py
-handler/bed_graph_handler.py
-handler/bed_login_handler.py
-handler/bed_mainwindow_handler.py
-handler/bed_view_record_handler.py
 python_pyqt/__init__.py
 python_pyqt/bed_config.py
 python_pyqt/bed_create_record.py

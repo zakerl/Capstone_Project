@@ -1,16 +1,14 @@
-import os
-import sys
-from os.path import dirname, realpath, join
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import pandas as pd
-import numpy as np
 from python_pyqt.bed_view_record import *
+from bed_dataview_handler import *
 
-#scriptDir = dirname(realpath(__file__))
-#From_Main, _ = loadUiType(join(dirname(__file__), "ViewRecord_2.ui"))
-
+'''This script is used to add events to view records of participants.
+    A csv/db is loaded an data is presented in tabular format for 
+    searching and filtering row-wise.
+'''
 
 class UI_RecordWindow(QWidget, Ui_Form):
     def __init__(self, MainWindow):
@@ -19,6 +17,9 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.setupUi(self)
         self.MainWindow = MainWindow
         self.all_data = []
+        #==================================================#
+        # Setting fixed button sizing
+        #==================================================#
         self.ButtonOpen.setFixedHeight(31)
         self.BtnDescribe.setFixedHeight(31)
         self.ButtonSearch.setFixedHeight(31)
@@ -28,6 +29,7 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.LastNameLabel.setFixedHeight(22)
         self.AgeLabel.setFixedHeight(22)
         self.PIDLabel.setFixedHeight(22)
+        self.StudyIDLabel.setFixedHeight(22)
         self.GenderLabel.setFixedHeight(22)
         self.WeightLabel.setFixedHeight(22)
         self.HeightLabel.setFixedHeight(22)
@@ -43,9 +45,13 @@ class UI_RecordWindow(QWidget, Ui_Form):
 
     def OpenFile(self):
         try:
-            path = QFileDialog.getOpenFileName(
-                self, 'Open CSV', os.getenv('HOME'), 'CSV(*.csv)')[0]
-            self.all_data = pd.read_csv(path)
+            #==================================================#
+            # Access Records table from BED database
+            #==================================================#
+            con = sl.connect(db_path)
+            sql_query = pd.read_sql('SELECT * FROM RECORDS', con)
+            # Convert SQL to DataFrame
+            self.all_data = pd.DataFrame(sql_query)
             self.dataHead()
             header = self.tableWidget.horizontalHeader()
             header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -65,8 +71,8 @@ class UI_RecordWindow(QWidget, Ui_Form):
                 6, QtWidgets.QHeaderView.Stretch)
             header.setSectionResizeMode(
                 7, QtWidgets.QHeaderView.Stretch)
-        except:
-            print(path)
+        except Exception as Error:
+            print (Error)
 
     def dataHead(self):
         numRow = self.spinBox.value()
@@ -89,6 +95,9 @@ class UI_RecordWindow(QWidget, Ui_Form):
     def search(self):
         if(len(self.all_data) == 0):
             return
+        #==================================================#
+        # Variables to enter into tabular format
+        #==================================================#
         firstName = self.FirstNameLabel.text()
         lastName = self.LastNameLabel.text()
         age = self.AgeLabel.text()
@@ -102,21 +111,21 @@ class UI_RecordWindow(QWidget, Ui_Form):
         MonitorPer = self.MonitorPeriodLabel.text()
         trackerID = self.TrackerLabel.text()
         ref_dict = {
-            "First Name": firstName,
-            "Last Name": lastName,
+            "FirstName": firstName,
+            "LastName": lastName,
             "Age": age,
-            "Participant ID": ParticipantID,
+            "ParticipantID": ParticipantID,
+            "StudyID": "",
             "Gender": gender,
-            "Weight (kgs)": weight,
-            "Height (cm)": height,
-            "Phone number": PhnNumber,
-            "Email ID": Email,
+            "Weight": weight,
+            "Height": height,
+            "PhoneNumber": PhnNumber,
+            "EmailID": Email,
             "Address": Address,
-            "Monitoring Period": MonitorPer,
-            "Tracker model": trackerID
+            "MonitoringPeriod": MonitorPer,
+            "TrackerModel": trackerID
         }
 
-        # searchResults = [row for row in self.all_data if]
         headerNames = list(self.all_data.columns)
         filteredData = self.all_data
         for i in headerNames:
