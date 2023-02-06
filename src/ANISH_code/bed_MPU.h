@@ -13,7 +13,16 @@ uint8_t flag_az = 0;
 uint8_t flag_gz = 0;
 uint8_t flag_gy = 0; 
 uint8_t flag_gx = 0;
-uint8_t sum_of_flags;
+uint8_t sum_of_flags = 0;
+
+// Rest flags
+uint8_t rest_ax = 0;
+uint8_t rest_ay = 0;
+uint8_t rest_az = 0;
+uint8_t rest_gx = 0;
+uint8_t rest_gy = 0;
+uint8_t rest_gz = 0;
+uint8_t sum_of_rest = 0;
 
 // Limp flags
 uint8_t limp_flag_ax = 0;
@@ -22,7 +31,7 @@ uint8_t limp_flag_az = 0;
 uint8_t limp_flag_gz = 0;
 uint8_t limp_flag_gy = 0; 
 uint8_t limp_flag_gx = 0;
-uint8_t sum_of_limp_flags;
+uint8_t sum_of_limp_flags = 0;
 
 // Step helper variables
 float sum_ax, sum_ay, sum_az;

@@ -8,7 +8,6 @@
 PulseSensorPlayground pulseSensor;  // Creates an object
 
 int32_t bed_init_HR() {
-  Serial.begin(19200);
   
   // Configure the PulseSensor object, by assigning our variables to it
   pulseSensor.analogInput(PulseWire);   
@@ -21,26 +20,23 @@ int32_t bed_init_HR() {
   }
   else{
     Serial.println("PulseSensor object error")
-    return -7;
+    return BED_ERR_HR_SYSTEM;
   }
 
   BPM = pulseSensor.getBeatsPerMinute();
-  return 0;
+  return BED_ERR_NONE;
 }
 
 // This should be triggered whenever you want to measure heartrate. Make sure that the setup is done first.
 void bed_HR_detect() {
   // put your main code here, to run repeatedly:
-  unsigned long currentMillis = millis(); // Gets the current time
-  if(currentMillis - HRtime >= HEART_EVENT){
     BPM = pulseSensor.getBeatsPerMinute();      // Calculates BPM
     
     if (pulseSensor.sawStartOfBeat()) {               // Constantly test to see if a beat happened
-      Serial.println("HeartBeat Detected "); // If true, pruint8_t a message
-      Serial.print("BPM: ");
+      // Serial.println("HeartBeat Detected "); // If true, pruint8_t a message
+      // Serial.print("BPM: ");
       Serial.println(BPM);                        // Pruint8_t the BPM value
+      real_heart_rate = BPM;
       }
-    HRtime = currentMillis;
-  }
 
 }

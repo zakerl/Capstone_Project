@@ -126,7 +126,7 @@ void setup()
 
 void loop() 
 {
-
+  int8_t limp_flag = 0;
   unsigned long currentTime = millis();
 
   if (currentTime - prev_touch_time >= TOUCH_SAMPLE_TIME) 
@@ -144,7 +144,25 @@ void loop()
     state = changeState(input);
     
   }
+  // I DON'T KNOW IF I'M DOING THIS RIGHT
 
+  if(currentTime - MPULooptime >= MPU_EVENT)
+  {
+      limp_flag = bed_MPU_detect();
+      MPULooptime = currentTime;
+
+  } 
+  if(limp_flag == 1){
+    input = KEY_2_INPUT;
+  }
+  if(limp_flag == -1 && real_heart_rate >= 100){
+    input = KEY_2_INPUT;
+  }
+
+  if(currentMillis - HRtime >= HEART_EVENT){
+    bed_HR_detect();
+    HRtime = currentMillis;
+  }
   setState(state);
 }
 

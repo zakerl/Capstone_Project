@@ -16,11 +16,10 @@
 Adafruit_MPU6050 mpu;
 
 int32_t bed_init_MPU() {
-  Serial.begin(19200);
   // Try to initialize
   if (!mpu.begin()) {
     Serial.println("Failed to find MPU6050 chip");
-    return -6;
+    return BED_ERR_MPU_SYSTEM;
   }
   Serial.println("MPU6050 Found!");
 
@@ -54,13 +53,12 @@ int32_t bed_init_MPU() {
   Serial.println(avg_az);
   MPUSetuptime = currentTime;
 
-  return 0;
+  return BED_ERR_NONE;
 }
 }
 
-int32_t bed_MPU_detect() {
-unsigned long currentTime = millis(); // Gets the current time
-  if(currentTime - MPULooptime >= MPU_EVENT){
+int8_t bed_MPU_detect() {
+
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp); 
 
@@ -109,6 +107,26 @@ unsigned long currentTime = millis(); // Gets the current time
     flag_gz = 1;
   }
   
+  // Rest detection
+  if (curr_ax < avg_ax+0.1 && avg_ax-0.1 < curr_ax) {
+    rest_ax = 1;
+  }
+  if (curr_ay < avg_ay+0.1 && avg_ay-0.1 < curr_ay) {
+    rest_ay = 1;
+  }
+  if (curr_az < avg_az+0.1 && avg_az-0.1 > curr_az) {
+    rest_ax = 1;
+  }
+  if (curr_gx < 0.1 || -0.1 < curr_gx) {
+    rest_gx = 1;
+  }
+  if (curr_gy < 0.1 || -0.1 < curr_gy) {
+    rest_gy = 1;
+  }
+  if (curr_gz < 0.1 || -0.1 < curr_gz) {
+    rest_gz = 1;
+  }
+
   //Limp flag ifs, changed the thresholds off experimental data.
   if (avg_ax-7 > curr_ax) {
   limp_flag_ax = 1;
@@ -131,7 +149,7 @@ unsigned long currentTime = millis(); // Gets the current time
   if(limp_count >= 3){
     limp_count = 0;
     Serial.println("limping. ");
-    input = 2; //Set state to 2
+    return 1; //Set state to 2
   }
 
   sum_of_flags = flag_ax + flag_ay + flag_az + flag_gx + flag_gy + flag_gz;
@@ -149,6 +167,19 @@ unsigned long currentTime = millis(); // Gets the current time
 
   }
 
+  sum_of_rest = rest_ax + rest_ay + rest_az + rest_gx + rest_gy + rest_gz;
+
+  if (sum_of_rest >= 4) {
+    Serial.print("resting");
+    flag_ax = 0;
+    flag_ay = 0;
+    flag_az = 0;
+    flag_gx = 0;
+    flag_gy = 0;
+    flag_gz = 0;
+    return -1;
+  }
+
   if (flag_reset_count >= 8) { //approx 2 seconds.
     flag_reset_count = 0;
     flag_ax = 0;
@@ -157,11 +188,19 @@ unsigned long currentTime = millis(); // Gets the current time
     flag_gx = 0;
     flag_gy = 0;
     flag_gz = 0;
+    rest_ax = 0;
+    rest_ay = 0;
+    rest_az = 0;
+    rest_gx = 0;
+    rest_gy = 0;
+    rest_gz = 0;
+    limp_flag_gz = 0;
+    limp_flag_az = 0;
+    limp_flag_ax = 0;
   }
 
   flag_reset_count++;
-  MPULooptime = currentTime;
+
   
-}
 return 0;
 }
