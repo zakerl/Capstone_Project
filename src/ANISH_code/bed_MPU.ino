@@ -200,7 +200,7 @@ int8_t bed_MPU_detect() {
   }
 
   flag_reset_count++;
-
+  
   
 return 0;
 }
