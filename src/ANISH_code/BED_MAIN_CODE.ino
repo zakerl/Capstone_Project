@@ -116,11 +116,11 @@ void setup()
     b32_error_code = bed_init_MPU();    
     Serial.println("MPU Status:\t" + (String)b32_error_code);
   }
-  if(b32_error_code == BED_ERR_NONE)
-  {
-    b32_error_code = bed_init_HR();    
-    Serial.println("HR Status:\t" + (String)b32_error_code);
-  }
+  // if(b32_error_code == BED_ERR_NONE)
+  // {
+  //   b32_error_code = bed_init_HR();    
+  //   Serial.println("HR Status:\t" + (String)b32_error_code);
+  // }
 }
 
 
@@ -159,10 +159,10 @@ void loop()
     input = KEY_2_INPUT;
   }
 
-  if(currentMillis - HRtime >= HEART_EVENT){
-    bed_HR_detect();
-    HRtime = currentMillis;
-  }
+  // if(currentMillis - HRtime >= HEART_EVENT){
+  //   bed_HR_detect();
+  //   HRtime = currentMillis;
+  // }
   setState(state);
 }
 
