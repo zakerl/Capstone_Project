@@ -132,7 +132,7 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software}
+\title{Software Requirements Specification for \progname: An EMA Enabled Activity Tracker and Prompting System}
 \author{\authname}
 \date{\today}
 
@@ -163,7 +163,7 @@
 ~\newpage
 \pagebreak
 \section{Reference Material}
-
+\label{Ref_Material}
 This section records information for easy reference.
 
 \subsection{Table of Units}
@@ -288,7 +288,7 @@ Below are the constant that will be used in the device.
 	\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
 	\midrule
 	$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
-	$f_{arduino}$ &16 \si{MHz} & clock frequency of arduino uno\\
+	$f_{ESP32}$ & Adjustable from 80 \si{MHz} to 240 \si{MHz} & clock frequency of ESP32-D0WD chip.\\
 	\bottomrule
 	\end{longtable*}
 	\caption{\label{const}Table of Constants} 
@@ -301,6 +301,7 @@ N/A
 
 
 \section{Introduction}
+\label{Intro}
 
 Researchers at the School of Rehabilitation Sciences (SReS) at McMaster University are investigating treatment strategies for victims of spinal disorders and back pain. Currently, there is great interest in performing Ecological Momentary Assessment (EMA) on those who suffer from back pain and disorders to make treatment options more effective. EMA aims to study the thoughts, experiences, and behaviours of a patient's daily life by repeatedly collecting data in an individual's normal environment, at or close to the time they carry out that behaviour.\\
 
@@ -345,12 +346,13 @@ A reader should have a grasp of software development, electronics, mechanics and
 In addition, a reader should have a high-level understanding of Ecological Momentary Assessment. This does not have to be particularly in depth, but a reader should be able to identify the main objectives, practices, and difficulties of performing EMA. \\
 
 \subsection{Organization of Document}
-This document is organized in a way to make it simple for a reader to understand the essentials regarding the requirements of the system. Should one be interested in gaining a general understanding, it is highly recommended to read this document in its entirety. However, should one wish to learn about specific aspects of this project, please feel free to navigate to any individual section as they are each individually comprehensible. If the reader of this document is a participant in the SReS EMA program, the information relevant is located in sections 2, 3, and 4. If the reader of this document is a researcher performing EMA, the information relevant is located in sections 3, 4, 5, 11, 12, and 13.\\ 
+This document is organized in a way to make it simple for a reader to understand the essentials regarding the requirements of the system. Should one be interested in gaining a general understanding, it is highly recommended to read this document in its entirety. However, should one wish to learn about specific aspects of this project, please feel free to navigate to any individual section as they are each individually comprehensible. If the reader of this document is a participant in the SReS EMA program, the information relevant is located in sections \ref{Intro}, \ref{Users_Stakeholders}, and \ref{GSD}. If the reader of this document is a researcher performing EMA, the information relevant is located in sections \ref{Users_Stakeholders}, \ref{GSD}, \ref{SSD}, \ref{Project_Attr}, \ref{NOO}, and \ref{UEH}.\\ 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Users and Stakeholders}
+\label{Users_Stakeholders}
 \begin{itemize}
 \item Stakeholders
 
@@ -368,7 +370,7 @@ This document is organized in a way to make it simple for a reader to understand
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{General System Description}
-
+\label{GSD}
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
 characteristi	cs and lists the system constraints.  \\\\
@@ -429,6 +431,7 @@ The design will consist of both a hardware and a software system. The constraint
 
 
 \section{Specific System Description}
+\label{SSD}
 \subsection{Problem Description} \label{Sec_pd}
 
 Dr. Luciana Macedo investigates treatment strategies for older adults with musculo-skeletal disorders, based on the results reported through Ecological Momentary Assessment (EMA).
@@ -593,7 +596,7 @@ N/A
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Required Behavior}
-
+\label{Req_Behavior}
 The activity tracking system should have the following required behavior: \\
 
 \begin{itemize}
@@ -606,7 +609,7 @@ The activity tracking system should have the following required behavior: \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Requirements}
-
+\label{Requirements}
 This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
@@ -841,6 +844,7 @@ Below are the functional requirements of the device as well as the rationale.
 \end{itemize}
 
 \section{Traceability Matrices and Graphs}
+\label{TMG}
 
 The purpose of the traceability matrices is to provide easy references on what
 has to be additionally modified if a certain component is changed. Every time a
@@ -913,14 +917,17 @@ component is changed, the components that it points to should also be
 changed.
 
 \section{Development Plan}
+\label{Dev_Plan}
 N/A
 
 \section{Values of Auxiliary Constants}
+\label{VAC}
 N/A
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Attributes}
+\label{Project_Attr}
 This is a comphrehensive list of the various Open Issues, Costs and Risks involved with the project. This will be updated to reflect changes in the Design. Moreover this section also includes some stretch goals that may be accomplised depending on the pace and scale of the project.
 \begin{itemize}
 \item Open Issues:
@@ -984,6 +991,7 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normal Operation Overview}
+\label{NOO}
 \setlength{\parindent}{20pt}
 Initially, the researcher will connect to the device using the provided software and either register a new participant or select a pre existing participant profile. Once a participant is selected, the researcher can set the thresholds, activities to be tracked and the monitoring period. \\
 
@@ -994,6 +1002,7 @@ Finally after the monitoring period is finished, the device will go into an idle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Undersired Event Handling}
+\label{UEH}
 \begin{itemize}
 	\item \textbf{Incorrect start up prompt response}: When the device is turned on by the user for the first time. A simple start up prompt is given just to check that system booted correctly ("Is this device on?"). If the user incorrectly enters their responsem, the system will simply 				perform a quick restart and ask the same question again.
 
@@ -1012,6 +1021,7 @@ Finally after the monitoring period is finished, the device will go into an idle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 \section{FSM and Dataflow Diagram}
+\label{FSM_Dataflow}
 \begin{figure}[h!]
 	\begin{center}
 		 \includegraphics[width=1.3\textwidth]{FSM}
@@ -1044,6 +1054,7 @@ The following explains the states presented in the above Finite State Machine:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Legal and Regulatory Factors}
+\label{Legal}
 
 \begin{itemize}
 	\item All collected and analyzed non-medical data shall be protected under the Personal Information Protection and Electronic Documents Act (PIPEDA).
@@ -1057,6 +1068,7 @@ The following explains the states presented in the above Finite State Machine:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Phase in Plan}
+\label{Phase_In}
 
 \begin{itemize}
 \item October 19: R2: Device has to track minor movements of user such that activity is recorded appropriately.\\
@@ -1068,6 +1080,7 @@ The following explains the states presented in the above Finite State Machine:
 
 
 \section{References}
+\label{References}
 N/A
 %\bibliographystyle {plainnat}
 %\bibliography {../../refs/References}
