@@ -3,10 +3,12 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{graphicx}
 \usepackage[table]{xcolor}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
+\usepackage{float}
 \renewcommand{\familydefault}{\sfdefault}
 
 \title{Development Plan\\\progname}
@@ -20,23 +22,29 @@
 
 \begin{document}
 
+\maketitle
+\newpage
+
+\tableofcontents
+\listoftables
+
+\newpage
+
 \begin{table}[hp]
 \caption{Revision History} \label{TblRevisionHistory}
 \begin{tabularx}{\textwidth}{llX}
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-September 26 & N/A & Initial documentation\\
+September 26 & Back End Developers & Initial documentation\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\newpage
-
-\maketitle
+\pagebreak
 
 \section{Team Meeting Plan}
-Weekly meetings are to be held every Saturday at 8:00PM, and additional meetings are to be planned as needed. Any meetings requiring the attendance of the team's supervisor will have to be planned based on Dr. Macedo's availability. In cases where some team members are absent, each absent member is expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Note-taker is expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
+Weekly meetings are to be held every Saturday at 8:00PM, (with an alternative option of having the meeting moved to Thursday at 7:00PM should any difficulties arise in hosting a meeting at the normal time) and additional meetings are to be planned as needed. Any meetings requiring the attendance of the team's supervisor will have to be planned based on Dr. Macedo's availability. In cases where some team members are absent, each absent member is expected to bring forward their discussion topics prior to the scheduled meeting time, and review the meeting notes posted in the Discord server. Note-taker is expected to write down meeting notes for each meeting, regardless of the number of participating members.\\
 
 \pagebreak
 
@@ -50,10 +58,11 @@ The following is a screen shot of this team's Discord server:\\
 
 \section{Team Member Roles}
 
-\begin{center}
-\begin{tabular}{ | m {3.3cm} | m {3cm} | m{5cm} | }
+\begin{table}[H]
+\noindent
+\begin{tabular}{ | m {3.3cm} | m {3cm} | m{9cm} | }
   \hline
- \cellcolor{black}\color{white}\textbf{Role} & \cellcolor{black}\color{white}\textbf{Name} & \cellcolor{black}\color{white}\textbf{Description}\\ [10pt]
+ \cellcolor{black}\color{white}\textbf{Non-Technical Role} & \cellcolor{black}\color{white}\textbf{Name} & \cellcolor{black}\color{white}\textbf{Description}\\ [10pt]
   \hline
  Team Leader & Jonathan Hai \& Jessica Bae & Organize meetings, assign specific tasks to all team members, overlook deliverable deadlines, keep track of overall team project progress, communicate with the TA, the professor, and the supervisor \\
  \hline
@@ -63,10 +72,29 @@ The following is a screen shot of this team's Discord server:\\
  \hline
  Note-Taker & Oliver Foote & Take notes during the meeting and post it in the meeting-notes section of Discord channel for record keeping purposes.\\
    \hline
- Embedded Developer,\linebreak Frontend Developer,\linebreak Backend Developer,\linebreak CAD Designer,\linebreak Electromechanical Designer & Everyone & Everyone will work together on the technical component of this project.\\
+\end{tabular}
+\caption{\label{techRoles}Non-technical Roles and their Assignees}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{ | m {3.3cm} | m {3cm} | m{9cm} | }
+  \hline
+ \cellcolor{black}\color{white}\textbf{Technical Role} & \cellcolor{black}\color{white}\textbf{Name} & \cellcolor{black}\color{white}\textbf{Description}\\ [10pt]
+
+   \hline
+ Embedded \newline Developer & Jessica Bae & Responsible for designing and writing code to control the device in the system.\\
+\hline
+Frontend \newline Developer & Oliver Foote & Responsible for designing the user-interacting portion of the system.\\
+\hline
+ Backend \newline Developer & Jonathan Hai & Responsible for designing and writing code to allow database and applications to communicate.\\
+\hline
+CAD Designer & Anish \newline Rangarajan & Responsible for designing the physical form factor of the device.\\
+\hline
+Electromechanical Designer & Labeeb Zaker \& Nish Shah & Responsible for calculations and design related to electromechanical systems within the device.\\
 \hline
 \end{tabular}
-\end{center}
+\caption{\label{techRoles}Technical Roles and their Assignees}
+\end{table}
 
 The task of reviewing rubrics, and each subcomponents of the project will not be assigned to any specific members. These tasks are to be allocated to different members each time as and when needed.\\
 
@@ -103,7 +131,6 @@ The goal for the proof of concept demo will be to demonstrate a functional EMA-e
 \item Processing the inbound EMA and survey data and producing results meaningful to the physicians responsible for the user's EMA.
 \item Producing graphical representations of said EMA data.
 \item Sending the processed data and representations to the physicians responsible for the user's EMA.
-\item Notifying the user about relevant information as a result of processing data (confirmations that data has been sent, recommendations for activity or rest, etc.)
 \end{itemize}
 
 Regarding the hardware component of the project, it will be:\\
@@ -122,7 +149,6 @@ The following tools shall be used for development in software, embedded systems 
 \item Python will be used to generate computer vision code along with several graphical and UI elements. If necessary, Python will also be used for Machine Learning integration.
 \item C will be used to program the embedded system (micro-controllers) for efficiency and memory constraints.
 \item SQL will be used for DBMS and storing data for activity-based tracking.
-\item R will be used for statistical computing and data analysis.
 \end{itemize}
 \item Platforms for development:
 \begin{itemize}
@@ -130,8 +156,7 @@ The following tools shall be used for development in software, embedded systems 
 \item Arduino IDE may be used to code for several existing sensor libraries (gyro meters, Bluetooth modules, Wi-fi modules, etc).
 \item STM32Cube IDE for STM32 development. 
 \item Autodesk Inventor may be used for creating models for the device and finishing product.
-\item MySQL will be used as the platform for interacting with the Database.
-\item The R environment will be used for data manipulation, calculation and graphical display\\\\
+\item MySQL will be used as the platform for interacting with the Database.\\
 \end{itemize}
 
 \item Version control platforms:
@@ -159,7 +184,7 @@ The following tools shall be used for development in software, embedded systems 
 \item OpenCV: Open Source computer vision library capable of performing image and video manipulation.
 \item Numpy, pandas: Libraries with Python for number and matrix computation/manipulation.
 \item HAL libraries: Should we pursue using an ARM architecture chip, the HAL libraries will allow for ease of coding.
-\item tkinter: Default python UI library.
+\item PyQt5: Python UI library.
 \item Several Arduino Sensor libraries to use for interacting with accelerators and other wireless modules.
 \end{itemize}
 \item Tools to use for project:
