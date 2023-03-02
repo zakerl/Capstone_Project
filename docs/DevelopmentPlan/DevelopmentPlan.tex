@@ -116,13 +116,15 @@ The task of reviewing rubrics, and each subcomponents of the project will not be
 
 \section{Proof of Concept Demonstration Plan}
 
-The risks for the success of the project lie primarily within the software that is designed. The hardware component in which data is collected will be designed with a relatively simplistic plug-and-play approach with the goal of feeding data to the software component of the project. Several off-the-shelf sensors will be used to reduce the development overhead and the many possible problems that developing a complex electromechanic system can involve. However, a proof-of-concept demonstration is still necessary regarding the ergonomics of the project. Should the hardware take on the form of wearable technology (as is currently planned), a demonstration is necessary to show that the system is possible to be worn comfortably, safely, and unintrusively during the user's daily activities.\\
+The risks for the success of the project lie both within the hardware and the software that is designed. The hardware component in which data is collected will be designed with a plug-and-play approach with the goal of feeding data to the software component of the project, but it requires custom designed printed circuit boards to enable this functionality. Several off-the-shelf sensors will be used to reduce the development overhead and the many possible problems that developing a complex electromechanic system can involve. In addition, many auxiliary hardware systems must be designed to support this functionality; a display system, a system to store data for later analysis, power protection circuitry, and the physical form factor in which all of this is contained. Should the hardware take on the form of wearable technology (as is currently planned), a demonstration is necessary to show that the system is possible to be worn comfortably, safely, and unintrusively during the user's daily activities.\\
 
-The software system will be the lynchpin of the project. Its goal will be to take the various events detected by the hardware system that are relevant to Ecological Momentary Assessment (EMA) and handle them accordingly. This will involve logging timestamps, locations, environmental factors, and other momentary information, and prompting the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and the momentary data. Finally it will send off the data to the team of physicians handling the user's EMA at the end of the monitoring period.\\
+The software system will be another lynchpin of the project. Its goal will be to take the various events detected by the hardware system that are relevant to Ecological Momentary Assessment (EMA) and handle them accordingly. This will involve logging timestamps, locations, environmental factors, and other momentary information, and prompting the user to answer self-survey questions relevant to their current situation. The software system will then process the answers to these questions and the momentary data. Finally it will send off the data to the team of physicians handling the user's EMA at the end of the monitoring period.\\
 
 Other than the ergonomics, if the hardware component of the system is incapable of sending data and handling output from the software, continuing with the project involves finding a new method of data collection and transfer. If the software component of the system is incapable of responding to data inputs from the hardware, processing said data, and returning meaningful results, then the goal of the entire project is rendered moot.\\
 
-The goal for the proof of concept demo will be to demonstrate a functional EMA-enabled software system that can respond to events relevant to EMA, and respond accordingly. This software system will be run locally on a team member's computer. It will be capable of:\\
+The goal for the proof of concept demo will be to demonstrate a functional EMA-enabled hardware and software system that can respond to events relevant to EMA, and respond accordingly. The software system will be run locally on a team member's computer, and the hardware systems will be demonstrated individually.\\
+
+The software system will be capable of:\\
 
 \begin{itemize}
 \item Accepting inputs in the form of momentary data from events that are triggered as a simulation of real EMA events (such as limps, falls, strange movement patterns, etc.)
@@ -138,6 +140,16 @@ Regarding the hardware component of the project, it will be:\\
 \begin{itemize}
 \item Useable/wearable in a safe, comfortable, and non-intrusive manner optimized for human well-being and overall system performance.
 \item Placed in a position to collect data relevant to EMA display data regarding EMA related activities.
+\item Capable of displaying prompts and EMA related data.
+\item Capable of storing collected user data.
+\item Capable of functioning while being powered solely by a battery.
+\item Including a form factor (the physical design) which contains and protects all hardware components.
+\item Capable of identifying different distinct movement patterns relevant to EMA. Examples include:
+\begin{itemize}
+\item Shuffling
+\item Limping
+\item Foot-dragging
+\end{itemize}
 \end{itemize}
 
 \section{Technology}
