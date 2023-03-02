@@ -361,7 +361,7 @@ This document is organized in a way to make it simple for a reader to understand
 		\item  Dr. Spencer Smith (Project Supervisor).
 	\end{itemize}
 
-\item Users: The design has 2 different users:
+\item Stakeholders that are Users: The design has 2 different stakeholders which will be users of the system:
 	\begin{itemize}
 		\item \textbf{Researchers}: Primary end user who will use the data collected by the device for analysis and research.
 		\item \textbf{Patients/Participants} : Users part of the monitoring study who will be wearing the device, and whose activities will be collected for research and analysis.
@@ -398,14 +398,14 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 \begin{itemize}
 \item Required to confirm that data is being collected.
 \item Required to set up the intial thresholds and activities for tracking.
-\item Offshoot the data.
+\item Analyze the data.
 \item Charge and calibrate the system.
 \end{itemize}
 \end{itemize}
 
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
-Patients should have a general understanding of using smart devices with touch screen interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
+Patients should have a general understanding of using smart devices with touch-bezel interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
 
 Researchers will have the option of tweaking the configuration of the device, allowing them to manipulate certain activity thresholds. Thus a working knowledge of the system is required. Moreover, a basic understanding of graphs and statistical analysis will be required to understand the research data collected by the device.\\\\
 
@@ -417,14 +417,14 @@ The design will consist of both a hardware and a software system. The constraint
 \item \textbf{Hardware}: 
 	\begin{itemize}
 		\label{HC1}\item[HC1:] The system must weigh less than 100g to facilitate being lightweight and comfortable.
-		\label{HC2}\item[HC2:] The system must have an average battery life of atleast 7 days to facilitate monitoring of the users.
+		\label{HC2}\item[HC2:] The system must have an average battery life of at least 24 hours to facilitate monitoring of the users.
 		\label{HC3}\item[HC3:] The dimensions of the system must be quite small with an area lower than 2500mm\textsuperscript{2}.\\
 	\end{itemize}
 
 \item \textbf{Software} :
 	\begin{itemize}
 		\label{SC1}\item[SC1:] The system will have hard time constrainsts so as to store data and prompt users with low latency .
-		\label{SC2}\item[SC2:] To maintain privacy, the system will only store data for two weeks after which the data will be deleted.
+		\label{SC2}\item[SC2:] To maintain privacy, the system will only store data for as long as the EMA study period lasts.
 		\label{SC3}\item[SC3:] The system must prompt users based on activities and not based on time of day. 
 	\end{itemize}
 \end{itemize}
@@ -448,7 +448,7 @@ easier to correctly understand the requirements:
 
   \item PID controller: This stands for proportional–integral–derivative controller. It is an instrument used in industrial control applications to regulate temperature, flow, pressure, speed and other process variables.
   \item FSM: This stands for Finite State Machine. An FSM is a machine that can be in a specific state from finite set of states based on previous conditions and inputs.
-  \item OLED display: It stands for organic light-emitting diodes screen. This is the display screen where light is produced by organic molecules.
+  \item TFT LCD: It stands for Thin-Film-Transistor Liquid Crystal Display. This is the display screen where data is shown.
   \item MVC: Model-View-Controller. It is a software architectural pattern used to implement user interfaces, data and controlling logic. It separates display from program logic.
   \item Control variables: These are the variables that will be controlled in our implementation and research to avoid their impact.
   \item Monitored variables: These are the variables that will be calculated based on program logic and output as a result.
@@ -485,7 +485,7 @@ easier to correctly understand the requirements:
 \end{table}
 
 \subsubsection{Controlled variables}
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{ |m{10em}|m{25em}|m{5em}| }
   \hline
   \rowcolor{LightCyan}
@@ -506,7 +506,7 @@ The app might also have to be open 24/7 or running in background to be able to r
 which may cause the data collected to be segregated as the trigger time intervals could be well beyond when the user expressed a desired behaviour.
 \\\\
 Most of the solutions could include smartwatches such as Fitbit, Samsung Galaxy Watch. These products are not very accurate as they could track movement wrongly, leading to wrong results.
-These devices can also be easily tampered by participants, which could affect the results produced in favour of participants. The battery life on these devices are also very short, and they can drain rapidly with very little use.
+These devices can also be easily tampered by participants, which could affect the results produced in favour of participants.
 They also tend to be very expensive due to some features offered, which may not be useful to the situation.
 \\\\
 The device that we will be designing will be independent of the cellphone devices. This removes the ambiguity in the linking of phone sensors to software application for tracking. It will be collecting data live and triggering EMA based on sensor data, thus being momentary and
@@ -522,7 +522,7 @@ It will be very cheap and specific to the purpose, thus ensuring better performa
 
   \label{PS1}\item[PS1:] The display screen will be around 2500 mm$^2$. This will be the interface between the user and the system.
   \label{PS2}\item[PS2:] The bracket around the screen will be approximately 2700 mm$^2$. This will be an added layer of protection against the screen to avoid damages to the screen itself.
-  \label{PS3}\item[PS3:] The weight of the device will be around 100 grams. This is because of the additional weight coming from the straps and embedded sensors. The resultant force will be in the direction of arm, since arm weighs approximately 3.5 kg, making the device lightweight.
+  \label{PS3}\item[PS3:] The weight of the device will be less than or equal to 100 grams. This is because of the additional weight coming from the straps and embedded sensors. The resultant force will be in the direction of arm, since arm weighs approximately 3.5 kg, making the device lightweight.
   \label{PS4}\item[PS4:] The strap will be approximately 75mm long on the short side and 140 mm long on the long side, so that it sits perfectly and comfortably on the user's wrist.
 
 \end{itemize}
@@ -552,10 +552,6 @@ It will be very cheap and specific to the purpose, thus ensuring better performa
 
 \item[A\refstepcounter{assumpnum}\theassumpnum
 \label{A3}:]
-{The device does not have to receive or send data in any wireless manner. It will only have to transfer data through wired connections.}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum
-\label{A4}:]
 
 {All patients are to receive verbal instructions from their researcher on how to use their devices.}
 
@@ -600,10 +596,10 @@ N/A
 The activity tracking system should have the following required behavior: \\
 
 \begin{itemize}
-\item Motion tracking should be accurate and in line with industry gold standards in activity tracking\\
+\item Motion tracking should be accurate and in line with industry standards in activity tracking\\
 \item The activity tracker must be able to turn on, or reboot itself without user intervention if an issue is detected\\
-\item The battery must last a minimum of 7 days\\
-\item The system must be able to store at least 14 days worth of activity tracking data locally\\
+\item The battery must last a minimum of 24 hours\\
+\item The system must be able to store at least one EMA period's worth of activity tracking data locally\\
 \item The system should be intuitive and seamless for the user\\
 \end{itemize} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -659,7 +655,7 @@ Below are the functional requirements of the device as well as the rationale.
  \hline
  R4 \label{R4} &The activity tracker/system should be such that the user can attach/wear it on their body.\\ [0.5ex]
  \hline
- Rationale &  The system will be attached to an individual's body part (wrist, lower back, etc.) in order to detect activity.\\ 
+ Rationale &  The system will be attached to an individual's wrist in order to detect activity.\\ 
  \hline
 \end{tabular}
 \end{center}
@@ -749,7 +745,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} The system's interfaces (both to the researchers and the participants) should fit the guidelines of HCI standards, with an emphasis on making this system more useable for those unfamiliar with modern technology.\\
 
 \item[NFR3 \label{NFR3}:]
-  \textbf{Maintainability:} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions at all during this period, and the researchers at most should have to recharge the batteries of the system and update the parameters they set for the next set of EMA.\\
+  \textbf{Maintainability:} Once completed, the system should be entirely maintenance free for the time period it is used for EMA (7 to 14 days). The participants should not have perform any maintenance actions other than charging the device. during this period, and the researchers at most should have to recharge the batteries of the system again and update the parameters they set for the next set of EMA.\\
 
 \underline{Rationale:} As many of the participants may be older adults, maintenance of this system may be daunting to those unfamilar with modern technology. In addition, any downtime due to maintenance needs during each EMA period will result in a loss of valuable EMA data.\\
 
@@ -782,11 +778,11 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} The system conforms to the health and safety standards deemed appropriate by the SReS.\\
 
 \item[NFR7 \label{NFR7}:]
-  \textbf{Reusability:} The system must be capable of being reused for an appropriate number of times. This means that the system must be capable of completing its functions without error after each period of EMA without need for significant upkeep other than regular maintenance (charging the battery, cleaning the device, scrubbing data from the system, etc.)\\
+  \textbf{Reusability:} The system must be capable of being reused for an appropriate number of times. This means that the system must be capable of completing its functions without error after each period of EMA without need for significant upkeep other than regular maintenance (cleaning the device, scrubbing data from the system, etc.)\\
 
-\underline{Rationale:} Researchers at the SReS intend to use this system for a vast number of EMA periods, and for multiple different forms of research which EMA may assist with. Thi system must be designed to be able to sustain its functions for whatever purposes and periods of time which the researchers need.\\
+\underline{Rationale:} Researchers at the SReS intend to use this system for a vast number of EMA periods, and for multiple different forms of research which EMA may assist with. This system must be designed to be able to sustain its functions for whatever purposes and periods of time which the researchers need.\\
 
-\underline{Fit Criterion:} Can be used for 3 consecutive EMA study periods without need for significant maintenance.\\
+\underline{Fit Criterion:} Can be used for 3 consecutive EMA study periods without need for significant maintenance other than nightly charging.\\
 
 \item[NFR8 \label{NFR8}:]
   \textbf{Privacy:} This system must protect the data collected from the participants from being accessed or distributed to inappropriate entities or people. \\
@@ -811,7 +807,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} The system must be rated sufficiently non-disruptive to the daily lives of the participants using the system during testing.\\
 
 \item[NFR11 \label{NFR11}:]
-  \textbf{Hardware Safety:} The system must be designed with certain saftey criteria in mind. To ensure the hardware is safe is it important that the device have sufficent tollerances for Current, Voltage, and Temperature. Fuses or breakers will be used in the circuitry in case of high current draw. The battery will have charge protection to prevent overcharging/discharging. Additionally, the intensity of emitted frequencies will be in line with safe levels.\\
+  \textbf{Hardware Safety:} The system must be designed with certain saftey criteria in mind. To ensure the hardware is safe is it important that the device have sufficent tollerances for Current, Voltage, and Temperature. Battery protection units will be used in the circuitry in case of high current draw. The battery will have charge protection to prevent overcharging/discharging. Additionally, the intensity of emitted frequencies will be in line with safe levels.\\
 
 \underline{Rationale:} Saftey is a top priority. Causing no harm to society is an important part of an engineers code of ethics. Ensuring that the device can be used safely will inherintly make participants feel safe about the use of the device.\\
 
@@ -860,25 +856,25 @@ between different requriements and assumptions in the document.
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c}
 	\hline
-		& \aref{A1}& \aref{A2}& \aref{A3}& \aref{A4} \\
+		& \aref{A1}& \aref{A2}& \aref{A3} \\
 	\hline          %   1   2    3   4  
-	\frref{R1}       &   &   &   & X  \\ \hline
-	\frref{R2}       &   & X&   &    \\ \hline
-	\frref{R3}       & X& X&   & X  \\ \hline
-	\frref{R4}       &   & X&   & X  \\ \hline
-	\frref{R5}       &   &   &   &    \\ \hline
-	\frref{R6}       &   &   & X&    \\ \hline
-	\frref{R7}       & X&   & X&     \\ \hline
-	\nfrref{NFR1} &   & X&   &    \\ \hline
-	\nfrref{NFR2} & X& X&   & X \\ \hline
-	\nfrref{NFR3} &   &   & X&     \\ \hline
-	\nfrref{NFR4} &   & X& X&     \\ \hline
-	\nfrref{NFR5} &   X&   &   &      \\ \hline
-	\nfrref{NFR6} &   &  X &   &X     \\ \hline
-	\nfrref{NFR7} &   &  X &   &     \\ \hline
-	\nfrref{NFR8} &  X &   &   &X     \\ \hline
-	\nfrref{NFR9} & X  &   &X  &X      \\ \hline
-	\nfrref{NFR10}&  & X  &   &      \\
+	\frref{R1}       &   &   & X  \\ \hline
+	\frref{R2}       &   & X&    \\ \hline
+	\frref{R3}       & X& X& X  \\ \hline
+	\frref{R4}       &   & X& X  \\ \hline
+	\frref{R5}       &   &   &    \\ \hline
+	\frref{R6}       &   &   &    \\ \hline
+	\frref{R7}       & X&   &     \\ \hline
+	\nfrref{NFR1} &   & X&    \\ \hline
+	\nfrref{NFR2} & X& X& X \\ \hline
+	\nfrref{NFR3} &   &   &     \\ \hline
+	\nfrref{NFR4} &   & X&     \\ \hline
+	\nfrref{NFR5} &   X&   &      \\ \hline
+	\nfrref{NFR6} &   &  X &X     \\ \hline
+	\nfrref{NFR7} &   &  X &     \\ \hline
+	\nfrref{NFR8} &  X &   &X     \\ \hline
+	\nfrref{NFR9} & X  &   &X      \\ \hline
+	\nfrref{NFR10}&  & X  &      \\
 	\hline
 	\end{tabular}
 	\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
@@ -918,7 +914,8 @@ changed.
 
 \section{Development Plan}
 \label{Dev_Plan}
-N/A
+
+\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{The development plan is available at this link.}
 
 \section{Values of Auxiliary Constants}
 \label{VAC}
@@ -995,7 +992,7 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 \setlength{\parindent}{20pt}
 Initially, the researcher will connect to the device using the provided software and either register a new participant or select a pre existing participant profile. Once a participant is selected, the researcher can set the thresholds, activities to be tracked and the monitoring period. \\
 
-Once the device is handed off to the participant, an inital set up process is done, where the device is worn by the user and a test prompt is sent. Once this initial set up process is done, the user will simply carry on with their normal day to day and the device will track all registered activities using the onboard sensors. As the data is collected, it is logged into the internal memory and is stored based on the date and time of entry.\\
+Once the device is handed off to the participant, an inital set up process is done, where the device is worn by the user and a test prompt is sent. Once this initial set up process is done, the user will simply carry on with their normal day to day and the device will track all registered activities using the onboard sensors. As the data is collected, it is logged into the internal memory and is stored based on the date and time of entry. The user will then remove the device nightly after their daily routine, and charge it for the next day's use.\\
 
 Finally after the monitoring period is finished, the device will go into an idle state until it is returned to the researcher. The researcher will then log in using their master credentials at which point the device will off load all data into the host software which will compile and present the data in a graphical manner.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1010,7 +1007,7 @@ Finally after the monitoring period is finished, the device will go into an idle
 
 	\item \textbf{Improper prompt request}: Should the device generate a prompt whe no activity is being conducted. The user can simply report the prompt and the sytem will record an error, perform a soft reboot and continue normal operation.
 
-	\item \textbf{Early battery failure}: The device's battery should normally last one week. If the charge goes below a predefined threshold before the monitoring period ends, activity tracking will cease and the user will be prompted to charge the device.
+	\item \textbf{Early battery failure}: The device's battery should normally last 24 hours. If the charge goes below a predefined threshold before the monitoring period ends, activity tracking will cease and the user will be prompted to charge the device.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1063,7 +1060,7 @@ The following explains the states presented in the above Finite State Machine:
 	\item Only those with administrative rights will have access to all data files, all data to be secured with passwords.
 	\item Documentation to follow IEEE format for references and citations.
 	\item Documentation to be completed with 12pt Arial font on US Letter size paper (8.5" x 11") with 1 inch margin on all sides.
-	\item UI implementation to follow ....?
+	\item The User Interfaces will follow guidelines outlined by the The Accessibility for Ontarians with Disabilities Act (AODA).
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
