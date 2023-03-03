@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -11,7 +13,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-
+\renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 
@@ -76,22 +78,33 @@ This document ...
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+Current motion detecting smart watches, such as Apple watches or Samsung Galaxy watches, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
 
 \section{Unit Testing}
 
+\begin{center}
+\begin{tabular}{ c | c | c | c | c | c | c | c }
+ 1 & Void bed\_HR\_setup() & Set-up function for heartrate module & RQ & User heart rate input from A0 signal pin. & "PulseSensor object created", LED flash & Actual & Pass \\ 
+2 & name & desc & ref & input & expected & actual & pass or fail \\  
+3 & name & desc & ref & input & expected & actual & pass or fail \\  
+\end{tabular}
+\end{center}
+
 \section{Changes Due to Testing}
 
+After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).
+
 \section{Automated Testing}
-		
+N/A
+
 \section{Trace to Requirements}
 		
 \section{Trace to Modules}		
 
 \section{Code Coverage Metrics}
 
-\bibliographystyle{plainnat}
-\bibliography{../../refs/References}
+%\bibliographystyle{plainnat}
+%\bibliography{../../refs/References}
 
 \newpage{}
 \section*{Appendix --- Reflection}
