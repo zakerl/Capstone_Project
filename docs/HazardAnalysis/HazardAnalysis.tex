@@ -75,7 +75,7 @@ More formally, hazard analysis is a step in the process to assess risk within an
 The purpose of this document is to perform this hazard analysis on the system to be designed by the Back End Developers. This document will first provide a description of the system boundaries and components of the system on an abstract level (both the hardware and software components), and then will list and justify the assumptions made in order to perform this hazard analysis. These assumptions will be kept to a minimum, in the hope to reduce the number of potentially overlooked hazards. The document will then describe the Failure Mode and Effect Analysis (FMEA) done by the team of the Back End Developers, and then detail the specific safety and security requirements that have been discovered in the process of performing the hazard analysis. The document will end with a roadmap describing the steps which will be taken in order to implement the novel discovered requirements, the timeline in which they will be implemented, and what considerations must be made regarding said requirements.
 
 \section{System Boundaries and Components}
-The system consists of several components that make up the entire system
+The system consists of several components that make up the entire system.
 
 \subsection{\label{Battery_sec}Battery/Power Management system}
 This component facilitates stepping down/up the source voltage from the battery to the necessary values required by different parts of the device. Moreover, it consists of a 										charge protection circuit for battery protection (Over-voltage and Discharge). Finally present is a battery level indicator that will generate an alert should the battery life fall below a certain threshold.
@@ -148,24 +148,24 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			                          & Display not working                                          
 						 &\begin{minipage}[t]{\linewidth}
 							\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-								\item Improper circuit connection
-								\item Battery Level too low
-								\item Code malfunction
-								\item Physical damage to display
+								\item Improper circuit connection.
+								\item Battery Level too low.
+								\item Code malfunction.
+								\item Physical damage to display.
 							\end{itemize}
 						    \end{minipage}
 	
 			                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-				                            \item Users cannot answer prompts.
-				                            \item Users cannot view any information on the display
+				                            \item Users cannot answer prompts..
+				                            \item Users cannot view any information on the display.
 			                            \end{itemize}
 	
 			                          & Display system returns an error code. Display Led is OFF
 			                          & \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 				                            \item Users cannot answer prompts.
-				                            \item Users cannot view any information on the display
-				                            \item Check wiring and run a diagnostic on the display system
-				                            \item Replace faulty hardware
+				                            \item Users cannot view any information on the display.
+				                            \item Check wiring and run a diagnostic on the display system.
+				                            \item Replace faulty hardware.
 			                            \end{itemize}
 			\tabularnewline\cline{2-6}
 	
@@ -173,15 +173,15 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 	
 			\multirow{-8}{*}{\centering\rotatebox[origin=c]{90}{\hyperref [Display_sec] {Display System} }}
 	
-			                          & Incorrect information displayed
+			                          & Incorrect information displayed.
 			                          & \begin{minipage}[t]{\linewidth}
 				                            \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-					\item Display Driver faulty
-					\item Improper interaction between Display system and Prompt generation
+					\item Display Driver faulty.
+					\item Improper interaction between Display system and Prompt generation.
 				\end{itemize}
 			                            \end{minipage}
 	
-			                          & Users face unexpected outputs causing imporper use of device
+			                          & Users face unexpected outputs causing improper use of device.
 			                          & Display system returns an error code.
 	
 			                          & \begin{minipage}[t]{\linewidth}
@@ -261,7 +261,8 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			 & \begin{minipage}[t]{\linewidth}
 				   \begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
 					\item Heart rate not detected
-					\item Surrounding pressure not being tracked
+					\item Skin voltage not detected
+					\item Muscle Movement not detected
 					\item No motion detected
 				\end{itemize}
 			   \end{minipage} &
@@ -309,8 +310,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			                                     \end{minipage}                             & Device is not turned on, resulting in no monitoring & Battery dead indicator appears when turning on the device &
 			\begin{minipage}[t]{\linewidth}
 				\begin{itemize}[nosep, wide=0pt, leftmargin=*, after=\strut]
-					\item Charge the device
-					\item Change batteries if needed
+					\item Contact the Back End Developers for maintenance.
 				\end{itemize}
 			\end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
@@ -392,7 +392,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			\end{tabular}
 
 	
-	\caption{\label{tab:DataStorage}Data Storage FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR5]{SR5}, \hyperref[DSR2]{DSR2}}
+	\caption{\label{tab:DataStorage}Data Storage FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR5]{SR5}, \hyperref[DSR1]{DSR1}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -497,7 +497,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			   \end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Records}Record System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[SR5]{SR5}, \hyperref[DSR1]{DSR1},\hyperref[DSRQ1]{DSRQ1},\hyperref[DSRQ2]{DSRQ2}}
+	\caption{\label{tab:Records}Record System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[SR5]{SR5},\hyperref[DSRQ1]{DSRQ1},\hyperref[DSRQ2]{DSRQ2}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
@@ -701,11 +701,10 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 \subsection{Hardware Requirements}
 \begin{enumerate}
-	\item\label{HR1}\textbf{HR1}: All Hardware systems will have an associated indicator LED.\\
-	\item\label{HR2}\textbf{HR2}: Device components will have sufficient electrical tolerances for Current, Voltage, Temperature etc.\\
-	\item\label{HR3}\textbf{HR3}: Fuses will be connected in the circuitry to shut down the device in cases of high current draw.\\
-	\item\label{HR4}\textbf{HR4}: Charge protection circuity will be integrated to avoid overcharging/discharging of the battery.\\
-	\item\label{HR5}\textbf{HR5}: The intensity of emitted frequencies will be limited to safe levels.\\
+	\item\label{HR1}\textbf{HR1}: Device components will have sufficient electrical tolerances for Current, Voltage, Temperature etc.\\
+	\item\label{HR2}\textbf{HR2}: Fuses will be connected in the circuitry to shut down the device in cases of high current draw.\\
+	\item\label{HR3}\textbf{HR3}: Charge protection circuity will be integrated to avoid overcharging/discharging of the battery.\\
+	\item\label{HR4}\textbf{HR4}: The intensity of emitted frequencies will be limited to safe levels.\\
 \end{enumerate}
 
 \subsection{Software  Requirements}
@@ -719,8 +718,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 \subsection{Data Storage Requirements }
 \begin{enumerate}
-	\item\label{DSR1}\textbf{DSR1}: Error reports and incorrect data will be logged into a separate database.\\
-	\item\label{DSR2}\textbf{DSR2}: All data to be backed up, in case of power failure.\\
+	\item\label{DSR1}\textbf{DSR1}: All data to be backed up, in case of power failure.\\
 \end{enumerate}
 
 
@@ -753,8 +751,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 		          			& SR2     			& High                   	     \\
 		          			& SR4                   	& High                   	     \\
 		          			& SR5                   	& Low                   	     \\
-		          			& DSR1                   	& Low                   	     \\
-		          			& DSR2                   	& Very High                   	     \\
+		          			& DSR1                   	& Very High                   	     \\
 		          			& DSRQ2                   & Very High                   	     \\
 		Postponed*		& SR2** 			& High                               \\
 						& SR3 			& Low                               \\
