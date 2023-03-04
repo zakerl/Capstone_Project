@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
 \hypersetup{
@@ -13,6 +15,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\graphicspath{ {./docs/VNVReport} }
 \renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
@@ -92,7 +95,30 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 
 \section{Changes Due to Testing}
 
-After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).
+After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).\\
+
+\textbf{Heart Rate Sensor Options:}\\
+
+\begin{table}[H]
+\begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
+\hline
+\textbf{Image} & \textbf{Model} & \textbf{Status} & \textbf{Reason for Status}\\
+\hline
+ \includegraphics[scale = 0.5]{G21394} & \href{https://secure.sayal.com/STORE2/View_SHOP.php?SKU=247799}{Chaney Electronics Inc. G21394}  & Rejected & Due to the Infrared LED's Placement and the photoelectic sensor's placement, it is impossible to integrate the module with a device sitting on the wrist.\\
+\hline
+ \includegraphics[scale = 0.5]{sparkfun} & \href{https://www.sparkfun.com/products/15219}{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}  & Rejected & Chronically out of stock, and requires extra complexity to be built into the PCB in order for this to function.\\
+\hline
+ \includegraphics[scale = 0.25]{grove1} & \href{https://www.seeedstudio.com/Grove-Finger-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c&objectID=711&indexName=bazaar_retailer_products}{Grove - Finger-clip Heart Rate Sensor}  & Rejected & Size too large, and issues with skin contact to the sensor results in garbage data.\\
+\hline
+ \includegraphics[scale = 0.25]{grove2} & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c&objectID=2143&indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}  & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities.\\
+\hline
+\includegraphics[scale = 0.1]{knockoff} & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi}  & Rejected & Build quality was unacceptably bad. Ordered name-brand version of this product next.\\
+\hline
+
+\includegraphics[scale = 0.25]{pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}  & Accepted & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.\\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Automated Testing}
 N/A
