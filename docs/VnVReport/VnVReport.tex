@@ -3,6 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -11,16 +15,17 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-
+\graphicspath{ {./docs/VNVReport} }
+\renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname}
+\title{Verification and Validation Report: \progname} 
 \author{\authname}
 \date{\today}
-
+	
 \maketitle
 
 \pagenumbering{roman}
@@ -28,11 +33,11 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
-  \midrule
-  Date 1              & 1.0           & Notes       \\
-  Date 2              & 1.1           & Notes       \\
-  \bottomrule
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+Date 1 & 1.0 & Notes\\
+Date 2 & 1.1 & Notes\\
+\bottomrule
 \end{tabularx}
 
 ~\newpage
@@ -40,11 +45,11 @@
 \section{Symbols, Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l}
-  \toprule
-  \textbf{symbol} & \textbf{description} \\
-  \midrule
-  T               & Test                 \\
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  T & Test\\
   \bottomrule
 \end{tabular}\\
 
@@ -435,7 +440,7 @@ These tests basically evaluated the re-usability of various hardware systems of 
 
   \textbf{Observed Results}: Battery was fully charged and device was safe to use.
 
-  \item{\textbf{RT\_1: Battery Charge Protection}}\label{RT1}
+  \item{\textbf{RT\_2: Battery Charge Protection}}\label{RT2}
 
   \textbf{Initial State}: Battery is fully charged.
 
@@ -574,23 +579,189 @@ These tests were designed to test the security of the system and the accessibili
 
 \end{enumerate}
 
-\section{Comparison to Existing Implementation}
+	
+\section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+Current motion detecting smart watches, such as Apple watches or Samsung Galaxy watches, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
 
 \section{Unit Testing}
 
+\begin{center}
+\begin{tabular}{ c | c | c | c | c | c | c | c }
+ 1 & Void bed\_HR\_setup() & Set-up function for heartrate module & RQ & User heart rate input from A0 signal pin. & "PulseSensor object created", LED flash & Actual & Pass \\ 
+2 & name & desc & ref & input & expected & actual & pass or fail \\  
+3 & name & desc & ref & input & expected & actual & pass or fail \\  
+\end{tabular}
+\end{center}
+
 \section{Changes Due to Testing}
 
+After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).\\
+
+\textbf{Heart Rate Sensor Options:}\\
+
+\begin{table}[H]
+\label{HRSensors}\caption{Tested Heart Rate Sensors}
+\begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
+\hline
+\textbf{Image} & \textbf{Model} & \textbf{Status} & \textbf{Reason for Status}\\
+\hline
+ \includegraphics[scale = 0.5]{G21394} & \href{https://secure.sayal.com/STORE2/View_SHOP.php?SKU=247799}{Chaney Electronics Inc. G21394}  & Rejected & Due to the Infrared LED's Placement and the photoelectic sensor's placement, it is impossible to integrate the module with a device sitting on the wrist.\\
+\hline
+ \includegraphics[scale = 0.5]{sparkfun} & \href{https://www.sparkfun.com/products/15219}{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}  & Rejected & Chronically out of stock, and requires extra complexity to be built into the PCB in order for this to function.\\
+\hline
+ \includegraphics[scale = 0.25]{grove1} & \href{https://www.seeedstudio.com/Grove-Finger-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c&objectID=711&indexName=bazaar_retailer_products}{Grove - Finger-clip Heart Rate Sensor}  & Rejected & Size too large, and issues with skin contact to the sensor results in garbage data.\\
+\hline
+ \includegraphics[scale = 0.25]{grove2} & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c&objectID=2143&indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}  & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities.\\
+\hline
+\includegraphics[scale = 0.1]{knockoff} & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi}  & Rejected & Build quality was unacceptably bad. Ordered name-brand version of this product next.\\
+\hline
+
+\includegraphics[scale = 0.25]{pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}  & Accepted & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.\\
+\hline
+\end{tabular}
+\end{table}
+
 \section{Automated Testing}
+N/A
 
 \section{Trace to Requirements}
 
-\section{Trace to Modules}
+\noindent
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+		& \hyperref[DT1]{DT1}& \hyperref[DT2]{DT2}&\hyperref[DT3]{DT3}& \hyperref[DT4]{DT4} &\hyperref[MTT1]{MTT1}&\hyperref[MTT2]{MTT2}&\hyperref[PRT1]{PRT1}&\hyperref[PRT2]{PRT2}&\hyperref[TT1]{TT1} \\
+	\hline       
+	\textbf{R1}         &X&X&X&X&&&&& \\ \hline
+	\textbf{R2}         &&&&&X&X&&&\\ \hline
+	\textbf{R3}         &&&&&&&X&X& \\ \hline
+	\textbf{R4}         &&&&&&&&&X\\ \hline
+	\textbf{R5}         &&&&&&&&& \\ \hline
+	\textbf{R6}         &&&&&&&&&\\ \hline
+	\textbf{NFR1}     &&&&&X&X&X&X& \\ \hline
+	\textbf{NFR12}   &&&&&&&X&&\\ \hline
+	\end{tabular}
+	\caption{ Requirements Traceability Matrix Pt1}
+	\label{Table:A_Req_trace}
+\end{table}
+
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[TT2]{TT2}&\hyperref[TT3]{TT3}& \hyperref[TT4]{TT4} &\hyperref[TT5]{TT5}&\hyperref[DST1]{DST1}&\hyperref[DST2]{DST2}&\hyperref[DST3]{DST3}&\hyperref[DXT1]{DXT1}&\hyperref[DXT2]{DXT2}&\hyperref[DXT3]{DXT3} \\
+	\hline     
+	\textbf{R1}         &&&&&&&&&& \\ \hline
+	\textbf{R2}       	 &&&&&&&&&&\\ \hline
+	\textbf{R3}         &&&&&&&&&& \\ \hline
+	\textbf{R4}         &X&X&X&X&&&&&&\\ \hline
+	\textbf{R5}          &&&&&X&X&X&&& \\ \hline
+	\textbf{R6}         &&&&&&&&X&X&X\\ \hline
+	\end{tabular}
+	\caption{Requirements Traceability Matrix Pt2}
+	\label{Table:B_Req_trace}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3} &\hyperref[HST4]{HST4}&\hyperref[RT1]{RT1}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
+	\hline       
+	\textbf{NFR2}         &&&&&&X&X&X&&&\\ \hline
+	\textbf{NFR3}         &&&&&&&&&&X& \\ \hline
+	\textbf{NFR4}         &&&&&&&X&&&&\\ \hline
+	\textbf{NFR5}         &&&&&&&&X&&& \\ \hline
+	\textbf{NFR6}         &X&X&X&X&&&&&&&\\ \hline
+	\textbf{NFR7}         &&&&&X&&&&&&\\ \hline
+	\textbf{NFR8}         &&&&&&&&&&&X\\ \hline
+	\textbf{NFR9}         &&&&&&X&&&&&\\ \hline
+	\textbf{NFR10}       &&&&&&&X&&&&\\ \hline
+	\textbf{NFR11}       &X&X&X&X&X&&&&&&\\ \hline
+	\textbf{NFR13}       &&&&&&&&&X&&\\ \hline
+	\textbf{NFR14}       &&&&&&&&&&&X\\ \hline
+	\end{tabular}
+	\caption{Requirements Traceability Matrix Pt3}
+	\label{Table:C_Req_trace}
+\end{table}
+\newpage
+
+\section{Trace to Modules}		
+
+\noindent
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+		& \hyperref[DT1]{DT1}& \hyperref[DT2]{DT2}&\hyperref[DT3]{DT3}& \hyperref[DT4]{DT4} &\hyperref[MTT1]{MTT1}&\hyperref[MTT2]{MTT2}&\hyperref[PRT1]{PRT1}&\hyperref[PRT2]{PRT2}&\hyperref[TT1]{TT1} \\
+	\hline   
+	\textbf{M1}         &X&&&&&&&& \\ \hline
+	\textbf{M2}         &&&&&&&&&X\\ \hline
+	\textbf{M3}         &&&&&&&&& \\ \hline
+	\textbf{M4}         &&&&&X&X&&X&\\ \hline
+	\textbf{M5}         &&&&&&&X&X& \\ \hline
+	\textbf{M6}         &&&&&&&X&X&\\ \hline
+	\textbf{M7}         &X&X&X&X&&&&& \\ \hline
+	\textbf{M8}   	     &&&&&&&&&\\ \hline
+	\textbf{M9}         &&&&&&&&&X\\ \hline    
+	\textbf{M10}       &&&&&X&X&&X&\\ \hline    
+	\end{tabular}
+	\caption{ Module Traceability Matrix Pt1}
+	\label{Table:A_Mod_trace}
+\end{table}
+
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[TT2]{TT2}&\hyperref[TT3]{TT3}& \hyperref[TT4]{TT4} &\hyperref[TT5]{TT5}&\hyperref[DST1]{DST1}&\hyperref[DST2]{DST2}&\hyperref[DST3]{DST3}&\hyperref[DXT1]{DXT1}&\hyperref[DXT2]{DXT2}&\hyperref[DXT3]{DXT3} \\
+	\hline     
+	\textbf{M1}         &&&&&&&&&& \\ \hline
+	\textbf{M2}         &X&X&X&X&&&&X&X&X\\ \hline
+	\textbf{M3}         &&&&&X&X&X&X&X&X \\ \hline
+	\textbf{M4}         &&&&&X&X&X&X&X&X\\ \hline
+	\textbf{M5}         &&&&&&&&&& \\ \hline
+	\textbf{M6}         &&&&&X&X&X&&&\\ \hline
+	\textbf{M7}         &&&&&&X&X&&&\\ \hline
+	\textbf{M8}         &&&&&&&&&&\\ \hline
+	\textbf{M9}         &X&X&X&X&&&&&&\\ \hline
+	\textbf{M10}       &&&&&&&&&&\\ \hline
+	\end{tabular}
+	\caption{Module Traceability Matrix Pt2}
+	\label{Table:B_Mod_trace}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3} &\hyperref[HST4]{HST4}&\hyperref[RT1]{RT1}&\hyperref[RT2]{RT2}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
+	\hline       
+	\textbf{M1}         &X&X&X&X&X&X&&&&&X&\\ \hline
+	\textbf{M2}         &&&&&&&&&&X&&X \\ \hline
+	\textbf{M3}         &&&&&&&&&&&&\\ \hline
+	\textbf{M4}         &&&&&&&&&&&& \\ \hline
+	\textbf{M5}         &&&&X&&&X&&&&&\\ \hline
+	\textbf{M6}         &&&&&&&X&&&&&\\ \hline
+	\textbf{M7}         &&&&X&&&&&&&&\\ \hline
+	\textbf{M8}         &&&&&&&&&&&&\\ \hline
+	\textbf{M9}         &&&&&&&&&&&&\\ \hline
+	\textbf{M10}       &&&&&&&X&X&&&&\\ \hline
+	\end{tabular}
+	\caption{Module Traceability Matrix Pt3}
+	\label{Table:C_Mod_trace}
+\end{table}
+\newpage
 
 \section{Code Coverage Metrics}
 
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
 %\bibliography{../../refs/References}
 
 \newpage{}
@@ -601,13 +772,13 @@ graduate attribute of Reflection.  Please answer the following question:
 
 \begin{enumerate}
   \item In what ways was the Verification and Validation (VnV) Plan different
-        from the activities that were actually conducted for VnV?  If there were
-        differences, what changes required the modification in the plan?  Why did
-        these changes occur?  Would you be able to anticipate these changes in future
-        projects?  If there weren't any differences, how was your team able to clearly
-        predict a feasible amount of effort and the right tasks needed to build the
-        evidence that demonstrates the required quality?  (It is expected that most
-        teams will have had to deviate from their original VnV Plan.)
+  from the activities that were actually conducted for VnV?  If there were
+  differences, what changes required the modification in the plan?  Why did
+  these changes occur?  Would you be able to anticipate these changes in future
+  projects?  If there weren't any differences, how was your team able to clearly
+  predict a feasible amount of effort and the right tasks needed to build the
+  evidence that demonstrates the required quality?  (It is expected that most
+  teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
 
 \end{document}
