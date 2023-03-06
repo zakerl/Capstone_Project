@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
 \hypersetup{
@@ -86,16 +87,116 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \section{Unit Testing}
 
 \begin{center}
-\begin{tabular}{ c | c | c | c | c | c | c | c }
- 1 & Void bed\_HR\_setup() & Set-up function for heartrate module & RQ & User heart rate input from A0 signal pin. & "PulseSensor object created", LED flash & Actual & Pass \\ 
-2 & name & desc & ref & input & expected & actual & pass or fail \\  
-3 & name & desc & ref & input & expected & actual & pass or fail \\  
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+ 1 & bed\_HR\_setup & R2 & Power on the device. & "PulseSensor object created", LED flash per each heartbeat. & "PulseSensor object created", LED flash per each heartbeat. & Pass \\ 
+\hline
+2 & bed\_HR\_detect & R2 & Walk for 10 seconds while wearing the device, then stop. & "HeartBeat Detected. BPM: 70”. & "HeartBeat Detected. BPM: 130”. & Fail \\  
+\hline
+3 & bed\_MPU\newline \_setup & R2 & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & Pass \\  
+\hline
+4 & bed\_MPU\newline \_detect & R2 & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & Pass \\ 
+\hline
+5 & bed\_init\_display & NFR2 & Action & Black screen on & Black screen on & Pass \\ 
+\hline
+6 & bed\_scroll\_test &  NFR2 & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up. & Selection goes up. & Pass \\ 
+\hline
+7 & bed\_splash\newline \_screen & NFR2 & Power on the device. & "Back End Developers" & "Back End Developers" & Pass \\ 
+\hline
+8 & bed\_display\newline \_one\_line & NFR2 & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. & Screen clears prompt list and only displays current date and time. & Pass \\ 
+\hline
+9 & OpenFile & R6 & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
+\hline
 \end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+10 & bed\_display\newline \_prompt & R3 & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No & "Are you in pain?", Yes, No & Pass \\ 
+\hline
+11 & bed\_format\newline \_prompt & R3 & Limp with the device to activate prompt generation. & Prompt text color is white while background is black. & Prompt text color is white while background is black.  & Pass \\ 
+\hline
+12 & OpenSerial & R6, NFR14 & Connect device to computer via USB port. & UI displays green dot. & UI displays green dot. & Pass \\ 
+\hline
+13 & bed\_init\_rtc & R6, NFR1 & Power on the device. & "March 5th, 16:21". & "March 5th, 16:21". & Pass \\ 
+\hline
+14 & bed\_display\_info & NFR2 & Power on the device. & "March 5th, 16:23". & "March 5th, 16:23". & Pass \\ 
+\hline
+15 & bed\_set\newline \_explicit\_date\newline \_time & R6, NFR1 & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". & "March 5th, 16:46". & Pass \\ 
+\hline
+16 & bed\_touch\newline \_detect & NFR2 & Touch 2 bezels in clockwise direction. & 1 & 1 & Pass \\ 
+\hline
+17 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. & Login page appears. & Pass \\ 
+\hline
+18 & saveAsTxt & R6 & Press Save as button and choose a directory to save file in. & Config.txt file created and saved. & Config.txt file created and saved. & Pass \\ 
+\hline
+19 & BackToMain & NFR2 & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
+\hline
+20 &  InsertDB & R6, NFR14 & Press save button. & Data appears on database table. & Data appears on database table. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+21 & LoadDb & R6, NFR14 & Press load button. & Data appears on software UI table. &  Data appears on software UI table. & Pass \\ 
+\hline
+22 & dataHead & R6, NFR14 & Press load button. & Data appears on software UI table. & Data appears on software UI table. & Pass \\ 
+\hline
+23 & search & R6, NFR14 & Filter-search participant first name of “John” & All participant record with first name “John” appears. & All participant record with first name “John” appears. & Pass \\ 
+\hline
+24 & OpenGraph & R7 & Press graph button. & Empty graph chart appears. & Empty graph chart appears. & Pass \\ 
+\hline
+25 & OpenHeart & R7. & Press heart rate button. & Only heart rate graph appears. & Only heart rate graph appears. & Pass \\ 
+\hline
+26 & OpenSteps & R7 & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+\hline
+27 & OpenActivity & R7 & Press activity button & Only activity graph appears. & Only activity graph appears. & Pass \\ 
+\hline
+28 & plot & R7 & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+\hline
+29 & loginAttempt & NFR8, NFR14 & ID: "admin", PW: "capstone" & Main screen appears. & Main screen appears. & Pass \\ 
+\hline
+30 & loginAttempt & NFR8, NFR14 & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
+\hline
+31 & showRecord\newline Window & NFR2 & Press records button. & Records window appears and main window closes. & Records window appears and main window closes. & Pass \\ 
+\hline
+32 & showCreate\newline Records & NFR2 & Press create records button. & Create Records window appears and main window closes. & Create Records window appears and main window closes. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+33 & showConfig\newline View & NFR2 & Press configuration button. & Configuration window appears and main window closes. & Configuration window appears and main window closes. & Pass \\ 
+\hline
+34 & showDataView & NFR2 & Press data view button. & Data view window appears and main window closes. & Data view window appears and main window closes. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
 \end{center}
 
 \section{Changes Due to Testing}
 
-After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).\\
+After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.
 
 \textbf{Heart Rate Sensor Options:}\\
 
