@@ -545,6 +545,33 @@ The following set of questions was asked to ensure that the device was capable o
 
   \textbf{Observed Results}: The data was transferred within the specified parameter, thus indicating device performed well in terms of transfer rates.
 
+TRANSFER\_TIME: Set to 60 seconds
+
+\begin{table}[H]
+  \begin{tabular}{| c | c | m{3cm} | m{1.75cm} | m {5cm} |}
+\hline
+    \textbf{File Size} & \textbf{Transfer Time} & \textbf{Errors} & \textbf{Test Result} & \textbf{Notes }\\
+\hline
+2kB & 2.66s & None & Pass & None \\
+\hline
+10kB& 13.27s & None & Pass & None \\
+\hline
+8.5kB& 10.51 & None & Pass & None \\
+\hline
+5kB& 6.94s & None & Pass & None \\
+\hline
+11kB& 14.10s & None & Pass & None \\
+\hline
+18kB & N/A & COM Port 7 Not Open & Result Rejected & Cable was plugged in incorrectly. \\
+\hline
+20kB & 25.68s & None & Pass & None \\
+\hline
+35kB & 36.85s & None & Pass & None \\
+\hline
+  \end{tabular}
+\caption{Data Transfer Time Testing Data}
+\end{table}
+
   \item\textbf{{PT\_2: Battery Life\\}}\label{PT2}
 
   \textbf{Initial State}: The device is turned on and left on idle mode.
@@ -603,7 +630,7 @@ After testing out each unit of the device system and failing unit test \#2, the 
 \textbf{Heart Rate Sensor Options:}\\
 
 \begin{table}[H]
-  \label{HRSensors}\caption{Tested Heart Rate Sensors}
+  \label{HRSensors_Pt1}\caption{Tested Heart Rate Sensors Part 1}
   \begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
     \hline
     \textbf{Image}                              & \textbf{Model}                                                                                                                                                    & \textbf{Status} & \textbf{Reason for Status}                                                                                                                                                                                                                                               \\
@@ -616,9 +643,17 @@ After testing out each unit of the device system and failing unit test \#2, the 
     \hline
     \includegraphics[scale = 0.25]{grove2}      & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                                  & objectID=2143   & indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}                                                                       & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities. \\
     \hline
-    \includegraphics[scale = 0.1]{knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\
+    \includegraphics[scale = 0.1]{knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\                                                                                              \\
     \hline
+  \end{tabular}
+\end{table}
 
+\begin{table}[H]
+  \label{HRSensors_Pt2}\caption{Tested Heart Rate Sensors Part 2}
+  \begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
+    \hline
+    \textbf{Image}                              & \textbf{Model}                                                                                                                                                    & \textbf{Status} & \textbf{Reason for Status}                                                                                                                                                                                                                                               \\
+    \hline
     \includegraphics[scale = 0.25]{pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}                                                                                                     & Accepted        & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.                                                                                                                  \\
     \hline
   \end{tabular}
