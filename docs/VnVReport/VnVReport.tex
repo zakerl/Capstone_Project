@@ -541,7 +541,7 @@ The following set of questions was asked to ensure that the device was capable o
 
   \textbf{Expected Results}: Data transfer to finish within the specified parameter, TRANSFER\_TIME.
 
-  \textbf{How test was performed}: 2 group members of the Back End Developers performed seperate data transfer tests 3 times and recorded the total transfer time for each execution. All 6 tests should result in execution time less than or equal to TRANSFER\_TIME.
+  \textbf{How test was performed}: 2 group members of the Back End Developers performed seperate data transfer tests 4 times and recorded the total transfer time for each execution. All 8 tests should result in execution time less than or equal to TRANSFER\_TIME.
 
   \textbf{Observed Results}: The data was transferred within the specified parameter, thus indicating device performed well in terms of transfer rates.
 
@@ -556,7 +556,7 @@ TRANSFER\_TIME: Set to 60 seconds
 \hline
 10kB& 13.27s & None & Pass & None \\
 \hline
-8.5kB& 10.51 & None & Pass & None \\
+8.5kB& 10.51s & None & Pass & None \\
 \hline
 5kB& 6.94s & None & Pass & None \\
 \hline
@@ -580,9 +580,24 @@ TRANSFER\_TIME: Set to 60 seconds
 
   \textbf{Expected Results}: The total amount of time before the device runs out of battery is greater or equal to the parameter, BATTERY\_LIFE.
 
-  \textbf{How test was performed}: 2 group members of the Back End Developers wore the device for standard monitoring period consecutively in their daily basis. At the end of each calendar day, they are prompted to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?".
+  \textbf{How test was performed}: 2 group members of the Back End Developers wore the device for standard monitoring period consecutively in their daily basis. At the end of each calendar day, they are prompted to record their response to a simple question: "Does the device still have battery life left?".
 
   \textbf{Observed Results}: The group members answered the prompt, thus giving us the time limit on the batteries. It was greater than the parameter set.
+
+Minimum Battery Life: 24 Hours
+
+\begin{table}[H]
+  \begin{tabular}{| c | c | c | c | c |}
+\hline
+    \textbf{Battery Level} & \textbf{Errors} & \textbf{Prompt Response} & \textbf{Notes }\\
+\hline
+22\% & None & "Yes" & None \\
+\hline
+31\% & None & "Yes" & None \\
+\hline
+  \end{tabular}
+\caption{Battery Performance Testing Data}
+\end{table}
 
 \end{enumerate}
 
