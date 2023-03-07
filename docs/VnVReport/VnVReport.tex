@@ -45,7 +45,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  March 8th 2023              & 1.0           & Notes       \\
+  March 8th 2023              & 1.0           & Initial Documentation       \\
   \bottomrule
 \end{tabularx}
 
@@ -156,8 +156,6 @@ Below are some derived units that do not use a specific SI symbol.
 
 \pagenumbering{arabic}
 
-This document ...
-
 \section{Functional Requirements Evaluation}
 This tests were performed to ensure that the functional requirements were met and the results were noted.
 \subsection{Duration Test}
@@ -223,13 +221,13 @@ The following tests were performed to analyze the device's sensitivity.
 
   \textbf{Initial State}: Device is worn with all systems working.
 
-  \textbf{Input}: Tester performs activities at a regular/normal pace.
+  \textbf{Input}: Tester performs activities at a regular/normal pace (regular walking is roughly 100 steps per minute).
 
   \textbf{Expected Results}: The steps taken should be incremented everytime the volunteer walks.
 
   \textbf{How test was performed}: The test was performed by attaching the sensor onto the volunteer's finger who walked as usual. This was done to ensure that the device can work under normal scenarios.\\
 
-  \textbf{Observed Results}: The steps were incrementing as expected and almost very accurate value of how many steps were logged in serial.
+  \textbf{Observed Results}: The steps were incrementing as expected and almost very accurate value of how many steps were logged in serial, with regular walking step rate of 105 steps per minute.
 
   \item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
 
@@ -241,7 +239,7 @@ The following tests were performed to analyze the device's sensitivity.
 
   \textbf{How test was performed}: The test was performed by attaching the sensor onto the volunteer's finger who walked as if he was limping. This was done to ensure that the device can work for people with limited mobility.\\
 
-  \textbf{Observed Results}: The steps were incrementing as expected and almost very accurate value of how many steps were logged in serial. Since they weren't above threshold, the device detected that the tracker were limping
+  \textbf{Observed Results}: \textcolor{red}{Test Failed.} The device failed to detect heartrate reliably (When heart rate was expected to be roughly 70bpm based on a 3rd party heart rate sensor, the device returned a value of greater than 200bpm). Review the selection of heart rate sensor and review the code.
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -260,9 +258,8 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \textbf{How test was performed}: The test was performed by turning on the device for the first time after reconfiguration. Upon turning on the device, there was a test prompt that confirmed that the prompting system was working correctly. The test prompt is the default prompt.
 
-  \textbf{Observed Results}: The default prompt showed up. When a desired activity was detected, a set of specific prompts were displayed, for which responses were recorded.\\\\
-  Test Prompt: Is this Device on?\\
-  Possible Answers: Yes or No
+  \textbf{Observed Results}: \textcolor{red}{Test Failed.} Device failed to recognize activity appropriately, and microcontroller (Seeeduino XIAO) failed to respond to any input. Hardware issue is yet to be resolved, consider using an alternative microcontroller.
+
   \item{\textbf{PRT\_2: Activity Prompt} \\}\label{PRT2}
 
   \textbf{Initial State}: Device is in the idle state.
@@ -528,9 +525,12 @@ These tests basically evaluated the re-usability of various hardware systems of 
   \textbf{How test was performed}: Battery component was isolated from device and fully charged and discharged couple times.
 
   \textbf{Observed Results}: Battery was fully charged and device was safe to use.\\
+\begin{figure}
+\centering
   \includegraphics{battery_level}
-  \\\textbf{Figure:}The battery levels in a span of 24 hours
-
+	\caption{The battery levels in a span of 24 hours}
+\label{fig:battery_level}
+\end{figure}
   \item{\textbf{RT\_2: Battery Charge Protection}}\label{RT2}
 
   \textbf{Initial State}: Battery is fully charged.
@@ -634,8 +634,8 @@ The following set of questions was asked to ensure that the device was capable o
   \textbf{Observed Results}: The data was transferred within the specified parameter, thus indicating device performed well in terms of transfer rates.
 
 TRANSFER\_TIME: Set to 60 seconds
-
 \begin{table}[H]
+\centering
   \begin{tabular}{| c | c | m{3cm} | m{1.75cm} | m {5cm} |}
 \hline
     \textbf{File Size} & \textbf{Transfer Time} & \textbf{Errors} & \textbf{Test Result} & \textbf{Notes }\\
@@ -656,10 +656,10 @@ TRANSFER\_TIME: Set to 60 seconds
 \hline
 35kB & 36.85s & None & Pass & None \\
 \hline
+
   \end{tabular}
 \caption{Data Transfer Time Testing Data}
 \end{table}
-
   \item\textbf{{PT\_2: Battery Life\\}}\label{PT2}
 
   \textbf{Initial State}: The device is turned on and left on idle mode.
@@ -675,6 +675,7 @@ TRANSFER\_TIME: Set to 60 seconds
 Minimum Battery Life: 24 Hours
 
 \begin{table}[H]
+\centering
   \begin{tabular}{| c | c | c | c | c |}
 \hline
     \textbf{Battery Level} & \textbf{Errors} & \textbf{Prompt Response} & \textbf{Notes }\\
@@ -686,6 +687,7 @@ Minimum Battery Life: 24 Hours
   \end{tabular}
 \caption{Battery Performance Testing Data}
 \end{table}
+
 
 \end{enumerate}
 
@@ -778,7 +780,7 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \end{center}
 
 \begin{center}
-\begin{table} 
+\begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
@@ -856,36 +858,42 @@ After testing out each unit of the device system and failing unit test \#2, the 
 \end{table}
 
 \begin{figure}[H]
+\centering
   \includegraphics[scale=1]{G21394}
   \caption{Chaney Electronics Inc. G21394}
   \label{fig:G21394}
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale = 1]{sparkfun} 
   \caption{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}
   \label{fig:sparkfun}
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale = 0.5]{grove1}
   \caption{Grove - Finger-clip Heart Rate Sensor}
   \label{fig:grove1}
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale = 0.5]{grove2}
   \caption{Grove - Ear-clip/Finger-clip Heart Rate Sensor}
   \label{fig:grove2}
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale = 0.25]{knockoff}
   \caption{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi}
   \label{fig:knockoff}
 \end{figure}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale = 0.5]{pulseSensor}
   \caption{PulseSensor.com Pulse Sensor}
   \label{fig:pulseSensor}
