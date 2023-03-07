@@ -567,7 +567,6 @@ The following set of tests were done to ensure that the device is usable by targ
   \textbf{Initial State}: The device is turned on and a question prompt is generated on screen.
 
   \textbf{Input}: Testers are asked to answer the questionnaire set without assistance in less than 1 minute.
-
   \textbf{Expected Results}: All testers are able to answer their prompt successfully.
 
   \textbf{How test was performed}: A test group of people with age of 40 or older was be asked to receive a powered-on EMAnator and asked to respond to a set of 3 questions in 1 minute. These questions were randomly selected from the following 10 questions.
@@ -714,26 +713,128 @@ These tests were designed to test the security of the system and the accessibili
 
 
 \section{Comparison to Existing Implementation}
-
 Current motion detecting smart watches, such as Apple watches or Samsung Galaxy watches, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
 
 \section{Unit Testing}
 
 \begin{center}
-  \begin{tabular}{ c | c | c | c | c | c | c | c }
-    1 & Void bed\_HR\_setup() & Set-up function for heartrate module & RQ  & User heart rate input from A0 signal pin. & "PulseSensor object created", LED flash & Actual & Pass         \\
-    2 & name                  & desc                                 & ref & input                                     & expected                                & actual & pass or fail \\
-    3 & name                  & desc                                 & ref & input                                     & expected                                & actual & pass or fail \\
-  \end{tabular}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+ 1 & bed\_HR\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & "PulseSensor object created", LED flash per each heartbeat. & "PulseSensor object created", LED flash per each heartbeat. & Pass \\ 
+\hline
+2 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk for 10 seconds while wearing the device, then stop. & "HeartBeat Detected. BPM: 70”. & "HeartBeat Detected. BPM: 130”. & Fail \\  
+\hline
+3 & bed\_MPU\newline \_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & Pass \\  
+\hline
+4 & bed\_MPU\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & Pass \\ 
+\hline
+5 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Action & Black screen on & Black screen on & Pass \\ 
+\hline
+6 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up. & Selection goes up. & Pass \\ 
+\hline
+7 & bed\_splash\newline \_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "Back End Developers" & "Back End Developers" & Pass \\ 
+\hline
+8 & bed\_display\newline \_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. & Screen clears prompt list and only displays current date and time. & Pass \\ 
+\hline
+9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+10 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No & "Are you in pain?", Yes, No & Pass \\ 
+\hline
+11 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation. & Prompt text color is white while background is black. & Prompt text color is white while background is black.  & Pass \\ 
+\hline
+12 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port. & UI displays green dot. & UI displays green dot. & Pass \\ 
+\hline
+13 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device. & "March 5th, 16:21". & "March 5th, 16:21". & Pass \\ 
+\hline
+14 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "March 5th, 16:23". & "March 5th, 16:23". & Pass \\ 
+\hline
+15 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". & "March 5th, 16:46". & Pass \\ 
+\hline
+16 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction. & 1 & 1 & Pass \\ 
+\hline
+17 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. & Login page appears. & Pass \\ 
+\hline
+18 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved. & Config.txt file created and saved. & Pass \\ 
+\hline
+19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
+\hline
+20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. & Data appears on database table. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+21 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. &  Data appears on software UI table. & Pass \\ 
+\hline
+22 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. & Data appears on software UI table. & Pass \\ 
+\hline
+23 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears. & All participant record with first name “John” appears. & Pass \\ 
+\hline
+24 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears. & Empty graph chart appears. & Pass \\ 
+\hline
+25 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button. & Only heart rate graph appears. & Only heart rate graph appears. & Pass \\ 
+\hline
+26 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+\hline
+27 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears. & Only activity graph appears. & Pass \\ 
+\hline
+28 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+\hline
+29 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears. & Main screen appears. & Pass \\ 
+\hline
+30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
+\hline
+31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. & Records window appears and main window closes. & Pass \\ 
+\hline
+32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes. & Create Records window appears and main window closes. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} 
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+33 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. & Configuration window appears and main window closes. & Pass \\ 
+\hline
+34 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button. & Data view window appears and main window closes. & Data view window appears and main window closes. & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+
 \end{center}
 
 \section{Changes Due to Testing}
 
-After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Now the ... (list out all the potential candidates that were ruled out).\\
+After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.
+
 
 \textbf{Heart Rate Sensor Options:}\\
 
 \begin{table}[H]
+
   \label{HRSensors_Pt1}\caption{Tested Heart Rate Sensors Part 1}
   \begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
     \hline
@@ -940,7 +1041,6 @@ N/A
 \newpage
 
 \section{Code Coverage Metrics}
-
 N/A
 %\bibliographystyle{plainnat}
 %\bibliography{../../refs/References}
