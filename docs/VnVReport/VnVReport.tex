@@ -1,12 +1,22 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{siunitx}
 \usepackage{booktabs}
+\usepackage{xfrac}
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{float}
-\usepackage{graphicx}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{color, colortbl}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -35,8 +45,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  Date 1              & 1.0           & Notes       \\
-  Date 2              & 1.1           & Notes       \\
+  March 8th 2023              & 1.0           & Notes       \\
   \bottomrule
 \end{tabularx}
 
@@ -44,16 +53,96 @@
 
 \section{Symbols, Abbreviations and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l}
-  \toprule
-  \textbf{symbol} & \textbf{description} \\
-  \midrule
-  T               & Test                 \\
-  \bottomrule
-\end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
+as the unit system.  In addition to the basic units, several derived units are
+used as described below.  For each unit, the symbol is given followed by a
+description of the unit and the SI name.
+~\newline
+
+\renewcommand{\arraystretch}{1.2}
+%\begin{table}[ht]
+	\begin{table}[H]
+	  \noindent\begin{tabular}{l l l} 
+	    \toprule		
+	    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+	    \midrule 
+	    \si{\metre} & length & metre\\
+	    \si{\kilogram} & mass	& kilogram\\
+	    \si{\second} & time & second\\
+	    \si{\degree} & angle & degree\\
+	    \si{\radian} & angle & radian\\
+	    \si{\V} & potential & volts\\
+	    \si{\ampere} & current & ampere\\
+	    \si{\ohm} & resistance & ohm (\si\ohm = \si{\V\per\ampere})\\
+	    \si{\F} & capacitance & farad\\
+	    \si{\H} & inductance & henry\\
+	    N & force & newton (N = \si{\kilogram\metre\per\square\second})\\
+	    Pa & pressure & pascals (Pa = N\si{\per\square\metre})\\
+	    \si{\Hz} & frequency & hertz\\
+	    \si{\joule} & energy & joule\\
+	    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+	    \bottomrule
+	  \end{tabular}
+	\caption{\label{tabUnit}Table of Basic Units}
+	\end{table}  
+  ~\newline
+Below are some derived units that do not use a specific SI symbol.
+~\newline
+
+
+  \renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+	 \noindent \begin{tabular}{l l} 
+	    \toprule		
+	    \textbf{Derived unit} & \textbf{SI}\\
+	    \midrule 
+	    area  & \si{\square\metre}\\
+	    volume & \si{\cubic\metre}\\
+	    velocity &  \si{\metre\per\second}\\
+	    acceleration &  \si{\metre\per\square\second}\\    
+	    \bottomrule
+	  \end{tabular}
+	\caption{\label{devUnit}Table of Derived Units}  
+\end{table}
+
+
+\subsection{Abbreviations and Acronyms}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+	\noindent\begin{tabular}{l l} 
+	  \toprule		
+	  \textbf{symbol} & \textbf{description}\\
+	  \midrule 
+	  A & Assumption\\
+	  ACC & Acceleration\\
+	  BAR & Barometer\\
+	  CSV & Comma-Separated Values\\
+	  CV & Controlled Variables\\
+	  DD & Data Definition\\
+	  EMA & Ecological Momentary Assessment\\
+	  FSM & Finite State Machine\\
+	  GD & General Definition\\
+	  GS & Goal Statement\\
+	  GYR & Gyrometer\\
+	  IM & Instance Model\\
+	  LC & Likely Change\\
+	  LSS & Lumbar Spinal Stenosis\\
+	  MV & Monitored Variables\\
+	  NFR & Non-Functional Requirements\\
+	  OOP & Object Oriented Programming\\
+	  PID & Proportional-integral-derivative\\
+	  PS & Physical System Description\\
+	  R & Requirement\\
+	  SI & Syst\`{e}me International d'Unit\'{e}s\\
+	  SReS & School of Rehabilitation Sciences\\
+	  SRS & Software Requirements Specification\\
+	
+	  \bottomrule
+	\end{tabular}\\
+	\caption{\label{abbacr}Table of Abbreviations and Acronyms}  
+\end{table}
 
 \newpage
 
@@ -650,29 +739,56 @@ After testing out each unit of the device system and failing unit test \#2, the 
     \hline
     \textbf{Image}                              & \textbf{Model}                                                                                                                                                    & \textbf{Status} & \textbf{Reason for Status}                                                                                                                                                                                                                                               \\
     \hline
-    \includegraphics[scale = 0.5]{G21394}       & \href{https://secure.sayal.com/STORE2/View_SHOP.php?SKU=247799}{Chaney Electronics Inc. G21394}                                                                   & Rejected        & Due to the Infrared LED's Placement and the photoelectic sensor's placement, it is impossible to integrate the module with a device sitting on the wrist.                                                                                                                \\
+    See Figure \ref{fig:G21394}    & \href{https://secure.sayal.com/STORE2/View_SHOP.php?SKU=247799}{Chaney Electronics Inc. G21394}                                                                   & Rejected        & Due to the Infrared LED's Placement and the photoelectic sensor's placement, it is impossible to integrate the module with a device sitting on the wrist.                                                                                                                \\
     \hline
-    \includegraphics[scale = 0.5]{sparkfun}     & \href{https://www.sparkfun.com/products/15219}{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}                                      & Rejected        & Chronically out of stock, and requires extra complexity to be built into the PCB in order for this to function.                                                                                                                                                          \\
+    See Figure \ref{fig:sparkfun}     & \href{https://www.sparkfun.com/products/15219}{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}                                      & Rejected        & Chronically out of stock, and requires extra complexity to be built into the PCB in order for this to function.                                                                                                                                                          \\
     \hline
-    \includegraphics[scale = 0.25]{grove1}      & \href{https://www.seeedstudio.com/Grove-Finger-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                               & objectID=711    & indexName=bazaar_retailer_products}{Grove - Finger-clip Heart Rate Sensor}                                                                                & Rejected & Size too large, and issues with skin contact to the sensor results in garbage data.               \\
+    See Figure \ref{fig:grove1}      & \href{https://www.seeedstudio.com/Grove-Finger-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                               & objectID=711    & indexName=bazaar_retailer_products}{Grove - Finger-clip Heart Rate Sensor}                                                                                & Rejected & Size too large, and issues with skin contact to the sensor results in garbage data.               \\
     \hline
-    \includegraphics[scale = 0.25]{grove2}      & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                                  & objectID=2143   & indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}                                                                       & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities. \\
+    See Figure \ref{fig:grove2}      & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                                  & objectID=2143   & indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}                                                                       & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities. \\
     \hline
-    \includegraphics[scale = 0.1]{knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\                                                                                              \\
+    See Figure \ref{fig:knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\                                                                                              \\
+    \hline
+    See Figure \ref{fig:pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}                                                                                                     & Accepted        & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.                                                                                                                  \\
     \hline
   \end{tabular}
 \end{table}
 
-\begin{table}[H]
-  \label{HRSensors_Pt2}\caption{Tested Heart Rate Sensors Part 2}
-  \begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
-    \hline
-    \textbf{Image}                              & \textbf{Model}                                                                                                                                                    & \textbf{Status} & \textbf{Reason for Status}                                                                                                                                                                                                                                               \\
-    \hline
-    \includegraphics[scale = 0.25]{pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}                                                                                                     & Accepted        & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.                                                                                                                  \\
-    \hline
-  \end{tabular}
-\end{table}
+\begin{figure}[H]
+  \includegraphics[scale=1]{G21394}
+  \caption{Chaney Electronics Inc. G21394}
+  \label{fig:G21394}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 1]{sparkfun} 
+  \caption{SparkFun Pulse Oximeter and Heart Rate Sensor - MAX30101 \& MAX32664 (Qwiic)}
+  \label{fig:sparkfun}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.5]{grove1}
+  \caption{Grove - Finger-clip Heart Rate Sensor}
+  \label{fig:grove1}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.5]{grove2}
+  \caption{Grove - Ear-clip/Finger-clip Heart Rate Sensor}
+  \label{fig:grove2}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.25]{knockoff}
+  \caption{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi}
+  \label{fig:knockoff}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.5]{pulseSensor}
+  \caption{PulseSensor.com Pulse Sensor}
+  \label{fig:pulseSensor}
+\end{figure}
 
 \textbf{Last Minute Change to Microcontroller}
 
@@ -825,6 +941,7 @@ N/A
 
 \section{Code Coverage Metrics}
 
+N/A
 %\bibliographystyle{plainnat}
 %\bibliography{../../refs/References}
 
@@ -832,17 +949,28 @@ N/A
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
-graduate attribute of Reflection.  Please answer the following question:
+graduate attribute of Reflection.  Please answer the following question:\\	
 
-\begin{enumerate}
-  \item In what ways was the Verification and Validation (VnV) Plan different
+\textit{In what ways was the Verification and Validation (VnV) Plan different
         from the activities that were actually conducted for VnV?  If there were
         differences, what changes required the modification in the plan?  Why did
         these changes occur?  Would you be able to anticipate these changes in future
         projects?  If there weren't any differences, how was your team able to clearly
         predict a feasible amount of effort and the right tasks needed to build the
         evidence that demonstrates the required quality?  (It is expected that most
-        teams will have had to deviate from their original VnV Plan.)
-\end{enumerate}
+        teams will have had to deviate from their original VnV Plan.)}
+
+-In what ways was it different from the VnV Plan?\\
+
+The process of developing this project from a concept to its current state has been a humbling experience. We (Team \#1: The Back End Developers) believed that we comprehensively covered the timeline of our project in the VnV Plan. \\
+
+-If there were differences, what changes required modification\\
+-Why did these changes occur?\\
+-Reflect on the quality of the project in general\\
+-Reflect on the areas that are yet to be improved\\
+-Would you be able to anticipate these changes in future projects?\\
+
+Rubric Goals: The verification and validation data is used to make valid conclusions about the project, in terms of its quality and areas that have been improved and are yet to be improved.  The connection between the data and the conclusions is clear.\\
+Rubric Goals: The team reflects on the differences between the VnV plan and the VnV report in the Reflection Appendix.  It is obvious that the team took the exercise seriously and that they have gained an understanding that will help with future VnV planning.\\
 
 \end{document}
