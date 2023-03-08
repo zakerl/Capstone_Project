@@ -65,7 +65,7 @@ description of the unit and the SI name.
 	\begin{table}[H]
 	  \noindent\begin{tabular}{l l l} 
 	    \toprule		
-	    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
+	    \textbf{Symbol} & \textbf{Unit} & \textbf{SI}\\
 	    \midrule 
 	    \si{\metre} & length & metre\\
 	    \si{\kilogram} & mass	& kilogram\\
@@ -95,7 +95,7 @@ Below are some derived units that do not use a specific SI symbol.
 \begin{table}[H]
 	 \noindent \begin{tabular}{l l} 
 	    \toprule		
-	    \textbf{Derived unit} & \textbf{SI}\\
+	    \textbf{Derived Unit} & \textbf{SI}\\
 	    \midrule 
 	    area  & \si{\square\metre}\\
 	    volume & \si{\cubic\metre}\\
@@ -113,7 +113,7 @@ Below are some derived units that do not use a specific SI symbol.
 \begin{table}[H]
 	\noindent\begin{tabular}{l l} 
 	  \toprule		
-	  \textbf{symbol} & \textbf{description}\\
+	  \textbf{Symbol} & \textbf{Description}\\
 	  \midrule 
 	  A & Assumption\\
 	  ACC & Acceleration\\
@@ -157,10 +157,10 @@ Below are some derived units that do not use a specific SI symbol.
 \pagenumbering{arabic}
 
 \section{Functional Requirements Evaluation}
-This tests were performed to ensure that the functional requirements were met and the results were noted.
+These tests were performed to ensure that the functional requirements are met and that the results are recorded.
 \subsection{Duration Test}
 
-The following tests were performed to check whether the device maintained an "ON" state throughout the duration of the monitoring period.
+The following tests were performed to check that the device maintaines an "ON" state throughout the entire duration of the monitoring period.
 \begin{enumerate}
 
   \item{\textbf{DT\_1: Regular Inputs}\\}\label{DT1}
@@ -173,7 +173,7 @@ The following tests were performed to check whether the device maintained an "ON
 
   \textbf{How test was performed}: The test was performed by passing in a valid monitoring period and ensuring that the device maintains power throughout this period.
 
-  \textbf{Observed Results}: The device can last for around 2 days with the current battery circuitry. Any monitoring period in lesser than 2 days had inputs being collected as seen in the serial logs.
+  \textbf{Observed Results}: The device can last for around 2 days with the current battery circuitry. Any monitoring period of 2 days or less had inputs being collected as seen in the serial logs.
 
   \item{\textbf{DT\_2: Invalid Inputs}\\}\label{DT2}
 
@@ -183,9 +183,9 @@ The following tests were performed to check whether the device maintained an "ON
 
   \textbf{Expected Results}: Device returns an error code to the error handler and asserts the Invalid Data Error (BED\_ERR\_INVALID\_DATA).
 
-  \textbf{How test was performed}: The test was performed by passing an invalid input and ensuring the appropriate error code with the description is returned.
+  \textbf{How test was performed}: The test was performed by passing an invalid input and ensuring that the appropriate error code with its description is returned.
 
-  \textbf{Observed Results}: When an unexpected input (wrong type) was passed, an error code with a very intuitive description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
+  \textbf{Observed Results}: When an unexpected input (wrong type) was passed, an error code with description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
 
   \item{\textbf{DT\_3: Earlier Date}\\}\label{DT3}
 
@@ -197,7 +197,7 @@ The following tests were performed to check whether the device maintained an "ON
 
   \textbf{How test was performed}: The test was performed by passing an older date than the current date for configuration.
 
-  \textbf{Observed Results}: When an older date was passed, an error code with a very intuitive description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
+  \textbf{Observed Results}: When an older date was passed, an error code with description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
 
   \item{\textbf{DT\_4: Date Beyond Capabilities}\\}\label{DT4}
 
@@ -209,7 +209,7 @@ The following tests were performed to check whether the device maintained an "ON
 
   \textbf{How test was performed}: The test is performed by passing a date greater than what the battery life of the device can support.
 
-  \textbf{Observed Results}: When a date newer than the maximum date that can be stored was passed, an error code with a very intuitive description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
+  \textbf{Observed Results}: When a date later than the predetermined maximum date was passed on, an error code with description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -223,11 +223,11 @@ The following tests were performed to analyze the device's sensitivity.
 
   \textbf{Input}: Tester performs activities at a regular/normal pace (regular walking is roughly 100 steps per minute).
 
-  \textbf{Expected Results}: The steps taken should be incremented everytime the volunteer walks.
+  \textbf{Expected Results}: The steps taken should be incremented everytime the tester walks.
 
-  \textbf{How test was performed}: The test was performed by attaching the sensor onto the volunteer's finger who walked as usual. This was done to ensure that the device can work under normal scenarios.\\
+  \textbf{How test was performed}: The test was performed by attaching the sensor onto the tester's finger while they walk in normal pace. This was done to ensure that the device can work under normal scenarios.
 
-  \textbf{Observed Results}: The steps were incrementing as expected and almost very accurate value of how many steps were logged in serial, with regular walking step rate of 105 steps per minute.
+  \textbf{Observed Results}: The steps counter was incrementing as expected and the count of total number of steps was almost very accurate, with regular walking step rate of 105 steps per minute.
 
   \item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
 
@@ -237,9 +237,9 @@ The following tests were performed to analyze the device's sensitivity.
 
   \textbf{Expected Results}: Sudden changes in heart rate would be detected and displayed.
 
-  \textbf{How test was performed}: The test was performed by attaching the sensor onto the volunteer's finger who walked as if he was limping. This was done to ensure that the device can work for people with limited mobility.\\
+  \textbf{How test was performed}: The test was performed by attaching the sensor onto the tester's finger and having them limp. This was done to ensure that the device can work for people with limited mobility.\\
 
-  \textbf{Observed Results}: \textcolor{red}{Test Failed.} The device failed to detect heartrate reliably (When heart rate was expected to be roughly 70bpm based on a 3rd party heart rate sensor, the device returned a value of greater than 200bpm). Review the selection of heart rate sensor and review the code.
+  \textbf{Observed Results}: \textcolor{red}{Test Failed.} The device failed to detect heart rate reliably (heart rate was expected to be roughly 70 bpm based on a third party heart rate sensor, but the device returned values greater than 200 bpm). Review of the code and selection of heart rate sensor is required.
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -254,11 +254,11 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \textbf{Input}: Device is turned on for the first time.
 
-  \textbf{Expected Results}: Test Prompt is displayed.
+  \textbf{Expected Results}: Test prompt is displayed.
 
-  \textbf{How test was performed}: The test was performed by turning on the device for the first time after reconfiguration. Upon turning on the device, there was a test prompt that confirmed that the prompting system was working correctly. The test prompt is the default prompt.
+  \textbf{How test was performed}: The test was performed by turning on the device for the first time after reconfiguration. Upon turning on the device, a test prompt was generated to confirm that the prompting system was working correctly. The test prompt is the default prompt.
 
-  \textbf{Observed Results}: \textcolor{red}{Test Failed.} Device failed to recognize activity appropriately, and microcontroller (Seeeduino XIAO) failed to respond to any input. Hardware issue is yet to be resolved, consider using an alternative microcontroller.
+  \textbf{Observed Results}: \textcolor{red}{Test Failed.} Device failed to recognize the activity appropriately, and microcontroller (Seeeduino XIAO) failed to respond to any input. Hardware issue is yet to be resolved, consider using an alternative microcontroller.
 
   \item{\textbf{PRT\_2: Activity Prompt} \\}\label{PRT2}
 
@@ -268,55 +268,54 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \textbf{Expected Results}: Specific activity prompt is displayed.
 
-  \textbf{How test was performed}: The test was done by having a volunteer perform one of the registered activities when the device was idle. This should result in a prompt for the volunteer that is generated based on the specific activity performed.
+  \textbf{How test was performed}: The test was done by having a tester perform one of the registered activities while the device was idle. This should result in a prompt generation for the tester that is based on the specific activity performed.
 
   \textbf{Observed Results}: The device displayed the specific prompts as shown below.\\\\
-  Tracked Activity: Tester slows down or comes to a stop.\\
-  Activity Prompt: Are you in pain?\\
-  Possible Answers: Yes or No
+  Tracked activity: Tester slows down or comes to a stop.\\
+  Activity prompt: Are you in pain?\\
+  Possible answers: Yes or No
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Customizable Thresholds}
 
-The following tests were done to ensure that the proper prompts were displayed to the user when activities are detected at configured thresholds. Tests involve generating the test prompt, generating prompts for different activities.
+The following tests were done to ensure that the proper prompts were displayed to the user when activities are detected at configured thresholds. Tests involve generating the test prompt, and generating prompts for different activities.
 
 \begin{enumerate}
   \item{\textbf{TT\_1: Regular Inputs} \\}\label{TT1}
 
-  \textbf{Initial State}: Device is in Configuration mode.
+  \textbf{Initial State}: Device is in configuration mode.
 
   \textbf{Input}: Regular values for thresholds within limits.
 
-  \textbf{Expected Results}: Config File generated successfully.
+  \textbf{Expected Results}: Configuration file generated successfully.
 
   \textbf{How test was performed}: The test was performed by setting the device to configuration mode and then setting valid values for the thresholds.
 
-  \textbf{Observed Results}: The tester has the desired configuration thresholds for respective parameters. A config file was also created successfully. \\
-  Eg: \\
-  Speed Threshold:\\
-  Limits: 0m/s \textless Threshold \textless 5m/s
+  \textbf{Observed Results}: The tester has the desired configuration thresholds for respective parameters. A configuration file was also created successfully. \\
+  \\
+	E.g. Speed Threshold Limits: 0 m/s \textless  threshold \textless 5 m/s
 
   \item{\textbf{TT\_2: Below Lower Limit} \\}\label{TT2}
 
-  \textbf{Initial State}: Device is in Configuration mode.
+  \textbf{Initial State}: Device is in configuration mode.
 
   \textbf{Input}: Values for thresholds below lower limits.
 
-  \textbf{Expected Results}: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+  \textbf{Expected Results}: Configuration file generates BED\_ERR\_OUT\_OF\_BOUNDS.
 
   \textbf{How test was performed}: The test was performed by setting the device to configuration mode and then setting values for the thresholds above allowable limits.
 
-  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the config file.
+  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the file.
 
   \item{\textbf{TT\_3: Above Upper limit }\\}\label{TT3}
 
-  \textbf{Initial State}: Device is in Configuration mode.
+  \textbf{Initial State}: Device is in configuration mode.
 
   \textbf{Input}: Values for thresholds above upper limits.
 
-  \textbf{Expected Results}: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
+  \textbf{Expected Results}: Configuration file generates BED\_ERR\_OUT\_OF\_BOUNDS.
 
   \textbf{How test was performed}: The test was performed by setting the device to configuration mode and then setting values for the thresholds below allowable limits.
 
@@ -324,27 +323,27 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \item{\textbf{TT\_4: Invalid Value} \\}\label{TT4}
 
-  \textbf{Initial State}: Device is in Configuration mode.
+  \textbf{Initial State}: Device is in configuration mode.
 
   \textbf{Input}: Invalid values for thresholds.
 
-  \textbf{Expected Results}: Config File generates a BED\_ERR\_INVALID\_DATA.
+  \textbf{Expected Results}: Config File generates BED\_ERR\_INVALID\_DATA.
 
   \textbf{How test was performed}: The test was performed by setting the device to configuration mode and then setting invalid values for the thresholds.
 
-  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the config file.
+  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the file.
 
   \item{\textbf{TT\_5: No Value} \\}\label{TT5}
 
-  \textbf{Initial State}: Device is in Configuration mode.
+  \textbf{Initial State}: Device is in configuration mode.
 
   \textbf{Input}: No values for thresholds.
 
-  \textbf{Expected Results}: Config File generates a BED\_ERR\_INVALID\_DATA.
+  \textbf{Expected Results}: Configuration file generates BED\_ERR\_INVALID\_DATA.
 
   \textbf{How test was performed}: The test was performed by setting the device to configuration mode and then assigning no values for the thresholds.
 
-  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the config file.
+  \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the file.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -356,11 +355,11 @@ The following tests were done to ensure that data is stored when necessary. Test
 
   \textbf{Initial State}: Device is in an idle state.
 
-  \textbf{Input}: Activity detected causing prompt to be generated (Internal storage is full).
+  \textbf{Input}: Activity detected causing prompt to be generated (internal storage is full).
 
-  \textbf{Expected Results}: Data Storage system generates a BED\_ERR\_MEMORY\_FULL
+  \textbf{Expected Results}: Data storage system generates BED\_ERR\_MEMORY\_FULL
 
-  \textbf{How test was performed}: The test was performed by first loading the internal memory buffer with garbage values so that it was nearly/completely full. Then a registered activity was triggered, generating the prompts.
+  \textbf{How test was performed}: The test was performed by first loading the internal memory buffer with garbage values so that it was nearly or completely full. Then a registered activity was triggered, generating the prompts.
 
   \textbf{Observed Results}:  Once the prompts were answered, the system did not have enough memory to store the new values thus resulting in the expected error code.
 
@@ -371,18 +370,18 @@ The following tests were done to ensure that data is stored when necessary. Test
 
   \textbf{Input}: Activity detected causing prompt to be generated.
 
-  \textbf{Expected Results}: Prompt Response is saved into the internal memory.
+  \textbf{Expected Results}: Prompt response is saved into the internal memory.
 
   \textbf{How test was performed}: The test was executed by performing a registered activity and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.\\
 
   \textbf{Observed Results}: The responses were saved in the internal memory which were later logged to check if they were stored correctly.\\
-  eg: Registered Activity: Participant slows down or comes to a stop for an extended period of time.\\
-  Prompt Generated: \\
-  Are you in pain?\\
+\\
+  e.g. Registered Activity: Participant slows down or comes to a stop for an extended period of time.\\
+\\
+  Prompt Generated: Are you in pain?\\
   Possible Answers: Yes or No\\
   \\
-  Prompt Generated: \\
-  Do you need assistance?\\
+  Prompt Generated: Do you need assistance?\\
   Possible Answers: Yes or No\\
 
   \item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
@@ -408,11 +407,11 @@ The following tests were done to ensure that data can be extracted and presented
 
   \textbf{Input}: A command that tells the device manager to extract all data from the internal memory.
 
-  \textbf{Expected Results}: Extracted data is sent to the Host Software where it is stored in the database.
+  \textbf{Expected Results}: Extracted data is sent to the host software where it is stored in the database.
 
-  \textbf{How test was performed}: The test was performed by first running the device as intended and waiting for a small monitoring period to finish. After this the device was connected to the Host Software with the help of the Device Manager Driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
+  \textbf{How test was performed}: The test was performed by first running the device as intended and waiting for a small monitoring period to finish. After this, the device was connected to the host software with the help of the device manager driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
 
-  \textbf{Observed Results}: The data was read in the host software and updated on the database.
+  \textbf{Observed Results}: The data was read in the host software and updated in the database.
 
   \item{\textbf{DXT\_2: Extracting No Data} \\}\label{DXT2}
 
@@ -422,7 +421,7 @@ The following tests were done to ensure that data can be extracted and presented
 
   \textbf{Expected Results}: Device Manager returns a BED\_ERR\_EMPTY\_DATA error
 
-  \textbf{How test was performed}: The test was performed by first deleting all the contents of the internal memory prior to connection with the Host Software. Once connected and the extraction process began, data was attempted to be extracted.
+  \textbf{How test was performed}: The test was performed by first deleting all the contents of the internal memory prior to connection with the host software. Once connected and the extraction process began, data was attempted to be extracted.
 
   \textbf{Observed Results}: There was an error code returned on the display.
 
@@ -432,9 +431,9 @@ The following tests were done to ensure that data can be extracted and presented
 
   \textbf{Input}: A command that tells the device manager to extract all data from the internal memory.
 
-  \textbf{Expected Results}: Device Manager returns a BED\_ERR\_INVALID\_DATA error
+  \textbf{Expected Results}: Device manager returns a BED\_ERR\_INVALID\_DATA error.
 
-  \textbf{How test was performed}: The test was performed by filling it with garbage values prior to connection with the Host Software. Once connected, the data was attempted to be extracted from the memory.
+  \textbf{How test was performed}: The test was performed by filling it with garbage values prior to connection with the host software. Once connected, the data was attempted to be extracted from the memory.
 
   \textbf{Observed Results}: Since the data stored were garbage values and not the expected data types or limits, the device displayed an error.
 \end{enumerate}
@@ -442,27 +441,27 @@ The following tests were done to ensure that data can be extracted and presented
 \section{Nonfunctional Requirements Evaluation}
 \subsection{Hardware Safety }
 
-These tests were performed to test the safety of the device concerning electrical components and hardware. It is important that the users of the device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that the indicator LED functions as expected under certain conditions.
+These tests were performed to test the safety of the device concerning electrical and hardware components. It is important that the users of the device are kept safe, that any systems in place to protect them from electrical shocks are functioning properly and that the indicator LED functions as expected under certain conditions.
 
 \begin{enumerate}
 
   \item{\textbf{HST\_1: High Voltage}}\label{HST1}
 
-  \textbf{Initial State}: Device begins in "off" mode.
+  \textbf{Initial State}: Device begins in "OFF" mode.
 
-  \textbf{Input}: When the device is turned on, a voltage over expected voltage is applied.
+  \textbf{Input}: When the device is turned on, a voltage amount greater than the expected voltage is applied.
 
-  \textbf{Expected Results}: Device detects high voltage and indicates that voltage is high using an indicator LED. The breaker or fuse then trips or the voltage is sent to ground.
+  \textbf{Expected Results}: Device detects high voltage and indicates that voltage is high using the indicator LED. The breaker or fuse then trips or the voltage is sent to ground.
 
   Test Case Derivation: N/A
 
   \textbf{How test was performed}: Use a power supply to oversupply the system with voltage.
 
-  \textbf{Observed Results}: Respective indicator lit up as expected to correspond to high voltage and fuse tripped to prevent electrocution
+  \textbf{Observed Results}: Respective indicator lit up as expected, corresponding to high voltage. Fuse tripped to prevent electrocution.
 
   \item{\textbf{HST\_2: Normal Voltage}}\label{HST2}
 
-  \textbf{Initial State}: Device begins in "off" mode.
+  \textbf{Initial State}: Device begins in "OFF" mode.
 
   \textbf{Input}: When device is turned on a normal voltage is applied.
 
@@ -476,37 +475,37 @@ These tests were performed to test the safety of the device concerning electrica
 
   \item{\textbf{HST\_3: Low Voltage}}\label{HST3}
 
-  \textbf{Initial State}: Device begins in "off" mode.
+  \textbf{Initial State}: Device begins in "OFF" mode.
 
   \textbf{Input}: When device is turned on a voltage below the expected amount is applied.
 
   \textbf{Expected Results}: If device powers on, indicator LED indicates that the voltage is lower than expected, device goes into power saving mode.
 
-  Test Case Derivation:
+  Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Use power supply to provide a lower than expected voltage to the device.
+  \textbf{How test was performed}: Use power supply to provide a voltage to the device in amount lower than the expected voltage.
 
   \textbf{Observed Results}: As expected, respective LED was lit to indicate low voltage.
 
   \item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
 
-  \textbf{Initial State}: Device begins in off mode
+  \textbf{Initial State}: Device begins in "OFF" mode.
 
-  \textbf{Input}: Device is turned on in normal operating state
+  \textbf{Input}: Device is turned on in normal operating state.
 
-  \textbf{Expected Results}: Frequency analysis conducted on the circuitry components
+  \textbf{Expected Results}: Frequency analysis conducted on the circuitry components.
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Using a frequency analysis software such as NI Multisim and an Oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
+  \textbf{How test was performed}: Using a frequency analysis software such as NI Multisim and an oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
 
-  \textbf{Observed Results}: Based on the graphs generated by Multisim, we were able to determine that frequencies were detected and had expected values.
+  \textbf{Observed Results}: Multisim graph of detected frequencies had expected values.
 
 \end{enumerate}
 
 \subsection{Re-usability}
 
-These tests basically evaluated the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers.
+These tests evaluate the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers.
 
 \begin{enumerate}
 
@@ -518,11 +517,11 @@ These tests basically evaluated the re-usability of various hardware systems of 
 
   \textbf{Input}: Connect battery to the charging cable.
 
-  \textbf{Expected Results}: Battery is fully charged without issue.
+  \textbf{Expected Results}: Battery is fully charged without any issue.
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Battery component was isolated from device and fully charged and discharged couple times.
+  \textbf{How test was performed}: Battery component was isolated from the device and fully charged and discharged couple times.
 
   \textbf{Observed Results}: Battery was fully charged and device was safe to use.\\
 \begin{figure}
@@ -541,9 +540,9 @@ These tests basically evaluated the re-usability of various hardware systems of 
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Battery component was isolated from device and fully charged, then it wasn't unplugged and left around for couple minutes .
+  \textbf{How test was performed}: Battery component was isolated from device and fully charged. The batter was then plugged in to the charger for couple of minutes.
 
-  \textbf{Observed Results}: Battery was not being overcharged nor did it heat up, thus device was safe to use.
+  \textbf{Observed Results}: Battery was not being overcharged nor overheated, thus device was safe to use.
 
 \end{enumerate}
 
@@ -552,10 +551,10 @@ The following set of tests were executed to ensure that the device can recognize
 The following functional requirements test cases are applicable for accuracy:
 
 \begin{itemize}
-  \item MTT\_1: \hyperref[MTT1]{Regular Movement}
-  \item MTT\_2: \hyperref[MTT2]{Slow Movement}
-  \item PRT\_1: \hyperref[PRT1]{Test Prompt}
-  \item PRT\_2: \hyperref[PRT2]{Activity Prompt}
+  \item MTT\_1: \hyperref[MTT1]{Regular movement}
+  \item MTT\_2: \hyperref[MTT2]{Slow movement}
+  \item PRT\_1: \hyperref[PRT1]{Test prompt}
+  \item PRT\_2: \hyperref[PRT2]{Activity prompt}
 \end{itemize}
 
 \subsubsection{Usability}
@@ -566,10 +565,10 @@ The following set of tests were done to ensure that the device is usable by targ
 
   \textbf{Initial State}: The device is turned on and a question prompt is generated on screen.
 
-  \textbf{Input}: Testers are asked to answer the questionnaire set without assistance in less than 1 minute.
+  \textbf{Input}: Testers are asked to answer the questionnaire set without assistance in less than 1 minute.\\
   \textbf{Expected Results}: All testers are able to answer their prompt successfully.
 
-  \textbf{How test was performed}: A test group of people with age of 40 or older was be asked to receive a powered-on EMAnator and asked to respond to a set of 3 questions in 1 minute. These questions were randomly selected from the following 10 questions.
+  \textbf{How test was performed}: A tester group of people with age of 40 or older was be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute or less. These questions were randomly selected from the following 10 questions.
 
   \begin{itemize}
     \item Are you a dog person or a cat person?
@@ -584,7 +583,7 @@ The following set of tests were done to ensure that the device is usable by targ
     \item Is it daytime right now?
   \end{itemize}
 
-  \textbf{Observed Results}: The UI was very intuitive and user-friendly. Volunteers were able to navigate through and answer propmpts with ease.
+  \textbf{Observed Results}: The UI was very intuitive and user-friendly. Testers were able to navigate through and answer propmpts with ease.
 
   \item\textbf{{UT\_2: Comfortable Device\\}}\label{UT2}
 
@@ -640,21 +639,21 @@ TRANSFER\_TIME: Set to 60 seconds
 \hline
     \textbf{File Size} & \textbf{Transfer Time} & \textbf{Errors} & \textbf{Test Result} & \textbf{Notes }\\
 \hline
-2kB & 2.66s & None & Pass & None \\
+2 kB & 2.66 s & None & Pass & None \\
 \hline
-10kB& 13.27s & None & Pass & None \\
+10 kB& 13.27 s & None & Pass & None \\
 \hline
-8.5kB& 10.51s & None & Pass & None \\
+8.5 kB& 10.51 s & None & Pass & None \\
 \hline
-5kB& 6.94s & None & Pass & None \\
+5 kB& 6.94 s & None & Pass & None \\
 \hline
-11kB& 14.10s & None & Pass & None \\
+11 kB& 14.10 s & None & Pass & None \\
 \hline
-18kB & N/A & COM Port 7 Not Open & Result Rejected & Cable was plugged in incorrectly. \\
+18 kB & N/A & COM port 7 not open & Result rejected & Cable was plugged in incorrectly. \\
 \hline
-20kB & 25.68s & None & Pass & None \\
+20 kB & 25.68 s & None & Pass & None \\
 \hline
-35kB & 36.85s & None & Pass & None \\
+35 kB & 36.85 s & None & Pass & None \\
 \hline
 
   \end{tabular}
@@ -670,9 +669,9 @@ TRANSFER\_TIME: Set to 60 seconds
 
   \textbf{How test was performed}: 2 group members of the Back End Developers wore the device for standard monitoring period consecutively in their daily basis. At the end of each calendar day, they are prompted to record their response to a simple question: "Does the device still have battery life left?".
 
-  \textbf{Observed Results}: The group members answered the prompt, thus giving us the time limit on the batteries. It was greater than the parameter set.
+  \textbf{Observed Results}: The group members answered the prompt. The battery limit was greater than equal to the predetermined parameter, BATTERY\_LIFE.
 
-Minimum Battery Life: 24 Hours
+BATTERY\_LIFE: 24 Hours
 
 \begin{table}[H]
 \centering
@@ -701,13 +700,13 @@ These tests were designed to test the security of the system and the accessibili
 
   \textbf{Initial State}: Device is powered on.
 
-  \textbf{Input}: Data transfer cable is plugged in from device to a generic PC, a volunteer tries to access the database and modify the data within.
+  \textbf{Input}: Data transfer cable is plugged in from device to a generic PC, a tester tries to access the database and modify the data within.
 
-  \textbf{Expected Results}: Database inaccessible and requests an administrative security key. The volunteer should be unable to access or modify the data.
+  \textbf{Expected Results}: Database inaccessible and requests an administrative security key. The tester should not be able to access nor modify the data.
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Device was given to a volunteer with required technical skills who did not have the administrator security key. They attempted to access the database.
+  \textbf{How test was performed}: Device was given to a tester with required technical skills but without the administrator security key. The tester attempted to access the database.
 
   \textbf{Observed Results}: Databases couldn't be accessed and was prompting for a security key, implying the database is safe.
 
@@ -715,12 +714,12 @@ These tests were designed to test the security of the system and the accessibili
 
 
 \section{Comparison to Existing Implementation}
-Current motion detecting smart watches, such as Apple watches or Samsung Galaxy watches, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
+Current motion detecting smart watches, such as the Apple watch or the Samsung Galaxy watch, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
 
 \section{Unit Testing}
 
 \begin{center}
-\begin{table} 
+\begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
@@ -741,17 +740,17 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \hline
 8 & bed\_display\newline \_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. & Screen clears prompt list and only displays current date and time. & Pass \\ 
 \hline
-9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
-\hline
 \end{tabular}
 \end{table}
 \end{center}
 
 \begin{center}
-\begin{table} 
+\begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
 \hline
 10 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No & "Are you in pain?", Yes, No & Pass \\ 
 \hline
@@ -771,10 +770,6 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \hline
 18 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved. & Config.txt file created and saved. & Pass \\ 
 \hline
-19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
-\hline
-20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. & Data appears on database table. & Pass \\ 
-\hline
 \end{tabular}
 \end{table}
 \end{center}
@@ -784,6 +779,10 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
+\hline
+20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. & Data appears on database table. & Pass \\ 
 \hline
 21 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. &  Data appears on software UI table. & Pass \\ 
 \hline
@@ -803,21 +802,21 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \hline
 29 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears. & Main screen appears. & Pass \\ 
 \hline
-30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
-\hline
-31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. & Records window appears and main window closes. & Pass \\ 
-\hline
-32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes. & Create Records window appears and main window closes. & Pass \\ 
-\hline
 \end{tabular}
 \end{table}
 \end{center}
 
 \begin{center}
-\begin{table} 
+\begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\hline
+30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
+\hline
+31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. & Records window appears and main window closes. & Pass \\ 
+\hline
+32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes. & Create Records window appears and main window closes. & Pass \\ 
 \hline
 33 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. & Configuration window appears and main window closes. & Pass \\ 
 \hline
@@ -825,8 +824,9 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 \hline
 \end{tabular}
 \end{table}
-
 \end{center}
+
+\pagebreak
 
 \section{Changes Due to Testing}
 
@@ -851,7 +851,7 @@ After testing out each unit of the device system and failing unit test MTT\_2, t
     \hline
     See Figure \ref{fig:grove2}      & \href{https://www.seeedstudio.com/Grove-Ear-clip-Heart-Rate-Sensor.html?queryID=ad9334e40c7058a87ffd810044eecd1c                                                  & objectID=2143   & indexName=bazaar_retailer_products}{Grove - Ear-clip/Finger-clip Heart Rate Sensor}                                                                       & Rejected & Sensor attachment to the ear was considered too disruptive to the participant's daily activities. \\
     \hline
-    See Figure \ref{fig:knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\                                                                                              \\
+    See Figure \ref{fig:knockoff}     & \href{https://www.amazon.ca/Comimark-Sensor-Module-Arduino-Raspberry/dp/B07V6VV8CM}{Comimark 2Pcs Heart Rate Pulse Sensor Sensor Module for Arduino Raspberry pi} & Rejected        & Build quality was unacceptably bad. Ordered name-brand version of this product next.                                                                                                                                                                                     \\                                                                                              
     \hline
     See Figure \ref{fig:pulseSensor} & \href{https://pulsesensor.com/}{PulseSensor.com Pulse Sensor}                                                                                                     & Accepted        & Build quality was better than knock-offs from before. Skin contact issue still present, but attempts are being made to solve this issue using software.                                                                                                                  \\
     \hline
@@ -905,7 +905,7 @@ After testing out each unit of the device system and failing unit test MTT\_2, t
 
 A major change to the design was a last minute switch to the ESP32 microcontroller after originally working with the Seeedunio Xiao microcontroller until Revision 0. The decision to switch had to be made for reasons explained below. But, unfortunately this change was only made after significant progress had already been made by the Back End Developers. Going as far as designing and printing a custom PCB with all required hardware and sensors, and integrating the codebase with the Seeeduino Xiao and PCB prior to the Revision 0 demonstration. \\
 
-The Seeedunio Xiao was originally chosen because it runs on a similar ARM based platform compared to the Arduino Nano which was used for testing. This made development easier and provided enough processing power to meet the needs of the design. The Seeduino SAMD21 Cortex M0+ chip has as clock speed of 48 MHz which is 4x faster the clock speed on a typical Arduino Nano of 16 MHz. Additionally, the Seeeduino is a much smaller device than the Nano and could be directly soldered onto the 44mm diameter custom PCB. It would not take up significant space, leaving room for the rest of the sensors and hardware and allowing the design to fit within standard smartwatch dimensions. \\
+The Seeedunio Xiao was originally chosen because it runs on a similar ARM based platform compared to the Arduino Nano which was used for testing. This made development easier and provided enough processing power to meet the needs of the design. The Seeduino SAMD21 Cortex M0+ chip has as clock speed of 48 MHz which is 4 times faster the clock speed on a typical Arduino Nano of 16 MHz. Additionally, the Seeeduino is a much smaller device than the Nano and could be directly soldered onto the 44mm diameter custom PCB. It would not take up significant space, leaving room for the rest of the sensors and hardware and allowing the design to fit within standard smartwatch dimensions. \\
 
 During development and testing the Seeeduino did not present any issues and development was progressing well. However, leading up to the Revision 0 demo multiple Seeeduinos entered into an irrecoverable state. The reason for why this occurred is still unclear. However, after reading online the Back End Developers speculate two main reasons. First, it is possible that the bootloader region was not properly protected from the factory and it was accidentally overwritten by the software. Second, it is possible that there was not adequate power/surge protection for the Seeeduino since it seemed to fail some time after being connected to an external power supply for sensor testing but did not fail at all during use with a USB cable connected to a computer. \\
 
@@ -1048,7 +1048,6 @@ N/A
   \caption{Module Traceability Matrix Pt3}
   \label{Table:C_Mod_trace}
 \end{table}
-\newpage
 
 \section{Code Coverage Metrics}
 N/A
