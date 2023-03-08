@@ -830,14 +830,15 @@ Current motion detecting smart watches, such as Apple watches or Samsung Galaxy 
 
 \section{Changes Due to Testing}
 
-After testing out each unit of the device system and failing unit test \#2, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.
+\subsection{Heart Rate Sensor Changes}\label{hr_changes}
+After testing out each unit of the device system and failing unit test MTT\_2, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.\\
 
 
-\textbf{Heart Rate Sensor Options:}\\
+\textbf{Heart Rate Sensor Options:}
 
 \begin{table}[H]
 
-  \label{HRSensors_Pt1}\caption{Tested Heart Rate Sensors Part 1}
+  \label{HRSensors}\caption{Tested Heart Rate Sensors}
   \begin{tabular}{ | c | m{3cm} | c | m{7cm} |}
     \hline
     \textbf{Image}                              & \textbf{Model}                                                                                                                                                    & \textbf{Status} & \textbf{Reason for Status}                                                                                                                                                                                                                                               \\
@@ -899,7 +900,8 @@ After testing out each unit of the device system and failing unit test \#2, the 
   \label{fig:pulseSensor}
 \end{figure}
 
-\textbf{Last Minute Change to Microcontroller}
+
+\subsection{Last Minute Microcontroller Changes}\label{microcontroller_change}
 
 A major change to the design was a last minute switch to the ESP32 microcontroller after originally working with the Seeedunio Xiao microcontroller until Revision 0. The decision to switch had to be made for reasons explained below. But, unfortunately this change was only made after significant progress had already been made by the Back End Developers. Going as far as designing and printing a custom PCB with all required hardware and sensors, and integrating the codebase with the Seeeduino Xiao and PCB prior to the Revision 0 demonstration. \\
 
@@ -1066,19 +1068,35 @@ graduate attribute of Reflection.  Please answer the following question:\\
         projects?  If there weren't any differences, how was your team able to clearly
         predict a feasible amount of effort and the right tasks needed to build the
         evidence that demonstrates the required quality?  (It is expected that most
-        teams will have had to deviate from their original VnV Plan.)}
+        teams will have had to deviate from their original VnV Plan.)}\\
+%
+%-In what ways was it different from the VnV Plan?\\
 
--In what ways was it different from the VnV Plan?\\
+The process of developing this project from a concept to its current state has been a humbling experience. We (Team \#1: The Back End Developers) believed that we comprehensively covered the timeline of our project in the VnV Plan. We had included test cases that seemed to cover all possible points of failure, took input from the TA comments, and reviewed the document with final unanimous approval from every team member.\\
 
-The process of developing this project from a concept to its current state has been a humbling experience. We (Team \#1: The Back End Developers) believed that we comprehensively covered the timeline of our project in the VnV Plan. \\
+We thought we had covered all our bases. We were wrong. Little did we know, that our microcontroller (\ref{microcontroller_change}) and heart rate sensors (Table \ref{HRSensors}) would fail in spectacular ways. These served as a wake-up call for the team; we realized that we were not yet at a point in our project where everything was smooth sailing.\\
 
--If there were differences, what changes required modification\\
--Why did these changes occur?\\
--Reflect on the quality of the project in general\\
--Reflect on the areas that are yet to be improved\\
--Would you be able to anticipate these changes in future projects?\\
+The main changes we made from the VnV Plan were changing the microcontroller we were using, along with the heart rate sensor. However, other changes were made as well. We distributed the team much more dynamically than before. Initially, our members had static roles (either on the hardware aspect of the project, software aspect, UI aspect, etc.) but we realized after the VnV Plan that we had to move our resources around according to the situational needs of the project. The greatest resource we have are our team members, and so we have learned to shuffle them around wherever we need their skills. We now regularly split into sub-teams whenever a task needs reviewing. For example, whenever new documentation has been written, two team members who have more time on their hands pore over the rubric and the documentation to see if there are any missed points.
 
-Rubric Goals: The verification and validation data is used to make valid conclusions about the project, in terms of its quality and areas that have been improved and are yet to be improved.  The connection between the data and the conclusions is clear.\\
-Rubric Goals: The team reflects on the differences between the VnV plan and the VnV report in the Reflection Appendix.  It is obvious that the team took the exercise seriously and that they have gained an understanding that will help with future VnV planning.\\
+From the technical side, we have had to search for a new microcontroller, eventually settling on the ESP32 MCU. We previously wondered why few people selected the Seeeduino XIAO (our old microcontroller) for projects similar to ours. Now we know it is because of their notorious unreliability. We have learned our lesson and scrutinized the available choices out there and found that the ESP32 fit our requirements and also was known to have extensive documentation and few reliability problems. We also took every hear rate sensor available to us and rigorously tested the values they gave us, and the results were disappointing; only one sensor available was capable of returning reasonably accurate heart rate values. Once again, a lesson has been learned. \\
+
+All these changes prompted us to take a look at our project in general; was it up to the standards that we wanted it to be? For many parts, it was. Our team runs smoothly, with members working together as a conflict free, well-oiled machine. Considering the chatter we have been picking up from other teams and the bickering they are occasionally embroiled in, we are thankful that we have never encountered any issues like this. On the organizational side, we also believe we are up to par. Our Trello board remains the crux of our planning, and our use of git has allowed us to work in parallel seamlessly.\\
+
+However the issues begin to appear when it comes to the product itself. Our goals were too ambitious; we found that many types of biometric sensors were prohibitively disruptive to users of our device. We have then settled on using only the MPU and heart rate sensor for data collection. This severely limits us in our capability to gather diverse sets of data from which we can draw conclusions, but that is just something that our team is going to have to handle (possibly finding a software based analysis solution).\\
+
+There is also still much work to do, both in terms of developing our solution and in improving our quality of work. Regarding our solution, we have to finalize the PCB of our design and settle on the optimal way on designing the physical form factor. In addition, we have to clean up our codebase so it is up to modern coding standards and enables us to build in more security features into our solution. When it comes to how our team functions, our team members must commit their changes to our GitHub much more frequently, as it allows us to track our changes and revert to previous versions in case of issues with the latest commits. Also, we must be more proactive in documenting our decisions as they are made. We have found that when we review old documents or code from the beginning of our project, we become confused as to why we made certain decisions. We want to leave a paper trail from here on, and document why we choose to take our project in certain directions.\\
+
+We believe that these changes are a part of the life-long learning process. In future projects, the skills that we have begun to build here will help us spot issues and put out fires before they spin out of control. We have learned to scrutinize off-the-shelf solutions more stringently, to have a wide selection of options when it comes to any form of components that we wish to build into a solution, and to use the organizational tools that we have set up to help us to track our success in meaningful ways. \\
+
+For now, our focus is entirely on completing this project with quality, speed, and professionalism. We will not settle for any less.\\
+
+%-If there were differences, what changes required modification\\
+%-Why did these changes occur?\\
+%-Reflect on the quality of the project in general\\
+%-Reflect on the areas that are yet to be improved\\
+%-Would you be able to anticipate these changes in future projects?\\
+%
+%Rubric Goals: The verification and validation data is used to make valid conclusions about the project, in terms of its quality and areas that have been improved and are yet to be improved.  The connection between the data and the conclusions is clear.\\
+%Rubric Goals: The team reflects on the differences between the VnV plan and the VnV report in the Reflection Appendix.  It is obvious that the team took the exercise seriously and that they have gained an understanding that will help with future VnV planning.\\
 
 \end{document}
