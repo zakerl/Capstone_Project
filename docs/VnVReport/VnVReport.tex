@@ -831,7 +831,7 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \section{Changes Due to Testing}
 
 \subsection{Heart Rate Sensor Changes}\label{hr_changes}
-After testing out each unit of the device system and failing unit test MTT\_2, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.\\
+After testing out each unit of the device system and failing unit test \hyperref[MTT2]{MTT\_2}, the type of heartrate sensor has been changed. Below table outlines the rejected heartrate sensor candidates for EMAnator.\\
 
 
 \textbf{Heart Rate Sensor Options:}
@@ -912,6 +912,21 @@ During development and testing the Seeeduino did not present any issues and deve
 After more troubleshooting online it was discovered that this failure is a somewhat well documented issue with no easily available solution. This left the Back End Developers with no choice but to find an alternative microcontroller that did not have a major design flaw and would still meet the needs and constraints of the design. The alternative microcontroller that was chosen was the ESP32. The ESP can also run the Back End Developers code which reduces the total amount of refactoring that needs to be done. However, the pinout and size of the device differs from the Seeeduino meaning that the new custom PCB has to be made larger and the routing updated. The expected fabrication and shipping time will take over 1 week based on prior experience. \\
 
 Due to the size and nature of the problem that was discovered at such a late stage in the project, there is a risk to the completion of the project as a whole. The time to integrate all the sensor code, display code and database code will be very limited once the new PCB arrives. Additionally, there is a risk that the PCB design does not perform the required functionality in the way that was intended. With a lead time of over 1 week if the PCB does not function as required the Back End Developers will have to fall back on a design that focuses on proof of concept rather than a fully fleshed out prototype. The proof of concept design will include functionality of sensing movement, prompting the user, collecting data, and enabling the researcher to view the data as intended by the functional requirements. \\
+
+\begin{figure}[H]
+\centering
+  \includegraphics[scale=0.4]{Seeeduino}
+  \caption{Seeeduino Xiao}
+  \label{fig:Seeeduino}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+  \includegraphics[scale=0.4]{ESP}
+  \caption{ESP 32 - WROOM}
+  \label{fig:ESP}
+\end{figure}
+
 
 \section{Automated Testing}
 N/A
