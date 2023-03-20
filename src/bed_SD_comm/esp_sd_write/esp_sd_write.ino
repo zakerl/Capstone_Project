@@ -78,7 +78,7 @@ void writeFile(fs::FS &fs, const char * path, const char * message){
 }
 
 void appendFile(fs::FS &fs, const char * path, const char * message){
-  Serial.printf("Appending to file: %s\n", path);
+  // Serial.printf("Appending to file: %s\n", path);
 
   File file = fs.open(path, FILE_APPEND);
   if(!file){
@@ -86,7 +86,7 @@ void appendFile(fs::FS &fs, const char * path, const char * message){
     return;
   }
   if(file.print(message)){
-      Serial.println("Message appended");
+      // Serial.println("Message appended");
   } else {
     Serial.println("Append failed");
   }
@@ -155,7 +155,14 @@ void testFileIO(fs::FS &fs, const char * path){
 
 void setup(){
   Serial.begin(115200);
-  char message[] = "08:20\n4\n23\n65\n20\n18\nLimping\nyes\nyes\n7\nEOF";
+  char message1[50] = "08:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message2[50] = "09:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message3[50] = "10:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message4[50] = "11:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message5[50] = "12:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message6[50] = "13:20,4,23,65,20,18,Limping,yes,yes,7\n";
+  char message7[50] = "14:20,4,23,65,20,18,Limping,yes,yes,7\n";
+
     // myFile.println(23);
     // myFile.println(65);
     // myFile.println(20);
@@ -194,9 +201,17 @@ void setup(){
   // listDir(SD, "/", 0);
   // removeDir(SD, "/mydir");
   // listDir(SD, "/", 2);
-  writeFile(SD, "/dataview.txt", message);
+  writeFile(SD, "/dataview.txt", message1);
+  appendFile(SD, "/dataview.txt", message2);
+  appendFile(SD, "/dataview.txt", message3);
+  appendFile(SD, "/dataview.txt", message4);
+  appendFile(SD, "/dataview.txt", message5);
+  appendFile(SD, "/dataview.txt", message6);
+  appendFile(SD, "/dataview.txt", message7);
+
+
   // appendFile(SD, "/hello.txt", "World!\n");
-  // readFile(SD, "/dataview.txt");
+  readFile(SD, "/dataview.txt");
   // deleteFile(SD, "/foo.txt");
   // renameFile(SD, "/hello.txt", "/foo.txt");
   // readFile(SD, "/foo.txt");
