@@ -155,7 +155,7 @@ void testFileIO(fs::FS &fs, const char * path){
 
 void setup(){
   Serial.begin(115200);
-  char message[] = "08:20\n4\n23\n65\n20\n18\nLimping\nyes\nyes\n7";
+  char message[] = "08:20\n4\n23\n65\n20\n18\nLimping\nyes\nyes\n7\nEOF";
     // myFile.println(23);
     // myFile.println(65);
     // myFile.println(20);
@@ -196,7 +196,7 @@ void setup(){
   // listDir(SD, "/", 2);
   writeFile(SD, "/dataview.txt", message);
   // appendFile(SD, "/hello.txt", "World!\n");
-  readFile(SD, "/dataview.txt");
+  // readFile(SD, "/dataview.txt");
   // deleteFile(SD, "/foo.txt");
   // renameFile(SD, "/hello.txt", "/foo.txt");
   // readFile(SD, "/foo.txt");
