@@ -12,6 +12,10 @@
 #endif
 
 BluetoothSerial SerialBT;
+unsigned long start_millis;  
+unsigned long current_millis;
+const unsigned long period = 10000;  //the value is a number of milliseconds
+bool data_sent = false;
 
 void readFile(fs::FS &fs, const char * path){
   File file = fs.open(path);
@@ -25,10 +29,13 @@ void readFile(fs::FS &fs, const char * path){
       }
   }
   file.close();
+  data_sent = true;
 }
 
+
 void setup() {
-  Serial.begin(115200);
+  // Serial.begin(115200);
+  start_millis = millis();
   SerialBT.begin("ESP32-WROOM"); //Bluetooth device name
   if(!SD.begin(5)){
     Serial.println("Card Mount Failed");
@@ -41,16 +48,16 @@ void setup() {
     Serial.println("No SD card attached");
     return;
   }
-  readFile(SD, "/dataview.txt");
 }
 
 void loop() {
-  // if (Serial.available()) {
-  //   SerialBT.write(Serial.read());
-  // }
-  // if (SerialBT.available()) {
-  //   Serial.write(SerialBT.read());
-  // }
-
-  delay(1000*10);
+  current_millis = millis();
+  if (data_sent == false  && current_millis - start_millis >=period){
+    if (SerialBT.available()){ 
+        readFile(SD, "/dataview.txt");
+        start_millis = current_millis;
+    }
+  }
 }
+
+
