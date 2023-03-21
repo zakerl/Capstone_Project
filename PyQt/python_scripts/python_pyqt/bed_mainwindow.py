@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setMaximumSize(QtCore.QSize(331, 281))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("PyQt/pyqt_ui\\../python_scripts/python_pyqt/BED_logo.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("C:/Users/Nish/Documents/Coursework/Year 4/Capstone/Login_universal/Capstone_Project/PyQt/python_scripts/handler/BED_logo.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 1, 1, 1, 8)

@@ -1,0 +1,6 @@
+Number of Activities:232
+Prompts Generated:22
+Threshold for velocity measurement:12
+Threshold for Steps in a day:56
+Sensitivity of movement detected:44
+Study ID:1

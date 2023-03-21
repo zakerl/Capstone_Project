@@ -73,11 +73,11 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
     def OpenSerial(self):
         print("Reading soon")
-        baudrate = 9600
-        port = "COM7"
+        baudrate = 115200
+        port = "COM4"
 
         portSerial = sr.Serial(port=port, baudrate=baudrate)
-
+        data = ""
         if portSerial.is_open:
             time.sleep(5)
             size = portSerial.inWaiting()
@@ -87,9 +87,13 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         else:
             print('serial not open')
 
+        if data == "":
+            print ("Something went wrong")
+            MainWindow.hide()
+            MainWindow.show()
 
         data = data.decode("utf-8").strip()
-        insert_list = data.split("\r\n")
+        insert_list = data.split("\n")
         Time = insert_list[0]
         StudyID = int(insert_list[1])
         Steps = int(insert_list[2])
