@@ -3,7 +3,7 @@
 
 #include <PulseSensorPlayground.h>     // Includes the PulseSensorPlayground Library
 #include <Wire.h>
-#include <bed_HR.h>
+#include "bed_HR.h"
 
 PulseSensorPlayground pulseSensor;  // Creates an object
 

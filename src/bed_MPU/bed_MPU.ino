@@ -5,15 +5,20 @@
 //Second, continually obtain sensor readings in a infinite loop and check flags against baseline values.
 //If enough flags are tripped, within a 2 second time period, count up. If 2 seconds passes, reset all flags. 
 
-#define MPU_EVENT 400
-#define MPU_CALIBRATION 4000
-
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
-#include <bed_MPU.h>
+#include "bed_MPU.h"
 
 Adafruit_MPU6050 mpu;
+
+void setup(void){
+
+}
+
+void loop(void){
+  
+}
 
 int32_t bed_MPU_setup() {
   Serial.begin(19200);
@@ -59,109 +64,121 @@ int32_t bed_MPU_setup() {
 }
 
 int32_t bed_MPU_detect() {
-unsigned long currentTime = millis(); // Gets the current time
+  unsigned long currentTime = millis(); // Gets the current time
   if(currentTime - MPULooptime >= MPU_EVENT){
-  sensors_event_t a, g, temp;
-  mpu.getEvent(&a, &g, &temp); 
+    sensors_event_t a, g, temp;
+    mpu.getEvent(&a, &g, &temp); 
 
-  curr_ax = a.acceleration.x;
-  curr_ay = a.acceleration.y;
-  curr_az = a.acceleration.z;
-  curr_gx = g.gyro.x;
-  curr_gy = g.gyro.y;
-  curr_gz = g.gyro.z;
+    curr_ax = a.acceleration.x;
+    curr_ay = a.acceleration.y;
+    curr_az = a.acceleration.z;
+    curr_gx = g.gyro.x;
+    curr_gy = g.gyro.y;
+    curr_gz = g.gyro.z;
+      
+    //  Serial.println("Raw Accel Values ");
+    //  Serial.print("Ax: ");
+    //  Serial.println(curr_ax);
+    //
+    //  Serial.print("Ay: ");
+    //  Serial.println(curr_ay);
+    //
+    //  Serial.print("Az: ");
+    //  Serial.println(curr_az);
+    //
+    //  Serial.print("Gx: ");
+    //  Serial.println(curr_gx);
+    //
+    //  Serial.print("Gy: ");
+    //  Serial.println(curr_gy);
+    //
+    //  Serial.print("Gz: ");
+    //  Serial.println(curr_gz);
     
-  //  Serial.println("Raw Accel Values ");
-  //  Serial.print("Ax: ");
-  //  Serial.println(curr_ax);
-  //
-  //  Serial.print("Ay: ");
-  //  Serial.println(curr_ay);
-  //
-  //  Serial.print("Az: ");
-  //  Serial.println(curr_az);
-  //
-  //  Serial.print("Gx: ");
-  //  Serial.println(curr_gx);
-  //
-  //  Serial.print("Gy: ");
-  //  Serial.println(curr_gy);
-  //
-  //  Serial.print("Gz: ");
-  //  Serial.println(curr_gz);
-  
-  if (curr_ax > avg_ax+2 || avg_ax-2 > curr_ax) {
-    flag_ax = 1;
-  }
-  if (curr_ay > avg_ay+2 || avg_ay-2 > curr_ay) {
-    flag_ay = 1;
-  }
-  if (curr_az > avg_az+2 || avg_az-2 > curr_az) {
-    flag_ax = 1;
-  }
-  if (curr_gx > 1 || -1 > curr_gx) {
-    flag_gx = 1;
-  }
-  if (curr_gy > 1 || -1 > curr_gy) {
-    flag_gy = 1;
-  }
-  if (curr_gz > 1 || -1 > curr_gz) {
-    flag_gz = 1;
-  }
-  
-  //Limp flag ifs, changed the thresholds off experimental data.
-  if (avg_ax-7 > curr_ax) {
-  limp_flag_ax = 1;
-  }
-  if (curr_az > avg_az+2 || avg_az-2 > curr_az) {
-    limp_flag_az = 1;
-  }
-  if ((curr_gz < 1 && curr_gz > 0.5)|| (-1 < curr_gz && -0.5 > curr_gz)) {
-    limp_flag_gz = 1;
-  }
-  // Register a limp event
-  if(limp_flag_az && limp_flag_ax && limp_flag_gz){
-    Serial.println("limp count +");
-    limp_count += 1;
-    limp_flag_gz = 0;
-    limp_flag_az = 0;
-    limp_flag_ax = 0;
+    if (curr_ax > avg_ax+2 || avg_ax-2 > curr_ax) {
+      flag_ax = 1;
+    }
+    if (curr_ay > avg_ay+2 || avg_ay-2 > curr_ay) {
+      flag_ay = 1;
+    }
+    if (curr_az > avg_az+2 || avg_az-2 > curr_az) {
+      flag_ax = 1;
+    }
+    if (curr_gx > 1 || -1 > curr_gx) {
+      flag_gx = 1;
+    }
+    if (curr_gy > 1 || -1 > curr_gy) {
+      flag_gy = 1;
+    }
+    if (curr_gz > 1 || -1 > curr_gz) {
+      flag_gz = 1;
+    }
+    
+    //Limp flag ifs, changed the thresholds off experimental data.
+    if (avg_ax-7 > curr_ax) {
+    limp_flag_ax = 1;
+    }
+    if (curr_az > avg_az+2 || avg_az-2 > curr_az) {
+      limp_flag_az = 1;
+    }
+    if ((curr_gz < 1 && curr_gz > 0.5)|| (-1 < curr_gz && -0.5 > curr_gz)) {
+      limp_flag_gz = 1;
+    }
+    // Register a limp event
+    if(limp_flag_az && limp_flag_ax && limp_flag_gz){
+      Serial.println("limp count +");
+      limp_count += 1;
+      limp_flag_gz = 0;
+      limp_flag_az = 0;
+      limp_flag_ax = 0;
+      }
+
+    if(limp_count >= 3){
+      limp_count = 0;
+      Serial.println("limping. ");
+      // input = 2; //Set state to 2
     }
 
-  if(limp_count >= 3){
-    limp_count = 0;
-    Serial.println("limping. ");
-    input = 2; //Set state to 2
-  }
+    sum_of_flags = flag_ax + flag_ay + flag_az + flag_gx + flag_gy + flag_gz;
+    
+    if (sum_of_flags >= 4) {
+      TOTAL_STEP += 1;
+      step_count += 1;
+      // Reset activity timer
+      activity_timeout = millis();
+      
+      Serial.print("stepcount: ");
+      Serial.println(step_count);
+      flag_ax = 0;
+      flag_ay = 0;
+      flag_az = 0;
+      flag_gx = 0;
+      flag_gy = 0;
+      flag_gz = 0;
 
-  sum_of_flags = flag_ax + flag_ay + flag_az + flag_gx + flag_gy + flag_gz;
+    }
+
+    if (flag_reset_count >= 8) { //approx 2 seconds.
+      flag_reset_count = 0;
+      flag_ax = 0;
+      flag_ay = 0;
+      flag_az = 0;
+      flag_gx = 0;
+      flag_gy = 0;
+      flag_gz = 0;
+    }
+
+    flag_reset_count++;
+    MPULooptime = currentTime;
+  }
+  if(currentTime - activity_timeout > NO_ACTIVITY_TIME){
+    //prompt end of activity
+    step_count = 0;
+  }
   
-  if (sum_of_flags >= 4) {
-    step_count += 1;
-    Serial.print("stepcount: ");
-    Serial.println(step_count);
-    flag_ax = 0;
-    flag_ay = 0;
-    flag_az = 0;
-    flag_gx = 0;
-    flag_gy = 0;
-    flag_gz = 0;
-
-  }
-
-  if (flag_reset_count >= 8) { //approx 2 seconds.
-    flag_reset_count = 0;
-    flag_ax = 0;
-    flag_ay = 0;
-    flag_az = 0;
-    flag_gx = 0;
-    flag_gy = 0;
-    flag_gz = 0;
-  }
-
-  flag_reset_count++;
-  MPULooptime = currentTime;
-  
-}
 return 0;
 }
+
+// int32_t bed_MPU_im_walkin_ere() {
+  
+// }
