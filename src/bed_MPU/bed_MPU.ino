@@ -171,9 +171,14 @@ int32_t bed_MPU_detect() {
     flag_reset_count++;
     MPULooptime = currentTime;
   }
-  if(currentTime - activity_timeout > NO_ACTIVITY_TIME){
+  if(currentTime - activity_timeout > SIXTY_SECONDS){
     //prompt end of activity
     step_count = 0;
+  }
+  
+  if(currentTime - activity_timeout > FIVE_SECONDS){
+    //pause, ask why when activity ends?
+    activity_pauses += 1;
   }
   
 return 0;
