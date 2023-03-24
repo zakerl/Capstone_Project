@@ -1,5 +1,5 @@
 import os
-from os.path import dirname, realpath
+from os.path import dirname, realpath, abspath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -10,6 +10,7 @@ from bed_mainwindow_handler import *
 
 
 scriptDir = dirname(realpath(__file__))
+path = dirname(abspath(__file__))
 
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
@@ -19,6 +20,7 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         self.MainWindow = MainWindow
         self.setupUi(self)
         self.all_data = []
+        self.label_4.setPixmap(QPixmap(os.path.join(path, 'BED_logo.jpg')))
         self.label_2.setFixedWidth(190)
         self.label_3.setFixedWidth(190)
         self.lineEdit.setFixedWidth(190)

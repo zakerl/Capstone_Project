@@ -14,20 +14,25 @@ import sqlite3 as sl
 
 
 db_path = 'PyQt/python_scripts/handler/BED.db'
-
+scriptDir = dirname(realpath(__file__))
+path = dirname(abspath(__file__))
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
 MainWindowHandler.py is used for handling button clicks/events to redirect to other windows.
 MainWindow.py is generated from MainWindow.ui (PyQt Designer) for frontend. 
 '''
+
+
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     def __init__(self, MainWindow):
         super(UI_MainWindowHandler, self).__init__()
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
+        print(os.path.join(path, 'BED_logo.png'))
+        self.label.setPixmap(QPixmap(os.path.join(path, 'BED_logo.jpg')))
         #==================================================#
-        # Setting fixed width and height 
+        # Setting fixed width and height
         # for buttons on MainMenu
         #==================================================#
         self.CreateRecordsButton.setFixedWidth(190)
@@ -49,8 +54,8 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.ConfigButton.clicked.connect(
             lambda: self.showConfigView(self.MainWindow))
         #==================================================#
-        # Create record button event opens create 
-         # record window
+        # Create record button event opens create
+        # record window
         #==================================================#
         self.CreateRecordsButton.clicked.connect(
             lambda: self.showCreateRecords(self.MainWindow)
@@ -62,7 +67,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.RecordsButton.clicked.connect(
             lambda: self.showRecordWindow(self.MainWindow))
         #==================================================#
-        # Added event to Dataview button, 
+        # Added event to Dataview button,
         # opens DataView with graph
         #==================================================#
         self.DataViewButton.clicked.connect(
@@ -87,7 +92,6 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         else:
             print('serial not open')
 
-
         data = data.decode("utf-8").strip()
         insert_list = data.split("\r\n")
         Time = insert_list[0]
@@ -110,7 +114,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
             (?,?,?,?,?,?,?,?,?,?)"""
 
             record = (Time, StudyID, Steps, HeartRate, ParticipantID,
-            ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                      ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
 
             cursor.execute(insert_query, record)
             con.commit()
