@@ -11,9 +11,10 @@ from bed_login_handler import *
 import time
 import serial as sr
 import sqlite3 as sl
-
+import os
 
 db_path = 'PyQt/python_scripts/handler/BED.db'
+path = os.path.dirname(os.path.abspath(__file__))
 
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
@@ -26,6 +27,8 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
+        self.label.setPixmap(QPixmap(os.path.join(path, 'BED_logo.jpg')))
+        print(path)
         #==================================================#
         # Setting fixed width and height 
         # for buttons on MainMenu
