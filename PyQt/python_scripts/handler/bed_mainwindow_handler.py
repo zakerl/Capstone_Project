@@ -49,11 +49,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         #==================================================#
         #  Open bluetooth connection via sockets
         #==================================================#
-        # self.ReadSD.clicked.connect(self.ReadBluetooth)
-        #==================================================#
-        # Toggling connection button in UI
-        #==================================================#     
-        self.ReadSD.clicked.connect(self.connect)
+        self.ReadSD.clicked.connect(self.ReadBluetooth)
         #==================================================#
         # Config button events opens configuration window
         #==================================================#
@@ -97,7 +93,10 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
             print('Connected')
             connected = True
         except Exception as e:
-            print (e)       
+            print (e)      
+
+        if (connected == True):
+            self.connect()
         sock.send("r")
         print('Sent data')
         data = ""
