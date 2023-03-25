@@ -27,23 +27,33 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
+        self.connected = False
+        self.ReadSD.setCheckable(True)
         #==================================================#
         # Setting fixed width and height 
         # for buttons on MainMenu
         #==================================================#
         self.CreateRecordsButton.setFixedWidth(190)
+        self.toggleBtn.setFixedWidth(190)
         self.ReadSD.setFixedWidth(190)
         self.ConfigButton.setFixedWidth(190)
         self.RecordsButton.setFixedWidth(190)
         self.DataViewButton.setFixedWidth(190)
 
         self.CreateRecordsButton.setFixedHeight(31)
+        self.toggleBtn.setFixedHeight(31)
         self.ReadSD.setFixedHeight(31)
         self.ConfigButton.setFixedHeight(31)
         self.RecordsButton.setFixedHeight(31)
         self.DataViewButton.setFixedHeight(31)
+        #==================================================#
         #  Open bluetooth connection via sockets
-        self.ReadSD.clicked.connect(self.ReadBluetooth)
+        #==================================================#
+        # self.ReadSD.clicked.connect(self.ReadBluetooth)
+        #==================================================#
+        # Toggling connection button in UI
+        #==================================================#     
+        self.ReadSD.clicked.connect(self.connect)
         #==================================================#
         # Config button events opens configuration window
         #==================================================#
@@ -68,6 +78,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         #==================================================#
         self.DataViewButton.clicked.connect(
             lambda: self.showDataView(self.MainWindow))
+        
     '''
     Different windows open when buttons are clicked, event handler functions described below
     '''
@@ -158,6 +169,15 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.DataView = UI_DataView(MainWindow)
         self.DataView.show()
         MainWindow.hide()
+
+    def connect(self):
+        if(not(self.connected)):
+            if(self.ReadSD.isChecked()):
+                self.connected = True
+                self.toggleBtn.setText("Connected")
+                style = "background-color: lightgreen"
+                self.toggleBtn.setStyleSheet(
+                    self.toggleBtn.styleSheet() + "\n" + style)
 
 
 if __name__ == "__main__":

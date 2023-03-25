@@ -23,7 +23,7 @@ class Ui_Dialog(object):
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setMaximumSize(QtCore.QSize(311, 261))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap("C:/Users/Nish/Documents/Coursework/Year 4/Capstone/Login_universal/Capstone_Project/PyQt/python_scripts/handler/BED_logo.jpg"))
+        self.label_4.setPixmap(QtGui.QPixmap("C:/Users/Nish/Documents/Coursework/Year 4/Capstone/cleanup_ui/Capstone_Project/PyQt/python_scripts/handler/BED_logo.jpg"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 0, 2, 1, 8)
