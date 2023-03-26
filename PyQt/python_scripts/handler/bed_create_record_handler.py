@@ -3,10 +3,23 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from python_pyqt.bed_create_record import *
-
+import os
 
 '''This script stores records in database'''
-db_path = 'PyQt/python_scripts/handler/BED.db'
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+db_path = resource_path('BED.db')
+
 
 class UI_CreateWindow(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
@@ -63,7 +76,7 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             (?,?,?,?,?,?,?,?,?,?,?,?,?)"""
 
             record = (FirstName, LastName, Age, ParticipantID, StudyID,
-            Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel)
+                      Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel)
 
             cursor.execute(insert_query, record)
             con.commit()
@@ -73,9 +86,7 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         except con.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
 
-        
-
-        # Clear all fields when create record button is clicked 
+        # Clear all fields when create record button is clicked
         self.FirstNameLabel.clear()
         self.LastNameLabel.clear()
         self.AgeLabel.clear()

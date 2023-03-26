@@ -6,7 +6,19 @@ from bed_graph_handler import *
     and plot meaningful graphs.
 '''
 
-db_path = 'PyQt/python_scripts/handler/BED.db'
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+db_path = resource_path('BED.db')
+
 
 class UI_DataView(QWidget, Ui_DataView):
     def __init__(self, MainWindow):
@@ -51,7 +63,6 @@ class UI_DataView(QWidget, Ui_DataView):
         self.MainMenu.clicked.connect(self.BackToMain)
         self.Graph.clicked.connect(self.OpenGraph)
 
-
     def LoadDb(self):
         try:
             # Access dataview table from BED database
@@ -79,7 +90,7 @@ class UI_DataView(QWidget, Ui_DataView):
             header.setSectionResizeMode(
                 7, QtWidgets.QHeaderView.Stretch)
         except Exception as Error:
-            print (Error)
+            print(Error)
 
     def dataHead(self):
         numRow = self.spinBox.value()
@@ -129,7 +140,8 @@ class UI_DataView(QWidget, Ui_DataView):
         headerNames = list(self.all_data.columns)
         filteredData = self.all_data
         if(ParticipantID != ""):
-            filteredData = filteredData[filteredData["ParticipantID"] == ParticipantID]
+            filteredData = filteredData[filteredData["ParticipantID"]
+                                        == ParticipantID]
         for i in headerNames:
             filteredData[i] = filteredData[i].astype(str).str.replace(
                 ".0", "", regex=False)
@@ -153,7 +165,7 @@ class UI_DataView(QWidget, Ui_DataView):
         self.MainWindow.show()
         self.hide()
 
-    def OpenGraph(self,type):
+    def OpenGraph(self, type):
         self.GraphView = UI_GraphView(self.MainWindow)
         self.GraphView.show()
         self.MainWindow.hide()

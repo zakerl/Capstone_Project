@@ -1,5 +1,5 @@
 import os
-from os.path import dirname, realpath
+from os.path import dirname, realpath, abspath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -10,7 +10,18 @@ from bed_mainwindow_handler import *
 
 
 scriptDir = dirname(realpath(__file__))
-path = os.path.dirname(os.path.abspath(__file__))
+path = dirname(abspath(__file__))
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
@@ -18,8 +29,8 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self)
-        self.label.setPixmap(QPixmap(os.path.join(path, 'BED_logo.jpg')))
         self.all_data = []
+        self.label_4.setPixmap(QPixmap(resource_path('BED_logo.jpg')))
         self.label_2.setFixedWidth(190)
         self.label_3.setFixedWidth(190)
         self.lineEdit.setFixedWidth(190)
@@ -42,10 +53,10 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         password = self.lineEdit_2.text()
 
         filepath = os.path.join(scriptDir, "credentials.txt")
-        with open(filepath) as f:
-            lines = f.readlines()
+        # with open(filepath) as f:
+        #     lines = f.readlines()
 
-        if lines[0].strip() == username and lines[1].strip() == password:
+        if "admin" == username and "capstone" == password:
             loginValidity = 1
         else:
             loginValidity = 0
