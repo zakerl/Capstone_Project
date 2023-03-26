@@ -116,6 +116,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 break
         print ("===================")
         print (data)
+        print ("===================")
 
         insert_list = data.split("\n")
         for entry in insert_list:
@@ -130,7 +131,6 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
             PromptGenerated = entry_list[7]
             InPain = entry_list[8]
             PainLevel = int(entry_list[9])
-            print ("===================")
             print (Time, StudyID, Steps, HeartRate, ParticipantID,
             ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             try:
