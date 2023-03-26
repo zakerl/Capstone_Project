@@ -12,9 +12,9 @@ import time
 import bluetooth
 import struct
 import sqlite3 as sl
+import re
 
-
-db_path = 'PyQt/python_scripts/handler/BEDdse.db'
+db_path = 'PyQt/python_scripts/handler/BED.db'
 
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
@@ -108,21 +108,32 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
         start_time = time.time()
         start_end_bit = []
-        while True:
-            rec_data = sock.recv(1024)
-            if len(rec_data) == 0: break
-            rec_data = rec_data.decode("utf-8").strip()
-            if (rec_data != '0'):
-                data += rec_data
-            else:
-                start_end_bit.append(rec_data)
-            end_time = time.time()
-            if (end_time - start_time > loop_time or len(start_end_bit) >= 2): # Run for t seconds
-                break
-        print ("===================")
-        print (data)
-        print ("===================")
-
+        try:
+            while True:
+                rec_data = sock.recv(1024)
+                if len(rec_data) == 0: break
+                rec_data = rec_data.decode("utf-8").strip()
+                if (rec_data != '0'):
+                    data += rec_data
+                else:
+                    start_end_bit.append(rec_data)
+                end_time = time.time()
+                if (end_time - start_time > loop_time or len(start_end_bit) >= 2): # Run for t seconds
+                    break
+                tmp = re.search("File not available", data)
+                if (tmp is not None):
+                    msg = QMessageBox()
+                    msg.setIcon(QMessageBox.Critical)
+                    msg.setText("Error")
+                    msg.setInformativeText("File not available on sd card, try again")
+                    msg.setWindowTitle("Error reading data")
+                    msg.exec_()
+                    break
+            print ("===================")
+            print (data)
+            print ("===================")
+        except:
+            pass
         insert_list = data.split("\n")
         for entry in insert_list:
             entry_list = entry.split(",")
@@ -147,6 +158,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 msg.setWindowTitle("Error")
                 msg.exec_()
             try:
+                inserted = False
                 con = sl.connect(db_path)
                 cursor = con.cursor()
                 # Insert values into Records table in Database
@@ -160,19 +172,24 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 con.commit()
                 cursor.close()
                 con.close()
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Information)
-                msg.setText("Succesfully inserted data from device to database!")
-                msg.setWindowTitle("Insertion successful")
-                msg.exec_()
+                inserted = True
             except con.Error as error:
                 print("Failed to insert into MySQL table {}".format(error))
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Critical)
-                msg.setText("Failed to insert into database.")
-                msg.setInformativeText(format(error))
-                msg.setWindowTitle("Error")
-                msg.exec_()
+                inserted = False
+
+        if (inserted == True):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Succesfully inserted data from device to database!")
+            msg.setWindowTitle("Insertion successful")
+            msg.exec_()
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Failed to insert into database.")
+            msg.setInformativeText(format(error))
+            msg.setWindowTitle("Error")
+            msg.exec_()
 
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
