@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setMaximumSize(QtCore.QSize(331, 281))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("pyqt_ui\\../python_scripts/python_pyqt/BED_logo.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("C:/Users/Nish/Documents/Coursework/Year 4/Capstone/cleanup_ui/Capstone_Project/PyQt/python_scripts/handler/BED_logo.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 2, 1, 1, 6)
@@ -133,7 +133,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.toggleBtn.setText(_translate("MainWindow", "Disconnected to device"))
-        self.ReadSD.setText(_translate("MainWindow", "Read SD"))
+        self.ReadSD.setText(_translate("MainWindow", "Connect to device"))
         self.ConfigButton.setText(_translate("MainWindow", "Configuration"))
         self.CreateRecordsButton.setText(_translate("MainWindow", "Create Records"))
         self.RecordsButton.setText(_translate("MainWindow", "Records"))

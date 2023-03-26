@@ -146,7 +146,7 @@ border-radius: 15px;
 </string>
       </property>
       <property name="text">
-       <string>Read SD</string>
+       <string>Connect to device</string>
       </property>
      </widget>
     </item>

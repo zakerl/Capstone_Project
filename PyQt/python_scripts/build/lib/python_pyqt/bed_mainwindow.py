@@ -133,7 +133,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.toggleBtn.setText(_translate("MainWindow", "Disconnected to device"))
-        self.ReadSD.setText(_translate("MainWindow", "Read SD"))
+        self.ReadSD.setText(_translate("MainWindow", "Connect to device"))
         self.ConfigButton.setText(_translate("MainWindow", "Configuration"))
         self.CreateRecordsButton.setText(_translate("MainWindow", "Create Records"))
         self.RecordsButton.setText(_translate("MainWindow", "Records"))

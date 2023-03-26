@@ -76,6 +76,11 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             con.commit()
             cursor.close()
             con.close()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Succesfully inserted data to database!")
+            msg.setWindowTitle("Insertion successful")
+            msg.exec_()
 
         except con.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
