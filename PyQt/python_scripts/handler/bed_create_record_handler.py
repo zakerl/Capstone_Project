@@ -39,20 +39,27 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         self.MainMenu.clicked.connect(self.BackToMain)
 
     def InsertDB(self):
-
-        FirstName = self.FirstNameLabel.text()
-        LastName = self.LastNameLabel.text()
-        Age = int(self.AgeLabel.text())
-        ParticipantID = int(self.ParticipantIDLabel.text())
-        StudyID = int(self.StudyIDLabel.text())
-        Gender = self.GenderLabel.text()
-        Weight = float(self.WeightLabel.text())
-        Height = float(self.HeightLabel.text())
-        PhoneNumber = self.PhoneNumberLabel.text()
-        EmailID = self.EmailIDLabel.text()
-        Address = self.AddressLabel.text()
-        MonitoringPeriod = int(self.MonitoringPeriodLabel.text())
-        TrackerModel = self.TrackerModelLabel.text()
+        try:
+            FirstName = self.FirstNameLabel.text()
+            LastName = self.LastNameLabel.text()
+            Age = int(self.AgeLabel.text())
+            ParticipantID = int(self.ParticipantIDLabel.text())
+            StudyID = int(self.StudyIDLabel.text())
+            Gender = self.GenderLabel.text()
+            Weight = float(self.WeightLabel.text())
+            Height = float(self.HeightLabel.text())
+            PhoneNumber = self.PhoneNumberLabel.text()
+            EmailID = self.EmailIDLabel.text()
+            Address = self.AddressLabel.text()
+            MonitoringPeriod = int(self.MonitoringPeriodLabel.text())
+            TrackerModel = self.TrackerModelLabel.text()
+        except Exception as error:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Error in getting data")
+            msg.setInformativeText("Please insert into all fields correctly, {}.".format(error))
+            msg.setWindowTitle("Error")
+            msg.exec_()
 
         try:
             con = sl.connect(db_path)
@@ -72,6 +79,12 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
 
         except con.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Failed to insert into database.")
+            msg.setInformativeText(format(error))
+            msg.setWindowTitle("Error")
+            msg.exec_()
 
         
 

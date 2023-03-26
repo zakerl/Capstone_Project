@@ -14,7 +14,7 @@ import struct
 import sqlite3 as sl
 
 
-db_path = 'PyQt/python_scripts/handler/BED.db'
+db_path = 'PyQt/python_scripts/handler/BEDdse.db'
 
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
@@ -80,59 +80,59 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     '''
 
     def ReadBluetooth(self):
-        loop_time = 10
-        bd_addr = "cc:db:a7:16:2e:ae" # Mac address (hardcoded) for ESP32
-        ser = ""
-        s = struct.Struct('<' + str(10) + 'f')
-        SAMPLES = 30000
-        port = 1
-        connected = False
-        try:
-            sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-            sock.connect((bd_addr, port))
-            print('Connected')
-            connected = True
-        except Exception as e:
-            print (e)      
+        # loop_time = 10
+        # bd_addr = "cc:db:a7:16:2e:ae" # Mac address (hardcoded) for ESP32
+        # ser = ""
+        # s = struct.Struct('<' + str(10) + 'f')
+        # SAMPLES = 30000
+        # port = 1
+        # connected = False
+        # try:
+        #     sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+        #     sock.connect((bd_addr, port))
+        #     print('Connected')
+        #     connected = True
+        # except Exception as e:
+        #     print (e)      
 
-        if (connected == True):
-            self.connect()
-        sock.send("r")
-        print('Sent data')
-        data = ""
+        # if (connected == True):
+        #     self.connect()
+        # sock.send("r")
+        # print('Sent data')
+        # data = ""
 
-        start_time = time.time()
-        start_end_bit = []
-        while True:
-            rec_data = sock.recv(1024)
-            if len(rec_data) == 0: break
-            rec_data = rec_data.decode("utf-8").strip()
-            if (rec_data != '0'):
-                data += rec_data
-            else:
-                start_end_bit.append(rec_data)
-            end_time = time.time()
-            if (end_time - start_time > loop_time or len(start_end_bit) >= 2): # Run for t seconds
-                break
-        print ("===================")
-        print (data)
-        print ("===================")
+        # start_time = time.time()
+        # start_end_bit = []
+        # while True:
+        #     rec_data = sock.recv(1024)
+        #     if len(rec_data) == 0: break
+        #     rec_data = rec_data.decode("utf-8").strip()
+        #     if (rec_data != '0'):
+        #         data += rec_data
+        #     else:
+        #         start_end_bit.append(rec_data)
+        #     end_time = time.time()
+        #     if (end_time - start_time > loop_time or len(start_end_bit) >= 2): # Run for t seconds
+        #         break
+        # print ("===================")
+        # print (data)
+        # print ("===================")
 
-        insert_list = data.split("\n")
-        for entry in insert_list:
-            entry_list = entry.split(",")
-            Time = entry_list[0]
-            StudyID = int(entry_list[1])
-            Steps = int(entry_list[2])
-            HeartRate = int(entry_list[3])
-            ParticipantID = int(entry_list[4])
-            ActivityTimeMins = int(entry_list[5])
-            ActivityType = entry_list[6]
-            PromptGenerated = entry_list[7]
-            InPain = entry_list[8]
-            PainLevel = int(entry_list[9])
-            print (Time, StudyID, Steps, HeartRate, ParticipantID,
-            ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+        # insert_list = data.split("\n")
+        # for entry in insert_list:
+        #     entry_list = entry.split(",")
+        #     Time = entry_list[0]
+        #     StudyID = int(entry_list[1])
+        #     Steps = int(entry_list[2])
+        #     HeartRate = int(entry_list[3])
+        #     ParticipantID = int(entry_list[4])
+        #     ActivityTimeMins = int(entry_list[5])
+        #     ActivityType = entry_list[6]
+        #     PromptGenerated = entry_list[7]
+        #     InPain = entry_list[8]
+        #     PainLevel = int(entry_list[9])
+        #     print (Time, StudyID, Steps, HeartRate, ParticipantID,
+        #     ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             try:
                 con = sl.connect(db_path)
                 cursor = con.cursor()
@@ -141,15 +141,21 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel) VALUES 
                 (?,?,?,?,?,?,?,?,?,?)"""
 
-                record = (Time, StudyID, Steps, HeartRate, ParticipantID,
-                ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
-                cursor.execute(insert_query, record)
+                # record = (Time, StudyID, Steps, HeartRate, ParticipantID,
+                # ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                # cursor.execute(insert_query, record)
                 con.commit()
                 cursor.close()
                 con.close()
 
             except con.Error as error:
                 print("Failed to insert into MySQL table {}".format(error))
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Failed to insert into database.")
+                msg.setInformativeText(format(error))
+                msg.setWindowTitle("Error")
+                msg.exec_()
 
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
