@@ -117,37 +117,39 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         print ("===================")
         print (data)
 
-        # data = data.decode("utf-8").strip()
-        # insert_list = data.split("\n")
-        # Time = insert_list[0]
-        # StudyID = int(insert_list[1])
-        # Steps = int(insert_list[2])
-        # HeartRate = int(insert_list[3])
-        # ParticipantID = int(insert_list[4])
-        # ActivityTimeMins = int(insert_list[5])
-        # ActivityType = insert_list[6]
-        # PromptGenerated = insert_list[7]
-        # InPain = insert_list[8]
-        # PainLevel = int(insert_list[9])
+        insert_list = data.split("\n")
+        for entry in insert_list:
+            entry_list = entry.split(",")
+            Time = entry_list[0]
+            StudyID = int(entry_list[1])
+            Steps = int(entry_list[2])
+            HeartRate = int(entry_list[3])
+            ParticipantID = int(entry_list[4])
+            ActivityTimeMins = int(entry_list[5])
+            ActivityType = entry_list[6]
+            PromptGenerated = entry_list[7]
+            InPain = entry_list[8]
+            PainLevel = int(entry_list[9])
+            print ("===================")
+            print (Time, StudyID, Steps, HeartRate, ParticipantID,
+            ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+            try:
+                con = sl.connect(db_path)
+                cursor = con.cursor()
+                # Insert values into Records table in Database
+                insert_query = """ INSERT INTO DATAVIEW (Time, StudyID, Steps, HeartRate, ParticipantID,
+                ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel) VALUES 
+                (?,?,?,?,?,?,?,?,?,?)"""
 
-        # try:
-        #     con = sl.connect(db_path)
-        #     cursor = con.cursor()
-        #     # Insert values into Records table in Database
-        #     insert_query = """ INSERT INTO DATAVIEW (Time, StudyID, Steps, HeartRate, ParticipantID,
-        #     ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel) VALUES 
-        #     (?,?,?,?,?,?,?,?,?,?)"""
+                record = (Time, StudyID, Steps, HeartRate, ParticipantID,
+                ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                cursor.execute(insert_query, record)
+                con.commit()
+                cursor.close()
+                con.close()
 
-        #     record = (Time, StudyID, Steps, HeartRate, ParticipantID,
-        #     ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
-
-        #     cursor.execute(insert_query, record)
-        #     con.commit()
-        #     cursor.close()
-        #     con.close()
-
-        # except con.Error as error:
-        #     print("Failed to insert into MySQL table {}".format(error))
+            except con.Error as error:
+                print("Failed to insert into MySQL table {}".format(error))
 
     def showRecordWindow(self, MainWindow):
         self.RecordWindow = UI_RecordWindow(MainWindow)
