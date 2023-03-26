@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pyqt_ui/bed_login.ui'
+# Form implementation generated from reading ui file 'bed_login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1232, 1223)
+        Dialog.resize(1053, 736)
         Dialog.setStyleSheet("background-color: rgb(1,0,1);")
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
@@ -23,7 +23,7 @@ class Ui_Dialog(object):
         self.label_4 = QtWidgets.QLabel(Dialog)
         self.label_4.setMaximumSize(QtCore.QSize(311, 261))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap("C:/Users/shahn39/Documents/Capstone/cleanup_ui/Capstone_Project/PyQt/python_scripts/python_pyqt/BED_logo.jpg"))
+        self.label_4.setPixmap(QtGui.QPixmap("../python_scripts/python_pyqt/BED_logo.jpg"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 0, 2, 1, 8)
@@ -89,7 +89,6 @@ class Ui_Dialog(object):
         self.lineEdit_2.setStyleSheet("background-color: rgb(209, 209, 209);\n"
 "border-radius: 11px;")
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
         self.gridLayout.addWidget(self.lineEdit_2, 6, 5, 1, 3)
         spacerItem13 = QtWidgets.QSpacerItem(503, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem13, 6, 8, 1, 3)

@@ -39,6 +39,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         QWidget.__init__(self)
         self.MainWindow = MainWindow
         self.setupUi(self.MainWindow)
+        print(resource_path('BED_logo.jpg'))
         self.label.setPixmap(QPixmap(resource_path('BED_logo.jpg')))
         #==================================================#
         # Setting fixed width and height
