@@ -27,7 +27,7 @@ void bed_HR_setup() {
     Serial.println("PulseSensor object created");
   }
 
-  BPM = pulseSensor.getBeatsPerMinute();
+  BPM_Struct.BPM = pulseSensor.getBeatsPerMinute();
 
 }
 
@@ -36,12 +36,12 @@ void bed_HR_detect() {
   // put your main code here, to run repeatedly:
   unsigned long currentMillis = millis(); // Gets the current time
   if(currentMillis - HRtime >= HEART_EVENT){
-    BPM = pulseSensor.getBeatsPerMinute();      // Calculates BPM
+    BPM_Struct.BPM = pulseSensor.getBeatsPerMinute();      // Calculates BPM
     
     if (pulseSensor.sawStartOfBeat()) {               // Constantly test to see if a beat happened
       Serial.println("HeartBeat Detected "); // If true, pruint8_t a message
       Serial.print("BPM: ");
-      Serial.println(BPM);                        // Pruint8_t the BPM value
+      Serial.println(BPM_Struct.BPM);                        // Pruint8_t the BPM value
       }
     HRtime = currentMillis;
   }
