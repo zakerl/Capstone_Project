@@ -7,6 +7,13 @@
 
 PulseSensorPlayground pulseSensor;  // Creates an object
 
+void setup(void){
+
+}
+void loop(void){
+  
+}
+
 void bed_HR_setup() {
   Serial.begin(19200);
   
