@@ -6,7 +6,17 @@ from bed_graph_handler import *
     and plot meaningful graphs.
 '''
 
-db_path = 'PyQt/python_scripts/handler/BED.db'
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+db_path = resource_path('BED.db')
 
 class UI_DataView(QWidget, Ui_DataView):
     def __init__(self, MainWindow):

@@ -14,13 +14,26 @@ import struct
 import sqlite3 as sl
 import re
 
-db_path = 'PyQt/python_scripts/handler/BED.db'
+
+
 
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
 MainWindowHandler.py is used for handling button clicks/events to redirect to other windows.
 MainWindow.py is generated from MainWindow.ui (PyQt Designer) for frontend. 
 '''
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+db_path = resource_path('BED.db')
+
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     def __init__(self, MainWindow):
         super(UI_MainWindowHandler, self).__init__()
@@ -33,6 +46,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         # Setting fixed width and height 
         # for buttons on MainMenu
         #==================================================#
+        self.label.setPixmap(QPixmap(resource_path('BED_logo.jpg')))
         self.CreateRecordsButton.setFixedWidth(190)
         self.toggleBtn.setFixedWidth(190)
         self.ReadSD.setFixedWidth(190)

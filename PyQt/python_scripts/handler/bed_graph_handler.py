@@ -6,10 +6,21 @@ from PyQt5.QtCore import *
 import pyqtgraph as pg
 import pandas as pd
 import sys
-
-db_path = 'PyQt/python_scripts/handler/BED.db'
+import os
 
 '''Graph handler handles the graph window along with its appearance and format'''
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+db_path = resource_path('BED.db')
 
 class UI_GraphView(QMainWindow, Ui_GraphWindow):
     def __init__(self,MainWindow):

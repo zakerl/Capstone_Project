@@ -8,9 +8,15 @@ from python_pyqt.bed_login import *
 from bed_dataview_handler import *
 from bed_mainwindow_handler import *
 
-
 scriptDir = dirname(realpath(__file__))
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+        print(base_path)
+    except Exception:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
@@ -21,6 +27,7 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         self.all_data = []
         self.label_2.setFixedWidth(190)
         self.label_3.setFixedWidth(190)
+        self.label_4.setPixmap(QPixmap(resource_path('BED_logo.jpg')))
         self.lineEdit.setFixedWidth(190)
         self.lineEdit_2.setFixedWidth(190)
         self.pushButton.setFixedWidth(190)
@@ -40,11 +47,11 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         username = self.lineEdit.text()
         password = self.lineEdit_2.text()
 
-        filepath = os.path.join(scriptDir, "credentials.txt")
-        with open(filepath) as f:
-            lines = f.readlines()
+        # filepath = os.path.join(scriptDir, "credentials.txt")
+        # with open(filepath) as f:
+        #     lines = f.readlines()
 
-        if lines[0].strip() == username and lines[1].strip() == password:
+        if "admin" == username and "capstone" == password:
             loginValidity = 1
         else:
             loginValidity = 0
