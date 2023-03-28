@@ -3,7 +3,7 @@
 
 #define MPU_EVENT 400
 #define MPU_CALIBRATION 4000
-#define SIXTY_SECONDS 60000
+#define THIRTY_SECONDS 30000
 #define FIVE_SECONDS 5000
 
 // Tracks the total number of steps over the course of the EMA period.
@@ -17,6 +17,8 @@ uint16_t activity_timeout = 0;
 
 // Tracks the number of times the participant pauses during each activity
 uint8_t activity_pauses = 0;
+
+uint8_t activity_flag = 0;
 
 uint16_t init_count = 0;
 uint16_t flag_reset_count=0;

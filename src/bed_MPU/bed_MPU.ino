@@ -13,11 +13,11 @@
 Adafruit_MPU6050 mpu;
 
 void setup(void){
-
+  bed_MPU_setup();
 }
 
 void loop(void){
-  
+  bed_MPU_detect();
 }
 
 int32_t bed_MPU_setup() {
@@ -145,10 +145,12 @@ int32_t bed_MPU_detect() {
       TOTAL_STEP += 1;
       step_count += 1;
       // Reset activity timer
-      activity_timeout = millis();
+      
+      activity_timeout = currentTime;
       
       Serial.print("stepcount: ");
       Serial.println(step_count);
+      
       flag_ax = 0;
       flag_ay = 0;
       flag_az = 0;
@@ -171,19 +173,25 @@ int32_t bed_MPU_detect() {
     flag_reset_count++;
     MPULooptime = currentTime;
   }
-  if(currentTime - activity_timeout > SIXTY_SECONDS){
-    //prompt end of activity
-    step_count = 0;
+  if(stepcount >= 30){
+    activity_flag = 1;
   }
-  
-  if(currentTime - activity_timeout > FIVE_SECONDS){
+  if(activity_flag && (currentTime - activity_timeout > FIVE_SECONDS)){
     //pause, ask why when activity ends?
     activity_pauses += 1;
+    Serial.println("activity pauses:");
+    Serial.println(activity_pauses);
+    activity_timeout = currentTime;
   }
+  if(activity_flag && (currentTime - activity_timeout > THIRTY_SECONDS)){
+    //prompt end of activity
+    step_count = 0;
+    Serial.println("why stop?");
+    activity_flag = 0;
+    activity_timeout = currentTime;  
+  }
+  
+  
   
 return 0;
 }
-
-// int32_t bed_MPU_im_walkin_ere() {
-  
-// }
