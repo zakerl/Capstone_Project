@@ -1,9 +1,17 @@
 #ifndef BED_HR_H
 #define BED_HR_H
-unsigned long HRtime = 0;
-const uint8_t PulseWire = 0;       // 'S' Signal pin connected to A0
-const uint8_t LED13 = 13;          // The on-board Arduino LED
-const uint16_t Threshold = 550;           // Determine which Signal to "count as a beat" and which to ignore
+#define USE_ARDUINO_INTERRUPTS false    // Set-up low-level interrupts for most acurate BPM math
+#define HEART_EVENT 20 
+
+const int OUTPUT_TYPE = SERIAL_PLOTTER;
+
+const int PULSE_INPUT = 27;
+const int PULSE_BLINK = 2;
+const int PULSE_FADE = 5;
+const int THRESHOLD = 2000;   // Adjust this number to avoid noise when idle
+
+byte samplesUntilReport;
+const byte SAMPLES_PER_SERIAL_SAMPLE = 10;
 
 struct {
   uint16_t BPM = 0;
