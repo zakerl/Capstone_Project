@@ -10,18 +10,20 @@ from bed_dataview_handler import *
     searching and filtering row-wise.
 '''
 
+
 class UI_RecordWindow(QWidget, Ui_Form):
     def __init__(self, MainWindow):
         super(UI_RecordWindow, self).__init__()
         QWidget.__init__(self)
         self.setupUi(self)
         self.MainWindow = MainWindow
-        self.all_data = []
+        self.all_data = pd.DataFrame()
         #==================================================#
         # Setting fixed button sizing
         #==================================================#
         self.ButtonOpen.setFixedHeight(31)
         self.BtnDescribe.setFixedHeight(31)
+        self.SaveAsCsv.setFixedHeight(31)
         self.ButtonSearch.setFixedHeight(31)
         self.MainMenu.setFixedHeight(31)
         self.spinBox.setFixedHeight(31)
@@ -42,6 +44,19 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.BtnDescribe.clicked.connect(self.dataHead)
         self.ButtonSearch.clicked.connect(self.search)
         self.MainMenu.clicked.connect(self.BackToMain)
+        self.SaveAsCsv.clicked.connect(self.makeCSV)
+
+    def makeCSV(self):
+        if(self.all_data.empty):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("No data to save. Please load in data before saving.")
+            msg.setWindowTitle("Error")
+            msg.exec_()
+            return
+        name = QFileDialog.getSaveFileName(
+            self, 'Save File', filter='*.csv')
+        self.all_data.to_csv(name[0], index=False)
 
     def OpenFile(self):
         try:
@@ -72,7 +87,7 @@ class UI_RecordWindow(QWidget, Ui_Form):
             header.setSectionResizeMode(
                 7, QtWidgets.QHeaderView.Stretch)
         except Exception as Error:
-            print (Error)
+            print(Error)
 
     def dataHead(self):
         numRow = self.spinBox.value()

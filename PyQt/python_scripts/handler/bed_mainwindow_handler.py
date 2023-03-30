@@ -15,7 +15,7 @@ import sqlite3 as sl
 import re
 
 
-
+scriptDir = dirname(realpath(__file__))
 
 '''
 This script handles the MainWindow and is used to generate the Main GUI, Run MainWindowHandler.py 
@@ -23,16 +23,19 @@ MainWindowHandler.py is used for handling button clicks/events to redirect to ot
 MainWindow.py is generated from MainWindow.ui (PyQt Designer) for frontend. 
 '''
 
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
         print(base_path)
     except Exception:
-        base_path = os.path.abspath(".")
+        base_path = scriptDir
 
     return os.path.join(base_path, relative_path)
 
+
 db_path = resource_path('BED.db')
+
 
 class UI_MainWindowHandler(QWidget, Ui_MainWindow):
     def __init__(self, MainWindow):
@@ -43,7 +46,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.connected = False
         self.ReadSD.setCheckable(True)
         #==================================================#
-        # Setting fixed width and height 
+        # Setting fixed width and height
         # for buttons on MainMenu
         #==================================================#
         self.label.setPixmap(QPixmap(resource_path('BED_logo.jpg')))
@@ -70,8 +73,8 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.ConfigButton.clicked.connect(
             lambda: self.showConfigView(self.MainWindow))
         #==================================================#
-        # Create record button event opens create 
-         # record window
+        # Create record button event opens create
+        # record window
         #==================================================#
         self.CreateRecordsButton.clicked.connect(
             lambda: self.showCreateRecords(self.MainWindow)
@@ -83,32 +86,32 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.RecordsButton.clicked.connect(
             lambda: self.showRecordWindow(self.MainWindow))
         #==================================================#
-        # Added event to Dataview button, 
+        # Added event to Dataview button,
         # opens DataView with graph
         #==================================================#
         self.DataViewButton.clicked.connect(
             lambda: self.showDataView(self.MainWindow))
-        
+
     '''
     Different windows open when buttons are clicked, event handler functions described below
     '''
 
     def ReadBluetooth(self):
         loop_time = 10
-        bd_addr = "cc:db:a7:16:2e:ae" # Mac address (hardcoded) for ESP32
+        bd_addr = "cc:db:a7:16:2e:ae"  # Mac address (hardcoded) for ESP32
         ser = ""
         s = struct.Struct('<' + str(10) + 'f')
         SAMPLES = 30000
         port = 1
         connected = False
         try:
-            sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+            sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
             sock.connect((bd_addr, port))
             print('Connected')
             connected = True
             self.connect()
         except Exception as error:
-            print (error)      
+            print(error)
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Failed to connect to device via bluetooth.")
@@ -125,27 +128,29 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         try:
             while True:
                 rec_data = sock.recv(1024)
-                if len(rec_data) == 0: break
+                if len(rec_data) == 0:
+                    break
                 rec_data = rec_data.decode("utf-8").strip()
                 if (rec_data != '0'):
                     data += rec_data
                 else:
                     start_end_bit.append(rec_data)
                 end_time = time.time()
-                if (end_time - start_time > loop_time or len(start_end_bit) >= 2): # Run for t seconds
+                if (end_time - start_time > loop_time or len(start_end_bit) >= 2):  # Run for t seconds
                     break
                 tmp = re.search("File not available", data)
                 if (tmp is not None):
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Critical)
                     msg.setText("Error")
-                    msg.setInformativeText("File not available on sd card, try again")
+                    msg.setInformativeText(
+                        "File not available on sd card, try again")
                     msg.setWindowTitle("Error reading data")
                     msg.exec_()
                     break
-            print ("===================")
-            print (data)
-            print ("===================")
+            print("===================")
+            print(data)
+            print("===================")
         except:
             pass
         insert_list = data.split("\n")
@@ -162,12 +167,14 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 PromptGenerated = entry_list[7]
                 InPain = entry_list[8]
                 PainLevel = int(entry_list[9])
-                print (Time, StudyID, Steps, HeartRate, ParticipantID, ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                print(Time, StudyID, Steps, HeartRate, ParticipantID,
+                      ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             except Exception as error:
-                print (error)
+                print(error)
                 msg = QMessageBox()
                 msg.setIcon(QMessageBox.Critical)
-                msg.setText("Error, bluetooth serial communication went wrong.")
+                msg.setText(
+                    "Error, bluetooth serial communication went wrong.")
                 msg.setInformativeText(format(error))
                 msg.setWindowTitle("Error")
                 msg.exec_()
@@ -181,7 +188,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 (?,?,?,?,?,?,?,?,?,?)"""
 
                 record = (Time, StudyID, Steps, HeartRate, ParticipantID,
-                ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                          ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
                 cursor.execute(insert_query, record)
                 con.commit()
                 cursor.close()

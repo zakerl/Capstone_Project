@@ -9,14 +9,17 @@ from bed_dataview_handler import *
 from bed_mainwindow_handler import *
 
 scriptDir = dirname(realpath(__file__))
+
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
         print(base_path)
     except Exception:
-        base_path = os.path.abspath(".")
+        base_path = scriptDir
 
     return os.path.join(base_path, relative_path)
+
 
 class UI_DataViewLogin(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):

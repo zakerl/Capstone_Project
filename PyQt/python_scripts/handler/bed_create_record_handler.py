@@ -3,20 +3,24 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from python_pyqt.bed_create_record import *
+from os.path import dirname, realpath
 import os
-
 '''This script stores records in database'''
+scriptDir = dirname(realpath(__file__))
+
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
         print(base_path)
     except Exception:
-        base_path = os.path.abspath(".")
+        base_path = scriptDir
 
     return os.path.join(base_path, relative_path)
 
 
 db_path = resource_path('BED.db')
+
 
 class UI_CreateWindow(QWidget, Ui_Dialog):
     def __init__(self, MainWindow):
@@ -67,7 +71,8 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Error in getting data")
-            msg.setInformativeText("Please insert into all fields correctly, {}.".format(error))
+            msg.setInformativeText(
+                "Please insert into all fields correctly, {}.".format(error))
             msg.setWindowTitle("Error")
             msg.exec_()
 
@@ -80,7 +85,7 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             (?,?,?,?,?,?,?,?,?,?,?,?,?)"""
 
             record = (FirstName, LastName, Age, ParticipantID, StudyID,
-            Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel)
+                      Gender, Weight, Height, PhoneNumber, EmailID, Address, MonitoringPeriod, TrackerModel)
 
             cursor.execute(insert_query, record)
             con.commit()
@@ -101,9 +106,7 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
             msg.setWindowTitle("Error")
             msg.exec_()
 
-        
-
-        # Clear all fields when create record button is clicked 
+        # Clear all fields when create record button is clicked
         self.FirstNameLabel.clear()
         self.LastNameLabel.clear()
         self.AgeLabel.clear()
