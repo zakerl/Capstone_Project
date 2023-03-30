@@ -34,13 +34,13 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         self.lineEdit.setFixedWidth(190)
         self.lineEdit_2.setFixedWidth(190)
         self.pushButton.setFixedWidth(190)
-
         self.label_2.setFixedHeight(31)
         self.label_3.setFixedHeight(31)
         self.lineEdit.setFixedHeight(31)
         self.lineEdit_2.setFixedHeight(31)
         self.pushButton.setFixedHeight(31)
 
+        self.lineEdit_2.setEchoMode(self.lineEdit_2.Password)
         self.pushButton.clicked.connect(lambda: self.loginAttempt())
         self.lineEdit.returnPressed.connect(lambda: self.loginAttempt())
         self.lineEdit_2.returnPressed.connect(lambda: self.loginAttempt())

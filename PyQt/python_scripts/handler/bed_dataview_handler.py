@@ -41,7 +41,7 @@ class UI_DataView(QWidget, Ui_DataView):
         self.MainMenu.setFixedHeight(31)
         self.MainMenu.setFixedWidth(100)
         self.SaveAsCsv.setFixedHeight(31)
-        self.SaveAsCsv.setFixedWidth(100)
+        self.SaveAsCsv.setFixedWidth(130)
         self.Graph.setFixedHeight(31)
         self.Graph.setFixedWidth(100)
         self.spinBox.setFixedHeight(31)
@@ -78,7 +78,9 @@ class UI_DataView(QWidget, Ui_DataView):
             return
         name = QFileDialog.getSaveFileName(
             self, 'Save File', filter='*.csv')
-        self.all_data.to_csv(name[0], index=False)
+        if(not(name)): 
+            self.all_data.to_csv(name[0], index=False)
+        return
 
     def LoadDb(self):
         try:

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1176</width>
+    <width>1180</width>
     <height>1080</height>
    </rect>
   </property>
@@ -17,7 +17,20 @@
    <string notr="true">background-color: rgb(1,0,1);</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="2">
+   <item row="0" column="2" colspan="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>29</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="4">
     <widget class="QPushButton" name="LoadData">
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
@@ -31,7 +44,20 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
+   <item row="0" column="5" colspan="2">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>17</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="7">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -70,7 +96,7 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
+   <item row="1" column="3" colspan="3">
     <widget class="QLineEdit" name="TimeLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -78,7 +104,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
+   <item row="1" column="7">
     <spacer name="horizontalSpacer_22">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -117,7 +143,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="2">
+   <item row="2" column="3" colspan="3">
     <widget class="QLineEdit" name="StudyIDLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -128,7 +154,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="7">
     <spacer name="horizontalSpacer_28">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -167,7 +193,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
+   <item row="3" column="3" colspan="3">
     <widget class="QLineEdit" name="StepsLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -175,7 +201,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="3">
+   <item row="3" column="7">
     <spacer name="horizontalSpacer_9">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -214,7 +240,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="2">
+   <item row="4" column="3" colspan="3">
     <widget class="QLineEdit" name="HeartRateLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -222,7 +248,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="3">
+   <item row="4" column="7">
     <spacer name="horizontalSpacer_8">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -261,7 +287,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
+   <item row="5" column="3" colspan="3">
     <widget class="QLineEdit" name="IDLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -269,7 +295,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="3">
+   <item row="5" column="7">
     <spacer name="horizontalSpacer_11">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -295,7 +321,7 @@ border-radius: 11px;</string>
      </property>
     </spacer>
    </item>
-   <item row="6" column="1">
+   <item row="6" column="1" colspan="2">
     <widget class="QLabel" name="label_4">
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
@@ -308,7 +334,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="2">
+   <item row="6" column="3" colspan="3">
     <widget class="QLineEdit" name="ActivityTimeLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -316,7 +342,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="3">
+   <item row="6" column="7">
     <spacer name="horizontalSpacer_10">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -355,7 +381,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="2">
+   <item row="7" column="3" colspan="3">
     <widget class="QLineEdit" name="ActivityTypeLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -363,7 +389,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="3">
+   <item row="7" column="7">
     <spacer name="horizontalSpacer_15">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -389,7 +415,7 @@ border-radius: 11px;</string>
      </property>
     </spacer>
    </item>
-   <item row="8" column="1">
+   <item row="8" column="1" colspan="2">
     <widget class="QLabel" name="label_7">
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
@@ -402,7 +428,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="2">
+   <item row="8" column="3" colspan="3">
     <widget class="QLineEdit" name="PromptLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -410,7 +436,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="3">
+   <item row="8" column="7">
     <spacer name="horizontalSpacer_17">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -449,7 +475,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="2">
+   <item row="9" column="3" colspan="3">
     <widget class="QLineEdit" name="PainLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -457,7 +483,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="3">
+   <item row="9" column="7">
     <spacer name="horizontalSpacer_19">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -496,7 +522,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="2">
+   <item row="10" column="3" colspan="3">
     <widget class="QLineEdit" name="PainLevelLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -504,7 +530,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="3">
+   <item row="10" column="7">
     <spacer name="horizontalSpacer_21">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -517,7 +543,20 @@ border-radius: 11px;</string>
      </property>
     </spacer>
    </item>
-   <item row="11" column="2">
+   <item row="11" column="3">
+    <spacer name="horizontalSpacer_32">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="11" column="4">
     <widget class="QPushButton" name="ButtonSearch">
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
@@ -531,7 +570,20 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="3">
+   <item row="11" column="5" colspan="2">
+    <spacer name="horizontalSpacer_31">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>17</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="11" column="7">
     <spacer name="horizontalSpacer_13">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -544,7 +596,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="12" column="0" colspan="4">
+   <item row="12" column="0" colspan="8">
     <widget class="QTabWidget" name="tabWidget">
      <property name="font">
       <font>
@@ -625,7 +677,7 @@ border-radius: 15px;</string>
      </widget>
     </widget>
    </item>
-   <item row="13" column="0">
+   <item row="13" column="0" colspan="3">
     <spacer name="horizontalSpacer_26">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -638,7 +690,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="13" column="2">
+   <item row="13" column="3" colspan="2">
     <widget class="QPushButton" name="Graph">
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
@@ -652,7 +704,7 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="13" column="3">
+   <item row="13" column="6" colspan="2">
     <spacer name="horizontalSpacer_25">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -665,7 +717,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="14" column="0">
+   <item row="14" column="0" colspan="3">
     <spacer name="horizontalSpacer_23">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -678,7 +730,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="14" column="2">
+   <item row="14" column="3" colspan="2">
     <widget class="QPushButton" name="SaveAsCsv">
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
@@ -692,7 +744,7 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="14" column="3">
+   <item row="14" column="6" colspan="2">
     <spacer name="horizontalSpacer_24">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -705,7 +757,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="15" column="0">
+   <item row="15" column="0" colspan="3">
     <spacer name="horizontalSpacer_29">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -718,7 +770,7 @@ border-radius: 15px;</string>
      </property>
     </spacer>
    </item>
-   <item row="15" column="2">
+   <item row="15" column="3" colspan="2">
     <widget class="QPushButton" name="MainMenu">
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
@@ -732,7 +784,7 @@ border-radius: 15px;</string>
      </property>
     </widget>
    </item>
-   <item row="15" column="3">
+   <item row="15" column="6" colspan="2">
     <spacer name="horizontalSpacer_30">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
