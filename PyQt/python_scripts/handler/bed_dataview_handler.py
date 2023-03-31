@@ -1,4 +1,5 @@
 import sqlite3 as sl
+import pandas as pd
 from python_pyqt.bed_dataview import *
 from bed_graph_handler import *
 
@@ -78,7 +79,7 @@ class UI_DataView(QWidget, Ui_DataView):
             return
         name = QFileDialog.getSaveFileName(
             self, 'Save File', filter='*.csv')
-        if(not(name)): 
+        if(name[0] != ''):
             self.all_data.to_csv(name[0], index=False)
         return
 

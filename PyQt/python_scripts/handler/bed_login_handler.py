@@ -50,11 +50,11 @@ class UI_DataViewLogin(QWidget, Ui_Dialog):
         username = self.lineEdit.text()
         password = self.lineEdit_2.text()
 
-        # filepath = os.path.join(scriptDir, "credentials.txt")
-        # with open(filepath) as f:
-        #     lines = f.readlines()
+        filepath = os.path.join(scriptDir, "credentials.txt")
+        with open(filepath) as f:
+            lines = f.readlines()
 
-        if "admin" == username and "capstone" == password:
+        if lines[0].strip() == username and lines[1].strip() == password:
             loginValidity = 1
         else:
             loginValidity = 0

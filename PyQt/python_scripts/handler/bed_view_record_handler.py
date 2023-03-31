@@ -56,7 +56,7 @@ class UI_RecordWindow(QWidget, Ui_Form):
             return
         name = QFileDialog.getSaveFileName(
             self, 'Save File', filter='*.csv')
-        if(not(name)): 
+        if(name[0] != ''):
             self.all_data.to_csv(name[0], index=False)
         return
 
