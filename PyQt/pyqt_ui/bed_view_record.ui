@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1209</width>
+    <width>1148</width>
     <height>953</height>
    </rect>
   </property>
@@ -31,7 +31,26 @@
     </spacer>
    </item>
    <item row="0" column="3">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>38</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="4" colspan="3">
     <widget class="QPushButton" name="ButtonOpen">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -45,7 +64,20 @@ border-radius: 15px;
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
+   <item row="0" column="7">
+    <spacer name="horizontalSpacer_20">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>38</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="8">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -84,7 +116,7 @@ border-radius: 15px;
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
+   <item row="1" column="3" colspan="5">
     <widget class="QLineEdit" name="FirstNameLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -95,7 +127,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="6">
+   <item row="1" column="10">
     <spacer name="horizontalSpacer_11">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -134,7 +166,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="3" colspan="5">
     <widget class="QLineEdit" name="LastNameLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -145,7 +177,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="6">
+   <item row="2" column="10">
     <spacer name="horizontalSpacer_24">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -184,7 +216,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="3">
+   <item row="3" column="3" colspan="5">
     <widget class="QLineEdit" name="AgeLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -195,7 +227,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="6">
+   <item row="3" column="10">
     <spacer name="horizontalSpacer_9">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -234,7 +266,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="3">
+   <item row="4" column="3" colspan="5">
     <widget class="QLineEdit" name="PIDLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -245,7 +277,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="5" colspan="2">
+   <item row="4" column="9" colspan="2">
     <spacer name="horizontalSpacer_8">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -284,7 +316,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="3">
+   <item row="5" column="3" colspan="5">
     <widget class="QLineEdit" name="StudyIDLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -295,7 +327,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="5">
+   <item row="5" column="9">
     <spacer name="horizontalSpacer_13">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -334,7 +366,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="3">
+   <item row="6" column="3" colspan="5">
     <widget class="QLineEdit" name="GenderLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -371,7 +403,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="3">
+   <item row="7" column="3" colspan="5">
     <widget class="QLineEdit" name="WeightLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -382,7 +414,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="6">
+   <item row="7" column="10">
     <spacer name="horizontalSpacer_10">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -408,7 +440,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="3">
+   <item row="8" column="3" colspan="5">
     <widget class="QLineEdit" name="HeightLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -432,7 +464,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="3">
+   <item row="9" column="3" colspan="5">
     <widget class="QLineEdit" name="PhnNumberLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -443,7 +475,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="6">
+   <item row="9" column="10">
     <spacer name="horizontalSpacer_15">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -469,7 +501,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="3">
+   <item row="10" column="3" colspan="5">
     <widget class="QLineEdit" name="EmailLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -506,7 +538,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="3">
+   <item row="11" column="3" colspan="5">
     <widget class="QLineEdit" name="AddrLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -517,7 +549,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="6">
+   <item row="11" column="10">
     <spacer name="horizontalSpacer_17">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -556,7 +588,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="3">
+   <item row="12" column="3" colspan="5">
     <widget class="QLineEdit" name="MonitorPeriodLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -567,7 +599,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="6">
+   <item row="12" column="10">
     <spacer name="horizontalSpacer_19">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -606,7 +638,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="13" column="3">
+   <item row="13" column="3" colspan="5">
     <widget class="QLineEdit" name="TrackerLabel">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 209, 209);
@@ -617,7 +649,7 @@ border-radius: 11px;</string>
      </property>
     </widget>
    </item>
-   <item row="13" column="5">
+   <item row="13" column="9">
     <spacer name="horizontalSpacer_27">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -643,8 +675,27 @@ border-radius: 11px;</string>
      </property>
     </spacer>
    </item>
-   <item row="14" column="3">
+   <item row="14" column="3" colspan="2">
+    <spacer name="horizontalSpacer_21">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>59</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="14" column="5">
     <widget class="QPushButton" name="ButtonSearch">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -658,7 +709,20 @@ border-radius: 15px;
      </property>
     </widget>
    </item>
-   <item row="14" column="5">
+   <item row="14" column="6" colspan="2">
+    <spacer name="horizontalSpacer_22">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>59</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="14" column="9">
     <spacer name="horizontalSpacer_29">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -671,7 +735,7 @@ border-radius: 15px;
      </property>
     </spacer>
    </item>
-   <item row="15" column="0" colspan="7">
+   <item row="15" column="0" colspan="11">
     <widget class="QTabWidget" name="tabWidget">
      <property name="font">
       <font>
@@ -753,7 +817,7 @@ border-radius: 15px;
      </widget>
     </widget>
    </item>
-   <item row="16" column="2">
+   <item row="16" column="0" colspan="3">
     <spacer name="horizontalSpacer_30">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -766,8 +830,14 @@ border-radius: 15px;
      </property>
     </spacer>
    </item>
-   <item row="16" column="3">
+   <item row="16" column="5" colspan="3">
     <widget class="QPushButton" name="SaveAsCsv">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -781,7 +851,20 @@ border-radius: 15px;
      </property>
     </widget>
    </item>
-   <item row="17" column="2">
+   <item row="16" column="8" colspan="3">
+    <spacer name="horizontalSpacer_31">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>518</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="17" column="0" colspan="3">
     <spacer name="horizontalSpacer_23">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -794,8 +877,14 @@ border-radius: 15px;
      </property>
     </spacer>
    </item>
-   <item row="17" column="3">
+   <item row="17" column="5" colspan="3">
     <widget class="QPushButton" name="MainMenu">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
 font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -808,6 +897,19 @@ border-radius: 15px;
       <string>Main Menu</string>
      </property>
     </widget>
+   </item>
+   <item row="17" column="8" colspan="3">
+    <spacer name="horizontalSpacer_32">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>518</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

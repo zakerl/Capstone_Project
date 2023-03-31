@@ -26,6 +26,13 @@ class UI_RecordWindow(QWidget, Ui_Form):
         self.SaveAsCsv.setFixedHeight(31)
         self.ButtonSearch.setFixedHeight(31)
         self.MainMenu.setFixedHeight(31)
+
+        self.ButtonOpen.setFixedWidth(101)
+        self.BtnDescribe.setFixedWidth(60)
+        self.SaveAsCsv.setFixedWidth(91)
+        self.ButtonSearch.setFixedWidth(59)
+        self.MainMenu.setFixedWidth(86)
+
         self.spinBox.setFixedHeight(31)
         self.FirstNameLabel.setFixedHeight(22)
         self.LastNameLabel.setFixedHeight(22)
@@ -58,6 +65,11 @@ class UI_RecordWindow(QWidget, Ui_Form):
             self, 'Save File', filter='*.csv')
         if(name[0] != ''):
             self.all_data.to_csv(name[0], index=False)
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Succesfully created the csv!")
+            msg.setWindowTitle("Creation successful")
+            msg.exec_()
         return
 
     def OpenFile(self):

@@ -33,6 +33,7 @@ class UI_CreateWindow(QWidget, Ui_Dialog):
         # Setting fixed button sizes for UI
         #==================================================#
         self.MainMenu.setFixedHeight(31)
+        self.MainMenu.setFixedWidth(86)
         self.CreateRecord.setFixedHeight(31)
         self.CreateRecord.setFixedWidth(170)
         self.FirstNameLabel.setFixedHeight(22)

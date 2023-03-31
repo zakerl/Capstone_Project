@@ -26,6 +26,7 @@ class UI_ConfigWindow(QWidget, Ui_Form):
         # Setting fixed button sizes for UI
         #==================================================#
         self.MainMenuBtn.setFixedHeight(31)
+        self.MainMenuBtn.setFixedWidth(86)
         self.SaveTxt.setFixedHeight(31)
         self.SaveTxt.setFixedWidth(170)
 

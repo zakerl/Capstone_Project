@@ -50,13 +50,13 @@ class UI_DataView(QWidget, Ui_DataView):
         # Rounding text boxes
         #==================================================#
         self.TimeLabel.setFixedHeight(22)
-        self.StudyIDLabel.setFixedHeight(22)
-        self.IDLabel.setFixedHeight(22)
+        self.DateLabel.setFixedHeight(22)
+        self.PainLocationLabel.setFixedHeight(22)
+        self.ReasonLabel.setFixedHeight(22)
         self.StepsLabel.setFixedHeight(22)
-        self.HeartRateLabel.setFixedHeight(22)
+        self.HRLabel.setFixedHeight(22)
         self.ActivityTypeLabel.setFixedHeight(22)
         self.ActivityTimeLabel.setFixedHeight(22)
-        self.PromptLabel.setFixedHeight(22)
         self.PainLabel.setFixedHeight(22)
         self.PainLevelLabel.setFixedHeight(22)
         #==================================================#
@@ -81,6 +81,11 @@ class UI_DataView(QWidget, Ui_DataView):
             self, 'Save File', filter='*.csv')
         if(name[0] != ''):
             self.all_data.to_csv(name[0], index=False)
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Succesfully created the csv!")
+            msg.setWindowTitle("Creation successful")
+            msg.exec_()
         return
 
     def LoadDb(self):
@@ -134,38 +139,34 @@ class UI_DataView(QWidget, Ui_DataView):
         if(len(self.all_data) == 0):
             return
         Time = self.TimeLabel.text()
-        StudyID = self.StudyIDLabel.text()
-        ParticipantID = self.IDLabel.text()
+        Date = self.DateLabel.text()
         Steps = self.StepsLabel.text()
-        HeartRate = self.HeartRateLabel.text()
+        HeartRate = self.HRLabel.text()
         ActivityTime = self.ActivityTimeLabel.text()
         ActivityType = self.ActivityTypeLabel.text()
-        Prompt = self.PromptLabel.text()
         Pain = self.PainLabel.text()
         PainLevel = self.PainLevelLabel.text()
-        Time = self.TimeLabel.text()
+        PainLocation = self.PainLocationLabel.text()
+        StopReason = self.ReasonLabel.text()
         ref_dict = {
             "Time": Time,
-            "StudyID": StudyID,
+            "Date": Date,
             "Steps": Steps,
             "HeartRate": HeartRate,
-            "ParticipantID": ParticipantID,
             "ActivityTimeMins": ActivityTime,
             "ActivityType": ActivityType,
-            "PromptGenerated": Prompt,
             "InPain": Pain,
-            "PainLevel": PainLevel
+            "WhyStop": StopReason,
+            "PainLevel": PainLevel,
+            "PainLocation": PainLocation
         }
 
         headerNames = list(self.all_data.columns)
         filteredData = self.all_data
-        if(ParticipantID != ""):
-            filteredData = filteredData[filteredData["ParticipantID"]
-                                        == ParticipantID]
         for i in headerNames:
             filteredData[i] = filteredData[i].astype(str).str.replace(
                 ".0", "", regex=False)
-            if i.lower() != "ParticipantID".lower() and ref_dict[i] != "":
+            if(ref_dict[i] != ""):
                 filteredData = filteredData[filteredData[i] ==
                                             ref_dict[i]]
 
