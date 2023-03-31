@@ -98,7 +98,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
     def ReadBluetooth(self):
         loop_time = 10
-        bd_addr = "cc:db:a7:16:2e:ae"  # Mac address (hardcoded) for ESP32
+        bd_addr = "d4:d4:da:1d:de:a6"  # Mac address (hardcoded) for ESP32
         ser = ""
         s = struct.Struct('<' + str(10) + 'f')
         SAMPLES = 30000
@@ -157,18 +157,18 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         for entry in insert_list:
             entry_list = entry.split(",")
             try:
-                Time = entry_list[0]
-                StudyID = int(entry_list[1])
+                Date = entry_list[0]
+                Time = entry_list[1]
                 Steps = int(entry_list[2])
                 HeartRate = int(entry_list[3])
-                ParticipantID = int(entry_list[4])
-                ActivityTimeMins = int(entry_list[5])
-                ActivityType = entry_list[6]
-                PromptGenerated = entry_list[7]
-                InPain = entry_list[8]
+                ActivityTimeMins = int(entry_list[4])
+                ActivityType = entry_list[5]
+                InPain = entry_list[6]
+                WhyStop = entry_list[7]
+                PainLocation = entry_list[8]
                 PainLevel = int(entry_list[9])
-                print(Time, StudyID, Steps, HeartRate, ParticipantID,
-                      ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                # print(Time, StudyID, Steps, HeartRate, ParticipantID,
+                #       ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             except Exception as error:
                 print(error)
                 msg = QMessageBox()
@@ -183,12 +183,12 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 con = sl.connect(db_path)
                 cursor = con.cursor()
                 # Insert values into Records table in Database
-                insert_query = """ INSERT INTO DATAVIEW (Time, StudyID, Steps, HeartRate, ParticipantID,
-                ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel) VALUES 
+                insert_query = """ INSERT INTO DATAVIEW (Date, Time, Steps, HeartRate,
+                ActivityTimeMins, ActivityType, InPain, WhyStop, PainLocation, PainLevel) VALUES 
                 (?,?,?,?,?,?,?,?,?,?)"""
 
-                record = (Time, StudyID, Steps, HeartRate, ParticipantID,
-                          ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
+                record = (Date, Time, Steps, HeartRate,
+                          ActivityTimeMins, ActivityType, InPain, WhyStop, PainLocation, PainLevel)
                 cursor.execute(insert_query, record)
                 con.commit()
                 cursor.close()
