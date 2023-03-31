@@ -47,7 +47,7 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
             # Access dataview table from BED database
             con = sl.connect(db_path)
             sql_query = pd.read_sql(
-                'SELECT TIME, HEARTRATE FROM DATAVIEW', con)
+                'SELECT TIME, HEARTRATE FROM DATAVIEW ORDER BY TIME', con)
             # Convert SQL to DataFrame
             df = pd.DataFrame(sql_query)
             df = df.sort_values(by="Time")  # To plot smooth graph

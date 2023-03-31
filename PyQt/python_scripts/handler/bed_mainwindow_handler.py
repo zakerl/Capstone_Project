@@ -108,7 +108,6 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
             sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
             sock.connect((bd_addr, port))
             print('Connected')
-            connected = True
             self.connect()
         except Exception as error:
             print(error)
@@ -125,34 +124,31 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
         start_time = time.time()
         start_end_bit = []
-        try:
-            while True:
-                rec_data = sock.recv(1024)
-                if len(rec_data) == 0:
-                    break
-                rec_data = rec_data.decode("utf-8").strip()
-                if (rec_data != '0'):
-                    data += rec_data
-                else:
-                    start_end_bit.append(rec_data)
-                end_time = time.time()
-                if (end_time - start_time > loop_time or len(start_end_bit) >= 2):  # Run for t seconds
-                    break
-                tmp = re.search("File not available", data)
-                if (tmp is not None):
-                    msg = QMessageBox()
-                    msg.setIcon(QMessageBox.Critical)
-                    msg.setText("Error")
-                    msg.setInformativeText(
-                        "File not available on sd card, try again")
-                    msg.setWindowTitle("Error reading data")
-                    msg.exec_()
-                    break
-            print("===================")
-            print(data)
-            print("===================")
-        except:
-            pass
+        while True:
+            rec_data = sock.recv(1024)
+            if len(rec_data) == 0:
+                break
+            rec_data = rec_data.decode("utf-8").strip()
+            if (rec_data != '0'):
+                data += rec_data
+            else:
+                start_end_bit.append(rec_data)
+            end_time = time.time()
+            if (end_time - start_time > loop_time or len(start_end_bit) >= 2):  # Run for t seconds
+                break
+            tmp = re.search("File not available", data)
+            if (tmp is not None):
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("Error")
+                msg.setInformativeText(
+                    "File not available on sd card, try again")
+                msg.setWindowTitle("Error reading data")
+                msg.exec_()
+                break
+        print("===================")
+        print(data)
+        print("===================")
         insert_list = data.split("\n")
         for entry in insert_list:
             entry_list = entry.split(",")
@@ -171,13 +167,13 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 #       ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             except Exception as error:
                 print(error)
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Critical)
-                msg.setText(
-                    "Error, bluetooth serial communication went wrong.")
-                msg.setInformativeText(format(error))
-                msg.setWindowTitle("Error")
-                msg.exec_()
+                # msg = QMessageBox()
+                # msg.setIcon(QMessageBox.Critical)
+                # msg.setText(
+                #     "Error, bluetooth serial communication went wrong.")
+                # msg.setInformativeText(format(error))
+                # msg.setWindowTitle("Error")
+                # msg.exec_()
             try:
                 inserted = False
                 con = sl.connect(db_path)
@@ -234,12 +230,11 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
 
     def connect(self):
         if(not(self.connected)):
-            if(self.ReadSD.isChecked()):
-                self.connected = True
-                self.toggleBtn.setText("Connected")
-                style = "background-color: lightgreen"
-                self.toggleBtn.setStyleSheet(
-                    self.toggleBtn.styleSheet() + "\n" + style)
+            self.connected = True
+            self.toggleBtn.setText("Connected")
+            style = "background-color: lightgreen"
+            self.toggleBtn.setStyleSheet(
+                self.toggleBtn.styleSheet() + "\n" + style)
 
 
 if __name__ == "__main__":
