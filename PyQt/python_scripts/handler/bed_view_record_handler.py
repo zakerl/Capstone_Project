@@ -21,17 +21,18 @@ class UI_RecordWindow(QWidget, Ui_Form):
         #==================================================#
         # Setting fixed button sizing
         #==================================================#
+
+        self.ButtonOpen.setFixedWidth(140)
+        self.BtnDescribe.setFixedWidth(140)
+        self.SaveAsCsv.setFixedWidth(160)
+        self.ButtonSearch.setFixedWidth(140)
+        self.MainMenu.setFixedWidth(160)
+
         self.ButtonOpen.setFixedHeight(31)
         self.BtnDescribe.setFixedHeight(31)
         self.SaveAsCsv.setFixedHeight(31)
         self.ButtonSearch.setFixedHeight(31)
         self.MainMenu.setFixedHeight(31)
-
-        self.ButtonOpen.setFixedWidth(101)
-        self.BtnDescribe.setFixedWidth(60)
-        self.SaveAsCsv.setFixedWidth(91)
-        self.ButtonSearch.setFixedWidth(59)
-        self.MainMenu.setFixedWidth(86)
 
         self.spinBox.setFixedHeight(31)
         self.FirstNameLabel.setFixedHeight(22)
