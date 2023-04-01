@@ -47,10 +47,10 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
             # Access dataview table from BED database
             con = sl.connect(db_path)
             sql_query = pd.read_sql(
-                'SELECT TIME, HEARTRATE FROM DATAVIEW ORDER BY TIME', con)
+                'SELECT TIME, HEARTRATE FROM DATAVIEW ORDER BY strftime("%H %M", TIME)', con)
             # Convert SQL to DataFrame
             df = pd.DataFrame(sql_query)
-            df = df.sort_values(by="Time")  # To plot smooth graph
+            # df = df.sort_values(by="Time")  # To plot smooth graph
             TimeAxis = df['Time']
             HeartRate = df["HeartRate"]
             # ==================================================#
@@ -76,10 +76,11 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
             self.GraphWidget.clear()
             # Access dataview table from BED database
             con = sl.connect(db_path)
-            sql_query = pd.read_sql('SELECT TIME, STEPS FROM DATAVIEW', con)
+            sql_query = pd.read_sql(
+                'SELECT TIME, STEPS FROM DATAVIEW ORDER BY strftime("%H %M", TIME)', con)
             # Convert SQL to DataFrame
             df = pd.DataFrame(sql_query)
-            df = df.sort_values(by="Time")  # To plot smooth graph
+            # df = df.sort_values(by="Time")  # To plot smooth graph
             TimeAxis = df['Time']
             Steps = df['Steps']
             # ==================================================#
@@ -106,10 +107,10 @@ class UI_GraphView(QMainWindow, Ui_GraphWindow):
             # Access dataview table from BED database
             con = sl.connect(db_path)
             sql_query = pd.read_sql(
-                'SELECT TIME, ACTIVITYTIMEMINS FROM DATAVIEW', con)
+                'SELECT TIME, ACTIVITYTIMEMINS FROM DATAVIEW ORDER BY strftime("%H %M", TIME)', con)
             # Convert SQL to DataFrame
             df = pd.DataFrame(sql_query)
-            df = df.sort_values(by="Time")  # To plot smooth graph
+            # df = df.sort_values(by="Time")  # To plot smooth graph
             TimeAxis = df['Time']
             ActivityTime = df['ActivityTimeMins']
             # ==================================================#

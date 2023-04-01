@@ -56,6 +56,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.ConfigButton.setFixedWidth(190)
         self.RecordsButton.setFixedWidth(190)
         self.DataViewButton.setFixedWidth(190)
+        self.ClearSDbtn.setFixedWidth(190)
 
         self.CreateRecordsButton.setFixedHeight(31)
         self.toggleBtn.setFixedHeight(31)
@@ -63,6 +64,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
         self.ConfigButton.setFixedHeight(31)
         self.RecordsButton.setFixedHeight(31)
         self.DataViewButton.setFixedHeight(31)
+        self.ClearSDbtn.setFixedHeight(31)
         #==================================================#
         #  Open bluetooth connection via sockets
         #==================================================#

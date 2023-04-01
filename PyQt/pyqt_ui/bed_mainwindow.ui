@@ -446,6 +446,72 @@ border-radius: 15px;
      </spacer>
     </item>
     <item row="13" column="2">
+     <spacer name="verticalSpacer_9">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>38</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="14" column="0" colspan="2">
+     <spacer name="horizontalSpacer_10">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>338</width>
+        <height>28</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="14" column="2">
+     <widget class="QPushButton" name="ClearSDbtn">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 14pt;background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(254,79,78,255), stop:1 rgba(51,15,15,255));
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+color: rgb(255, 255, 255);
+border-style: solid;
+border-radius: 15px;
+</string>
+      </property>
+      <property name="text">
+       <string>Clear SD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="3" colspan="3">
+     <spacer name="horizontalSpacer_20">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>455</width>
+        <height>28</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="15" column="2">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
