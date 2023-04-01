@@ -15,7 +15,9 @@ const byte SAMPLES_PER_SERIAL_SAMPLE = 10;
 
 struct {
   uint16_t BPM = 0;
+  uint16_t BPM_Storage[10];
   uint16_t BPM_Avg = 0;
+  uint16_t BPM_Sum = 0;
 } BPM_Struct;
 
 

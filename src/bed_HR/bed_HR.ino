@@ -122,6 +122,19 @@ uint8_t bed_HR_loop() {
         pulseSensor.outputBeat();
         BPM_Struct.BPM = pulseSensor.getBeatsPerMinute();
         Serial.println(BPM_Struct.BPM);
+
+        for(int i = 0; i < 9; i++){
+          BPM_Struct.BPM_Storage[i] = BPM_Struct.BPM_Storage[i+1];
+        }
+        BPM_Struct.BPM_Storage[9] = BPM_Struct.BPM;
+
+        BPM_Struct.BPM_Sum = 0;
+
+        for(int i = 0; i < 10; i++){
+          BPM_Struct.BPM_Sum += BPM_Struct.BPM_Storage[i];
+        }
+        
+        BPM_Struct.BPM_Avg = BPM_Struct.BPM_Sum/10;
       }
     }
 
