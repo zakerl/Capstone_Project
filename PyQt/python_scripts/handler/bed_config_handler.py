@@ -29,7 +29,9 @@ class UI_ConfigWindow(QWidget, Ui_Form):
         self.MainMenuBtn.setFixedWidth(170)
         self.SaveTxt.setFixedHeight(31)
         self.SaveTxt.setFixedWidth(170)
-
+        self.SendSDBtn.setFixedHeight(31)
+        self.SendSDBtn.setFixedWidth(170)
+        
         self.ActivitiesLabel.setFixedHeight(22)
         self.PromptsLabel.setFixedHeight(22)
         self.ThreshVelLabel.setFixedHeight(22)

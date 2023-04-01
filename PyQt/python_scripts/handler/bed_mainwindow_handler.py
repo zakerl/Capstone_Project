@@ -164,7 +164,7 @@ class UI_MainWindowHandler(QWidget, Ui_MainWindow):
                 InPain = entry_list[6]
                 WhyStop = entry_list[7]
                 PainLocation = entry_list[8]
-                PainLevel = int(entry_list[9])
+                PainLevel = entry_list[9]
                 # print(Time, StudyID, Steps, HeartRate, ParticipantID,
                 #       ActivityTimeMins, ActivityType, PromptGenerated, InPain, PainLevel)
             except Exception as error:
