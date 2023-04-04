@@ -184,42 +184,30 @@ The SRS will be verified according to a checklist. It will also follow a rigorou
 
 \begin{center}
 \captionof{table}{SRS verification checklist and task based inspection}
-  \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
+  \begin{tabular}{|m{2cm}|m{9cm}|m{4cm}|}
     \hline
-    \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
+    \textbf{Section }                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach \newline of Feedback}
     \\
     \hline
-    General feedback and discussion                         & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
+    Overall                        & The verification will be done based on an ad hoc approach through the checklist below: \begin{itemize}
                                                                                                                                                        \item[\ding{111}] System constrains for hardware and software are valid.
                                                                                                                                                        \item[\ding{111}] Monitored and controlled variables are consistent.
                                                                                                                                                        \item[\ding{111}] Comparison to existing solutions is unambiguous.
                                                                                                                                                        \item[\ding{111}] Project Goals are relevant to description of device.
-                                                                                                                                                       \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
-                                                                                                                                                       \item[\ding{111}] Event handling and FSM is verified and correct.
                                                                                                                                                      \end{itemize}                                                                                & Will be done by Stakeholder Dr. Luciana Macedo, supervisor, classmates and the Back End Developers. \\
     \hline
-    General System Description 4.1-4.3                      & The verification for this section will be performed by checking if system constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
+   4.1-4.3                      & The verification for this section will be performed by checking if system constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
     \hline
-    Section 5 Definitions and variables                     &  Terminology and the use of monitored and controlled variables must be verified to be consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
+    5                  &  Terminology and the use of monitored and controlled variables must be verified to be consistent and correct. Assumptions are clearly mentioned and provided along with goals of the project. & Will be done by team member  Nish Shah.                                                      \\
     \hline
-    Required behaviour and requirements                      & Functional and non-functional requirements must be verified. In addition, the requirements must be checked to see if they are classified correctly. Checking required behaviour as well.                              & Will be done by team member Anish Rangarajan.                                                \\
+  7                     & Functional and non-functional requirements must be verified. In addition, the requirements must be checked to see if they are classified correctly. Checking required behaviour as well.                              & Will be done by team member Anish Rangarajan.                                                \\
     \hline
-  \end{tabular}
-\end{center}
-
-\begin{center}
-  \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
+8-12&  Matrices and graphs must be verified according to requirements. In addition, verification must be performed to see if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
     \hline
-    \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
-    \\
-    \hline
-    Section 8-12 Traceability matrices and normal operation &  Matrices and graphs must be verified according to requirements. In addition, verification must be performed to see if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
-    \hline
-    Section 14-16                                           & The FSM, Legal factors and Phase in Plan must be verified.                                                                                                                                 & Will be done by team member Jessica Bae.                                                     \\
+14-16                                           & The FSM, Legal factors and Phase in Plan must be verified.                                                                                                                                 & Will be done by team member Jessica Bae.                                                     \\
     \hline
   \end{tabular}
 \end{center}
-
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -230,15 +218,15 @@ The SRS will be verified according to a checklist. It will also follow a rigorou
   \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
   \hline
   Response Feedback Test                  & This test will test the majority of the sensors of the system. Sensor input will be pushed beyond the established boundaries in different testing scenarios, with feedback being observed for erraneous or strange readings.
- & Performed by Anish Rangarajan and stakeholders\\
+ & Performed by \newline Anish Rangarajan and stakeholders\\
   \hline
-  User Interface Test                     & Different elements of the user interface will tested by manipulating said elements in all possible scenarios. In addition, characteristics such as screen size, brightness, and visibility will be tested in different visual environments to determine whether or not they are visible in the correct ranges of use.                                                                                                              & Performed by Nish Shah                \\
+  User Interface Test                     & Different elements of the user interface will tested by manipulating said elements in all possible scenarios. In addition, characteristics such as screen size, brightness, and visibility will be tested in different visual environments to determine whether or not they are visible in the correct ranges of use.                                                                                                              & Performed by \newline Nish Shah                \\
   \hline
   Durability Test                         & Each sensor will be tested for failure independence. Should one sensor fail, it must not impact the functionality of any other sensors of the system. To test this, individual sensors will be rendered non-functional, and other sensor values will be checked for erroneous readings.                                                                         & Performed by Jonathan Hai                \\
   \hline
-  Database Scalability Test               & This system's database will be tested for volume overload issues. Postman (a request tool) will be used to feed as many requests as possible to the database. The database will then be monitored for faults and errors. & Performed by Labeeb Zaker                \\
+  Database Scalability Test               & This system's database will be tested for volume overload issues. Postman (a request tool) will be used to feed as many requests as possible to the database. The database will then be monitored for faults and errors. & Performed by \newline Labeeb Zaker                \\
   \hline
-  Hardware Communication Test                & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by Jessica Bae                \\
+  Hardware \newline Communication Test                & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by \newline Jessica Bae                \\
   \hline
 \end{tabular}
 
@@ -694,7 +682,7 @@ The following functional requirements test cases are applicable for accuracy:
 The following set of tests will ensure that the device is usable by target user population and cause no problems in terms of maintenance and user interactions.		
 \begin{enumerate}
 
-\item\textbf{{UT\_1: Intuitive UI\\}}\label{UT1}
+\item\textbf{{UT\_1: Device UI\\}}\label{UT1}
 
 Type: Manual, Static
 					
@@ -748,6 +736,18 @@ Input: Testers visually inspect how clean the device is.
 Output: The device is deemed clean and the device is not harmed.
 					
 How test will be performed: 1 member of Back End Developers will clean the device and 5 other members will inspect and judge if the device is clean enough to be reused. Among the 5 inspecting members, 1 member will then turn on the device to make sure that there was no harm done to the device while cleaning it.
+
+\item\textbf{{UT\_4: Host Software UI\\}}\label{UT4}
+
+Type: Manual, Static
+					
+Initial State: Main page displayed after login page.
+					
+Input: Testers try to filter out database record of anyone 70 years old and write down the first names.
+					
+Output: John, Marry, Bill
+					
+How test will be performed: The software application is presented with its main page. Testers are required to navigate through the software to use the dataview filtering functionality and filter out data as requested by the test. They are then asked to write down their responses on a piece of paper. Later, the papers are collected and compared for validation.
 
 \end{enumerate}
 
@@ -867,22 +867,22 @@ How test will be performed: One member of Back End Developers wears the device a
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 	\hline
-	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3}&\hyperref[RT1]{RT1}&\hyperref[RT2]{RT2}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3}&\hyperref[RT1]{RT1}&\hyperref[RT2]{RT2}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[UT4]{UT4}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
 	\hline       
-	\textbf{NFR2}         &&&&&&X&X&X&&&\\ \hline
-	\textbf{NFR3}         &&&&&&&&&&X& \\ \hline
-	\textbf{NFR4}         &&&&&&&X&&&&\\ \hline
-	\textbf{NFR5}         &&&&&&&&X&&& \\ \hline
-	\textbf{NFR6}         &X&X&X&&&&&&&&\\ \hline
-	\textbf{NFR7}         &&&&X&&&&&&&\\ \hline
-	\textbf{NFR8}         &&&&&&&&&&&X\\ \hline
-	\textbf{NFR9}         &&&&&&X&&&&&\\ \hline
-	\textbf{NFR10}       &&&&&&X&&&&&\\ \hline
-	\textbf{NFR11}       &X&X&X&X&&&&&&&\\ \hline
-	\textbf{NFR13}       &&&&&&&&&X&&\\ \hline
-	\textbf{NFR14}       &&&&&&&&&&&X\\ \hline
+	\textbf{NFR2}         &&&&&&X&X&X&X&&&\\ \hline
+	\textbf{NFR3}         &&&&&&&&&&&X& \\ \hline
+	\textbf{NFR4}         &&&&&&&X&&&&&\\ \hline
+	\textbf{NFR5}         &&&&&&&&X&&&& \\ \hline
+	\textbf{NFR6}         &X&X&X&&&&&&&&&\\ \hline
+	\textbf{NFR7}         &&&&X&&&&&&&&\\ \hline
+	\textbf{NFR8}         &&&&&&&&&&&&X\\ \hline
+	\textbf{NFR9}         &&&&&&X&&&X&&&\\ \hline
+	\textbf{NFR10}       &&&&&&X&&&X&&&\\ \hline
+	\textbf{NFR11}       &X&X&X&X&&&&&&&&\\ \hline
+	\textbf{NFR13}       &&&&&&&&&&X&&\\ \hline
+	\textbf{NFR14}       &&&&&&&&&&&&X\\ \hline
 	\hline
 	\end{tabular}
 	\caption{Requirements Traceability Matrix Part 3}
