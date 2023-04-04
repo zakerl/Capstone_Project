@@ -948,16 +948,19 @@ The following tables list all the unit testing cases and lays out the template f
 \hline
 2 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk for 10 seconds while wearing the device, then stop. & "HeartBeat Detected. BPM: 70”. \\  
 \hline
-3 & bed\_MPU\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” \\  
+3 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on, and shake the watch without anyone wearing it. & "HeartBeat Not Detected." \\  
 \hline
-4 & bed\_MPU\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” \\ 
+4 & bed\_MPU\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” \\  
 \hline
-5 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & No action & Black screen on \\ 
+5 & bed\_MPU\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” \\ 
 \hline
-6 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up.\\ 
+6 & bed\_MPU\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk & “Stepcount: 13” \\ 
 \hline
-7 & bed\_splash\_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "Back End Developers" \\ 
+7 & bed\_MPU\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Stay still & “Stepcount: 0” \\ 
 \hline
+8 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & No action & Black screen on \\ 
+\hline
+
 \end{tabular}
 \end{table}
 \end{center}
@@ -968,43 +971,37 @@ The following tables list all the unit testing cases and lays out the template f
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} \\
 \hline
+9 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up.\\ 
+\hline
+10 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 non-adjacent bezels in counter clock-wise direction with 2 seconds of delay inbetween. & Selection goes up.\\ 
+\hline
+11 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up.\\ 
+\hline
+12 & bed\_splash\_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "Back End Developers" \\ 
+\hline
+13 & bed\_display\_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. \\ 
+\hline
+14 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. \\ 
+\hline
+15 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No\\ 
+\hline
+16 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation. & Prompt text color is white while background is black.\\ 
+\hline
+17 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port. & UI displays green dot.\\ 
+\hline
+18 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device. & "March 5th, 16:21".\\ 
+\hline
+19 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "March 5th, 16:23". \\ 
+\hline
+20 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". \\ 
+\hline
+21 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction. & 1 \\ 
+\hline
+22 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. \\ 
+\hline
+23 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved.\\ 
+\hline
 
-8 & bed\_display\_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. \\ 
-\hline
-9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. \\ 
-\hline
-10 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No\\ 
-\hline
-11 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation. & Prompt text color is white while background is black.\\ 
-\hline
-12 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port. & UI displays green dot.\\ 
-\hline
-13 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device. & "March 5th, 16:21".\\ 
-\hline
-14 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "March 5th, 16:23". \\ 
-\hline
-15 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". \\ 
-\hline
-16 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction. & 1 \\ 
-\hline
-17 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. \\ 
-\hline
-18 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved.\\ 
-\hline
-19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes.\\ 
-\hline
-20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. \\ 
-\hline
-21 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
-\hline
-22 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
-\hline
-23 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears. \\ 
-\hline
-24 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears.\\ 
-\hline
-25 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button. & Only heart rate graph appears. \\ 
-\hline
 \end{tabular}
 \end{table}
 \end{center}
@@ -1015,24 +1012,37 @@ The following tables list all the unit testing cases and lays out the template f
 \hline
 \textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} \\
 \hline
-
-26 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
+24 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes.\\ 
 \hline
-27 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears.\\ 
+25 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. \\ 
 \hline
-28 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
+26 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
 \hline
-29 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears.\\ 
+27 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
 \hline
-30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" \\ 
+28 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears. \\ 
 \hline
-31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. \\ 
+29 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears.\\ 
 \hline
-32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes.\\ 
+30 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button. & Only heart rate graph appears. \\ 
 \hline
-33 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. \\ 
+31 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
 \hline
-34 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button. & Data view window appears and main window closes.\\ 
+32 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears.\\ 
+\hline
+33 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
+\hline
+34 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears.\\ 
+\hline
+35 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" \\ 
+\hline
+36 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. \\ 
+\hline
+37 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes.\\ 
+\hline
+38 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. \\ 
+\hline
+39 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button. & Data view window appears and main window closes.\\ 
 \hline
 \end{tabular}
 \end{table}
@@ -1045,48 +1055,65 @@ Section \hyperref[6.2]{6.2} outlines the relevant functional requirements per ea
 \subsection{Traceability Between Unit Test Cases and Requirements}\label{6.5}
 
 \noindent
-\begin{table}
+\begin{table} [H]
   \centering
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
     \hline
                  & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR1} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR14} \\
     \hline
     \textbf{1}  &X                    &                     &                     &                     &                       &                       &                       & \\ \hline
-    \textbf{2}  &X                     &                     &                     &                     &                       &                       &                       &                   \\ \hline
-    \textbf{3}  & X                    &                   &                     &                     &                       &                       &                       & \\ \hline
-    \textbf{4}  &  X                   &                     &                     &                     &                     &                    &                       &   \\ \hline
-    \textbf{5}  &                     &                     &                     &                     &                       &X                       &                      &   \\ \hline
-    \textbf{6}  &                     &                     &                     &                     &                       &  X                     &                      & \\ \hline
-    \textbf{7}  &                    &                    &                    &                   &                       &     X                  &                       & \\ \hline
-    \textbf{8}  &                     &                     &                     &                     &                       &  X                     &                       &                     \\ \hline
-    \textbf{9}  &                     &                     & X                    &                     &                       &                       &                       & \\ \hline
-    \textbf{10} &                     &  X                   &                     &                     &                   &                  &                       & \\ \hline
-\textbf{11} &                     & X                    &                     &                     &                   &                  &                       & \\ \hline
-\textbf{12} &                     &                     &        X             &                     &                   &                  &                       & X\\ \hline
-\textbf{13} &                     &                     &       X              &                     &        X           &                  &                       & \\ \hline
-\textbf{14} &                     &                     &                     &                     &                   &     X             &                       & \\ \hline
-\textbf{15} &                     &                     &            X         &                     &     X              &                  &                       & \\ \hline
-\textbf{16} &                     &                     &                     &                     &                   &        X          &                       & \\ \hline
-\textbf{17} &                     &                     &                     &                     &                   &                  &                       & \\ \hline
-\textbf{18} &                     &                     &   X                  &                     &                   &                  &                       & \\ \hline
-\textbf{19} &                     &                     &                     &                     &                   &       X           &                       & \\ \hline
-\textbf{20} &                     &                     &        X             &                     &                   &                  &                       &X\\ \hline
-\textbf{21} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
-\textbf{22} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
-\textbf{23} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
-\textbf{24} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
-\textbf{25} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
-\textbf{26} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
-\textbf{27} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
-\textbf{28} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
-\textbf{29} &                     &                     &                     &                     &                   &                  & X                      & X\\ \hline
-\textbf{30} &                     &                     &                     &                     &                   &                  &X                       &X \\ \hline
-\textbf{31} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
-\textbf{32} &                     &                     &                     &                     &                   &X                 &                       & \\ \hline
-\textbf{33} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
-\textbf{34} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+    \textbf{2}  &X                     &                     &                     &                     &                       &                       &                       &  \\ \hline
+    \textbf{3}  &X                     &                     &                     &                     &                       &                       &                       &  \\ \hline
+    \textbf{4}  & X                    &                   &                     &                     &                       &                       &                       & \\ \hline
+    \textbf{5}  & X                    &                   &                     &                     &                       &                       &                       & \\ \hline
+    \textbf{6}  & X                    &                   &                     &                     &                       &                       &                       & \\ \hline
+    \textbf{7}  &  X                   &                     &                     &                     &                     &                    &                       &   \\ \hline
+    \textbf{8}  &                     &                     &                     &                     &                       &X                       &                      &   \\ \hline
+    \textbf{9}  &                     &                     &                     &                     &                       &  X                     &                      & \\ \hline
+    \textbf{10}  &                     &                     &                     &                     &                       &  X                     &                      & \\ \hline
+    \textbf{11}  &                     &                     &                     &                     &                       &  X                     &                      & \\ \hline
+    \textbf{12}  &                    &                    &                    &                   &                       &     X                  &                       & \\ \hline
+    \textbf{13}  &                     &                     &                     &                     &                       &  X                     &                       &                     \\ \hline
+    \textbf{14}  &                     &                     & X                    &                     &                       &                       &                       & \\ \hline
+    \textbf{15} &                     &  X                   &                     &                     &                   &                  &                       & \\ \hline
   \end{tabular}
-  \caption{Module Traceability Matrix}
+  \caption{Unit Test Traceability Matrix Pt 1}
+  \label{Table:A_Mod_trace}
+\end{table}
+
+\noindent
+\begin{table} [H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+                 & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR1} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR14} \\
+    \hline
+\textbf{16} &                     & X                    &                     &                     &                   &                  &                       & \\ \hline
+\textbf{17} &                     &                     &        X             &                     &                   &                  &                       & X\\ \hline
+\textbf{18} &                     &                     &       X              &                     &        X           &                  &                       & \\ \hline
+\textbf{19} &                     &                     &                     &                     &                   &     X             &                       & \\ \hline
+\textbf{20} &                     &                     &            X         &                     &     X              &                  &                       & \\ \hline
+\textbf{21} &                     &                     &                     &                     &                   &        X          &                       & \\ \hline
+\textbf{22} &                     &                     &                     &                     &                   &                  &                       & \\ \hline
+\textbf{23} &                     &                     &   X                  &                     &                   &                  &                       & \\ \hline
+\textbf{24} &                     &                     &                     &                     &                   &       X           &                       & \\ \hline
+\textbf{25} &                     &                     &        X             &                     &                   &                  &                       &X\\ \hline
+\textbf{26} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{27} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{28} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{29} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{30} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{31} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{32} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{33} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{34} &                     &                     &                     &                     &                   &                  & X                      & X\\ \hline
+\textbf{35} &                     &                     &                     &                     &                   &                  &X                       &X \\ \hline
+\textbf{36} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+\textbf{37} &                     &                     &                     &                     &                   &X                 &                       & \\ \hline
+\textbf{38} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+\textbf{39} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+  \end{tabular}
+  \caption{Unit Test Traceability Matrix Pt 2}
   \label{Table:A_Mod_trace}
 \end{table}
 

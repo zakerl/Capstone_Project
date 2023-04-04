@@ -18,6 +18,15 @@
     linkcolor=red,
     urlcolor=blue
 }
+
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 \renewcommand{\familydefault}{\sfdefault}
 \input{../../Comments}
 \input{../../Common}
@@ -36,12 +45,13 @@
 
 \begin{document}
 
-\title{System Design for \progname{}} 
+\title{\textbf{System Design for \progname{}} \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../../logo.jpg}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 \author{\authname}
 \date{\today}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
@@ -49,8 +59,10 @@
 \begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-18 January 2023 & 1.0 & Initial documentation\\
-15 March 2023 & 2.0 & Modified and proofread for Revision 1 \\
+2023-01-18 & 1.0 & Initial documentation\\
+2023-03-15 & 2.0 & Modified and proofread for Revision 1 \\
+2023-03-25 & 2.1 & Incorporated TA feedback \\
+2023-04-04 & 2.2 & Added logo and style to the document \\
 \bottomrule
 \end{tabularx}
 
@@ -110,17 +122,17 @@ The Back End Developers hope this document serves as a useful guide for anyone i
 In general, engineering design documentation is a set of documents that outline the detailed specifications for an engineering project. It describes the design of the project, including its requirements, the materials to be used, the processes involved, the safety and environmental considerations, and the estimated costs. The purpose of engineering design documentation is to provide a comprehensive record of the project that can be consulted by engineers, oversight bodies, and other stakeholders throughout the project’s life cycle.\\
 
 This documentation includes technical drawings, process diagrams, system and component specifications, and relevant schematics and images. It also provides a basis for quality control and assurance, as well as a way to track progress and identify potential areas of improvement. It is an essential part of any engineering project, as it ensures that all stakeholders have a clear understanding of the project and the necessary steps for its successful completion.\\
-
+\newpage
 This project currently has the current pieces of design documentation available:
 
 \begin{itemize}
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statment and Goals}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{System Requirements Specification}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
-	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/ProblemStatementAndGoals/Team1_ProblemStatement\%20\%26\%20Goals.pdf}{Problem Statment and Goals}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{System Requirements Specification}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}
+	\item \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}
 \end{itemize}
 
 \section{Scope}
@@ -128,7 +140,6 @@ This project currently has the current pieces of design documentation available:
 This system in theory is very simple. An array of sensors grabs info regarding the position, speed, orientation, etc. and uses that information to understand the current state of the user. This data is then used to generate prompts that the user will answer and all the collected data is compiled, processed and stored within the system. Finally, researchers will analyze the collected data and generate observations. \\
 
 \begin{figure}[H]
-
 \begin{center}
  \includegraphics[width=.95\textwidth]{System Context Diagram}
 \caption{System Context}
@@ -153,11 +164,7 @@ Refer to Section \ref{dEC}
 \subsection{Connection Between Requirements and Design} \label{SecConnection}
 
 \begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
+	\begin{tabular}{|p{3cm} | p{12cm}| }
 		 \hline
 		 \textbf{Requirement} & \textbf{Deisgn Decisions} \\
 		\hline
@@ -175,7 +182,7 @@ Refer to Section \ref{dEC}
 		\hline 
 		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{7}& Using the device manager module and the SD card module data can be extracted and read locally by the researcher. Once read using the grapical plotter module the data can be analyzed in graphical format or extracted in raw format through an encrypted *.csv file. \\
 		\hline
-	\end{tabularx}
+	\end{tabular}
 \caption{\label{Hardware User Interface}Components of Hardware UI}  
 \end{table}
 
@@ -241,6 +248,7 @@ The device is worn by a participant on the wrist for measuring activity and gene
 		\label{DisplayTime} 
 	\end{center}
 \end{figure}
+\newpage
 
 \subsection{Software User Interface}
 
@@ -290,7 +298,7 @@ For more examples of the Software User Unterface, refer to Appendix \ref{Softwar
 
 \section{Design of Hardware}
 
-The touch sensor shown in figures 7, 8, and 9 will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
+The touch bezels shown in figures 7, 8, and 9 will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
 
 \begin{figure}[H]
 	\begin{center}
@@ -331,7 +339,7 @@ The touch sensor shown in figures 7, 8, and 9 will be used as a bezel to navigat
 		\label{PCBBOTTOM} 
 	\end{center}
 \end{figure}
-
+\newpage
 Refer to Appendix \ref{MechHardware} for individual CAD designs.\\
 
 The following list of items will be custom designed and fabricated:
@@ -450,7 +458,7 @@ The following table outlines the project timeline for revision 0 demonstration:
 
 \begin{figure}[H]
 	\begin{center}
-		 \includegraphics[width=1\textwidth]{Record}
+		 \includegraphics[width=0.9\textwidth]{Record}
 		\caption{Record Window}
 		\label{Record} 
 	\end{center}
@@ -458,7 +466,7 @@ The following table outlines the project timeline for revision 0 demonstration:
 
 \begin{figure}[H]
 	\begin{center}
-		 \includegraphics[width=0.5\textwidth]{login}
+		 \includegraphics[width=0.4\textwidth]{login}
 		\caption{Login Page}
 		\label{Login} 
 	\end{center}
@@ -473,19 +481,20 @@ The following table outlines the project timeline for revision 0 demonstration:
 \end{figure}
 \section{Hardware Interface}
 \label{MechHardware}
-\begin{figure}[H]
-	\begin{center}
-		 \includegraphics[width=0.5\textwidth]{BezelCAD}
-		\caption{CAD Model of Touch Sensor (Bezel)}
-		\label{BezelCAD} 
-	\end{center}
-\end{figure}
 
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{DisplayCaseCAD}
 		\caption{CAD Model of Case for TFT Display}
 		\label{DisplayCaseCAD} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=0.5\textwidth]{BezelCAD}
+		\caption{CAD Model of Touch Sensor (Bezel)}
+		\label{BezelCAD} 
 	\end{center}
 \end{figure}
 
@@ -500,7 +509,7 @@ The following table outlines the project timeline for revision 0 demonstration:
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=1\textwidth]{Hardware}
-		\caption{Hardware Design}
+		\caption{Overall Hardware Design}
 		\label{Hardware} 
 	\end{center}
 \end{figure}
@@ -552,13 +561,9 @@ The following table outlines the project timeline for revision 0 demonstration:
 
 \section{Electrical Components}
 \begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
+	\begin{tabular}{| p{4cm} | p{12cm} |}
 		 \hline
-		 \textbf{Module from schematic} & \textbf{Electrical component}\\
+		 \textbf{Module} & \textbf{Electrical component}\\
 		\hline
 		 MPU 6050  & \begin{itemize}
 						\item{Capacitors (2nF, 10nF, 100nF)}
@@ -575,24 +580,24 @@ The following table outlines the project timeline for revision 0 demonstration:
 						\item{Resistors (4.7k ohms)}
 					\end{itemize}\\
 		 \hline
-		 microSD Card Module & \begin{itemize}
+		 microSD Card & \begin{itemize}
 						\item{Capacitors (100nF)}
 						\item{Resistors (10k ohms)}
 					\end{itemize}\\
 		 \hline
-		 LiPo Battery Module  & \begin{itemize}
+		 LiPo Battery & \begin{itemize}
 						\item{Capacitors (100nF, 10uF)}
 						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
 						\item{FS8205 MOSFET}
 					\end{itemize}\\
 		 \hline
-	\end{tabularx}
+	\end{tabular}
 \caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
 \end{table}
 
 \section{Communication Protocols}
 
-N/A
+Bluetooth communication was implemented using socket programming in Python. The library \href{https://github.com/pybluez/pybluez}{PyBluez} was used to initialize sockets and to establish the connection between the host computer and the device. The host computer directly connects to the device securely using a pin, and data is grabbed from the onboard microSD card and transferred to the computer using bluetooth-serial communication. Bluetooth was also used to send various data to the device including configuration files, formatting SD card, and resetting device.
 
 \section{Reflection}
 
