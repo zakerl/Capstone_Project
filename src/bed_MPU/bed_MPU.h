@@ -5,6 +5,8 @@
 #define MPU_CALIBRATION 4000
 #define THIRTY_SECONDS 30000
 #define FIVE_SECONDS 5000
+#define ACCEL_SENSITIVITY 0.5 // Standard value: 2
+#define GYRO_SENSITIVITY 1 // Standard value: 1
 
 // Tracks the total number of steps over the course of the EMA period.
 uint16_t TOTAL_STEP = 0;

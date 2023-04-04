@@ -95,22 +95,22 @@ int32_t bed_MPU_detect() {
     //  Serial.print("Gz: ");
     //  Serial.println(curr_gz);
     
-    if (curr_ax > avg_ax+2 || avg_ax-2 > curr_ax) {
+    if (curr_ax > avg_ax+ACCEL_SENSITIVITY || avg_ax-ACCEL_SENSITIVITY > curr_ax) {
       flag_ax = 1;
     }
-    if (curr_ay > avg_ay+2 || avg_ay-2 > curr_ay) {
+    if (curr_ay > avg_ay+ACCEL_SENSITIVITY || avg_ay-ACCEL_SENSITIVITY > curr_ay) {
       flag_ay = 1;
     }
-    if (curr_az > avg_az+2 || avg_az-2 > curr_az) {
+    if (curr_az > avg_az+ACCEL_SENSITIVITY || avg_az-ACCEL_SENSITIVITY > curr_az) {
       flag_ax = 1;
     }
-    if (curr_gx > 1 || -1 > curr_gx) {
+    if (curr_gx > GYRO_SENSITIVITY || -GYRO_SENSITIVITY > curr_gx) {
       flag_gx = 1;
     }
-    if (curr_gy > 1 || -1 > curr_gy) {
+    if (curr_gy > GYRO_SENSITIVITY || -GYRO_SENSITIVITY > curr_gy) {
       flag_gy = 1;
     }
-    if (curr_gz > 1 || -1 > curr_gz) {
+    if (curr_gz > GYRO_SENSITIVITY || -GYRO_SENSITIVITY > curr_gz) {
       flag_gz = 1;
     }
     
@@ -173,7 +173,7 @@ int32_t bed_MPU_detect() {
     flag_reset_count++;
     MPULooptime = currentTime;
   }
-  if(stepcount >= 30){
+  if(step_count >= 30){
     activity_flag = 1;
   }
   if(activity_flag && (currentTime - activity_timeout > FIVE_SECONDS)){
