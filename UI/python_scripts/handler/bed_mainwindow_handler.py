@@ -1,3 +1,8 @@
+'''==========================================
+ Title:  BED UI main code
+ Author: Nish Shah
+ Date:   4 April 2023
+=========================================='''
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
