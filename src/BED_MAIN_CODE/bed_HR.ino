@@ -1,3 +1,8 @@
+/*==========================================
+ Title:  BED Bluetooth Header for ESP32 
+ Author: Jonathan Hai
+ Date:   4 April 2023
+==========================================*/
 #include "bed_HR.h"
 PulseSensorPlayground pulseSensor;  /* Creates an object */
 int Signal; 
