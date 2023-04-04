@@ -7,6 +7,6 @@ Packages installed in python (UI side) has some issues sometimes while setting u
 
 To usually fix the "module not found, import error", follow theese steps:
 
-Add init.py to both python_scripts as well as python_pyqt directories.
-Run setup.py from python_pyqt using the following command: python setup.py install
-Repeat for python_scripts, run python setup.py install
+1) Add init.py to both python_scripts as well as python_pyqt directories.
+2) Run setup.py from python_pyqt using the following command: python setup.py install
+3) Repeat for python_scripts, run python setup.py install
