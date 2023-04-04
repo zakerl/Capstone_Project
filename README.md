@@ -20,6 +20,6 @@ To make the device much smaller and like a smart watch that can be worn by parti
 The final functional version of the product is shown below, it has a display and a touch sensor (metal strips) to navigate the display.
 
  <p align="center">
-  <img src="https://github.com/zakerl/Capstone_Project/blob/main/refs/EMAnator.jpg" width="350" title="hover text">
+  <img src="https://github.com/zakerl/Capstone_Project/blob/main/refs/EMAnator.jpg" width="250" title="hover text">
 </p>
 
