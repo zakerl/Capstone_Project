@@ -1,3 +1,8 @@
+'''==========================================
+ Title:  BED UI login code
+ Author: Nish Shah, Jessica Bae
+ Date:   4 April 2023
+=========================================='''
 import os
 from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
