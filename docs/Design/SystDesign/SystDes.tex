@@ -9,6 +9,8 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{helvet}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -16,7 +18,7 @@
     linkcolor=red,
     urlcolor=blue
 }
-
+\renewcommand{\familydefault}{\sfdefault}
 \input{../../Comments}
 \input{../../Common}
 
@@ -44,10 +46,11 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-18 January 2023 & 1.0 & Revision 0 for System Design\\
+18 January 2023 & 1.0 & Initial documentation\\
+15 March 2023 & 2.0 & Modified and proofread for Revision 1 \\
 \bottomrule
 \end{tabularx}
 
@@ -133,9 +136,6 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 \end{center}
 \end{figure}
 
-\wss{Include a figure that show the System Context (showing the boundary between
-your system and the environment around it.)}
-
 \section{Project Overview}
 
 \subsection{Normal Behaviour}
@@ -163,7 +163,7 @@ Refer to Section \ref{dEC}
 		\hline
 		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}  & The user will be reminded to charge the device during their introduction to the device and a LiPo for longer battery life. \\		 
 		\hline
-		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2} & The device integrates the heartrate sensor and the MPU accelerometer on the same pcb. Using them together in a sensor array module minor movements of the user can be tracked and then stored in the database. \\
+		R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2} & The device integrates the heartrate sensor and the MPU accelerometer on the same PCB. Using them together in a sensor array module minor movements of the user can be tracked and then stored in the database. \\
 		\hline
 		 R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3} & Using the same sensor integration above the user is prompted based on researcher defined thresholds on initial device setup which is done in the local GUI. \\
 		\hline
@@ -237,14 +237,14 @@ The device is worn by a participant on the wrist for measuring activity and gene
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{DisplayTime}
-		\caption{Display of Date/time on activity tracker.}
+		\caption{Display of date and time on activity tracker.}
 		\label{DisplayTime} 
 	\end{center}
 \end{figure}
 
 \subsection{Software User Interface}
 
-The Software User Interface will be used by the Researcher for configuring the activity tracker. The interface will be on the Host Computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the Researcher will be able to log in. The following features are available on the Software User Interface:
+The software user interface will be used by the researcher for configuring the activity tracker. The interface will be on the host computer and will be able to store participant data, create new data and view records using encryption. The interface will also have authentication, and only the researcher will be able to log in. The following features are available on the software user interface:
 
 \begin{table}[H]
 	\begin{tabularx}{1.05\textwidth} { 
@@ -259,11 +259,11 @@ The Software User Interface will be used by the Researcher for configuring the a
 		\hline
 		 Connect to tracker  & Connects to SD card for device and shows status of connection.\\
 		 \hline
-		   Create Records Window & Creates new record for particpant and stores it in a database. A record can only be created if the correct username and password is provided. \\
+		   Create records window & Creates new record for particpant and stores it in a database. A record can only be created if the correct username and password are provided. \\
 		\hline 
-		Records Window & Participant records can be viewed in a tabular format and can be searched/filtered.\\
+		Records window & Participant records can be viewed in a tabular format and can be searched/filtered.\\
 		\hline
-		Data View Window & Data stored on SD card can be viewed and filtered. Data can also be plotted using Graph button. For example: Heart Rate vs Time.\\
+		Data view window & Data stored on SD card can be viewed and filtered. Data can also be plotted using the graph button. For example: Heart rate vs time.\\
 		\hline
 	\end{tabularx}
 \caption{\label{Software User Interface}Components of Software UI}  
@@ -290,21 +290,20 @@ For more examples of the Software User Unterface, refer to Appendix \ref{Softwar
 
 \section{Design of Hardware}
 
+The touch sensor shown in figures 7, 8, and 9 will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
+
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{DisplayCase}
-		\caption{TFT Display with custom 3D printed case}
+		\caption{TFT Display with Custom 3D Printed Case}
 		\label{DisplayCase} 
 	\end{center}
 \end{figure}
 
-
-The touch sensor shown below will be used as a bezel to navigate options on the activity tracker. The wires connected to each segment send a corresponding signal which can be used to navigate options and select a response.
-
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.6\textwidth]{TouchSensor}
-		\caption{Circuit of custom built reactive touch sensor}
+		\caption{Circuit of Custom Built Reactive Touch Sensor}
 		\label{TouchSensor} 
 	\end{center}
 \end{figure}
@@ -312,7 +311,7 @@ The touch sensor shown below will be used as a bezel to navigate options on the 
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{WatchCAD}
-		\caption{CAD Assembly of Touch Bezel, Display case and TFT Display}
+		\caption{CAD Assembly of Touch Bezel, Display Case and TFT Display}
 		\label{WatchCAD} 
 	\end{center}
 \end{figure}
@@ -328,7 +327,7 @@ The touch sensor shown below will be used as a bezel to navigate options on the 
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{PCBBOTTOM}
-		\caption{Bottom view of Custom PCB (Lipo battery holder and SD card slot)}
+		\caption{Bottom view of Custom PCB}
 		\label{PCBBOTTOM} 
 	\end{center}
 \end{figure}
@@ -338,8 +337,8 @@ Refer to Appendix \ref{MechHardware} for individual CAD designs.\\
 The following list of items will be custom designed and fabricated:
 \begin{itemize}
 \item{Custom PCB designed using \href{https://easyeda.com/}{Easy EDA} and fabricated using \href{https://jlcpcb.com/}{JLCPCB}}
-\item{3D printed casing for TFT Display/activity tracker.}
-\item{Touch sensor (bezel) to navigate activity tracker.}
+\item{3D printed casing for TFT display/activity tracker.}
+\item{Touch sensor (bezel) to navigate through activity tracker.}
 \end{itemize}
 
 Refer to table \ref{DesignHardware} in Appendix for detailed information on high-level hardware components used.
@@ -348,13 +347,15 @@ Refer to table \ref{DesignHardware} in Appendix for detailed information on high
 
 The schematic/circuit diagrams shown below are used to generate the PCB layout. It consists of the following modules:
 \begin{itemize}
-\item Seeduino Micro-controller
-\item Touch sensor module
-\item IO Expander
+\item ESP32-WROOM microcontroller
+\item Touch sensor
+\item Voltage regulator circuit
+\item Battery protection circuit
 \item RTC
-\item MPU 6050
-\item SD card module
-\item Lipo module
+\item MPU 6050 accelerometer
+\item MicroSD card
+\item LiPo battery
+\item Pulse Sensor heartrate
 \end{itemize}
 
 \begin{figure}[H]
@@ -365,7 +366,7 @@ The schematic/circuit diagrams shown below are used to generate the PCB layout. 
 	\end{center}
 \end{figure}
 
-The custom designed PCB is shown below.
+The custom designed PCB is shown in figure 13.
 
 \begin{figure}[H]
 	\begin{center}
@@ -379,8 +380,7 @@ Refer to table \ref{DesignElectrical} in Appendix for detailed information on el
 
 \section{Design of Communication Protocols}
 
-There are 2 standard communication protocols that are used in the project, I2C and SPI.
-The following modules use I2C communication protocol:
+There are two standard communication protocols that are used in the project, I2C and SPI. The following modules use I2C communication protocol:
 \begin{itemize}
 \item Code for RTC using I2C communication.
 \item TFT display driver.
@@ -391,35 +391,50 @@ The IO expander module uses SPI communication protocol.
 
 \section{Timeline}
 
-The project timeline shown below as per important tasks/modules are required for the implementation of the Revision 0 demonstration:
+The following table outlines the project timeline for revision 0 demonstration:
 
 \begin{table}[H]
-	\begin{tabularx}{1.05\textwidth} { 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X 
-		  | >{\centering\arraybackslash}X | }
+\caption{\label{Timeline}Timeline of project Pt. 1}  
+	\begin{tabular}{ | p{2.25cm} | p{4cm} |  p{3.5cm} | p{5.5cm} |}
 		 \hline
-		 \textbf{Timeline} & \textbf{Project Task} & \textbf{Team member(s) responsible and duties} & \textbf{Description}\\
+		 \textbf{Timeline} & \textbf{Project Task} & \textbf{Member} & \textbf{Responsibilities}\\
 		 \hline
-		Dec 2022 - Jan 2023 & Software UI and functionality & Labeeb Zaker (backend), Nish Shah (frontend) & User friendly UI implemented with authentication and encryption working. \\
+		Dec 2022\newline- Jan 2023 & Front end software UI and functionality & Labeeb Zaker & Designing user friendly UI implementation. All UI design should be completed by the end of January.\\
 		\hline
-		Jan 2022 & Database Management and writing to SD card & Nish Shah (DBMS), Jessica Bae (Communication protocols) & Implement database with Software UI to read, store and write data. Storing data read from sensor in proper format on SD card.\\
+		Dec 2022\newline- Jan 2023 & Back end software UI and functionality & Jessica Bae & Implement authentication and encryption functionalities. Both funtionalities should be completed and cause no error. \\
 		\hline
-		Dec 2022- Jan 2023 & PCB schematic design & Anish Rangarajan (General schematics), Jessica Bae (SDCARD module), Jonathan Hai (Lipo module) & Implement schematics for different modules in PCB. \\
+		Jan 2023 & Database management & Nish Shah & Implement database with software UI to read, store and write data. The UI should be able to fully interact with the database based on its implemented buttons.\\
 		\hline
-		Dec 2022 - Jan 2023 & PCB layout design & Anish Rangarajan  & Implement layout of PCB with proper routing.\\
+		Jan 2023 & UI and device connection & Nish Shah &Implement bluetooth connection and microSD connection between UI and device. MicroSD functionality should be completed. However, bluetooth functionality can be done after revision 0.\\
 		\hline
-		Nov 2022 & Display drivers/CAD models & Labeeb Zaker (Drivers), Anish Rangarajan (CAD) & Display drivers for LCD display and CAD models for device.\\
+		Dec 2022\newline- Jan 2023 & Accelerometer PCB schematic design & Anish Rangarajan & Implement schematics for accelerometer and gyroscope module in PCB. Schematic should be complete for PCB manufacturing.\\
 		\hline
-		Dec 2022 -Feb 2023 & Integration of all sensor modules & Jonathan Hai, Oliver Foote & Integrate all sensors and systems and create test benches to check correct 			functionality.\\
+		Dec 2022\newline- Jan 2023 & microSD PCB schematic design & Jessica Bae & Implement the circuitry for microSD module in PCB. Schematic should be complete for PCB manufacturing.\\
 		\hline
-			Jan-March 2023 & Fabrication of PCB and Testing  & Jessica Bae, Oliver Foote & Fabricating PCB and System-wide testing on PCB based on \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnVPlan} \\
+		Dec 2022\newline- Jan 2023 & LiPo battery PCB schematic design & Jonathan Hai & Implement the circuitry of LiPo battery module for PCB. Schematic should be complete for PCB manufacturing.\\
 		\hline
-		Continuous development till March 2023 & Documentation & All team members & Various project documentations. \\
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{\label{Timeline}Timeline of project Pt.2}  
+	\begin{tabular}{ | p{2.25cm} | p{4cm} |  p{3.5cm} | p{5.5cm} |}
+		 \hline
+		 \textbf{Timeline} & \textbf{Project Task} & \textbf{Member} & \textbf{Responsibilities}\\
+		 \hline
+		Dec 2022\newline - Jan 2023 & PCB layout design & Anish Rangarajan  & Implement PCB layout with proper routing. The layout should be complete for PCB manufacturing.\\
 		\hline
-	\end{tabularx}
-\caption{\label{Timeline}Timeline of project}  
+		Nov 2022 & Display driver& Labeeb Zaker & Display driver for the device should be able to handle displaying time and prompt, as required per revision 0.\\
+		\hline
+		Nov 2022 & Device frame CAD model & Anish Rangarajan & CAD models for device frame.\\
+		\hline
+		 February 1 2023\newline- Feb 6 2023 & Integration of all sensor modules & Jonathan Hai, Oliver Foote & Integrate all sensors and systems and create test benches to check correct functionality.\\
+		\hline
+			Jan 2023 \newline-March 2023 & PCB testing  & Jessica Bae, Oliver Foote & Performing system-wide testing on PCB based on \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnVPlan} \\
+		\hline
+		Continuous untill April 2023 & Documentation & All team members & Complete all documentation.\\
+		\hline
+	\end{tabular}
 \end{table}
 
 
@@ -432,21 +447,6 @@ The project timeline shown below as per important tasks/modules are required for
 
 \section{Software Interface}
 \label{Software_UI}
-\begin{figure}[H]
-	\begin{center}
-		 \includegraphics[width=0.8\textwidth]{Config}
-		\caption{Configuration Window}
-		\label{Config} 
-	\end{center}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{center}
-		 \includegraphics[width=0.5\textwidth]{CreateRecord}
-		\caption{Create Record Window}
-		\label{CreateRecord} 
-	\end{center}
-\end{figure}
 
 \begin{figure}[H]
 	\begin{center}
@@ -459,16 +459,8 @@ The project timeline shown below as per important tasks/modules are required for
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{login}
-		\caption{Login Dialogue box}
+		\caption{Login Page}
 		\label{Login} 
-	\end{center}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{center}
-		 \includegraphics[width=1\textwidth]{DataView}
-		\caption{Data View Window}
-		\label{DataView} 
 	\end{center}
 \end{figure}
 
@@ -479,12 +471,12 @@ The project timeline shown below as per important tasks/modules are required for
 		\label{Graph} 
 	\end{center}
 \end{figure}
-\section{Mechanical Hardware}
+\section{Hardware Interface}
 \label{MechHardware}
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{BezelCAD}
-		\caption{CAD model of touch sensor (bezel)}
+		\caption{CAD Model of Touch Sensor (Bezel)}
 		\label{BezelCAD} 
 	\end{center}
 \end{figure}
@@ -492,7 +484,7 @@ The project timeline shown below as per important tasks/modules are required for
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{DisplayCaseCAD}
-		\caption{CAD model of case for TFT Display}
+		\caption{CAD Model of Case for TFT Display}
 		\label{DisplayCaseCAD} 
 	\end{center}
 \end{figure}
@@ -500,8 +492,16 @@ The project timeline shown below as per important tasks/modules are required for
 \begin{figure}[H]
 	\begin{center}
 		 \includegraphics[width=0.5\textwidth]{WatchCAD2}
-		\caption{CAD model of watch assembled}
+		\caption{CAD Model of Watch Assembled}
 		\label{WatchCAD2} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		 \includegraphics[width=1\textwidth]{Hardware}
+		\caption{Hardware Design}
+		\label{Hardware} 
 	\end{center}
 \end{figure}
 
@@ -516,35 +516,33 @@ The project timeline shown below as per important tasks/modules are required for
 		 \hline
 		Custom PCB & Custom PCB designed to fit in activity tracker.  \\
 		\hline 
-		Touch sensor module & Custom touch sensor (bezel) used to interact with activity tracker.\\
+		Touch bezels & Custom 3D printed touch bezels for user interaction with the activity tracker.\\
 		\hline
-		Outer casing for TFT Display & Designed using Autodesk Inventor and 3D printed. \\
+		Outer casing for TFT display & Designed using Autodesk Inventor and 3D printed. \\
 		\hline 
 		AT42QT1070-SSUR & Off-shelf microchip for capacitive touch sensors, used in touch sensor schematic.\\
 		\hline
-		 MPU 6050 & Accelrometer/Gyroscope, off-shelf component.\\
+		 MPU 6050 & Off-shelf accelerometer and gyroscope.\\
 		\hline
-		 Seeeduino xiao samd21  & off-shelf microcontroller for activity tracker.\\
+		 ESP32-WROOM  & Off-shelf microcontroller for activity tracker.\\
 		 \hline
-		   DS1307 RTC & Real time clock, off-shelf component. \\
+		   DS1307 RTC & Off-shelf real time clock. \\
 		\hline
-		Waveshare 1.28 LCD-192 Display & Off-shelf TFT display used in activity tracker. \\
+		Waveshare 1.28 LCD-192 display & Off-shelf TFT display used in activity tracker. \\
 		\hline 
-		Pulse sensor & Plug and play Heart Rate sensor for Arduino (off-shelf component)\\
+		Pulse Sensor & Off-shelf plug and play heart rate sensor.\\
 		\hline 
-		Li-Po Battery & Generic off-shelf lipo battery used for smart watches.  \\
+		LiPo battery & Generic off-shelf LiPo battery used for smart watches.  \\
 		\hline 
-		TP4056 Li-Ion BMS & Off-shelf constant-current/constant-voltage linear charge for battery, used in Lipo schematic.\\
+		TP4056 Li-Ion BMS & Off-shelf constant-current/constant-voltage linear charge for battery, used in LiPo schematic.\\
 		\hline
-		DW01A-G & Off-shelf battery protection IC  to protect battery from overcharge, used in Lipo schematic.\\
+		DW01A-G & Off-shelf battery protection IC  to protect battery from overcharge, used in LiPo schematic.\\
 		\hline
-		USB Type-B charger & Generic off-shelf usb to Type-B charger to charge device. \\
+		USB type-B charger & Generic off-shelf usb to type-B charger to charge device. \\
 		\hline 
-		MicroSD card & Standard off-shelf SD card. \\
+		MicroSD card & Standard off-shelf microSD card. \\
 		\hline
-		SDCARD connector 473521001& MicroSD connector (off-shelf component) \\
-		\hline
-		IO Expander SX1509BIULTRT & off-shelf IO Expander used in PCB.  \\
+		SDCARD connector 473521001& Off-shelf microSD connector. \\
 		\hline 
 		Watch straps & Generic watch-straps for strapping device onto the wrist. \\
 		\hline 
@@ -572,34 +570,29 @@ The project timeline shown below as per important tasks/modules are required for
 						\item{Resistors (470 ohms, 10k ohms)}
 					\end{itemize}\\
 		 \hline
-		 IO Expander   & \begin{itemize}
-						\item{Capacitors (100nF)}
-						\item{Resistors (10k ohms)}
-					\end{itemize}\\
-		 \hline
 		 RTC  & \begin{itemize}
 						\item{Capacitors (15pF, 100nF)}
 						\item{Resistors (4.7k ohms)}
 					\end{itemize}\\
 		 \hline
-		 SD CARD Module   & \begin{itemize}
+		 microSD Card Module & \begin{itemize}
 						\item{Capacitors (100nF)}
 						\item{Resistors (10k ohms)}
 					\end{itemize}\\
 		 \hline
-		 Lipo Module  & \begin{itemize}
+		 LiPo Battery Module  & \begin{itemize}
 						\item{Capacitors (100nF, 10uF)}
 						\item{Resistors (100 ohms, 1k ohms, 1.2k ohms)}
 						\item{FS8205 MOSFET}
 					\end{itemize}\\
-		 \hline
-		 LEDs  & Various LEDs in modules used to identify status of operation.\\
 		 \hline
 	\end{tabularx}
 \caption{\label{DesignElectrical}Electrical Components of modules from PCB schematic}  
 \end{table}
 
 \section{Communication Protocols}
+
+N/A
 
 \section{Reflection}
 
@@ -614,7 +607,7 @@ This is a difficult question to answer. Given unlimited resources, the Back End 
 
 There are many forms of "resources" that have to be managed during an engineering project. Cost, time, testing opportunities, and many more constraining factors can be considered resources. Let us consider cost and time, as those have the largest and most obvious impacts on the project.\\
 
-Given an unlimited budget, the face of the EMAnator likely would have been a touchscreen, as the cost of a touchscreen was prohibitively high and we had to find a workaround using nearby capacitive touch sensors instead. In addition, the we would have kept ordering test PCBs of our designs as we iterated through different version. This would have allowed us to test individual components and wiring routes as we constructed the final design. As cost was limited, we have to finish the whole design first, and proceed to order a very limited number of test PCBs on which we must test all aspects of our design. We will then revise the design to compensate for issues found on the test boards, order the final set, and pray that they work as intended. We would also consider added an operating system to the device to make it "smart". Currently our device has a very limited number of functions that fit tightly into our requirements. An OS would enable us to expand the functionality of our device beyond its current borders.\\
+Given an unlimited budget, the face of the EMAnator likely would have been a touchscreen, as the cost of a touchscreen was prohibitively high and we had to find a workaround using nearby capacitive touch sensors instead. In addition, we would have kept ordering test PCBs of our designs as we iterated through different versions. This would have allowed us to test individual components and wiring routes as we constructed the final design. As cost is limited, we have to finish the whole design first, and proceed to order a very limited number of test PCBs on which we must test all aspects of our design. We will then revise the design to compensate for issues found on the test boards, order the final set, and pray that they work as intended. We would also consider adding an operating system to the device to make it "smart". Currently our device has a very limited number of functions that fit tightly into our requirements. An OS would enable us to expand the functionality of our device beyond its current borders.\\
 
 If the design could have taken place over an infinite amount of time, there are additional possibilities that we could consider. Primarily, we could investigate using and shrinking down a more powerful microcontroller. Currently, the type of microcontroller that we can use is extremely limited in its capabilities. However if we wish to upgrade to a more powerful one (e.g. a Raspberry Pi), we would have to place a large number of auxiliary components necessary for the functioning of the more powerful (and more needy) processor. This would have taken a large amount of time; as finding reasonable space on a PCB and routing components like these is notoriously time consuming.\\
 
@@ -642,7 +635,7 @@ During the initial phases of the design process, we encouraged each other to thr
 \item Waist-Mounted Activity Tracker\\
 	Pros:
 	\begin{itemize}
-		\item Being close to the core of the user, the maximum weight weight of the device can be greatly increased.
+		\item Being close to the core of the user, the maximum weight of the device can be greatly increased.
 		\item Easy access to those with difficulty bending over, or with other movement related issues.
 	\end{itemize}
 	Cons:

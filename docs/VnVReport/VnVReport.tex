@@ -26,26 +26,39 @@
 }
 \usepackage[round]{natbib}
 \graphicspath{ {./docs/VNVReport} }
+
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 \renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname}
+\title{\textbf{Verification and Validation Report: \progname} \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 \author{\authname}
 \date{\today}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{2.2cm}p{1.4cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  March 8th 2023              & 1.0           & Initial Documentation       \\
+  2023-03-08              & 1.0           & Initial Documentation       \\
+  2023-03-17		&2.0		& Modified requirements and traceability tables to match VnV Plan \\
+2023-04-04 & 2.1 & Incorporated TA feedback \\
+2023-04-04 & 2.2 & Added logo and style to the document \\
   \bottomrule
 \end{tabularx}
 
@@ -147,7 +160,7 @@ Below are some derived units that do not use a specific SI symbol.
 \newpage
 
 \tableofcontents
-
+\newpage
 \listoftables %if appropriate
 
 \listoffigures %if appropriate
@@ -487,20 +500,6 @@ These tests were performed to test the safety of the device concerning electrica
 
   \textbf{Observed Results}: As expected, respective LED was lit to indicate low voltage.
 
-  \item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
-
-  \textbf{Initial State}: Device begins in "OFF" mode.
-
-  \textbf{Input}: Device is turned on in normal operating state.
-
-  \textbf{Expected Results}: Frequency analysis conducted on the circuitry components.
-
-  Test Case Derivation: N/A
-
-  \textbf{How test was performed}: Using a frequency analysis software such as NI Multisim and an oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
-
-  \textbf{Observed Results}: Multisim graph of detected frequencies had expected values.
-
 \end{enumerate}
 
 \subsection{Re-usability}
@@ -524,12 +523,7 @@ These tests evaluate the re-usability of various hardware systems of the device.
   \textbf{How test was performed}: Battery component was isolated from the device and fully charged and discharged couple times.
 
   \textbf{Observed Results}: Battery was fully charged and device was safe to use.\\
-\begin{figure}
-\centering
-  \includegraphics{battery_level}
-	\caption{The battery levels in a span of 24 hours}
-\label{fig:battery_level}
-\end{figure}
+
   \item{\textbf{RT\_2: Battery Charge Protection}}\label{RT2}
 
   \textbf{Initial State}: Battery is fully charged.
@@ -540,7 +534,7 @@ These tests evaluate the re-usability of various hardware systems of the device.
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Battery component was isolated from device and fully charged. The batter was then plugged in to the charger for couple of minutes.
+  \textbf{How test was performed}: Battery component was isolated from device and fully charged. The battery was then plugged in to the charger for 5 minutes.
 
   \textbf{Observed Results}: Battery was not being overcharged nor overheated, thus device was safe to use.
 
@@ -687,6 +681,12 @@ BATTERY\_LIFE: 24 Hours
 \caption{Battery Performance Testing Data}
 \end{table}
 
+\begin{figure} [H]
+\centering
+  \includegraphics{battery_level}
+	\caption{The battery levels in a span of 24 hours}
+\label{fig:battery_level}
+\end{figure}
 
 \end{enumerate}
 
@@ -710,6 +710,20 @@ These tests were designed to test the security of the system and the accessibili
 
   \textbf{Observed Results}: Databases couldn't be accessed and was prompting for a security key, implying the database is safe.
 
+  \item{\textbf{DSQT\_2: Data Storage Selection Test}}\label{DSQT2}
+
+  \textbf{Initial State}: Device is powered on.
+
+  \textbf{Input}: Less than 3 seconds of limping from tester.
+
+  \textbf{Expected Results}: Corresponding sensor data is not included in sdcard data.
+
+  Test Case Derivation: N/A
+
+  \textbf{How test was performed}: One member of Back End Developers wears the device and pretends to ”limp” for 3 seconds, to create garbage sensor data. Then sd card is inserted into a PC to examine the content.
+
+  \textbf{Observed Results}: Corresponding sensor data is not included in sdcard data.
+
 \end{enumerate}
 
 
@@ -722,7 +736,7 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
  1 & bed\_HR\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & "PulseSensor object created", LED flash per each heartbeat. & "PulseSensor object created", LED flash per each heartbeat. & Pass \\ 
 \hline
@@ -748,7 +762,7 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
 9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
 \hline
@@ -778,7 +792,7 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
 19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
 \hline
@@ -810,7 +824,7 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
 30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
 \hline
@@ -949,7 +963,7 @@ N/A
     \textbf{NFR1}  &                     &                     &                     &                     & X                     & X                     & X                     & X                     &                     \\ \hline
     \textbf{NFR12} &                     &                     &                     &                     &                       &                       & X                     &                       &                     \\ \hline
   \end{tabular}
-  \caption{ Requirements Traceability Matrix Pt1}
+  \caption{ Requirements Traceability Matrix Part 1}
   \label{Table:A_Req_trace}
 \end{table}
 
@@ -968,30 +982,30 @@ N/A
     \textbf{R5} &                     &                     &                     &                     & X                     & X                     & X                     &                       &                       &                       \\ \hline
     \textbf{R6} &                     &                     &                     &                     &                       &                       &                       & X                     & X                     & X                     \\ \hline
   \end{tabular}
-  \caption{Requirements Traceability Matrix Pt2}
+  \caption{Requirements Traceability Matrix Part 2}
   \label{Table:B_Req_trace}
 \end{table}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-                   & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[HST4]{HST4} & \hyperref[RT1]{RT1} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
+                   & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[RT1]{RT1} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
     \hline
-    \textbf{NFR2}  &                       &                       &                       &                       &                     & X                   & X                   & X                   &                     &                     &                         \\ \hline
-    \textbf{NFR3}  &                       &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                         \\ \hline
-    \textbf{NFR4}  &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
-    \textbf{NFR5}  &                       &                       &                       &                       &                     &                     &                     & X                   &                     &                     &                         \\ \hline
-    \textbf{NFR6}  & X                     & X                     & X                     & X                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR7}  &                       &                       &                       &                       & X                   &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR8}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
-    \textbf{NFR9}  &                       &                       &                       &                       &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR10} &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
-    \textbf{NFR11} & X                     & X                     & X                     & X                     & X                   &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR13} &                       &                       &                       &                       &                     &                     &                     &                     & X                   &                     &                         \\ \hline
-    \textbf{NFR14} &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
+    \textbf{NFR2}  &                       &                       &                       &                     & X                   & X                   & X                   &                     &                     &                         \\ \hline
+    \textbf{NFR3}  &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                         \\ \hline
+    \textbf{NFR4}  &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{NFR5}  &                       &                       &                       &                     &                     &                     & X                   &                     &                     &                         \\ \hline
+    \textbf{NFR6}  & X                     & X                     & X                    &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR7}  &                       &                       &                       & X                   &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR8}  &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
+    \textbf{NFR9}  &                       &                       &                       &                     & X                   &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR10} &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{NFR11} & X                     & X                     & X                    & X                   &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR13} &                       &                       &                       &                     &                     &                     &                     & X                   &                     &                         \\ \hline
+    \textbf{NFR14} &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
   \end{tabular}
-  \caption{Requirements Traceability Matrix Pt3}
+  \caption{Requirements Traceability Matrix Part 3}
   \label{Table:C_Req_trace}
 \end{table}
 \newpage
@@ -1016,7 +1030,7 @@ N/A
     \textbf{M9}  &                     &                     &                     &                     &                       &                       &                       &                       & X                   \\ \hline
     \textbf{M10} &                     &                     &                     &                     & X                     & X                     &                       & X                     &                     \\ \hline
   \end{tabular}
-  \caption{ Module Traceability Matrix Pt1}
+  \caption{ Module Traceability Matrix Part 1}
   \label{Table:A_Mod_trace}
 \end{table}
 
@@ -1039,28 +1053,28 @@ N/A
     \textbf{M9}  & X                   & X                   & X                   & X                   &                       &                       &                       &                       &                       &                       \\ \hline
     \textbf{M10} &                     &                     &                     &                     &                       &                       &                       &                       &                       &                       \\ \hline
   \end{tabular}
-  \caption{Module Traceability Matrix Pt2}
+  \caption{Module Traceability Matrix Part 2}
   \label{Table:B_Mod_trace}
 \end{table}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-                 & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[HST4]{HST4} & \hyperref[RT1]{RT1} & \hyperref[RT2]{RT2} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
+                 & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3}& \hyperref[RT1]{RT1} & \hyperref[RT2]{RT2} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
     \hline
-    \textbf{M1}  & X                     & X                     & X                     & X                     & X                   & X                   &                     &                     &                     &                     & X                   &                         \\ \hline
-    \textbf{M2}  &                       &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                     & X                       \\ \hline
-    \textbf{M3}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M4}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M5}  &                       &                       &                       & X                     &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M6}  &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M7}  &                       &                       &                       & X                     &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M8}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M9}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M10} &                       &                       &                       &                       &                     &                     & X                   & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{M1}  & X                     & X                     & X                     & X                   & X                   &                     &                     &                     &                     & X                   &                         \\ \hline
+    \textbf{M2}  &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                     & X                       \\ \hline
+    \textbf{M3}  &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M4}  &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M5}  &                       &                       &                     &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M6}  &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M7}  &                       &                       &                     &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M8}  &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M9}  &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M10} &                       &                       &                       &                     &                     & X                   & X                   &                     &                     &                     &                         \\ \hline
   \end{tabular}
-  \caption{Module Traceability Matrix Pt3}
+  \caption{Module Traceability Matrix Part 3}
   \label{Table:C_Mod_trace}
 \end{table}
 

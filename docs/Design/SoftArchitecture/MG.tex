@@ -45,11 +45,11 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{3.8cm}p{1.6cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  Date 1              & 1.0           & Notes       \\
-  Date 2              & 1.1           & Notes       \\
+  18 January 2023              & 1.0           & Initial documentation     \\
+  15 March 2023              & 2.0           & Minor improvements and proof reading for revision 1       \\
   \bottomrule
 \end{tabularx}
 
@@ -64,18 +64,18 @@ This section records information for easy reference.
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l}
   \toprule
-  \textbf{symbol} & \textbf{description}                \\
+  \textbf{Symbol} & \textbf{Description}                \\
   \midrule
-  AC              & Anticipated Change                  \\
-  DAG             & Directed Acyclic Graph              \\
+  AC              & Anticipated change                  \\
+  DAG             & Directed acyclic graph              \\
   M               & Module                              \\
   MG              & Module Guide                        \\
-  OS              & Operating System                    \\
+  OS              & Operating system                    \\
   R               & Requirement                         \\
-  SC              & Scientific Computing                \\
+  SC              & Scientific computing                \\
   SRS             & Software Requirements Specification \\
   \progname       & Explanation of program name         \\
-  UC              & Unlikely Change                     \\
+  UC              & Unlikely change                     \\
   \bottomrule
 \end{tabular}\\
 
@@ -93,9 +93,9 @@ This section records information for easy reference.
 
 \section{Introduction}
 
-This document serves as the module guide for the system currently in development by Back End Developers. It will decompose the system into modules; detailing the purpose of each individual module of the system, what resources are necessary to fulfill the requirements of each module, and the interactions between said modules. In addition, this document will list the anticipated and unlikely changes expected for the system, and the relevant traceability matrices between related components. \\
+This document serves as the module guide for the system currently in development by the Back End Developers. It will decompose the system into modules; detailing the purpose of each individual module of the system, what resources are necessary to fulfill the requirements of each module, and the interactions between said modules. In addition, this document will list the anticipated and unlikely changes expected for the system, and the relevant traceability matrices between related components. \\
 
-This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (see document from before) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
+This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (see \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SystDesign/SystDes.pdf}{SRS}) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
 
 For this document to fulfill all of these requirements specified above is a difficult task, and the content of it is likely unable to capture 100\% of the information necessary to fulfill its goals to perfection. It should be obvious that engineers are by no means omniscient, not even regarding the systems that they design themselves. However, the authors of this document will still attempt to cover the relevant content in a digestible and comprehensive way, and thank the reader for their patience and good will.\\
 
@@ -119,6 +119,8 @@ change.
     hardware on which the software is running.
   \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
     initial input data.
+  \item[\refstepcounter{acnum} \actheacnum \label{acSensor}:] The type of heartrate sensor used.
+\item[\refstepcounter{acnum} \actheacnum \label{acData}:] The use of gyroscope data.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -139,47 +141,63 @@ decisions will be changed.
 
 This section provides an overview of the module design. Modules are summarized
 in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
+below, which are leaves in the hierarchy tree, the modules that will
 actually be implemented.
 
 \begin{description}
-  \item [\refstepcounter{mnum} \mthemnum \label{mBM}:] Battery Management Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mDM}:] Device Manager Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mDS_1}:] Data Storage Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mSA}:] Sensor Array Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mBM}:] Battery Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mDS_1}:] MicroSD Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Database Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mSA1}:] Sensor Reading Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mSA2}:] Sensor Data Processing Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mSA3}:] Sensor Prompt Validity Module
   \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Display System Module
   \item [\refstepcounter{mnum} \mthemnum \label{mPG}:] Prompt Generation Module
   \item [\refstepcounter{mnum} \mthemnum \label{mRTC}:] Real Time Clock  Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mGP}:] Graph Plotter  Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPS}:] Parameter Selection Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPD}:] Physical Design Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mGP}:] Graph  Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mGP2}:] Data Display Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPS}:] Create New User Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPS2}:] Configuration Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPD}:]  Watch Straps Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPD2}:] Watch Case Module
 \end{description}
 
 
 \begin{table}[h!]
   \centering
-  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+  \begin{tabular}{|p{0.3\textwidth} | p{0.3\textwidth} |p{0.3\textwidth}  |}
     \toprule
-    \textbf{Level 1}                                      & \textbf{Level 2}         \\
+    \textbf{Level 1}        & \textbf{Level 2}        &\textbf{Level 3} \\
     \midrule
 
-    {Hardware-Hiding Module}                              & Battery Management       \\
-                                                          & Device Manager           \\
-                                                          & Data Storage             \\
-                                                          & Sensor Array             \\
-							  & Physical Design \\
+    \multirow{9}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
+\cline{2-3}
+					                                                          &  \multirow{2}{0.3\textwidth}{Data Storage}        & microSD     \\
+																		&			&Database\\
+\cline{2-3}
+					                                                          & \multirow{3}{0.3\textwidth}{Sensor Array}         & Sensor Reading    \\
+																		&			& Sensor Data Processing \\
+																		&			& Sensor Prompt Validity \\ 
+\cline{2-3}
+												  & \multirow{2}{0.3\textwidth}{Physical Design} & Watch Straps \\
+																		&			& Watch Case \\
 
     \midrule
 
-    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System           \\
-                                                          & Prompt Generation        \\
-                                                          & Real Time Clock          \\
+    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System         & Display Screen  \\
+\cline{2-3}
+			                                                          & Prompt Generation       & Prompt Generation \\
+\cline{2-3}
+			                                                          & Real Time Clock      & RTC   \\
 
 
     \midrule
 
-    \multirow{3}{0.3\textwidth}{Software Decision Module} & Parameter Selection \\
-                                                          & Graph Plotter            \\
+    \multirow{4}{0.3\textwidth}{Software Decision Module} &  \multirow{2}{0.3\textwidth}{Parameter Selection}& Create New User\\
+																		&			& Configuration \\
+\cline{2-3}
+                                                          & \multirow{2}{0.3\textwidth}{Data Processing}       & Graph  \\
+											&			& Data Display \\
 
     \bottomrule
   \end{tabular}
@@ -218,7 +236,7 @@ to be implemented.
   \item[Implemented By:] OS
 \end{description}
 
-\subsubsection{Battery Management System (\mref{mBM})}
+\subsubsection{Battery System (\mref{mBM})}
 \begin{description}
   \item[Secrets:] Array to store data
   \item[Services:] This module provides the interface between the hardware and the
@@ -226,33 +244,53 @@ to be implemented.
   \item[Implemented By:] Firmware
 \end{description}
 
-\subsubsection{Device Manager (\mref{mDM})}
+\subsubsection{MicroSD (\mref{mDS_1})}
 \begin{description}
-  \item[Secrets:] Queue to store the data
-  \item[Services:] This module provides the interface between the hardware and the
-    software. The hardware will be copying the processed values into this module while the software reads from this module and produce plots for the researcher when prompted.
+  \item[Secrets:] Static array to store the data on device.
+  \item[Services:] This module will store the data through the entire monitoring period.
   \item[Implemented By:] Firmware
 \end{description}
 
-\subsubsection{Data Storage (\mref{mDS_1})}
+\subsubsection{Database (\mref{mDS_2})}
 \begin{description}
-  \item[Secrets:] Static array to store the data
-  \item[Services:] This module will store the data through the entire monitoring period. The data from this module will be stored in the database, so that a history of past records are maintained.
+  \item[Secrets:] Static array to store the data on local host computer.
+  \item[Services:] This module will store the data in the database, so that a history of past records are maintained.
   \item[Implemented By:] Firmware
 \end{description}
 
-\subsubsection{Sensor Array (\mref{mSA})}
+\subsubsection{Sensor Reading (\mref{mSA1})}
 \begin{description}
   \item[Secrets:] Static array to store the sensor data
-  \item[Services:] This module will store the raw data measured by the sensors. These are then processed on the hardware and copied to Device Manager to be read by the software.
+  \item[Services:] This module will store the raw data measured by the sensors without determining the validity of those raw data.
   \item[Implemented By:] Firmware
 \end{description}
 
-\subsubsection{Physical Design (\mref{mPD})}
+\subsubsection{Sensor Data Processing (\mref{mSA2})}
+\begin{description}
+  \item[Secrets:] Static array to store the sensor data
+  \item[Services:] This module will process the law data and smooth out noise for filtering, ready to be stored in memory.
+  \item[Implemented By:] Firmware
+\end{description}
+
+\subsubsection{Sensor Prompt Validity (\mref{mSA3})}
+\begin{description}
+  \item[Secrets:] Static array to store the sensor data
+  \item[Services:] This module will evaluate the processed data to decide if the prompt sohuld be generated. If so, the filtered data will get stored onto the memory as well.
+  \item[Implemented By:] Firmware
+\end{description}
+
+\subsubsection{Watch Straps (\mref{mPD})}
 \begin{description}
   \item[Secrets:] Not applicable.
   \item[Services:] This module lays out the structural design of the device.
   \item[Implemented By:] CAD
+\end{description}
+
+\subsubsection{Watch Case (\mref{mPD2})}
+\begin{description}
+  \item[Secrets:] Not applicable.
+  \item[Services:] This module lays out the structural design of the device.
+  \item[Implemented By:] Velcro straps.
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
@@ -271,7 +309,7 @@ to be implemented.
 
 \begin{description}
   \item[Secrets:]The error codes and screen parameters.
-  \item[Services:] This module is used to display text at desired positions on the tft display.
+  \item[Services:] This module is used to display text at desired positions on the TFT display.
     This module contains API functions that are called in the main executable to display text on the screen.
   \item[Implemented By:] BED
   \item[Type of Module:] Library
@@ -311,12 +349,20 @@ to be implemented.
   \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Graph Plotter (\mref{mGP})}
+\subsubsection{Graph (\mref{mGP})}
 
 \begin{description}
   \item[Secrets:] The data structures and algorithms to plot a graph
-  \item[Services:] This algorithm basically provides a plot of 2 parameters of interest. This can help in identifying desired trends to deal with it.
+  \item[Services:] This algorithm provides a plot of two parameters of interest. It can help in identifying desired trends to deal with it.
   \item[Implemented By:] Python
+\end{description}
+
+\subsubsection{Data Display (\mref{mGP2})}
+
+\begin{description}
+  \item[Secrets:] The data structures and algorithms to filter and display data on UI, drawn from the database.
+  \item[Services:] This module examines locate database and filters out existing data to display onto the UI as requested by the user. 
+  \item[Implemented By:] Python, SQL
 \end{description}
 
 \subsubsection{Parameter Selection (\mref{mPS})}
@@ -329,7 +375,7 @@ to be implemented.
 
 \section{Traceability Matrix} \label{SecTM}
 
-This section shows two traceability matrices: between the modules and the
+This section shows two traceability matrices: Between the modules and the
 requirements and between the modules and the anticipated changes.
 
 % the table should use mref, the requirements should be named, use something
@@ -340,13 +386,13 @@ requirements and between the modules and the anticipated changes.
     \toprule
     \textbf{Req.} & \textbf{Modules}                                                                           \\
     \midrule
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}            & \mref{mBM}, \mref{mSA}, \mref{mDS_2}, \mref{mRTC}                               \\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2}            & \mref{mSA} \\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3}            & \mref{mSA}, \mref{mDS_2}, \mref{mPG}, \mref{mRTC},                                                                             \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{1}            & \mref{mBM}, \mref{mSA1}, \mref{mDS_2}, \mref{mRTC}                               \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{2}            & \mref{mSA1} \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{3}            & \mref{mSA1}, \mref{mDS_2}, \mref{mPG}, \mref{mRTC},                                                                             \\
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{4}            & \mref{mPD}                                                    \\
     R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{5}            & \mref{mPS} \\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{6}            & \mref{mDM}, \mref{mDS_1}, \mref{mSA}, \mref{mPG}\\
-    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{7}           & \mref{mDM}, \mref{mDS_1}, \mref{mGP}             \\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{6}            &\mref{mDS_1}, \mref{mSA1}, \mref{mPG}\\
+    R\href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{7}           &\mref{mDS_1}, \mref{mGP}             \\
     \bottomrule
   \end{tabular}
   \caption{Trace Between Requirements and Modules}
@@ -361,6 +407,8 @@ requirements and between the modules and the anticipated changes.
     \midrule
     \acref{acHardware}  & \mref{mPD}        \\
     \acref{acInput}     & \mref{mDS_1}     \\
+    \acref{acSensor}     & \mref{mSA1}, \mref{mSA2}     \\
+    \acref{acData}     & \mref{mSA1}, \mref{mSA2}, \mref{mSA3}    \\
     \bottomrule
   \end{tabular}
   \caption{Trace Between Anticipated Changes and Modules}
@@ -383,7 +431,7 @@ because they use modules from the lower levels.
 \begin{figure}[H]
   \centering
 \includegraphics[width=\textwidth]{DAG.png}
-  \caption{Use hierarchy among modules}
+  \caption{Use Hierarchy Between Modules}
   \label{FigUH}
 \end{figure}
 

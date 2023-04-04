@@ -19,26 +19,42 @@
 \usepackage{helvet}
 \usepackage{hyphenat}
 \usepackage{pifont}
+
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 \renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}}
+\title{\textbf{EMA Tracker for Elderly LSS Patients: System Verification and Validation Plan for \progname{}} \\ \vspace{2cm}\includegraphics[width=0.5\textwidth]{../logo.jpg}}
+ \pagecolor{black}\afterpage{\nopagecolor}
+
 \author{\authname}
 \date{\today}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{2.2cm}p{1.6cm}X}
 
   \toprule {\bf Date} & {\bf Version} & {\bf Notes}           \\
   \midrule
-  2022-11-02          & 1.0           & Initial Documentation \\
+  2022-11-02 & 1.0 & Initial Documentation \\
+  2023-03-15 & 2.0 &  Minor improvements and proof reading for revision 1 \\
+  2023-03-17 & 2.1 & Incorporated TA feedback from revision 0 evaluation: Removed HST4 and added traceability for hazard analysis requirements \\
+2023-04-03 & 2.2 & Added more unit testing cases \\
+2023-04-04 & 2.3 & Added logo and added style to the document \\
   \bottomrule
 \end{tabularx}
 
@@ -95,6 +111,8 @@ This document is intended to describe the plan for verification and validation o
 
 Verification involves checking whether or not the specifications which were described in the planning phase of the project are implemented correctly by the final system designed. Validation involves checking whether or not the product actually fulfills the needs of the end user of the device. In the words of Barry Boehm, verification asks, "Are we building the product right?" and validation asks, "Are we building the right product?"\cite{pham_1999}.
 
+\newpage
+
 \subsection{Objectives}
 
 The objectives aimed to be accomplished by this verification and validation are to:
@@ -121,14 +139,20 @@ Please refer to the following documentation for reference and more information:
   \item User Guide: \citet{User_Guide}
 \end{itemize}
 
+
+
 \section{Plan}
 
-The Verification and Validation plan will be done on both the hardware and software side individually as well as on the system integration side. The Researchers, Stakeholders and the Back End Developers will have different roles and techniques to test the device's functionality and usability as described below.
+The Verification and Validation plan will be done on both the hardware and software side individually as well as on the system integration side. The researchers, stakeholders and the Back End Developers will have different roles and techniques to test the device's functionality and usability as described below.
 
+\pagebreak
 \subsection{Verification and Validation Team}
 
 The following table defines the different roles for the stakeholders and the Back End Developers for verification and validation.
+
+
 \begin{center}
+ \captionof{table}{Team roles for verification and validation.}
   \begin{tabular}{|m{5em}|m{5em}|m{25em}|}
 
     \hline
@@ -149,17 +173,18 @@ The following table defines the different roles for the stakeholders and the Bac
     Oliver Foote             & White Box \& Database testing & Oliver will test the internal workflow for valid outputs. Database validation will be performed using Orion for stress testing of I/O and database functionality.                                                                               \\
     \hline
   \end{tabular}
-  \captionof{table}{Team roles for verification and validation.}
+
 \end{center}
 
+\pagebreak
 \subsection{SRS Verification Plan}\label{SRS_verification}
 
 The SRS will be verified according to a checklist. It will also follow a rigorous task based inspection listed in the table below. This is to make sure all the requirements and goals receive several iterations of verification and validation.
 
 
 \begin{center}
+\captionof{table}{SRS verification checklist and task based inspection}
   \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
-
     \hline
     \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
     \\
@@ -171,7 +196,7 @@ The SRS will be verified according to a checklist. It will also follow a rigorou
                                                                                                                                                        \item[\ding{111}] Project Goals are relevant to description of device.
                                                                                                                                                        \item[\ding{111}] Requirements (functional \& non-functional) are prioritized and verified.
                                                                                                                                                        \item[\ding{111}] Event handling and FSM is verified and correct.
-                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr Luciana Macedo, supervisor, classmates and the Back End Developers. \\
+                                                                                                                                                     \end{itemize}                                                                                & Will be done by Stakeholder Dr. Luciana Macedo, supervisor, classmates and the Back End Developers. \\
     \hline
     General System Description 4.1-4.3                      & The verification for this section will be performed by checking if system constrains and user characteristics are provided in detail without any ambiguity.                                       & Will be done by team member Jonathan Hai.                                                    \\
     \hline
@@ -179,17 +204,28 @@ The SRS will be verified according to a checklist. It will also follow a rigorou
     \hline
     Required behaviour and requirements                      & Functional and non-functional requirements must be verified. In addition, the requirements must be checked to see if they are classified correctly. Checking required behaviour as well.                              & Will be done by team member Anish Rangarajan.                                                \\
     \hline
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{|m{3cm}|m{8cm}|m{4cm}|}
+    \hline
+    \textbf{Section of SRS}                                 & \textbf{Description}                                                                                                                                                                  & \textbf{Approach of Feedback}
+    \\
+    \hline
     Section 8-12 Traceability matrices and normal operation &  Matrices and graphs must be verified according to requirements. In addition, verification must be performed to see if normal operation covers the required goals of the device.                                         & Will be done by team member Labeeb Zaker.                                                    \\
     \hline
     Section 14-16                                           & The FSM, Legal factors and Phase in Plan must be verified.                                                                                                                                 & Will be done by team member Jessica Bae.                                                     \\
     \hline
   \end{tabular}
 \end{center}
-\captionof{table}{SRS verification checklist and task based inspection}
+
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Design Verification Plan}
-\begin{tabular}{|p{2cm}|p{8cm}|p{4cm}|}
+\captionof{table}{Plan for verification of the design of the system.}
+\begin{tabular}{|p{4cm}|p{8cm}|p{4cm}|}
   \hline
   \label{sec_4_3}\textbf{Test Categories} & \textbf{Description}                                                                                                                                                                                                                                                                                                 & \textbf{Approach}                      \\
   \hline
@@ -205,16 +241,16 @@ The SRS will be verified according to a checklist. It will also follow a rigorou
   Hardware Communication Test                & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Performed by Jessica Bae                \\
   \hline
 \end{tabular}
-\captionof{table}{Plan for verification of the design of the system.}
+
 \pagebreak
 \subsection{Verification and Validation Plan Verification Plan}
 
-Since the VnV plan document mostly covers about how to validate whether or not the device functions properly, through verification of different test cases. The only way to verify this document is to check all such scenarios and expected results.\\
+Since the VnV plan is focused on validating the functionalities of the device through verification of different test cases, the only way to verify this document is to check for all such scenarios and their expected results.\\
 \\The following will be done to verify the VnV plan:\\
 \begin{itemize}
   \item[\ding{111}] Each task will be verified as per \hyperref[4_1]{4.1} throughout the development phase. Verifiers must ensure that tests do not fail at any of the expected scenarios and works as expected from user's point of view.
   \item[\ding{111}] Each section of the SRS will be verified as per \hyperref[SRS_verification]{4.2}. Each variable needs to be controlled accordingly and specific scenarios need to be tested to ensure functionality without errors.
-  \item[\ding{111}] Each component of the design must be verified as per \hyperref[sec_4_3]{4.3} as it is being developed, so that can unit testing can be performed and evaluated before system testing.
+  \item[\ding{111}] Each component of the design must be verified as per \hyperref[sec_4_3]{4.3} as it is being developed, so that unit testing can be performed and evaluated before system testing.
   \item[\ding{111}] Code-review meetings must be attended by all code evaluators. If an evaluator fails to join the review, the review will be rescheduled. Tests will be performed against all possible scenarios to ensure all cases work as intended.
   \item[\ding{111}] All test cases for each functional requirement as per \hyperref[sec_5_1]{5.1} must be verified accordingly by ensuring that the outputs are expected and within bounds, and that variables are being properly controlled and monitored.
 \end{itemize}
@@ -261,7 +297,7 @@ Automated testing and verification tools will be selected based on the different
 
 \subsection{Software Validation Plan}
 
-There will be no plan for Software validation since there is no external data used and all the software-related validation is covered in  section \ref{SRS_verification}.
+There will be no plan for Software validation since there is no external data used and all the software-related validations are covered in  section \ref{SRS_verification}.
 
 \section{System Test Description}
 
@@ -298,6 +334,7 @@ The following tests will check whether the device will maintain an "ON" state th
 		
 		How test will be performed: The test is performed by passing an invalid input and ensuring the appropriate error code is returned.
 
+\newpage
 	\item{\textbf{DT\_3: Earlier Date}\\}\label{DT3}
 		
 		Control: Manual, Dynamic
@@ -326,7 +363,7 @@ The following tests will check whether the device will maintain an "ON" state th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Device should track Minor Movements}
-The following tests will be run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved, rotated, oriented etc. and checking if the status of the sensors is valid.
+The following tests will be run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved, rotated, oriented, etc. and checking if the status of the sensors is valid.
 
 \paragraph{Minor Tracking Test}
 \begin{enumerate}
@@ -338,10 +375,9 @@ The following tests will be run to ensure that the device is able to track activ
 							
 		Input: Tester performs activities at a regular/normal pace.
 		
-		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE).
+		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE) and no prompt should be generated (stay in idle-mode).
 
-		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a normal/regular pace. This is done to ensure that the device can 				work under normal scenarios.\\
-
+		How test will be performed: The test is performed by strapping the device onto a tester who will perform the tracked activities between 60 - 100 BPM heartrate and walking pace, the tester should not have to feel any level of excessive effort for this level of activity. This is done to ensure that the device is functional under "normal" scenarios and is able to differentiate it from "no activity". If tester's heart rate is not within the specified limit, the particular set of data is to be disregarded.
 
 	\item{\textbf{MTT\_2: Slow Movement} \\}\label{MTT2}
 	
@@ -351,16 +387,16 @@ The following tests will be run to ensure that the device is able to track activ
 							
 		Input: Tester performs activities at a very slow pace.
 		
-		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE).
+		Output: Status returned by the sensor array is no error (BED\_ERR\_NONE) and all sensor data are correctly stored within microSD.
 		
-		How test will be performed: The test is performed by strapping the device onto a test volunteer who will perform the tracked activities at a very slow pace. This is done to ensure that the device can 					work under scenarios in which users have limited mobility.\\
+		How test will be performed: The test is performed by strapping the device onto a tester who will walk at a speed that would exceed 12 steps per 1 minute. Then microSD is inserted into a PC to examine its contents. This is done to ensure that the device can recognize and differentiate slow movements from regular paced movements and capture corresponding sensor data.\\
 
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Prompt Tests}
 
-The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, and generating prompts for different activities.
+The following tests will be done to ensure that the proper information is prompted to the user when activities are detected. Tests involve generating the test prompt, and generating prompts for different activities.
 
 \begin{enumerate}
 	\item{\textbf{PRT\_1: Test Prompt} \\}\label{PRT1}
@@ -369,11 +405,11 @@ The following tests will be done to ensure that the proper info is prompted to t
 							
 		Initial State: Device has just been reconfigured.
 							
-		Input: Device is turned on for the first time.
+		Input: Device is powered on.
 		
 		Output: Test Prompt is displayed.
 
-		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, the tester should receive a test prompt that will confirm that the 				prompting system is working correctly.\\\\
+		How test will be performed: The test is performed by turning on the device for the first time after reconfiguration. Upon turning on the device, tester should receive a test prompt that to confirm that the prompting system is working correctly. This prompt should not be dependent of any user activities.\\\\
 		Test Prompt: Is this Device on?\\
 		Possible Answers: Yes or No
 		
@@ -383,20 +419,18 @@ The following tests will be done to ensure that the proper info is prompted to t
 							
 		Initial State: Device is in the idle state.
 							
-		Input: Activity has been detected.
+		Input: Walk for 5 seconds and then limp for 5 seconds.
 		
-		Output: Specific activity prompt is displayed.
+		Output: Prompt is generated to ask a question to the tester.
 							
-		How test will be performed: The test is done by having a test volunteer perform one of the activities that are registered. This should result in a prompt for the volunteer that is generated based on the 					specific activity performed.\\\\
-		Tracked Activity: Tester slows down or comes to a stop.\\
-		Activity Prompt: Are you in pain?\\
-		Possible Answers: Yes or No
+		How test will be performed: The test is done by having a tester imitate limping activity. The walking portion of the activity should be performed under the same critera as MTT\_1.\\\\
+		Prompt: Are you in pain?\\
+		Response choices: Yes, No
 \end{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Customizable Thresholds}
 
-The following tests will be done to ensure that the proper info is prompted to the user when activities are detected. Tests involve generating the test prompt, generating prompts for different activities.
+The following tests will be done to ensure that the proper information is prompted to the user when activities are detected. Tests involve generating the test prompt, and generating prompts for different activities.
 		
 \begin{enumerate}
 	\item{\textbf{TT\_1: Regular Inputs} \\}\label{TT1}
@@ -425,6 +459,8 @@ The following tests will be done to ensure that the proper info is prompted to t
 		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
 
 		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds above allowable limits.
+
+\pagebreak
 
 	\item{\textbf{TT\_3: Above Upper limit }\\}\label{TT3}
 	
@@ -463,7 +499,7 @@ The following tests will be done to ensure that the proper info is prompted to t
 		How test will be performed: The test is performed by setting the device to configuration mode and then setting no values for the thresholds.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\pagebreak
 \subsubsection{Data Storage}
 
 The following tests will be done to ensure that data is stored when appropriate. Tests include checking when storage buffer is full, when prompts are generated and when sensor data needs to be logged. 
@@ -490,7 +526,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 		
 		Output: Prompt Response is saved into the internal memory.
 		
-		How test will be performed: The test is performed by performing a registered activity and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.\\
+		How test will be performed: The test performs registered activities and ensuring that the prompt generated is answered and its result is stored in the internal storage buffer.\\
 		eg: Registered Activity: Participant slows down or comes to a stop for an extended period of time\\
 		Prompt Generated: \\
 		Are you in pain?\\
@@ -499,7 +535,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 		Prompt Generated: \\
 		Do you need assistance?\\
 		Possible Answers: Yes or No\\
-
+\pagebreak
 	\item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
 	
 		Control: Manual, Dynamic
@@ -510,7 +546,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 		
 		Output: Specific sensor values that triggered a prompt are stored in the internal memory.
 							
-		How test will be performed: The test is performed by performing a registered activity and ensuring that the sensor values that caused the prompt are stored in the internal storage buffer.
+		How test will be performed: The test performs registered activities and ensuring that the sensor values that caused the prompt are stored in the internal storage buffer.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Data Extraction}
@@ -527,7 +563,7 @@ The following tests will be done to ensure that data can be extracted and presen
 		
 		Output: Extracted data is sent to the Host Software where it is converted to a presentable form.
 
-		How test will be performed: The test is performed by first running the device as intended and waiting for a small monitoring period to finish. After this the device is connected to the Host Software with the 				help of the Device Manager Driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
+		How test will be performed: The test is performed by first running the device as intended and waiting for a small monitoring period to finish. After this the device is connected to the host software with the 				help of the device manager driver. Once connected, the user can start the extraction process and should be able to see all the relevant data in a presentable manner.
 		
 	\item{\textbf{DXT\_2: Extracting No Data} \\}\label{DXT2}
 	
@@ -539,7 +575,7 @@ The following tests will be done to ensure that data can be extracted and presen
 		
 		Output: Device Manager returns a BED\_ERR\_EMPTY\_DATA error
 
-		How test will be performed: The test is performed by first deleting all the contents of the internal memory prior to connection with the Host Software. Once connected and the extraction process begins, the 				system should return an error due to no data being present to extract.
+		How test will be performed: The test is performed by first deleting all the contents of the internal memory prior to connection with the host software. Once connected and the extraction process begins, the 				system should return an error due to no data being present to extract.
 
 	\item{\textbf{DXT\_3: Extracting Corrupted Data} \\}\label{DXT3}
 	
@@ -551,13 +587,13 @@ The following tests will be done to ensure that data can be extracted and presen
 		
 		Output: Device Manager returns a BED\_ERR\_INVALID\_DATA error
 
-		How test will be performed: The test is performed by first deleting all the contents of the internal memory and filling it with garbage values prior to connection with the Host Software. Once connected and 				the extraction process begins, the system should return an error due to corrupted data being present to extract.
+		How test will be performed: The test is performed by first deleting all the contents of the internal memory and filling it with garbage values prior to connection with the host software. Once connected and 				the extraction process begins, the system should return an error due to corrupted data being present to extract.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tests for Nonfunctional Requirements}
 \subsubsection{Hardware Safety }
 
-These tests are designed to test the safety of the device concerning electrical components and hardware. It is important that the users of the device are kept safe and that any systems in place to protect them from electrical shocks are functioning properly and that the indicator LED functions as expected under certain conditions.
+These tests are designed to test the safety of the device concerning electrical and hardware components. It is important that the users of the device are kept safe, that any systems in place to protect them from electrical shocks are functioning properly, and that the indicator LED functions as expected under certain conditions.
 
 \begin{enumerate}
 
@@ -603,23 +639,9 @@ Test Case Derivation:
 
 How test will be performed: Use power supply to provide a lower than expected voltage to the device.
 
-\item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
-
-Control: Manual, Dynamic
-
-Initial State: Device begins in off mode
-
-Input: Device is turned on in normal operating state
-
-Output: Frequency analysis conducted on the circuitry components
-
-Test Case Derivation: N/A
-
-How test will be performed: Using a frequency analysis software such as NI Multisim and an Oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
-
 \end{enumerate}
 
-\subsubsection{Re-usability}
+\subsubsection{Reusability}
 
 These tests will evaluate the re-usability of various hardware systems of the device. The device should be reusable by multiple participants to prevent electronic waste and reduce cost for the researchers. 
 
@@ -640,6 +662,20 @@ Output: Battery is fully charged without issue.
 Test Case Derivation: N/A
 
 How test will be performed: Battery component will be isolated from device and fully charged and discharged 5 times.
+
+\item{\textbf{RT\_2: Battery Charge Protection}}\label{RT2}
+
+Control: Manual, Dynamic
+
+Initial State: Battery is fully charged.
+
+Input: Connect battery to the charging cable.
+
+Output: Battery will not overcharge.
+
+Test Case Derivation: N/A
+
+How test will be performed: Battery component will be isolated from device and fully charged. The battery will then plugged in to the charger for 5 minutes.
 
 \end{enumerate}
 
@@ -716,7 +752,7 @@ How test will be performed: 1 member of Back End Developers will clean the devic
 \end{enumerate}
 
 
-
+\pagebreak
 \subsubsection{Performance}
 The following set of questions will ensure that the device is capable of meeting user expectations.
 \begin{enumerate}
@@ -745,7 +781,7 @@ Output: The total amount of time before the device runs out of battery is greate
 How test will be performed: 2 group members of the Back End Developers each wear the device for standard monitoring period under their normal lives. At the end of each calendar day, they are asked to record their response to a simple question: "Does the device still have battery life left? If so, how much percentage?". 
 
 \end{enumerate}
-
+\pagebreak
 \subsubsection{Data Security Tests}
 
 These tests are designed to test the security of the system and the accessibility of important medical records. Ensuring that only certain people are able to access these records is a vital part of the design, and ensuring that records cannot be modified is also important for research data integrity. 
@@ -758,14 +794,27 @@ Control: Manual, Dynamic
 
 Initial State: Device is powered on.
 
-Input: Data transfer cable is plugged in from device to a generic PC, a volunteer tries to access the database and modify the data within.
+Input: Data transfer cable is plugged in from device to a generic PC, a tester tries to access the database and modify the data within.
 
-Output: Database inaccessible and requests an administrative security key. The volunteer should be unable to access or modify the data.
+Output: Database inaccessible and requests an administrative security key. The tester should be unable to access or modify the data.
 
 Test Case Derivation: N/A
 
-How test will be performed: Device will be given to a volunteer with technical know-how who does not have access to the administrator security key. They will attempt to access the database. 
+How test will be performed: Device will be given to a tester with technical know-how who does not have access to the administrator security key. They will attempt to access the database. 
 
+\item{\textbf{DSQT\_2: Data Storage Selection Test}}\label{DSQT2}
+
+Control: Manual, Dynamic
+
+Initial State: Device is powered on.
+
+Input: Less than 3 seconds of limping from tester.
+
+Output: Corresponding sensor data is not included in sdcard data.
+
+Test Case Derivation: N/A
+
+How test will be performed: One member of Back End Developers wears the device and pretends to "limp" for 3 seconds, to create garbage sensor data. Then microSD card is inserted in to a PC to examine the content. 
 
 \end{enumerate}
 
@@ -792,7 +841,7 @@ How test will be performed: Device will be given to a volunteer with technical k
 	\textbf{NFR12}   &&&&&&&X&&\\ \hline
 	\hline
 	\end{tabular}
-	\caption{ Requirements Traceability Matrix Pt1}
+	\caption{ Requirements Traceability Matrix Part 1}
 	\label{Table:A_trace}
 \end{table}
 
@@ -812,7 +861,7 @@ How test will be performed: Device will be given to a volunteer with technical k
 	\textbf{R6}         &&&&&&&&X&X&X\\ \hline
 	\hline
 	\end{tabular}
-	\caption{Requirements Traceability Matrix Pt2}
+	\caption{Requirements Traceability Matrix Part 2}
 	\label{Table:B_trace}
 \end{table}
 
@@ -820,44 +869,228 @@ How test will be performed: Device will be given to a volunteer with technical k
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
 	\hline
-	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3} &\hyperref[HST4]{HST4}&\hyperref[RT1]{RT1}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3}&\hyperref[RT1]{RT1}&\hyperref[RT2]{RT2}&\hyperref[UT1]{UT1}&\hyperref[UT2]{UT2}&\hyperref[UT3]{UT3}&\hyperref[PT1]{PT1}&\hyperref[PT2]{PT2}&\hyperref[DSQT1]{DSQT1} \\
 	\hline       
 	\textbf{NFR2}         &&&&&&X&X&X&&&\\ \hline
 	\textbf{NFR3}         &&&&&&&&&&X& \\ \hline
 	\textbf{NFR4}         &&&&&&&X&&&&\\ \hline
 	\textbf{NFR5}         &&&&&&&&X&&& \\ \hline
-	\textbf{NFR6}         &X&X&X&X&&&&&&&\\ \hline
-	\textbf{NFR7}         &&&&&X&&&&&&\\ \hline
+	\textbf{NFR6}         &X&X&X&&&&&&&&\\ \hline
+	\textbf{NFR7}         &&&&X&&&&&&&\\ \hline
 	\textbf{NFR8}         &&&&&&&&&&&X\\ \hline
 	\textbf{NFR9}         &&&&&&X&&&&&\\ \hline
-	\textbf{NFR10}       &&&&&&&X&&&&\\ \hline
-	\textbf{NFR11}       &X&X&X&X&X&&&&&&\\ \hline
+	\textbf{NFR10}       &&&&&&X&&&&&\\ \hline
+	\textbf{NFR11}       &X&X&X&X&&&&&&&\\ \hline
 	\textbf{NFR13}       &&&&&&&&&X&&\\ \hline
 	\textbf{NFR14}       &&&&&&&&&&&X\\ \hline
 	\hline
 	\end{tabular}
-	\caption{Requirements Traceability Matrix Pt3}
+	\caption{Requirements Traceability Matrix Part 3}
 	\label{Table:C_trace}
 \end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	& \hyperref[HST1]{HST1}&\hyperref[HST2]{HST2}& \hyperref[HST3]{HST3} &\hyperref[PRT1]{PRT1}&\hyperref[RT2]{RT2}&\hyperref[TT1]{TT1}&\hyperref[TT2]{TT2}&\hyperref[TT3]{TT3}&\hyperref[TT4]{TT4}&\hyperref[TT5]{TT5} \\
+	\hline       
+	\textbf{HR1}         &X&X&X&&&&&&& \\ \hline
+	\textbf{HR2}         &&&&&X&&&&& \\ \hline
+	\textbf{SR1}         &&&&X&&&&&& \\ \hline
+	\textbf{SR2}         &&&&&&X&X&X&X&X \\ \hline
+	\textbf{DSR1}       &&&&&&&&&& \\ \hline
+	\textbf{DSR2}       &&&&&&&&&& \\ \hline
+	\textbf{DSR3}       &&&&&&&&&& \\ \hline
+	\hline
+	\end{tabular}
+	\caption{Hazard Analysis Traceability Matrix Part 1}
+	\label{Table:C_trace}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	&\hyperref[DST3]{DST3}&\hyperref[DSQT1]{DSQT1}&\hyperref[DSQT2]{DSQT2} \\
+	\hline       
+	\textbf{HR1}         &&& \\ \hline
+	\textbf{HR2}         &&& \\ \hline
+	\textbf{SR1}         &&& \\ \hline
+	\textbf{SR2}         &&& \\ \hline
+	\textbf{DSR1}       &X&& \\ \hline
+	\textbf{DSR2}       &&X& \\ \hline
+	\textbf{DSR3}       &&&X \\ \hline
+	\hline
+	\end{tabular}
+	\caption{Hazard Analysis Traceability Matrix Part 2}
+	\label{Table:C_trace}
+\end{table}
+
 \newpage
 \section{Unit Test Description}
-To be revised after the MIS.
+Unit testing is a form of black box testing that examines specific functions of the code and their inputs and outputs. It is concerned about the "what" behaviour of the function as opposed to the behind-the-scene stories of "how" it is implemented.
 \subsection{Unit Testing Scope}
-To be revised after the MIS.
+Every single one of the functions were inclulded for unit testing, nothing was left out for both hardware and software codes. In most cases, outputs require human interpretation.Thus, instead of using a test code, all programming-related outputs are to be read off of the serial communication monitor whenever applicable. \\
+
+The \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{MIS} lists out all the modules and their use, syntax, and semantics.
+
+\subsection{Unit Testing Plan}\label{6.2}
+
+The following tables list all the unit testing cases and lays out the template for the \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVReport/VnVReport.pdf}{Verification and Validation Report}.
+\begin{center}
+\begin{table} [H]
+\begin{tabular}{ | >{\centering}p{0.5cm} | >{\centering}p{4cm} |  >{\centering}p{1.1cm} | >{\centering}p{5cm} | >{\centering\arraybackslash}p{5cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  &\textbf{Ref.} & \textbf{Action} &  \textbf{Expected Output}\\
+\hline
+ 1 & bed\_HR\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & "PulseSensor object created", LED flash per each heartbeat.\\ 
+\hline
+2 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk for 10 seconds while wearing the device, then stop. & "HeartBeat Detected. BPM: 70”. \\  
+\hline
+3 & bed\_MPU\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” \\  
+\hline
+4 & bed\_MPU\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” \\ 
+\hline
+5 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & No action & Black screen on \\ 
+\hline
+6 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up.\\ 
+\hline
+7 & bed\_splash\_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "Back End Developers" \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} [H]
+\begin{tabular}{ | >{\centering}p{0.5cm} | >{\centering}p{4cm} |  >{\centering}p{1.1cm} | >{\centering}p{5cm} | >{\centering\arraybackslash}p{5cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} \\
+\hline
+
+8 & bed\_display\_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. \\ 
+\hline
+9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. \\ 
+\hline
+10 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No\\ 
+\hline
+11 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation. & Prompt text color is white while background is black.\\ 
+\hline
+12 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port. & UI displays green dot.\\ 
+\hline
+13 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device. & "March 5th, 16:21".\\ 
+\hline
+14 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "March 5th, 16:23". \\ 
+\hline
+15 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". \\ 
+\hline
+16 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction. & 1 \\ 
+\hline
+17 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. \\ 
+\hline
+18 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved.\\ 
+\hline
+19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes.\\ 
+\hline
+20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. \\ 
+\hline
+21 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
+\hline
+22 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. \\ 
+\hline
+23 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears. \\ 
+\hline
+24 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears.\\ 
+\hline
+25 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button. & Only heart rate graph appears. \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table} [H]
+\begin{tabular}{ | >{\centering}p{0.5cm} | >{\centering}p{4cm} |  >{\centering}p{1.1cm} | >{\centering}p{5cm} | >{\centering\arraybackslash}p{5cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} \\
+\hline
+
+26 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
+\hline
+27 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears.\\ 
+\hline
+28 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears.\\ 
+\hline
+29 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears.\\ 
+\hline
+30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" \\ 
+\hline
+31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. \\ 
+\hline
+32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes.\\ 
+\hline
+33 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. \\ 
+\hline
+34 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button. & Data view window appears and main window closes.\\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
 \subsection{Tests for Functional Requirements}
-To be revised after the MIS.
-\subsubsection{Module 1}
-To be revised after the MIS.
-\subsubsection{Module 2}
-To be revised after the MIS.
+Section \hyperref[6.2]{6.2} outlines the relevant functional requirements per each module. The corresponding traceability matrix is included in section \hyperref[6.5]{6.5}.
 \subsection{Tests for Nonfunctional Requirements}
-To be revised after the MIS.
-\subsubsection{Module ?}
-To be revised after the MIS.
-\subsubsection{Module ?}
-To be revised after the MIS.
-\subsection{Traceability Between Test Cases and Modules}
-To be revised after the MIS.
+Section \hyperref[6.2]{6.2} outlines the relevant functional requirements per each module. The corresponding traceability matrix is included in section \hyperref[6.5]{6.5}.
+\subsection{Traceability Between Unit Test Cases and Requirements}\label{6.5}
+
+\noindent
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+                 & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR1} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8} & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR14} \\
+    \hline
+    \textbf{1}  &X                    &                     &                     &                     &                       &                       &                       & \\ \hline
+    \textbf{2}  &X                     &                     &                     &                     &                       &                       &                       &                   \\ \hline
+    \textbf{3}  & X                    &                   &                     &                     &                       &                       &                       & \\ \hline
+    \textbf{4}  &  X                   &                     &                     &                     &                     &                    &                       &   \\ \hline
+    \textbf{5}  &                     &                     &                     &                     &                       &X                       &                      &   \\ \hline
+    \textbf{6}  &                     &                     &                     &                     &                       &  X                     &                      & \\ \hline
+    \textbf{7}  &                    &                    &                    &                   &                       &     X                  &                       & \\ \hline
+    \textbf{8}  &                     &                     &                     &                     &                       &  X                     &                       &                     \\ \hline
+    \textbf{9}  &                     &                     & X                    &                     &                       &                       &                       & \\ \hline
+    \textbf{10} &                     &  X                   &                     &                     &                   &                  &                       & \\ \hline
+\textbf{11} &                     & X                    &                     &                     &                   &                  &                       & \\ \hline
+\textbf{12} &                     &                     &        X             &                     &                   &                  &                       & X\\ \hline
+\textbf{13} &                     &                     &       X              &                     &        X           &                  &                       & \\ \hline
+\textbf{14} &                     &                     &                     &                     &                   &     X             &                       & \\ \hline
+\textbf{15} &                     &                     &            X         &                     &     X              &                  &                       & \\ \hline
+\textbf{16} &                     &                     &                     &                     &                   &        X          &                       & \\ \hline
+\textbf{17} &                     &                     &                     &                     &                   &                  &                       & \\ \hline
+\textbf{18} &                     &                     &   X                  &                     &                   &                  &                       & \\ \hline
+\textbf{19} &                     &                     &                     &                     &                   &       X           &                       & \\ \hline
+\textbf{20} &                     &                     &        X             &                     &                   &                  &                       &X\\ \hline
+\textbf{21} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{22} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{23} &                     &                     &     X                &                     &                   &                  &                       &X \\ \hline
+\textbf{24} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{25} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{26} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{27} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{28} &                     &                     &                     & X                    &                   &                  &                       & \\ \hline
+\textbf{29} &                     &                     &                     &                     &                   &                  & X                      & X\\ \hline
+\textbf{30} &                     &                     &                     &                     &                   &                  &X                       &X \\ \hline
+\textbf{31} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+\textbf{32} &                     &                     &                     &                     &                   &X                 &                       & \\ \hline
+\textbf{33} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+\textbf{34} &                     &                     &                     &                     &                   &X                  &                       & \\ \hline
+  \end{tabular}
+  \caption{Module Traceability Matrix}
+  \label{Table:A_Mod_trace}
+\end{table}
+
+\pagebreak
 \bibliographystyle{plainnat}
 
 \bibliography{../../refs/References}
