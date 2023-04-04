@@ -6,3 +6,7 @@ to perform Ecological Momentary Assessment (EMA) research on older adults with l
 ![Test](https://github.com/zakerl/Capstone_Project/blob/main/PyQt/python_scripts/handler/BED_logo.jpg)
 
 
+<p align="center">
+  <img src="https://github.com/zakerl/Capstone_Project/blob/main/PyQt/python_scripts/handler/BED_logo.jpg" width="350" title="hover text">
+</p>
+
