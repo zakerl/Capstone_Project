@@ -14,7 +14,7 @@ To perform activity tracking, a prototype was engineered to replicate tracking u
 To make the device much smaller and like a smart watch that can be worn by participants, a PCB was designed from scratch as seen below:
 
  <p align="center">
-  <img src="https://github.com/zakerl/Capstone_Project/blob/main/refs/PCB.jpg" width="350" title="hover text">
+  <img src="https://github.com/zakerl/Capstone_Project/blob/main/refs/PCB.jpg" width="200" title="hover text">
 </p>
 
 The final functional version of the product is shown below, it has a display and a touch sensor (metal strips) to navigate the display.
