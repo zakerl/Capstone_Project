@@ -1,3 +1,8 @@
+'''==========================================
+ Title:  BED UI create record code
+ Author: Nish Shah, Labeeb Zaker
+ Date:   4 April 2023
+=========================================='''
 import sqlite3 as sl
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
