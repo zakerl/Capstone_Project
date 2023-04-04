@@ -1,4 +1,5 @@
- <p align="center">
+# The EMAnator - Back End Developers 
+<p align="center">
   <img src="https://github.com/zakerl/Capstone_Project/blob/main/refs/BED_logo.jpg" width="250" title="hover text">
 </p>
 
