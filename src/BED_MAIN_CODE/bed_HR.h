@@ -1,3 +1,8 @@
+/*==========================================
+ Title:  BED Bluetooth Header for ESP32 
+ Author: Jonathan Hai
+ Date:   4 April 2023
+==========================================*/
 
 #ifndef BED_HR_H
 #define BED_HR_H
