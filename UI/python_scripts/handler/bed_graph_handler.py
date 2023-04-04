@@ -1,3 +1,8 @@
+'''==========================================
+ Title:  BED UI graph code
+ Author: Nish Shah
+ Date:   4 April 2023
+=========================================='''
 import sqlite3 as sl
 from python_pyqt.bed_graph import *
 from PyQt5.QtWidgets import *
