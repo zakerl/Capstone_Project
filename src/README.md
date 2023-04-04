@@ -6,6 +6,6 @@ BED_MAIN_CODE is the source code for the tracker and it has all the files that w
 All the header files are used to define macros and constants that will be used by the main .ino file. 
 The different modules are: HR (HeartRate), bluetooth, display, i2c, errors, rtc, sd, touch, prompt, mpu and pin-map.
 
-BED_SD_COMM is a test folder for testing bluetooth/serial communication with SD card read/write functionality.
+BED_SD_COM is a test folder for testing bluetooth/serial communication with SD card read/write functionality.
 
 
