@@ -1,6 +1,6 @@
 '''==========================================
  Title:  BED UI record code
- Author: Labeeb Zaker
+ Author: Labeeb Zaker, Nish Shah
  Date:   4 April 2023
 =========================================='''
 from PyQt5.QtWidgets import *
