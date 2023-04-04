@@ -1,3 +1,8 @@
+'''==========================================
+ Title:  BED UI config code
+ Author: Nish Shah
+ Date:   4 April 2023
+=========================================='''
 from os.path import dirname, realpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
