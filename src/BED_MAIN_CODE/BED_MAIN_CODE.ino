@@ -1,4 +1,8 @@
-
+/*==========================================
+; Title:  BED Main Code for ESP32 
+; Author: Anish Rangarajan
+; Date:   4 April 2023
+;==========================================*/
 /* Main cycle for the Display System*/
 #include "bed_hardware_pin_map.h"
 #include "bed_touch.h"
