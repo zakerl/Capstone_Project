@@ -6,8 +6,17 @@
 \usepackage{helvet}
 \usepackage{hyperref}
 \renewcommand{\familydefault}{\sfdefault}
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
 
-\title{Problem Statement and Goals\\\progname}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
+\title{\textbf{Problem Statement and Goals\\\progname \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 
 \author{\authname}
 
@@ -20,15 +29,18 @@
 
 \begin{document}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
+\newpage
 \begin{table}[hp]
     \caption{Revision History} \label{TblRevisionHistory}
     \begin{tabularx}{\textwidth}{llX}
         \toprule
         \textbf{Date}  & \textbf{Developer(s)} & \textbf{Change}       \\
         \midrule
-        September 26th &    Back End Developers   & Initial documentation \\
+        2022-09-26 &    Back End Developers   & Initial documentation \\
+        2023-04-02 &    Jonathan Hai & Incorporated TA feedback \\
+        2022-04-04 &    Jessica Bae & Added logo and style to the document \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -78,7 +90,7 @@ Dr. Luciana Macedo of School of Rehabilitation Science at McMaster University.
 \subsection{Environment}
 
 Covered in the \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan document}.
-
+\newpage
 \subsection{Constraints}
 The constraints contained within this section were given by Dr. Luciana Macedo's research team. However, they may be subject to change according to the needs of the project and final product.
 \begin{itemize}

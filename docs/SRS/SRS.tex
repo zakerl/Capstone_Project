@@ -24,6 +24,14 @@
 \usepackage{tabularx}
 \renewcommand{\familydefault}{\sfdefault}
 
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 %\usepackage{refcheck}
 	
 \definecolor{LightCyan}{rgb}{0.88,1,1}
@@ -132,13 +140,13 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: An EMA Enabled Activity Tracker and Prompting System}
+\title{\textbf{Software Requirements Specification for \progname: An EMA Enabled Activity Tracker and Prompting System\\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 \author{\authname}
 \date{\today}
 
-\maketitle
-
-~\newpage
+\color{white}\maketitle
+\color{black}
 
 \pagenumbering{roman}
 
@@ -153,9 +161,12 @@
 	\begin{tabularx}{\textwidth}{p{4cm}p{2cm}X}
 	  \toprule {\bf Date} 		  & {\bf Version}	 & {\bf Notes} \\
 	  \midrule
-	  October 5th, 2022              & 1.0           		& Initial Revision       \\
-	  November 1st, 2022		  & 1.1           		& Added extra sections,new requriements and hyperlinking\\   
-	  November 5th, 2022           & 1.2                       & Additional non-functional requirements added pertaining to hazard analysis\\
+	  2022-10-05          & 1.0           		& Initial Revision       \\
+	  2022-11-01		  & 1.1           		& Added extra sections,new requriements and hyperlinking\\   
+	  2022-11-05           & 1.2                       & Additional non-functional requirements added pertaining to hazard analysis\\
+	2022-04-02 & 2.0 & Incorporated TA comments for rev1 \\
+	2022-04-04 & 2.1 & Proofread\\
+	2022-04-04 & 2.2 & Added logo and style to the document \\
 	  \bottomrule
 	\end{tabularx}
 	\caption{\label{revHist}Revision History}
@@ -177,6 +188,7 @@ description of the unit and the SI name.
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
 	\begin{table}[H]
+	\caption{\label{tabUnit}Table of Basic Units}
 	  \noindent\begin{tabular}{l l l} 
 	    \toprule		
 	    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
@@ -198,14 +210,15 @@ description of the unit and the SI name.
 	    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
 	    \bottomrule
 	  \end{tabular}
-	\caption{\label{tabUnit}Table of Basic Units}
+
 	\end{table}  
-  ~\newline
+  ~\newpage
 Below are some derived units that do not use a specific SI symbol.
 ~\newline
 
   \renewcommand{\arraystretch}{1.2}
 \begin{table}[H]
+	\caption{\label{devUnit}Table of Derived Units}  
 	 \noindent \begin{tabular}{l l} 
 	    \toprule		
 	    \textbf{Derived unit} & \textbf{SI}\\
@@ -216,7 +229,7 @@ Below are some derived units that do not use a specific SI symbol.
 	    acceleration &  \si{\metre\per\square\second}\\    
 	    \bottomrule
 	  \end{tabular}
-	\caption{\label{devUnit}Table of Derived Units}  
+
 \end{table}
 
 \subsection{Table of Symbols}
@@ -227,8 +240,8 @@ their units.  The choice of symbols was made to be consistent with kinematics an
 \renewcommand{\arraystretch}{1.2}
 
 \begin{table}[H]
+	\caption{\label{symb}Table of Symbols}  
 	\noindent\begin{longtable*}{l l p{12cm}} \toprule
-	
 	\textbf{symbol} & \textbf{unit} & \textbf{description}\\
 	\midrule
 	$f_c$ & \si{\Hz} & clock frequency of microcontroller\\
@@ -236,16 +249,31 @@ their units.  The choice of symbols was made to be consistent with kinematics an
 	$a_r$ & \si{\metre\per\square\second} & accelerometer resolution\\
 	$A_{tracker}$ & \si[per-mode=symbol] {\square\metre} & estimated area of activity tracker\\
 	$V_{battery}$ & \si\V & supplied voltage of battery\\
-	
 	\bottomrule
 	\end{longtable*}
-	\caption{\label{symb}Table of Symbols}  
+\end{table}
+
+\subsection{Constants}
+Below are the constant that will be used in the device.
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+	\caption{\label{const}Table of Constants} 
+	\noindent \begin{longtable*}{l l p{8cm}} \toprule
+	
+	\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
+	\midrule
+	$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
+	$f_{ESP32}$ & Adjustable from 80 \si{MHz} to 240 \si{MHz} & clock frequency of ESP32-D0WD chip.\\
+	\bottomrule
+	\end{longtable*}
+
 \end{table}
 
 \subsection{Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[H]
+	\caption{\label{abbacr}Table of Abbreviations and Acronyms}  
 	\noindent\begin{tabular}{l l} 
 	  \toprule		
 	  \textbf{symbol} & \textbf{description}\\
@@ -276,24 +304,8 @@ their units.  The choice of symbols was made to be consistent with kinematics an
 	
 	  \bottomrule
 	\end{tabular}\\
-	\caption{\label{abbacr}Table of Abbreviations and Acronyms}  
-\end{table}
 
-\subsection{Constants}
-Below are the constant that will be used in the device.
-\renewcommand{\arraystretch}{1.2}
-\begin{table}[H]
-	\noindent \begin{longtable*}{l l p{12cm}} \toprule
-	
-	\textbf{symbol} & \textbf{value and unit} & \textbf{description}\\
-	\midrule
-	$g$ & 9.81 \si{\metre\per\square\second} & acceleration due to gravity\\
-	$f_{ESP32}$ & Adjustable from 80 \si{MHz} to 240 \si{MHz} & clock frequency of ESP32-D0WD chip.\\
-	\bottomrule
-	\end{longtable*}
-	\caption{\label{const}Table of Constants} 
 \end{table}
-
 
 \subsection{Mathematical Notation}
 N/A
@@ -404,7 +416,7 @@ This system in theory is very simple. An array of sensors grabs info regarding t
 \item Charge and calibrate the system.
 \end{itemize}
 \end{itemize}
-
+\newpage
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
 Patients should have a general understanding of using smart devices with touch-bezel interfaces. Patients will also be required to wear the device on their body so a good understanding of how to setup the device and secure it will be required. Finally the device will prompt users to answer certain prompts, thus knowledge of what to expect and how to respond is required.\\
@@ -431,7 +443,7 @@ The design will consist of both a hardware and a software system. The constraint
 	\end{itemize}
 \end{itemize}
 
-
+\newpage
 \section{Specific System Description}
 \label{SSD}
 \subsection{Problem Description} \label{Sec_pd}
@@ -605,7 +617,7 @@ The activity tracking system should have the following required behavior: \\
 \item The system should be intuitive and seamless for the user\\
 \end{itemize} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \section{Requirements}
 \label{Requirements}
 This section provides the functional requirements, the business tasks that the
@@ -737,6 +749,7 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Fit Criterion:} The data recorded, stored, and submitted by the system should be accurate to a level considered satisfactory to standard EMA studies conducted by the SReS.\\
 
+\newpage
 
 \item[NFR2 \label{NFR2}:] \textbf{Usability:} This system should useable by any individual participant who falls within the categeries defined within the user characteristics section of this document. In addition, this system should be easy to set up, monitor, maintain, and reconfigure by any researcher performing EMA using the device.\\
 
@@ -752,7 +765,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Rationale:} As many of the participants may be older adults, maintenance of this system may be daunting to those unfamilar with modern technology. In addition, any downtime due to maintenance needs during each EMA period will result in a loss of valuable EMA data.\\
 
 \underline{Fit Criterion:} Once activated, the system should perform all of its functions continuously without error for a period of 7 days.\\
-
+\newpage
 \item[NFR4 \label{NFR4}:]
   \textbf{Portability:} The system must be capable of performing its functions of data collection and prompting in any location or situation a participant may find themselves in (within their daily activities). In addition, the system must be constructed in a manner which allows the participant to wear/carry, move, and use the device easily and without hassle.\\
 
@@ -809,7 +822,7 @@ Below are the functional requirements of the device as well as the rationale.
 \underline{Fit Criterion:} The system must be rated sufficiently non-disruptive to the daily lives of the participants using the system during testing.\\
 
 \item[NFR11 \label{NFR11}:]
-  \textbf{Hardware Safety:} The system must be designed with certain saftey criteria in mind. To ensure the hardware is safe is it important that the device have sufficent tollerances for Current, Voltage, and Temperature. Battery protection units will be used in the circuitry in case of high current draw. The battery will have charge protection to prevent overcharging/discharging. Additionally, the intensity of emitted frequencies will be in line with safe levels.\\
+  \textbf{Hardware Safety:} To ensure hardware safety, is it important that the device have sufficent tollerances for current, and voltage. Battery protection units will be used in the circuitry, and the battery will have charge protection to prevent overcharging/discharging. Additionally, the intensity of frequencies will be in line with safe levels.\\
 
 \underline{Rationale:} Saftey is a top priority. Causing no harm to society is an important part of an engineers code of ethics. Ensuring that the device can be used safely will inherintly make participants feel safe about the use of the device.\\
 
@@ -820,7 +833,7 @@ Below are the functional requirements of the device as well as the rationale.
 
 \underline{Rationale:} Straightforward messaging can help the partipants better navigate using the device, or may be able to tell them if the device is having an issue.\\
 
-\underline{Fit Criterion:} The goal is under normal operation that messaging will not be necessary. But if the system does malfunction, having associated indications to help diagnose these problems is an important step in making the device user friendly.\\
+\underline{Fit Criterion:} Message shouldn't be necessary under normal operation, but if the system does malfunction, have associated indications to help diagnose these problems is an important step in making the device user friendly.\\
 
 
 \item[NFR13 \label{NFR13}:]
@@ -840,7 +853,7 @@ Below are the functional requirements of the device as well as the rationale.
 
 
 \end{itemize}
-
+\newpage
 \section{Traceability Matrices and Graphs}
 \label{TMG}
 
@@ -848,13 +861,12 @@ The purpose of the traceability matrices is to provide easy references on what
 has to be additionally modified if a certain component is changed. Every time a
 component is changed, the items in the column of that component that are marked
 with an ``X'' may have to be modified as well. In other words it shows the dependencies 
-between different requriements and assumptions in the document. 
+between different requriements and assumptions in the document. \\
 
-
-\newpage
 \noindent
-\begin{landscape}
-\begin{table}[h!]
+
+\begin{table}[H]
+	\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c}
 	\hline
@@ -879,13 +891,14 @@ between different requriements and assumptions in the document.
 	\nfrref{NFR10}&  & X  &      \\
 	\hline
 	\end{tabular}
-	\caption{Traceability Matrix Showing the Connections between Assumptions and Other Items}
+
 	\label{Table:A_trace}
 \end{table}
-\end{landscape}
 
-\begin{table}[h!]
+
+\begin{table}[H]
 	\centering
+	\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 	\hline
 		& \frref{R1}& \frref{R2}& \frref{R3}& \frref{R4}& \frref{R5}& \frref{R6}& \frref{R7} \\
@@ -902,9 +915,7 @@ between different requriements and assumptions in the document.
 	\nfrref{NFR10}       &  X &   & X  & X  & X  &   &   \\ 
 	\hline
 	\end{tabular}
-	\caption{Traceability Matrix Showing the Connections Functional Requirements and Non-Functional Requirements}
 	\label{Table:R_trace}
-
 \end{table}
 
 The purpose of the traceability graphs is also to provide easy references on
@@ -912,7 +923,7 @@ what has to be additionally modified if a certain component is changed.  The
 arrows in the graphs represent dependencies. The component at the tail of an
 arrow is depended on by the component at the head of that arrow. Therefore, if a
 component is changed, the components that it points to should also be
-changed.
+changed.\\
 
 \section{Development Plan}
 \label{Dev_Plan}
@@ -925,9 +936,10 @@ N/A
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Project Attributes}
 \label{Project_Attr}
-This is a comphrehensive list of the various Open Issues, Costs and Risks involved with the project. This will be updated to reflect changes in the Design. Moreover this section also includes some stretch goals that may be accomplised depending on the pace and scale of the project.
+This is a comphrehensive list of the various Open Issues, Costs and Risks involved with the project. This will be updated to reflect changes in the Design. Moreover this section also includes some stretch goals that may be accomplised depending on the pace and scale of the project.\\
 \begin{itemize}
 \item Open Issues:
 	\begin{itemize}
@@ -941,35 +953,33 @@ This is a comphrehensive list of the various Open Issues, Costs and Risks involv
 \item Costs:
 		\begin{center}
 		\begin{table}[H]
+		\caption{\label{bom}Bill of Materials}  
 			\begin{tabular}{ |c|c|c| } 
 				 \hline
 				 	\textbf{SNo.} &  \textbf{Item.} &  \textbf{Cost (\$CAD)} \\ 
 				 \hline
-				 	1 & Arduino Nano 											& \$10 \\ 
+				 	1 & ESP32-WROOM											& \$17.72 \\ 
 				 \hline		
 				 	2 & MPU6050 (Accelerometer/ Gyroscope)						& \$12/unit \\ 
 				 \hline
-				 	3 & BMP-388 (Barometer) 									& \$2.5/unit \\ 
-				 \hline
+					3 & PCB Manufacturing Service including shipping (JCL) & \$87.73/board\\
+				\hline
 				 	4 & XD-58C (Heart Rate Sensor)								& \$3\\ 
 				 \hline
-				 	5 & STM32f405rgt6 (Primary Control Chip) 						& \$8/unit \\ 
-				 \hline
-				 	6 & Electrical Components (Diodes, Resistors, Capacitors ,etc.) 		& \$20 \\ 
+				 	5 & microSD reader						& \$15/unit \\ 
 				 \hline
 				 	7 & Lipo Battery 											& \$30 \\ 
 				 \hline
-				 	8 &OLED mini display										& \$15 \\ 
+				 	8 &Display Screen										& \$15 \\ 
 				 \hline
-				 	9 & Structural Materials (MDF, PLA plastic, wood, etc.) 			& \$10 \\ 
+				 	9 & Structural Materials (3D printing, watch strap, etc.) 			& \$10 \\ 
 				 \hline
-				 	& \textbf{Average Total Cost}								& \$110.5 \\ 
+				 	& \textbf{Average Total Cost}								& \$190.45 \\ 
 				 \hline
 			\end{tabular}
-		\caption{\label{bom}Bill of Materials}  
 		\end{table}
 		\end{center}
-
+\newpage
 \item Risks:
 	\begin{itemize}
 		\item Battery life will degrade over time.
@@ -998,7 +1008,7 @@ Once the device is handed off to the participant, an inital set up process is do
 
 Finally after the monitoring period is finished, the device will go into an idle state until it is returned to the researcher. The researcher will then log in using their master credentials at which point the device will off load all data into the host software which will compile and present the data in a graphical manner.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Undersired Event Handling}
 \label{UEH}
@@ -1050,7 +1060,7 @@ The following explains the states presented in the above Finite State Machine:
 	\end{enumerate}
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Legal and Regulatory Factors}
 \label{Legal}
@@ -1077,13 +1087,9 @@ The following explains the states presented in the above Finite State Machine:
 \end{itemize}
 \newpage
 
-
-\section{References}
-\label{References}
-N/A
 \bibliographystyle {plainnat}
 \bibliography {../../refs/References}
-
+\newpage
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
