@@ -349,7 +349,7 @@ The following tests will check whether the device will maintain an "ON" state th
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \subsubsection{Device should track Minor Movements}
 The following tests will be run to ensure that the device is able to track activities to a resolution deemed sufficient for general activity tracking. Tests will involve varying the rate at which the device is moved, rotated, oriented, etc. and checking if the status of the sensors is valid.
 
@@ -381,6 +381,8 @@ The following tests will be run to ensure that the device is able to track activ
 
 
 \end{enumerate}
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Prompt Tests}
 
@@ -416,6 +418,8 @@ The following tests will be done to ensure that the proper information is prompt
 		Response choices: Yes, No
 \end{enumerate}
 
+\newpage
+
 \subsubsection{Customizable Thresholds}
 
 The following tests will be done to ensure that the proper information is prompted to the user when activities are detected. Tests involve generating the test prompt, and generating prompts for different activities.
@@ -448,7 +452,6 @@ The following tests will be done to ensure that the proper information is prompt
 
 		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds above allowable limits.
 
-\pagebreak
 
 	\item{\textbf{TT\_3: Above Upper limit }\\}\label{TT3}
 	
@@ -461,7 +464,7 @@ The following tests will be done to ensure that the proper information is prompt
 		Output: Config File generates a BED\_ERR\_OUT\_OF\_BOUNDS.
 		
 		How test will be performed: The test is performed by setting the device to configuration mode and then setting values for the thresholds below allowable limits.
-
+\newpage
 	\item{\textbf{TT\_4: Invalid Value} \\}\label{TT4}
 	
 		Control: Manual, Dynamic
@@ -487,7 +490,7 @@ The following tests will be done to ensure that the proper information is prompt
 		How test will be performed: The test is performed by setting the device to configuration mode and then setting no values for the thresholds.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
+
 \subsubsection{Data Storage}
 
 The following tests will be done to ensure that data is stored when appropriate. Tests include checking when storage buffer is full, when prompts are generated and when sensor data needs to be logged. 
@@ -503,7 +506,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 		Output: Data Storage system generates a BED\_ERR\_MEMORY\_FULL
 		
 		How test will be performed: The test is performed by first loading the internal memory buffer with garbage values so that it is nearly/completely full. Then a registered activity is triggered generating a 					prompt. Once this is answered, the system will not have enough memory to store the new values thus resulting in an error.
-
+\newpage
 	\item{\textbf{DST\_2: Prompt Generated} \\}\label{DST2}
 	
 		Control: Manual, Dynamic
@@ -523,7 +526,7 @@ The following tests will be done to ensure that data is stored when appropriate.
 		Prompt Generated: \\
 		Do you need assistance?\\
 		Possible Answers: Yes or No\\
-\pagebreak
+
 	\item{\textbf{DST\_3: Sensor Storage} \\}\label{DST3}
 	
 		Control: Manual, Dynamic
@@ -536,6 +539,8 @@ The following tests will be done to ensure that data is stored when appropriate.
 							
 		How test will be performed: The test performs registered activities and ensuring that the sensor values that caused the prompt are stored in the internal storage buffer.
 \end{enumerate}
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Data Extraction}
 
@@ -706,7 +711,7 @@ How test will be performed: A test group of people with age of 40 or older will 
 \item Which is better: Summer vs Winter
 \item Is it daytime right now?
 \end{itemize}
-					
+\newpage
 \item\textbf{{UT\_2: Comfortable Device\\}}\label{UT2}
 
 Type: Manual, Static

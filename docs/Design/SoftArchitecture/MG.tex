@@ -17,6 +17,13 @@
     linkcolor=red,
     urlcolor=blue
 }
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
 \renewcommand{\familydefault}{\sfdefault}
 \input{../../Comments}
 \input{../../Common}
@@ -35,12 +42,13 @@
 
 \begin{document}
 
-\title{Module Guide for \progname{}}
+\title{\textbf{Module Guide for \progname{}\\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../../logo.jpg}}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 \author{\authname}
 \date{\today}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
@@ -48,8 +56,10 @@
 \begin{tabularx}{\textwidth}{p{3.8cm}p{1.6cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  18 January 2023              & 1.0           & Initial documentation     \\
-  15 March 2023              & 2.0           & Minor improvements and proof reading for revision 1       \\
+2023-01-18             & 1.0           & Initial documentation     \\
+  2023-03-15              & 2.0           & Minor improvements and proof reading for revision 1       \\
+2023-04-03 & 2.1 & Incorporated TA comments \\
+2023-04-04 & 2.2 & Added logo and style to the document \\
   \bottomrule
 \end{tabularx}
 
@@ -98,6 +108,8 @@ This document serves as the module guide for the system currently in development
 This document has been written to address the needs of a wide audience. It is intended to help on-board new members joining the project by providing them with a structured breakdown of the project in its intended state, and is intended to provide a reference document to the engineers who are responsible for maintenance of the system should they feel that they need to make any necessary changes. In addition, it is intended to be read by the designers of the system itself; to give them the ability to have a big-picture overview of the system that they are working on. After a thorough read-through of this document, a reader with a reasonable amount of background knowledge (see \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SystDesign/SystDes.pdf}{SRS}) should be able to recreate the functionality of each module, their interactions with each other, and therefore the system as a whole.\\
 
 For this document to fulfill all of these requirements specified above is a difficult task, and the content of it is likely unable to capture 100\% of the information necessary to fulfill its goals to perfection. It should be obvious that engineers are by no means omniscient, not even regarding the systems that they design themselves. However, the authors of this document will still attempt to cover the relevant content in a digestible and comprehensive way, and thank the reader for their patience and good will.\\
+
+\newpage
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -165,6 +177,7 @@ actually be implemented.
 
 \begin{table}[h!]
   \centering
+  \caption{Module Hierarchy}
   \begin{tabular}{|p{0.3\textwidth} | p{0.3\textwidth} |p{0.3\textwidth}  |}
     \toprule
     \textbf{Level 1}        & \textbf{Level 2}        &\textbf{Level 3} \\
@@ -201,7 +214,7 @@ actually be implemented.
 
     \bottomrule
   \end{tabular}
-  \caption{Module Hierarchy}
+
   \label{TblMH}
 \end{table}
 
@@ -372,7 +385,7 @@ to be implemented.
   \item[Services:] This algorithm allows user to preset the device with their own choice of parameters.
   \item[Implemented By:] Python
 \end{description}
-
+\newpage
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: Between the modules and the
@@ -415,6 +428,8 @@ requirements and between the modules and the anticipated changes.
   \label{TblACT}
 \end{table}
 
+\newpage
+
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
 In this section, the uses hierarchy between modules is
@@ -436,7 +451,7 @@ because they use modules from the lower levels.
 \end{figure}
 
 %\section*{References}
-
+\newpage
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
 

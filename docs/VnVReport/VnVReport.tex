@@ -251,7 +251,7 @@ The following tests were performed to check that the device maintaines an "ON" s
   \textbf{How test was performed}: The test was performed by passing an invalid input and ensuring that the appropriate error code with its description is returned.
 
   \textbf{Observed Results}: When an unexpected input (wrong type) was passed, an error code with description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
-
+\newpage
   \item{\textbf{DT\_3: Earlier Date}\\}\label{DT3}
 
   \textbf{Initial State}: Device waits for the monitoring period to be set up in the configuration of the device.
@@ -276,7 +276,7 @@ The following tests were performed to check that the device maintaines an "ON" s
 
   \textbf{Observed Results}: When a date later than the predetermined maximum date was passed on, an error code with description (BED\_ERR\_INVALID\_DATA) showed up on the screen.
 \end{enumerate}
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Device should track Minor Movements}
 The following tests were performed to analyze the device's sensitivity.
@@ -307,6 +307,8 @@ The following tests were performed to analyze the device's sensitivity.
   \textbf{Observed Results}: Test Failed. The device failed to detect heart rate reliably (heart rate was expected to be roughly 70 bpm based on a third party heart rate sensor, but the device returned values greater than 200 bpm). Review of the code and selection of heart rate sensor is required.
 
 \end{enumerate}
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prompt Tests}
 
@@ -342,7 +344,7 @@ The following tests were done to ensure that the proper prompts were displayed t
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \subsection{Customizable Thresholds}
 
 The following tests were done to ensure that the proper prompts were displayed to the user when activities are detected at configured thresholds. Tests involve generating the test prompt, and generating prompts for different activities.
@@ -386,6 +388,8 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \textbf{Observed Results}: Configuration file generated an error code for the specific parameter in the config file.
 
+\newpage
+
   \item{\textbf{TT\_4: Invalid Value} \\}\label{TT4}
 
   \textbf{Initial State}: Device is in configuration mode.
@@ -428,7 +432,7 @@ The following tests were done to ensure that data is stored when necessary. Test
 
   \textbf{Observed Results}:  Once the prompts were answered, the system did not have enough memory to store the new values thus resulting in the expected error code.
 
-
+\newpage
   \item{\textbf{DST\_2: Prompt Generated} \\}\label{DST2}
 
   \textbf{Initial State}: Device is in an idle state.
@@ -462,6 +466,7 @@ The following tests were done to ensure that data is stored when necessary. Test
   \textbf{Observed Results}: The raw sensor data values that triggered the prompts were stored along with the responses from the users.\\
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{Data Extraction}
 
 The following tests were done to ensure that data can be extracted and presented in a graphical manner deemed acceptable for the purpose of EMA analysis.
@@ -628,10 +633,10 @@ The following set of tests were done to ensure that the device is usable by targ
     \item Q9: Which is better: Summer vs Winter
     \item Q10: Is it daytime right now?
   \end{itemize}
+\newpage
+  \textbf{Observed Results}: The UI was considered to be intuitive and user-friendly, testers were able to navigate through and answer propmpts without any problem. Below table lays out all the responses made by the four participating testers.
 
-  \textbf{Observed Results}: The UI was considered to be intuitive and user-friendly, testers were able to navigate through and answer propmpts without any problem. Table 4 lays out all the responses made by the four participating testers.
-
-\begin{table}[H]
+\begin{table}[H]\label{survey}
 \centering
 \caption{UT\_1 Survey Response}
   \begin{tabular}{| c| c | c | c | c |}
@@ -678,7 +683,7 @@ The following set of tests were done to ensure that the device is usable by targ
   \end{itemize}
 
   \textbf{Observed Results}: Testers filled out a survey and the responses were mostly positive.
-
+\newpage
   \item\textbf{{UT\_3: Reusability\\}}\label{UT3}
 
   \textbf{Initial State}: The device is cleaned using isopropyl alcohol wipes.
@@ -720,6 +725,8 @@ The following set of tests were done to ensure that the device is usable by targ
 \end{table}
 
 \end{enumerate}
+
+\newpage
 
 \subsubsection{Performance}
 The following set of questions was asked to ensure that the device was capable of meeting user expectations.
@@ -763,6 +770,8 @@ TRANSFER\_TIME: Set to 60 seconds
   \end{tabular}
 \caption{Data Transfer Time Testing Data}
 \end{table}
+
+\newpage
   \item\textbf{{PT\_2: Battery Life\\}}\label{PT2}
 
   \textbf{Initial State}: The device is turned on and left on idle mode.
@@ -799,7 +808,7 @@ BATTERY\_LIFE: 24 Hours
 \end{figure}
 
 \end{enumerate}
-
+\newpage
 \subsubsection{Data Security Tests}
 
 These tests were designed to test the security of the system and the accessibility of important medical records. This is important to protect the user's privacy by avoiding it to fall in the wrong hands. Thus only authorised users can access the data.
