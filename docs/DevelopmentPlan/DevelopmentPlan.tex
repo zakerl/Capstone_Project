@@ -5,13 +5,21 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{graphicx}
-\usepackage[table]{xcolor}
+\usepackage[table,dvipsnames]{xcolor}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
 \usepackage{float}
 \renewcommand{\familydefault}{\sfdefault}
 
-\title{Development Plan\\\progname}
+\usepackage{afterpage}
+\usepackage{titlepic}
+
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+\title{\textbf{Development Plan\\\progname \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 
 \author{\authname}
 \setlength\parindent{0pt}
@@ -22,7 +30,8 @@
 
 \begin{document}
 
-\maketitle
+\color{white}\maketitle
+\color{black}
 \newpage
 
 \tableofcontents
@@ -36,7 +45,9 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-September 26 & Back End Developers & Initial documentation\\
+2022-09-26 & Back End Developers & Initial documentation\\
+2023-04-02 & Jonathan Hai & Incorporated TA comments for rev1\\
+2023-04-04 & Jessica Bae & Added logo and style to the document\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -206,7 +217,7 @@ The following tools shall be used for development in software, embedded systems 
 \item Wood working tools (Hand Saws and Power Sanding ) if necessary.
 \end{itemize}
 \end{enumerate}
-
+\newpage
 \section{Limitations of Tools and Methods of Solving}
 
 \begin{itemize}

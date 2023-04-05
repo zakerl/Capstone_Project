@@ -13,6 +13,14 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \hypersetup{
     colorlinks=true,       	% false: boxed links; true: colored links
@@ -21,8 +29,9 @@
     filecolor=magenta,      	% color of file links
     urlcolor=cyan           	% color of external links
 }
+\title{\textbf{Hazard Analysis\\\progname\\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 
-\title{Hazard Analysis\\\progname}
 
 \author{\authname}
 
@@ -33,7 +42,9 @@
 
 \begin{document}
 
-\maketitle
+\color{white}\maketitle
+
+\color{black}
 \thispagestyle{empty}
 
 ~\newpage
@@ -46,9 +57,12 @@
 		\toprule
 		\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}        \\
 		\midrule
-		October 19th 2022        & Back End Developers              & Initial documentation for Hazard Analysis \\
-		March 15th 2022        & Jessica Bae & Minor improvements and proof reading for revision 1 \\
-		March 17th 2023        & Jessica Bae & Removed and modified requirements to align with VnV \\
+		2022-10-19   & Back End Developers              & Initial documentation for Hazard Analysis \\
+		2023-03-15        & Jessica Bae & Minor improvements and proof reading for revision 1 \\
+		2023-03-17        & Jessica Bae & Removed and modified requirements to align with VnV \\
+		2023-04-03 & Jonathan Hai & Incorporated TA comments \\
+		2023-04-04 & Jessica Bae & Added logo and style to the document \\
+		
 		\bottomrule
 	\end{tabularx}
 \end{table}
