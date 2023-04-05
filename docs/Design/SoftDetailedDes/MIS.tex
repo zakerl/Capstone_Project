@@ -21,6 +21,13 @@
 \usepackage{fullpage}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{helvet}
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
 \renewcommand{\familydefault}{\sfdefault}
 
 \hypersetup{
@@ -41,14 +48,14 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for \progname{}}
-
+\title{\textbf{Module Interface Specification for \progname{}} \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../../logo.jpg}}
 \author{\authname}
 
 \date{\today}
+ \pagecolor{black}\afterpage{\nopagecolor}
+\color{white}\maketitle
 
-\maketitle
-
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
@@ -56,7 +63,10 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-January 18th, 2023 & 1.0 & Initial Documentation\\
+2023-01-18 & 1.0 & Initial documentation\\
+2023-03-15 & 2.0 & Minor improvements and proof reading for revision 1\\
+2023-04-03 & 2.1 & Incorporated TA feedback\\
+2023-04-03 & 2.2 & Included logo and added style to the document\\
 \bottomrule
 \end{tabularx}
 
@@ -78,7 +88,7 @@ Please refer to the System Requirements Specifications document at \href{https:/
 
 The following document details the Module Interface Specifications for the EMAnator; the system currently being developed by the Back End Developers designed to aid in Ecological Momentary Assessment research. This document describes the various relevant details of interfacing with each module. These details include  module descriptions, the uses of each module, the syntax of each module, and the semantics associated with each module.\\
 
-Complementary documents include the System Requirement Specifications and Module Guide. The Back End Developers highly recommend a thorough read-through of each document prior to a reading of this document to attain the prerequisite knowledge necessary to fully understand this MIS. The System Requirements Specifications can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.tex}{this link}, and the Module Guide can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{this link}.
+Complementary documents include the System Requirement Specifications and the Module Guide. The Back End Developers highly recommend a thorough read-through of each document prior to a reading of this document to attain the prerequisite knowledge necessary to fully understand this MIS. The System Requirements Specifications can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.tex}{this link}, and the Module Guide can be found at \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftArchitecture/MG.pdf}{this link}.
 
 \section{Notation}
 
@@ -98,10 +108,10 @@ The following table summarizes the primitive data types used by \progname.
 \toprule 
 \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
 \midrule
-character & char & a single symbol or digit\\
-integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
-natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
-real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+Character & char & A single symbol or digit\\
+Integer & $\mathbb{Z}$ & A number without a fractional component in (-$\infty$, $\infty$) \\
+Natural number & $\mathbb{N}$ & A number without a fractional component in [1, $\infty$) \\
+Real & $\mathbb{R}$ & Any number in (-$\infty$, $\infty$)\\
 \bottomrule
 \end{tabular} 
 \end{center}
@@ -119,26 +129,39 @@ described by giving their type signature followed by their specification.
 The following table is taken directly from the Module Guide document for this project.
 \begin{table}[h!]
   \centering
-  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+  \begin{tabular}{|p{0.3\textwidth} | p{0.3\textwidth} |p{0.3\textwidth}  |}
     \toprule
-    \textbf{Level 1}                                      & \textbf{Level 2}         \\
+    \textbf{Level 1}        & \textbf{Level 2}        &\textbf{Level 3} \\
     \midrule
 
-    {Hardware-Hiding Module}                              & Device Manager           \\
-                                                          & Data Storage             \\
-                                                          & Sensor Array             \\
+    \multirow{9}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
+\cline{2-3}
+					                                                          &  \multirow{2}{0.3\textwidth}{Data Storage}        & microSD     \\
+																		&			&Database\\
+\cline{2-3}
+					                                                          & \multirow{3}{0.3\textwidth}{Sensor Array}         & Sensor Reading    \\
+																		&			& Sensor Data Processing \\
+																		&			& Sensor Prompt Validity \\ 
+\cline{2-3}
+												  & \multirow{2}{0.3\textwidth}{Physical Design} & Watch Straps \\
+																		&			& Watch Case \\
 
     \midrule
 
-    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System           \\
-                                                          & Prompt Generation        \\
-                                                          & Real Time Clock          \\
+    \multirow{3}{0.3\textwidth}{Behaviour-Hiding Module}  & Display System         & Display Screen  \\
+\cline{2-3}
+			                                                          & Prompt Generation       & Prompt Generation \\
+\cline{2-3}
+			                                                          & Real Time Clock      & RTC   \\
 
 
     \midrule
 
-    \multirow{3}{0.3\textwidth}{Software Decision Module} & Moving Average Algorithm \\
-                                                          & Graph Plotter            \\
+    \multirow{4}{0.3\textwidth}{Software Decision Module} &  \multirow{2}{0.3\textwidth}{Parameter Selection}& Create New User\\
+																		&			& Configuration \\
+\cline{2-3}
+                                                          & \multirow{2}{0.3\textwidth}{Data Processing}       & Graph  \\
+											&			& Data Display \\
 
     \bottomrule
   \end{tabular}
@@ -689,54 +712,11 @@ The following table is taken directly from the Module Guide document for this pr
 
 %%%% HARDWARE Interface Modules %%%%%
 
-%Physical Design Module 
 
-\section{MIS of Physical Design Module} \label{mPD} 
-
-\subsection{Module}
-
-Physical\_Design
-
-\subsection{Uses}
-None.
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None.
-
-\subsubsection{Exported Access Programs}
-
-None.
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-None.
-
-\subsubsection{Environment Variables}
-
-None.
-
-\subsubsection{Assumptions}
-
-Will not impact the the functionality of any other components.
-
-\subsubsection{Access Routine Semantics}
-
-None.
-
-\subsubsection{Local Functions}
-
-None.
-
-\newpage
 
 %Battery Management Module 
 
-\section{MIS of Battery Management Module} \label{mBM} 
+\section{MIS of Battery Module} \label{mBM} 
 
 \subsection{Module}
 
@@ -751,7 +731,7 @@ None.
 \subsubsection{Exported Constants}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{2cm} p{4cm} p{3cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -767,7 +747,7 @@ Touch\_Flag& - & bool & - \\
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{2cm} p{4cm} p{3cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -800,74 +780,17 @@ None.
 
 \newpage
 
-
-% Device Manager Module
-
-\section{MIS of Device Manager Module} \label{mDM} 
-
-\subsection{Module}
-
-Dev\_Man
-
-\subsection{Uses}
-
-Data Storage Module (Section \ref{mDS_1})
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None.
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-SD\_Data & - & Card\_IO: string & BED\_ERR\_SD: $\mathbb{Z}$ \\
-Host\_Data & Host\_IO: string & Extract\_Data: string & BED\_ERR\_SD: $\mathbb{Z}$ \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-None.
-
-\subsubsection{Environment Variables}
-
-Extract\_Data: string which outputs to supporting software on researcher's computers.
-
-\subsubsection{Assumptions}
-
-\begin{itemize}
-\item SD card is formatted correctly.
-\item SD card is inserted correctly.
-\item Valid connection to host computer is present.
-\end{itemize}
-
-\subsubsection{Access Routine Semantics}
-
-None.
-
-\newpage
-
-
-
 %Data Storage Module
 
-\section{MIS of Data Storage Module} \label{mDS_1} 
+\section{MIS of microSD Module} \label{mDS_1} 
 
 \subsection{Module}
 
-Data\_Stor
+microSD\_Stor
 
 \subsection{Uses}
 
-Sensor Array Module (Section \ref{mSA}), Real Time Clock Module (Section \ref{mRTC})    %%%%%%%%%%%%
+Sensor Prompt Validity Module (Section \ref{mSA3}), Real Time Clock Module (Section \ref{mRTC})    %%%%%%%%%%%%
 
 \subsection{Syntax}
 
@@ -878,7 +801,7 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{2cm} p{4cm} p{3.5cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -900,8 +823,8 @@ file: A text file.
 
 \subsubsection{Assumptions}
 \begin{itemize}
-\item SD card is formatted correctly.
-\item SD card is inserted correctly.
+\item MicroSD card is formatted correctly.
+\item MicroSD card is inserted correctly.
 \end{itemize}
 \subsubsection{Access Routine Semantics}
 
@@ -913,14 +836,64 @@ None.
 
 \newpage
 
-
-%Sensor Array Module
-
-\section{MIS of Sensor Array Module} \label{mSA} 
+\section{MIS of Local Database Module} \label{mDS_2} 
 
 \subsection{Module}
 
-Sensor\_Array
+Database\_Stor
+
+\subsection{Uses}
+
+microSD Module (Section \ref{mDS_1})   %%%%%%%%%%%%
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{3.5cm} p{3.6cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Database\_Read & - & Read\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+Database\_Write & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None.
+
+\subsubsection{Environment Variables}
+
+file: A text file.
+
+\subsubsection{Assumptions}
+None.
+\subsubsection{Access Routine Semantics}
+
+None.
+
+\subsubsection{Local Functions}
+
+None.
+
+\newpage
+
+%Sensor Array Module
+
+\section{MIS of Reading Sensor Module} \label{mSA1} 
+
+\subsection{Module}
+
+Sensor\_Reding
 
 \subsection{Uses}
 
@@ -930,6 +903,7 @@ Battery Management (Section \ref{mBM})
 
 \subsubsection{Exported Constants}
 
+None.
 
 \subsubsection{Exported Access Programs}
 
@@ -943,9 +917,7 @@ None.
 $pedometer\_count: \mathbb{R}$ \\
 $heartrate: \mathbb{R}$ \\
 $prompt\_interrupt:$ bool \\
-$touch\_input:$ bool (tuple) \\
-
-
+$touch\_input:$ bool (tuple) 
 \subsubsection{Environment Variables}
 %interaction with device driver, screen, keyboard, file
 
@@ -953,25 +925,115 @@ None.
 
 \subsubsection{Assumptions}
 \begin{itemize}
-
-\item All activity thresholds are provided from the configuration file. \\
-\item There is available space on the SD card. \\
+\item All activity thresholds are provided from the configuration file.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent activity\_sensed():
-\begin{itemize}
-\item transition: change the state of the Prompt Generation Module in order to send a prompt to the user which will be sent to the display.  
-\item exception: there is already a prompt being displayed to the user OR not enough time has elapsed between the prompts.
-\end{itemize}
+None.
 
 \subsubsection{Local Functions}
-
-data\_smoothing\_filter(): the purpose of this function is to make sure that the data coming from all the sensors is smoothed, in order to prevent a prompt from being generated erroneously and distrubing the user.
+None.
 
 \newpage
 
+\section{MIS of Sensor Data Processing Module} \label{mSA2} 
+
+\subsection{Module}
+
+Sensor\_Data
+
+\subsection{Uses}
+
+Sensor Reading (Section \ref{mSA1})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{1cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+HeartRate\_Read & - & Read\_Data: integer & BED\_ERR\_SE: $\mathbb{Z}$ \\
+MPU\_Read & -& Read\_Data: integer & BED\_ERR\_SE: $\mathbb{Z}$ \\
+Touch\_Read & - & Read\_Data: bool & BED\_ERR\_SE: $\mathbb{Z}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None.
+
+\subsubsection{Environment Variables}
+%interaction with device driver, screen, keyboard, file
+None.
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+\item There is space available in microSD card.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+None.
+
+\subsubsection{Local Functions}
+
+data\_smoothing\_filter(): The purpose of this function is to make sure that the data coming from all the sensors is smoothed, in order to prevent a prompt from being generated erroneously and disturbing the user.
+
+\newpage
+
+\section{MIS of Prompt Validity Module} \label{mSA3} 
+
+\subsection{Module}
+
+Sensor\_Prompt
+
+\subsection{Uses}
+
+Sensor Data Processing (Section \ref{mSA2})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3cm} p{2cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Check\_Validity & Read\_Data & Prompt\_Valid: bool & BED\_ERR\_SE: $\mathbb{Z}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None.
+
+\subsubsection{Environment Variables}
+%interaction with device driver, screen, keyboard, file
+None.
+
+\subsubsection{Assumptions}
+
+None.
+
+\subsubsection{Access Routine Semantics}
+None.
+
+\subsubsection{Local Functions}
+
+\newpage
 
 %Display System Module
 
@@ -994,7 +1056,7 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3cm} p{3cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{3cm} p{3.5cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -1052,7 +1114,7 @@ $max\_prompts: \mathbb{Z}$
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3cm} p{3cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{3cm} p{3cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -1108,7 +1170,7 @@ None.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3cm} p{3cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{3cm} p{2cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -1131,7 +1193,7 @@ None.
 \subsubsection{Assumptions}
 
 \begin{itemize}
-\item Initial Date and Time is correctly set.
+\item Initial date and time is correctly set.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
@@ -1146,15 +1208,61 @@ None.
 
 %Parameter Selection
 
-\section{MIS of Parameter Selection} \label{mPS} 
+\section{MIS of Create New User Module} \label{mPS} 
 
 \subsection{Module}
 
-Param\_Select
+NewUser\_Enter
 
 \subsection{Uses}
 
-Device Manager Module (Section \ref{mDM})
+Local Database Module (Section \ref{mDS_2})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+None.
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+$param\_input$: string, integer
+
+\subsubsection{Environment Variables}
+
+File: A new information line in database.
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+\item All configuration parameters within acceptable limits.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+None.
+
+\subsubsection{Local Functions}
+
+None.
+
+\newpage
+
+\section{MIS of Configuration Module} \label{mPS2} 
+
+\subsection{Module}
+
+Config\_Param
+
+\subsection{Uses}
+
+MicroSD Module (Section \ref{mDS_1})
 
 \subsection{Syntax}
 
@@ -1174,7 +1282,7 @@ $param\_input$: string
 
 \subsubsection{Environment Variables}
 
-file: a text file on the SD card.
+None.
 
 \subsubsection{Assumptions}
 
@@ -1189,6 +1297,8 @@ None.
 \subsubsection{Local Functions}
 
 None.
+
+\newpage
 
 \section{MIS of Graph Plotter} \label{mGP} 
 
@@ -1218,7 +1328,7 @@ $graph\_select$: bool
 
 \subsubsection{Environment Variables}
 
-file: a database on the host computer.
+File: A database on the host computer.
 
 \subsubsection{Assumptions}
 
@@ -1236,9 +1346,102 @@ $graph\_stat$: Statistical analysis function.
 
 \newpage
 
+%Physical Design Module 
+
+\section{MIS of Watch Strap Module} \label{mPD} 
+
+\subsection{Module}
+
+Watch\_Strap
+
+\subsection{Uses}
+Watch Case Module (Section \ref{mPD2})
+
+\subsection{Syntax}
+
+Velcro straps going tied to the watch case.
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+None.
+
+\subsection{Semantics}
+
+Allow the device to be strapped onto the user.
+
+\subsubsection{State Variables}
+
+None.
+
+\subsubsection{Environment Variables}
+
+None.
+
+\subsubsection{Assumptions}
+
+Will not impact the functionality of any other components.
+
+\subsubsection{Access Routine Semantics}
+
+None.
+
+\subsubsection{Local Functions}
+
+None.
+
+\newpage
 
 
+\section{MIS of Watch Case Module} \label{mPD2} 
 
+\subsection{Module}
+
+Watch\_Case
+
+\subsection{Uses}
+None.
+
+\subsection{Syntax}
+
+CAD model and 3D printed.
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+None.
+
+\subsection{Semantics}
+
+Holds the display screen, touch bezels, and display screen together into 1 single device.
+
+\subsubsection{State Variables}
+
+None.
+
+\subsubsection{Environment Variables}
+
+None.
+
+\subsubsection{Assumptions}
+
+Will not impact the functionality of any other components.
+
+\subsubsection{Access Routine Semantics}
+
+None.
+
+\subsubsection{Local Functions}
+
+None.
+
+\newpage
 
 
 \bibliographystyle {plainnat}

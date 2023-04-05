@@ -47,6 +47,8 @@
 		\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}        \\
 		\midrule
 		October 19th 2022        & Back End Developers              & Initial documentation for Hazard Analysis \\
+		March 15th 2022        & Jessica Bae & Minor improvements and proof reading for revision 1 \\
+		March 17th 2023        & Jessica Bae & Removed and modified requirements to align with VnV \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -137,7 +139,9 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 \section{Failure Mode and Effect Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 	\begin{table}[H]
+\caption{\label{tab:Display}Display FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
 	 \centering	
 		\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
 			\hline
@@ -192,7 +196,6 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			                            \end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-		\caption{\label{tab:Display}Display FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR1]{HR1} ,\hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
@@ -200,6 +203,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 		
 	\begin{table}[H]
 	\centering	
+\caption{\label{tab:Prompt}Prompt Generation FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}, \hyperref[SR3]{SR3}}
 		\begin{tabular}{|p{6em}|p{5em}|p{5em}|p{5em}|p{5em}|p{9em}|}
 	
 			\hline
@@ -245,14 +249,12 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			   \end{minipage}  \tabularnewline\cline{1-6}
 	
-		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Prompt}Prompt Generation FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}, \hyperref[SR3]{SR3}}
+		\end{tabular}%\vspace{3mm}	
 	\end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
 	\begin{table}[H]
 	\centering	
+	\caption{\label{tab:Sensor}Sensor Array  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR1]{HR1}, \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
 		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
 			\hline
 \rowcolor{LightCyan}
@@ -285,15 +287,12 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			%
 			
 			\end{tabular}%\vspace{3mm}
-	
-			
-	
-	\caption{\label{tab:Sensor}Sensor Array  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR2]{HR2}, \hyperref[HR5]{HR5}, \hyperref[SR1]{SR1}, \hyperref[SR2]{SR2}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\begin{table}[H]
 \centering	
+	\caption{\label{tab:Battery}Battery Management  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR2]{HR2}, \hyperref[SR1]{SR1}}
 		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
 		
 			\hline
@@ -314,14 +313,13 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			\end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-
-	\caption{\label{tab:Battery}Battery Management  FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[HR1]{HR1}, \hyperref[HR3]{HR3},\hyperref[HR4]{HR4}, \hyperref[SR1]{SR1}}
 	\end{table}
 
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering	
+	\caption{\label{tab:Error}Error Handler FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[DSR2]{DSR2}}
 		\begin{tabular}{|p{6em}|p{7em}|p{5em}|p{5em}|p{5em}|p{9em}|}
 			%
 			\hline
@@ -352,13 +350,13 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			                                                                                                                                                                                                                                                                                                 			\end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Error}Error Handler FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[DSRQ1]{DSRQ1}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]	
 \centering	
+	\caption{\label{tab:DataStorage}Data Storage FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[DSR1]{DSR1}}
 		\begin{tabular}{|p{6em}|p{7em}|p{6em}|p{5em}|p{5em}|p{9em}|}
 			\hline             
 \rowcolor{LightCyan}
@@ -391,8 +389,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			\tabularnewline\cline{1-6}
 			\end{tabular}
 
-	
-	\caption{\label{tab:DataStorage}Data Storage FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1}, \hyperref[SR5]{SR5}, \hyperref[DSR1]{DSR1}}
+
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -400,6 +397,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 	\begin{table}[H]		
 \centering		
+	\caption{\label{tab:DeviceManager}Device Manager FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 		\begin{tabular}{|p{6em}|p{7em}|p{6em}|p{5em}|p{5em}|p{9em}|}
 			\hline        
 \rowcolor{LightCyan}
@@ -436,13 +434,13 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 			\end{minipage}
 			\tabularnewline\cline{1-6}
 		\end{tabular}
-	\caption{\label{tab:DeviceManager}Device Manager FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering	
+	\caption{\label{tab:Records}Record System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[DSR2]{DSR2},\hyperref[DSR3]{DSR3}}
 		\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
 			\hline
 	\rowcolor{LightCyan}
@@ -497,7 +495,8 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			   \end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Records}Record System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}, \hyperref[SR5]{SR5},\hyperref[DSRQ1]{DSRQ1},\hyperref[DSRQ2]{DSRQ2}}
+
+
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
@@ -506,6 +505,7 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering		
+	\caption{\label{tab:DataView}Data View System FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 		\begin{tabular}{|m{6em}|m{5em}|m{5em}|m{5em}|m{5em}|m{9em}|}
 			\hline
 \rowcolor{LightCyan}
@@ -558,13 +558,13 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 				\end{itemize}
 			   \end{minipage}  \tabularnewline\cline{1-6}
 		\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:DataView}Data View System FMEA  \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering	
+	\caption{\label{tab:HostSoftware}Host Software FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 \begin{tabular}{|p{3em}|p{5em}|p{5em}|p{8em}|p{8em}|p{8em}|}
 		\hline
 \rowcolor{LightCyan}
@@ -640,13 +640,13 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 		  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:HostSoftware}Host Software FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2}}
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{table}[H]
 \centering	
+	\caption{\label{tab:Configuration}Configuration System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2},\hyperref[SR4]{SR4}}
 	\begin{tabular}{|p{3em}|p{5em}|p{7em}|p{8em}|p{6em}|p{7em}|}
 		\hline
 \rowcolor{LightCyan}
@@ -691,20 +691,20 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\end{tabular}%\vspace{3mm}
-	\caption{\label{tab:Configuration}Configuration System FMEA \\\hspace{0.1\textwidth} \textbf{Req:} \hyperref[SR1]{SR1},\hyperref[SR2]{SR2},\hyperref[SR4]{SR4}}
+
 	\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\pagebreak
 
 \section{Safety and Security Requirements}
 
 \subsection{Hardware Requirements}
 \begin{enumerate}
-	\item\label{HR1}\textbf{HR1}: Device components will have sufficient electrical tolerances for Current, Voltage, Temperature etc.\\
-	\item\label{HR2}\textbf{HR2}: Fuses will be connected in the circuitry to shut down the device in cases of high current draw.\\
-	\item\label{HR3}\textbf{HR3}: Charge protection circuity will be integrated to avoid overcharging/discharging of the battery.\\
-	\item\label{HR4}\textbf{HR4}: The intensity of emitted frequencies will be limited to safe levels.\\
+
+	\item\label{HR1}\textbf{HR1}: Device components will have sufficient electrical tolerances for various voltage levels.\\
+	\item\label{HR2}\textbf{HR2}: Charge protection circuity will be integrated to avoid overcharging of the battery.\\
+
 \end{enumerate}
 
 \subsection{Software  Requirements}
@@ -713,21 +713,16 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 	\item\label{SR2}\textbf{SR2}: Tests will be conducted for all Software before deployment to the device.\\
 	\item\label{SR3}\textbf{SR3}: All users are required to complete the test prompt.\\
 	\item\label{SR4}\textbf{SR4}: Configuration setting will fall within accepted boundaries.\\
-	\item\label{SR5}\textbf{SR5}: Manipulation of database shall be done with standard DBMS practices.\\
 \end{enumerate}
 
-\subsection{Data Storage Requirements }
+\subsection{Data Requirements }
 \begin{enumerate}
 	\item\label{DSR1}\textbf{DSR1}: All data to be backed up, in case of power failure.\\
+
+	\item\label{DSR2}\textbf{DSR2}: 	Access to records will be restricted to administrative users with encrypted ssh access key.\\
+	\item\label{DSR3}\textbf{DSR3}: 	The device will not modify user data unnecessarily.\\ 	
+
 \end{enumerate}
-
-
-\subsection{Data Security Requirements }
-\begin{enumerate}
-	\item\label{DSRQ1}\textbf{DSRQ1}: 	Access to records will be restricted to administrative users with encrypted ssh access key.\\
-	\item\label{DSRQ2}\textbf{DSRQ2}: 	The device will not modify user data unnecessarily.\\ 	
-\end{enumerate}
-
 
 
 \pagebreak
@@ -742,20 +737,18 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 		\toprule
 		\textbf{When to Implement} & \textbf{Requirement} & \textbf{Priority}        \\
 		\midrule
-		During Course         	& HR1               	& Low					\\
-		         			& HR2              		& High 					\\
-		          			& HR3                   	& High                   	     		\\
-						& HR4 			& Very High 			 \\	
-		          			& HR5                   	& Very High                   	     \\
+		During Course         	& HR1               	& High			\\
+		         			& HR2              		& Very High 				\\
 		          			& SR1                   	& Low                   	     \\
 		          			& SR2     			& High                   	     \\
 		          			& SR4                   	& High                   	     \\
-		          			& SR5                   	& Low                   	     \\
-		          			& DSR1                   	& Very High                   	     \\
-		          			& DSRQ2                   & Very High                   	     \\
+
+		          			& DSR1                  	& Very High                   	     \\
+		          			& DSR3                   & Very High                   	     \\
+
 		Postponed*		& SR2** 			& High                               \\
 						& SR3 			& Low                               \\
-						& DSRQ1 			& Very High                               \\
+						& DSR2 			& Very High                               \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -764,6 +757,8 @@ This is where all data stored on the device can be viewed/ analyzed by the resea
 \textit{**Regarding software imported to device after course completion.}\\
 
 Postponed requirements are not of lower priority than the requirements to be completed during the course. However, these postponed requirements can only come into effect once the device begins operation in its intended use cases. Otherwise, they are meaningless during the development phase. In addition, low priority values do not mean that the requirement may be dropped. Instead, it means that the implementation of said requirement may be easier, or less critical to the safety of the device, safety of the user, or functionality in general.\\
+
+\pagebreak
 
 \section*{Appendix}
 \subsection*{Therac-25 case study}

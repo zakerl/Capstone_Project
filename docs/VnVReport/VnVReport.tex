@@ -26,26 +26,39 @@
 }
 \usepackage[round]{natbib}
 \graphicspath{ {./docs/VNVReport} }
+
+\usepackage{afterpage}
+\usepackage{titlepic}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{RedOrange}}{\rlap{\color{black}\rule[-0.3cm]{\linewidth}{1cm}} {\textcolor{RedOrange}{\thesection}}}{1em}{}
+
+
 \renewcommand{\familydefault}{\sfdefault}
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname}
+\title{\textbf{Verification and Validation Report: \progname} \\ \vspace{2cm} \includegraphics[width=0.5\textwidth]{../logo.jpg}}
+ \pagecolor{black}\afterpage{\nopagecolor}
 \author{\authname}
 \date{\today}
 
-\maketitle
-
+\color{white}\maketitle
+\color{black}
 \pagenumbering{roman}
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{2.2cm}p{1.4cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  March 8th 2023              & 1.0           & Initial Documentation       \\
+  2023-03-08              & 1.0           & Initial Documentation       \\
+  2023-03-17		&2.0		& Modified requirements and traceability tables to match VnV Plan \\
+2023-04-04 & 2.1 & Incorporated TA feedback \\
+2023-04-04 & 2.2 & Added logo and style to the document \\
   \bottomrule
 \end{tabularx}
 
@@ -147,7 +160,7 @@ Below are some derived units that do not use a specific SI symbol.
 \newpage
 
 \tableofcontents
-
+\newpage
 \listoftables %if appropriate
 
 \listoffigures %if appropriate
@@ -156,7 +169,59 @@ Below are some derived units that do not use a specific SI symbol.
 
 \pagenumbering{arabic}
 
-\section{Functional Requirements Evaluation}
+\section{Design Verification}
+As outlined in section 4 of the \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}, verification of the SRS and VnV Plan were performed to ensure that deisgn is meeting its requirements.
+\subsection{SRS Verification}
+\begin{center}
+\begin{table} [H]
+\caption{SRS Verification Result}
+  \begin{tabular}{|p{1.5cm}|p{6.5cm}|p{6.9cm}|}
+    \hline
+    \textbf{Section}   & \textbf{Description} & \textbf{Verification}
+    \\
+    \hline
+    Overall  & System constrains, and monitored and controlled variables are consistent. Comparison to existing solutions is unambiguous. Project Goals are relevant to description of device.
+   
+ & Stakeholder Dr. Luciana Macedo approves of function and non function requirements, and requests that the team refines the definition of various activities to eliminate ambiguity. \\
+    \hline
+    4.1-4.3  & The verification for this section will be performed by checking if system constrains and user characteristics are provided in detail without any ambiguity.                                       &  If Accelerometer is greater than or equal to 0.5 and gyroscope is greater than equal to 0.5, then trigeer counter.\\
+    \hline
+    5 &  Terminology and the use of monitored and controlled variables must be verified to be consistent and correct. Assumptions and project goals are clear. & All terminologies and variable names were consistent and correct.                                           \\
+    \hline
+    7 & Functional and non-functional requirements must be verified.                           & Speific tests for functional and non functional requirements are included as part of section \ref{FR} and \ref{NFR}.                                                \\
+    \hline
+8-12&  Matrices and graphs must be verified according to requirements. In addition, verification must be performed to see if normal operation covers the required goals of the device.                                         & Graph needs to be separated into each functionality. UI team to modify code such that the graphing functionality allows researchers todisplay selective information if necessary.                                             \\
+    \hline
+14-16                                           & The FSM, Legal factors and Phase in Plan must be verified.                                                                                                                                 & Data storage is changed from cloud service to local database to account for medical information privacy. FSM is verified and updated to reflect the new version of the design.\\
+    \hline
+  \end{tabular}
+\end{table}
+\end{center}
+
+\subsection{Design Verification Plan}
+%\begin{center}
+\begin{table} [H]
+\caption{Design Verification Result}
+\begin{tabular}{|p{2.75cm}|p{8cm}|p{4.75cm}|}
+  \hline
+\textbf{Test \newline Categories} & \textbf{Description}&\textbf{Verification}\\
+ \hline
+  Response \newline Feedback Test                  & This test will test the majority of the sensors of the system. Sensor input will be pushed beyond the established boundaries in different testing scenarios, with feedback being observed for erraneous or strange readings.
+ & Included as part of unit testing in \ref{unit}\\
+  \hline
+  User \newline Interface Test                     & Different elements of the user interface will tested by manipulating said elements in all possible scenarios. In addition, characteristics such as screen size, brightness, and visibility will be tested in different visual environments to determine whether or not they are visible in the correct ranges of use.                                                                                                              & Included as part of non functional requirements test in \ref{NFR}             \\
+  \hline
+  Durability Test                         & Each sensor will be tested for failure independence. Should one sensor fail, it must not impact the functionality of any other sensors of the system. To test this, individual sensors will be rendered non-functional, and other sensor values will be checked for erroneous readings.                                                                         & None of the sensors are dependent of each other. Thus, failing one sensor will not impact the performance of other sensors. Specific dependencies of each module can be viewed in the \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}.            \\
+  \hline
+  Database \newline Scalability Test               & This system's database will be tested for volume overload issues. Postman (a request tool) will be used to feed as many requests as possible to the database. The database will then be monitored for faults and errors. & No exception nor error arised.             \\
+  \hline
+  Hardware \newline Communication Test                & Valgrind will be used at every interaction between hardware components to determine whether or not memory has been allocated properly. An execution tracker will also be used to ensure the workflow is functioning as expected.                                                                                                          & Not applicable anymore, bluetooth functionality is implemented.             \\
+  \hline
+\end{tabular}
+\end{table}
+%\end{center}
+
+\section{Functional Requirements Evaluation} \label{FR}
 These tests were performed to ensure that the functional requirements are met and that the results are recorded.
 \subsection{Duration Test}
 
@@ -239,7 +304,7 @@ The following tests were performed to analyze the device's sensitivity.
 
   \textbf{How test was performed}: The test was performed by attaching the sensor onto the tester's finger and having them limp. This was done to ensure that the device can work for people with limited mobility.\\
 
-  \textbf{Observed Results}: \textcolor{red}{Test Failed.} The device failed to detect heart rate reliably (heart rate was expected to be roughly 70 bpm based on a third party heart rate sensor, but the device returned values greater than 200 bpm). Review of the code and selection of heart rate sensor is required.
+  \textbf{Observed Results}: Test Failed. The device failed to detect heart rate reliably (heart rate was expected to be roughly 70 bpm based on a third party heart rate sensor, but the device returned values greater than 200 bpm). Review of the code and selection of heart rate sensor is required.
 
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -258,7 +323,7 @@ The following tests were done to ensure that the proper prompts were displayed t
 
   \textbf{How test was performed}: The test was performed by turning on the device for the first time after reconfiguration. Upon turning on the device, a test prompt was generated to confirm that the prompting system was working correctly. The test prompt is the default prompt.
 
-  \textbf{Observed Results}: \textcolor{red}{Test Failed.} Device failed to recognize the activity appropriately, and microcontroller (Seeeduino XIAO) failed to respond to any input. Hardware issue is yet to be resolved, consider using an alternative microcontroller.
+  \textbf{Observed Results}:Test Failed. Device failed to recognize the activity appropriately, and microcontroller (Seeeduino XIAO) failed to respond to any input. Hardware issue is yet to be resolved, consider using an alternative microcontroller.
 
   \item{\textbf{PRT\_2: Activity Prompt} \\}\label{PRT2}
 
@@ -438,7 +503,7 @@ The following tests were done to ensure that data can be extracted and presented
   \textbf{Observed Results}: Since the data stored were garbage values and not the expected data types or limits, the device displayed an error.
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nonfunctional Requirements Evaluation}
+\section{Nonfunctional Requirements Evaluation} \label{NFR}
 \subsection{Hardware Safety }
 
 These tests were performed to test the safety of the device concerning electrical and hardware components. It is important that the users of the device are kept safe, that any systems in place to protect them from electrical shocks are functioning properly and that the indicator LED functions as expected under certain conditions.
@@ -487,20 +552,6 @@ These tests were performed to test the safety of the device concerning electrica
 
   \textbf{Observed Results}: As expected, respective LED was lit to indicate low voltage.
 
-  \item{\textbf{HST\_4: Frequency Detection}}\label{HST4}
-
-  \textbf{Initial State}: Device begins in "OFF" mode.
-
-  \textbf{Input}: Device is turned on in normal operating state.
-
-  \textbf{Expected Results}: Frequency analysis conducted on the circuitry components.
-
-  Test Case Derivation: N/A
-
-  \textbf{How test was performed}: Using a frequency analysis software such as NI Multisim and an oscilloscope, graphs will be generated for different components of the hardware to determine normal operating frequency compared to industry standards.
-
-  \textbf{Observed Results}: Multisim graph of detected frequencies had expected values.
-
 \end{enumerate}
 
 \subsection{Re-usability}
@@ -524,12 +575,7 @@ These tests evaluate the re-usability of various hardware systems of the device.
   \textbf{How test was performed}: Battery component was isolated from the device and fully charged and discharged couple times.
 
   \textbf{Observed Results}: Battery was fully charged and device was safe to use.\\
-\begin{figure}
-\centering
-  \includegraphics{battery_level}
-	\caption{The battery levels in a span of 24 hours}
-\label{fig:battery_level}
-\end{figure}
+
   \item{\textbf{RT\_2: Battery Charge Protection}}\label{RT2}
 
   \textbf{Initial State}: Battery is fully charged.
@@ -540,7 +586,7 @@ These tests evaluate the re-usability of various hardware systems of the device.
 
   Test Case Derivation: N/A
 
-  \textbf{How test was performed}: Battery component was isolated from device and fully charged. The batter was then plugged in to the charger for couple of minutes.
+  \textbf{How test was performed}: Battery component was isolated from device and fully charged. The battery was then plugged in to the charger for 5 minutes.
 
   \textbf{Observed Results}: Battery was not being overcharged nor overheated, thus device was safe to use.
 
@@ -561,7 +607,7 @@ The following functional requirements test cases are applicable for accuracy:
 The following set of tests were done to ensure that the device is usable by target user population is not problematic in terms of maintenance and user interactions.
 \begin{enumerate}
 
-  \item\textbf{{UT\_1: Intuitive UI\\}}\label{UT1}
+  \item\textbf{{UT\_1: Device UI\\}}\label{UT1}
 
   \textbf{Initial State}: The device is turned on and a question prompt is generated on screen.
 
@@ -571,19 +617,49 @@ The following set of tests were done to ensure that the device is usable by targ
   \textbf{How test was performed}: A tester group of people with age of 40 or older was be asked to receive a powered-on device and asked to respond to a set of 3 questions in 1 minute or less. These questions were randomly selected from the following 10 questions.
 
   \begin{itemize}
-    \item Are you a dog person or a cat person?
-    \item Are you currently inside of a building?
-    \item Are you currently a student?
-    \item Did you make your bed this morning?
-    \item Do you feel tired right now?
-    \item Do you prefer coffee or tea?
-    \item Do you have a G driver's license?
-    \item Do you feel sleepy right now?
-    \item Which is better: Summer vs Winter
-    \item Is it daytime right now?
+    \item Q1: Are you a dog person or a cat person?
+    \item Q2: Are you currently inside of a building?
+    \item Q3: Are you currently a student?
+    \item Q4: Did you make your bed this morning?
+    \item Q5: Do you feel tired right now?
+    \item Q6: Do you prefer coffee or tea?
+    \item Q7: Do you have a G driver's license?
+    \item Q8: Do you feel sleepy right now?
+    \item Q9: Which is better: Summer vs Winter
+    \item Q10: Is it daytime right now?
   \end{itemize}
 
-  \textbf{Observed Results}: The UI was very intuitive and user-friendly. Testers were able to navigate through and answer propmpts with ease.
+  \textbf{Observed Results}: The UI was considered to be intuitive and user-friendly, testers were able to navigate through and answer propmpts without any problem. Table 4 lays out all the responses made by the four participating testers.
+
+\begin{table}[H]
+\centering
+\caption{UT\_1 Survey Response}
+  \begin{tabular}{| c| c | c | c | c |}
+\hline
+    \textbf{} & \textbf{User A} & \textbf{User B} & \textbf{User C} & \textbf{User D}\\
+\hline
+\textbf{Q1} & Dog & Dog & Cat & Dog \\
+\hline
+\textbf{Q2} & Yes & Yes & Yes & Yes \\
+\hline
+\textbf{Q3} & No & Yes & No & No \\
+\hline
+\textbf{Q4} & No & No & No & No \\
+\hline
+\textbf{Q5} & Yes & Yes & Yes & No \\
+\hline
+\textbf{Q6} & Coffee & Tea & Tea & Tea\\
+\hline
+\textbf{Q7} & Yes & No & No & Yes \\
+\hline
+\textbf{Q8} & No & No & No & No \\
+\hline
+\textbf{Q9} & Summer & Winter & Summer & Winter \\
+\hline
+\textbf{Q10} & Yes & Yes & Yes & Yes \\
+\hline
+  \end{tabular}
+\end{table}
 
   \item\textbf{{UT\_2: Comfortable Device\\}}\label{UT2}
 
@@ -615,6 +691,34 @@ The following set of tests were done to ensure that the device is usable by targ
 
   \textbf{Observed Results}: The device was functionally as normal despite being cleaned after usage.
 
+  \item\textbf{{UT\_4: Host Software UI \\}}\label{UT4}
+
+  \textbf{Initial State}: Main page is displayed after login page.
+
+  \textbf{Input}: Testers are asked to filter out database record of anyone 70 years old and write down the first names.
+
+  \textbf{Expected Results}: John, Marry, and Bill.
+
+  \textbf{How test was performed}: The software application is presented with its main page. Testers are required to navigate through the software to use the dataview filtering functionality and filter out data as requested by the test. They are then asked to write down their responses on a piece of paper. Later, the papers are collected and compared for validation.
+
+  \textbf{Observed Results}: Testers successfully identified the 3 first names, as expected. The following table lays out all their responses.
+
+\begin{table}[H]
+\centering
+\caption{UT\_4 Survey Response}
+  \begin{tabular}{| c| c | c | c | c |}
+\hline
+    \textbf{} & \textbf{User A} & \textbf{User B} & \textbf{User C} & \textbf{User D}\\
+\hline
+\textbf{Name1} & John & John & Mary & John\\
+\hline
+\textbf{Name2} & Mary & Mary & Bill & Mary \\
+\hline
+\textbf{Name3} & Bill & Bill & John & Bill \\
+\hline
+  \end{tabular}
+\end{table}
+
 \end{enumerate}
 
 \subsubsection{Performance}
@@ -637,7 +741,7 @@ TRANSFER\_TIME: Set to 60 seconds
 \centering
   \begin{tabular}{| c | c | m{3cm} | m{1.75cm} | m {5cm} |}
 \hline
-    \textbf{File Size} & \textbf{Transfer Time} & \textbf{Errors} & \textbf{Test Result} & \textbf{Notes }\\
+    \textbf{File Size} & \textbf{Transfer Time} & \textbf{Errors} & \textbf{Test \newline Result} & \textbf{Notes }\\
 \hline
 2 kB & 2.66 s & None & Pass & None \\
 \hline
@@ -687,6 +791,12 @@ BATTERY\_LIFE: 24 Hours
 \caption{Battery Performance Testing Data}
 \end{table}
 
+\begin{figure} [H]
+\centering
+  \includegraphics{battery_level}
+	\caption{The battery levels in a span of 24 hours}
+\label{fig:battery_level}
+\end{figure}
 
 \end{enumerate}
 
@@ -710,35 +820,49 @@ These tests were designed to test the security of the system and the accessibili
 
   \textbf{Observed Results}: Databases couldn't be accessed and was prompting for a security key, implying the database is safe.
 
+  \item{\textbf{DSQT\_2: Data Storage Selection Test}}\label{DSQT2}
+
+  \textbf{Initial State}: Device is powered on.
+
+  \textbf{Input}: Less than 3 seconds of limping from tester.
+
+  \textbf{Expected Results}: Corresponding sensor data is not included in sdcard data.
+
+  Test Case Derivation: N/A
+
+  \textbf{How test was performed}: One member of Back End Developers wears the device and pretends to ”limp” for 3 seconds, to create garbage sensor data. Then sd card is inserted into a PC to examine the content.
+
+  \textbf{Observed Results}: Corresponding sensor data is not included in sdcard data.
+
 \end{enumerate}
 
 
 \section{Comparison to Existing Implementation}
 Current motion detecting smart watches, such as the Apple watch or the Samsung Galaxy watch, are desgined for healthy and active population. The EMAnator is specifically geared towards older adults who have chronical back pain. Therefore, it is desgined to capture minor and subtle movements accurately.
 
-\section{Unit Testing}
+\section{Unit Testing}\label{unit}
 
 \begin{center}
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
- 1 & bed\_HR\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & "PulseSensor object created", LED flash per each heartbeat. & "PulseSensor object created", LED flash per each heartbeat. & Pass \\ 
+1 & bed\_HR\_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device & "PulseSensor object created", LED flash per each heartbeat & "PulseSensor object created", LED flash per each heartbeat & Pass \\ 
 \hline
-2 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk for 10 seconds while wearing the device, then stop. & "HeartBeat Detected. BPM: 70”. & "HeartBeat Detected. BPM: 130”. & Fail \\  
+2 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk for 10 seconds while wearing the device, then stop & "HeartBeat Detected. BPM: 70” & "HeartBeat Detected. BPM: 130” & Fail \\  
 \hline
-3 & bed\_MPU\newline \_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device. & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & Pass \\  
+3 & bed\_HR\_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Shake the watch without anyone wearing it & "HeartBeat Not Detected.” & "HeartBeat Not Detected. " & Pass \\  
 \hline
-4 & bed\_MPU\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & Pass \\ 
+4 & bed\_MPU\newline \_setup & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Power on the device & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & “Calibrating MPU in 4 seconds! Hold it still! avg X acc: 20, , avg Y acc: 20, avg Z acc: 20” & Pass \\  
 \hline
-5 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Action & Black screen on & Black screen on & Pass \\ 
+5 & bed\_MPU\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Limp & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & “limp count + limp count + limp count + limp count + limp count + limping. Stepcount: 5” & Pass \\ 
 \hline
-6 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 bezels in counter clock-wise direction. & Selection goes up. & Selection goes up. & Pass \\ 
+6 & bed\_MPU\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Walk & “Stepcount: 13” & “limp count + limp count + limp count + Stepcount: 10” & Fail \\ 
 \hline
-7 & bed\_splash\newline \_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "Back End Developers" & "Back End Developers" & Pass \\ 
+7 & bed\_MPU\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R2} & Stay still & “Stepcount: 0” & “Stepcount: 0” & Pass \\ 
 \hline
-8 & bed\_display\newline \_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time. & Screen clears prompt list and only displays current date and time. & Pass \\ 
+8 & bed\_init\_display & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & No action & Black screen on & Black screen on & Pass \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -748,27 +872,23 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
-9 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file. & Contents of "data.txt" is displayed on UI. & Contents of "data.txt" is displayed on UI.  & Pass \\ 
+9 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 adjacent bezels in counter clock-wise directio. & Selection goes up & Selection goes up & Pass \\ 
 \hline
-10 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds. & "Are you in pain?", Yes, No & "Are you in pain?", Yes, No & Pass \\ 
+10 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 non-adjacent bezels in counter clock-wise direction & Selection stays as is & Selection stays as is & Pass \\ 
 \hline
-11 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation. & Prompt text color is white while background is black. & Prompt text color is white while background is black.  & Pass \\ 
+11 & bed\_scroll\_test &  \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Scroll through 2 adjacent bezels in counter clock-wise direction with a 2 seconds delay in between & Selection goes up & Selection goes up & Pass \\ 
 \hline
-12 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port. & UI displays green dot. & UI displays green dot. & Pass \\ 
+12 & bed\_splash\newline \_screen & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device & "Back End Developers" & "Back End Developers" & Pass \\ 
 \hline
-13 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device. & "March 5th, 16:21". & "March 5th, 16:21". & Pass \\ 
+13 & bed\_display\newline \_one\_line & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Select a response for generated prompt & Screen clears prompt list and only displays current date and time & Screen clears prompt list and only displays current date and time & Pass \\ 
 \hline
-14 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device. & "March 5th, 16:23". & "March 5th, 16:23". & Pass \\ 
+14 & OpenFile & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press button and choose the "data.txt" file & Contents of "data.txt" is displayed on UI & Contents of "data.txt" is displayed on UI  & Pass \\ 
 \hline
-15 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device. & "March 5th, 16:46". & "March 5th, 16:46". & Pass \\ 
+15 & bed\_display\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Move around for 5 seconds and then stop for 5 seconds & "Are you in pain?", Yes, No & "Are you in pain?", Yes, No & Pass \\ 
 \hline
-16 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction. & 1 & 1 & Pass \\ 
-\hline
-17 & \_\_init\_\_ & N/A & Run the host software. & Login page appears. & Login page appears. & Pass \\ 
-\hline
-18 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved. & Config.txt file created and saved. & Pass \\ 
+16 & bed\_format\newline \_prompt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R3} & Limp with the device to activate prompt generation & Prompt text color is white while background is black & Prompt text color is white while background is black  & Pass \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -778,29 +898,29 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
-19 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button. & Main screen appears and current screen closes. & Main screen appears and current screen closes. & Pass \\ 
+17 & OpenSerial & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Connect device to computer via USB port & UI displays green dot & UI displays green dot & Pass \\ 
 \hline
-20 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button. & Data appears on database table. & Data appears on database table. & Pass \\ 
+18 & bed\_init\_rtc & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Power on the device & "March 5th, 16:21" & "March 5th, 16:21" & Pass \\ 
 \hline
-21 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. &  Data appears on software UI table. & Pass \\ 
+19 & bed\_display\_info & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Power on the device & "March 5th, 16:23" & "March 5th, 16:23" & Pass \\ 
 \hline
-22 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button. & Data appears on software UI table. & Data appears on software UI table. & Pass \\ 
+20 & bed\_set\newline \_explicit\_date\newline \_time & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR1} & Disconnect power source, reconnect, and power on the device & "March 5th, 16:46" & "March 5th, 16:46" & Pass \\ 
 \hline
-23 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears. & All participant record with first name “John” appears. & Pass \\ 
+21 & bed\_touch\newline \_detect & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Touch 2 bezels in clockwise direction & 1 & 1 & Pass \\ 
 \hline
-24 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears. & Empty graph chart appears. & Pass \\ 
+22 & \_\_init\_\_ & N/A & Run the host software & Login page appears & Login page appears & Pass \\ 
 \hline
-25 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button. & Only heart rate graph appears. & Only heart rate graph appears. & Pass \\ 
+23 & saveAsTxt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6} & Press Save as button and choose a directory to save file in. & Config.txt file created and saved & Config.txt file created and saved & Pass \\ 
 \hline
-26 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+24 & BackToMain & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press the main button & Main screen appears and current screen closes & Main screen appears and current screen closes & Pass \\ 
 \hline
-27 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears. & Only activity graph appears. & Pass \\ 
+25 &  InsertDB & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press save button & Data appears on database table & Data appears on database table & Pass \\ 
 \hline
-28 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button. & Only number-of-steps graph appears. & Only number-of-steps graph appears. & Pass \\ 
+26 & LoadDb & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button & Data appears on software UI table &  Data appears on software UI table & Pass \\ 
 \hline
-29 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears. & Main screen appears. & Pass \\ 
+27 & dataHead & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Press load button & Data appears on software UI table & Data appears on software UI table & Pass \\ 
 \hline
 \end{tabular}
 \end{table}
@@ -810,22 +930,46 @@ Current motion detecting smart watches, such as the Apple watch or the Samsung G
 \begin{table} [H]
 \begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
 \hline
-\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual Output} & \textbf{Result} \\
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
 \hline
-30 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
+28 & search & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R6, NFR14} & Filter-search participant first name of “John” & All participant record with first name “John” appears & All participant record with first name “John” appears & Pass \\ 
 \hline
-31 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button. & Records window appears and main window closes. & Records window appears and main window closes. & Pass \\ 
+29 & OpenGraph & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press graph button. & Empty graph chart appears & Empty graph chart appears & Pass \\ 
 \hline
-32 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button. & Create Records window appears and main window closes. & Create Records window appears and main window closes. & Pass \\ 
+30 & OpenHeart & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press heart rate button & Only heart rate graph appears & Only heart rate graph appears & Pass \\ 
 \hline
-33 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button. & Configuration window appears and main window closes. & Configuration window appears and main window closes. & Pass \\ 
+31 & OpenSteps & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button& Only number-of-steps graph appears & Only number-of-steps graph appears & Pass \\ 
 \hline
-34 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button. & Data view window appears and main window closes. & Data view window appears and main window closes. & Pass \\ 
+32 & OpenActivity & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press activity button & Only activity graph appears & Only activity graph appears & Pass \\ 
 \hline
+33 & plot & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{R7} & Press steps button & Only number-of-steps graph appears & Only number-of-steps graph appears & Pass \\ 
+\hline
+34 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "admin", PW: "capstone" & Main screen appears & Main screen appears & Pass \\ 
+\hline
+35 & loginAttempt & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR8, NFR14} & ID: "wr1ong", PW: "creden5tials" & "Wrong credentials!" & "Wrong credentials!" & Pass \\ 
+\hline
+36 & showRecord\newline Window & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press records button & Records window appears and main window closes & Records window appears and main window closes & Pass \\ 
+\hline
+37 & showCreate\newline Records & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press create records button & Create Records window appears and main window closes & Create Records window appears and main window closes & Pass \\ 
+\hline
+
 \end{tabular}
 \end{table}
 \end{center}
 
+\begin{center}
+\begin{table} [H]
+\begin{tabular}{ | p{0.5cm} | p{2.8cm} |  p{1.1cm} | p{2.7cm} | p{2.7cm} | p{2.7cm} | p{1.1cm} |}
+\hline
+\textbf{No.} & \textbf{Name}  & \textbf{Ref.} & \textbf{Action} & \textbf{Expected Output} & \textbf{Actual \newline Output} & \textbf{Result} \\
+\hline
+38 & showConfig\newline View & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press configuration button & Configuration window appears and main window closes & Configuration window appears and main window closes & Pass \\ 
+\hline
+39 & showDataView & \href{https://github.com/zakerl/Capstone_Project/blob/main/docs/SRS/SRS.pdf}{NFR2} & Press data view button & Data view window appears and main window closes & Data view window appears and main window closes & Pass \\ 
+\hline
+\end{tabular}
+\end{table}
+\end{center}
 \pagebreak
 
 \section{Changes Due to Testing}
@@ -949,7 +1093,7 @@ N/A
     \textbf{NFR1}  &                     &                     &                     &                     & X                     & X                     & X                     & X                     &                     \\ \hline
     \textbf{NFR12} &                     &                     &                     &                     &                       &                       & X                     &                       &                     \\ \hline
   \end{tabular}
-  \caption{ Requirements Traceability Matrix Pt1}
+  \caption{ Requirements Traceability Matrix Part 1}
   \label{Table:A_Req_trace}
 \end{table}
 
@@ -968,30 +1112,30 @@ N/A
     \textbf{R5} &                     &                     &                     &                     & X                     & X                     & X                     &                       &                       &                       \\ \hline
     \textbf{R6} &                     &                     &                     &                     &                       &                       &                       & X                     & X                     & X                     \\ \hline
   \end{tabular}
-  \caption{Requirements Traceability Matrix Pt2}
+  \caption{Requirements Traceability Matrix Part 2}
   \label{Table:B_Req_trace}
 \end{table}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-                   & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[HST4]{HST4} & \hyperref[RT1]{RT1} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
+                   & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[RT1]{RT1} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
     \hline
-    \textbf{NFR2}  &                       &                       &                       &                       &                     & X                   & X                   & X                   &                     &                     &                         \\ \hline
-    \textbf{NFR3}  &                       &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                         \\ \hline
-    \textbf{NFR4}  &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
-    \textbf{NFR5}  &                       &                       &                       &                       &                     &                     &                     & X                   &                     &                     &                         \\ \hline
-    \textbf{NFR6}  & X                     & X                     & X                     & X                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR7}  &                       &                       &                       &                       & X                   &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR8}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
-    \textbf{NFR9}  &                       &                       &                       &                       &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR10} &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
-    \textbf{NFR11} & X                     & X                     & X                     & X                     & X                   &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{NFR13} &                       &                       &                       &                       &                     &                     &                     &                     & X                   &                     &                         \\ \hline
-    \textbf{NFR14} &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
+    \textbf{NFR2}  &                       &                       &                       &                     & X                   & X                   & X                   &                     &                     &                         \\ \hline
+    \textbf{NFR3}  &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                         \\ \hline
+    \textbf{NFR4}  &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{NFR5}  &                       &                       &                       &                     &                     &                     & X                   &                     &                     &                         \\ \hline
+    \textbf{NFR6}  & X                     & X                     & X                    &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR7}  &                       &                       &                       & X                   &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR8}  &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
+    \textbf{NFR9}  &                       &                       &                       &                     & X                   &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR10} &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{NFR11} & X                     & X                     & X                    & X                   &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{NFR13} &                       &                       &                       &                     &                     &                     &                     & X                   &                     &                         \\ \hline
+    \textbf{NFR14} &                       &                       &                       &                     &                     &                     &                     &                     &                     & X                       \\ \hline
   \end{tabular}
-  \caption{Requirements Traceability Matrix Pt3}
+  \caption{Requirements Traceability Matrix Part 3}
   \label{Table:C_Req_trace}
 \end{table}
 \newpage
@@ -1016,7 +1160,7 @@ N/A
     \textbf{M9}  &                     &                     &                     &                     &                       &                       &                       &                       & X                   \\ \hline
     \textbf{M10} &                     &                     &                     &                     & X                     & X                     &                       & X                     &                     \\ \hline
   \end{tabular}
-  \caption{ Module Traceability Matrix Pt1}
+  \caption{ Module Traceability Matrix Part 1}
   \label{Table:A_Mod_trace}
 \end{table}
 
@@ -1039,28 +1183,28 @@ N/A
     \textbf{M9}  & X                   & X                   & X                   & X                   &                       &                       &                       &                       &                       &                       \\ \hline
     \textbf{M10} &                     &                     &                     &                     &                       &                       &                       &                       &                       &                       \\ \hline
   \end{tabular}
-  \caption{Module Traceability Matrix Pt2}
+  \caption{Module Traceability Matrix Part 2}
   \label{Table:B_Mod_trace}
 \end{table}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-                 & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3} & \hyperref[HST4]{HST4} & \hyperref[RT1]{RT1} & \hyperref[RT2]{RT2} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2} & \hyperref[UT3]{UT3} & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
+                 & \hyperref[HST1]{HST1} & \hyperref[HST2]{HST2} & \hyperref[HST3]{HST3}& \hyperref[RT1]{RT1} & \hyperref[RT2]{RT2} & \hyperref[UT1]{UT1} & \hyperref[UT2]{UT2}  & \hyperref[PT1]{PT1} & \hyperref[PT2]{PT2} & \hyperref[DSQT1]{DSQT1} \\
     \hline
-    \textbf{M1}  & X                     & X                     & X                     & X                     & X                   & X                   &                     &                     &                     &                     & X                   &                         \\ \hline
-    \textbf{M2}  &                       &                       &                       &                       &                     &                     &                     &                     &                     & X                   &                     & X                       \\ \hline
-    \textbf{M3}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M4}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M5}  &                       &                       &                       & X                     &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M6}  &                       &                       &                       &                       &                     &                     & X                   &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M7}  &                       &                       &                       & X                     &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M8}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M9}  &                       &                       &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
-    \textbf{M10} &                       &                       &                       &                       &                     &                     & X                   & X                   &                     &                     &                     &                         \\ \hline
+    \textbf{M1}  & X                     & X                     & X                     & X                   & X                   &                     &                                         &                     & X                   &                         \\ \hline
+    \textbf{M2}  &                       &                       &                       &                     &                     &                     &                                          & X                   &                     & X                       \\ \hline
+    \textbf{M3}  &                       &                       &                       &                     &                     &                     &                                         &                     &                     &                         \\ \hline
+    \textbf{M4}  &                       &                       &                       &                     &                     &                     &                                          &                     &                     &                         \\ \hline
+    \textbf{M5}  &                       &                       &                     &                     &                     & X                   &                                          &                     &                     &                         \\ \hline
+    \textbf{M6}  &                       &                       &                       &                     &                     & X                   &                                          &                     &                     &                         \\ \hline
+    \textbf{M7}  &                       &                       &                     &                     &                     &                     &                     &                     &                     &                         \\ \hline
+    \textbf{M8}  &                       &                       &                       &                     &                     &                     &                                          &                     &                     &                         \\ \hline
+    \textbf{M9}  &                       &                       &                       &                     &                     &                     &                                          &                     &                     &                         \\ \hline
+    \textbf{M10} &                       &                       &                       &                     &                     & X                   & X                                        &                     &                     &                         \\ \hline
   \end{tabular}
-  \caption{Module Traceability Matrix Pt3}
+  \caption{Module Traceability Matrix Part 3}
   \label{Table:C_Mod_trace}
 \end{table}
 
