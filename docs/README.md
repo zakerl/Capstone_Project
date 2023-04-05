@@ -1,23 +1,11 @@
-<Please keep the folder structure as given in the template repo.  We will
-discuss each artifact as we get to it in the course.  In some cases, like for
-the SRS, you should have a file of the same name.  For other cases, like the
-design documentation, you are required to document your design, but it may not
-be via a module guide and module interface specification documents.>
-
-<The files and folders have been set-up with tex files that have external links
-so that cross-referencing is possible between documents.>
-
-<The tex files Common.tex so that they can share definitions.>
-
-<The files use Comments.tex so that the comments package can be used to embed
-comments into the generated pdf.  Comments can be set to false so that they do
-not appear.>
-
-<None of the files are complete templates.  You will need to add extra
-information.  They are just intended to be a starting point.>
-
-# Documentation folders
+# EMAnator documentation
 
 The folders and files for this folder are as follows:
 
-Describe ...
+Design folder has details about the design aspect of the project such as Software Architecture, System Design, etc.<br />
+ProblemStatementandGaols folder contains the initial setup of Goals of the project.<br />
+Developoment plan folder has initial development plan and roles of different members in the team.<br />
+Hazard Analysis folder is for the safety of the product along with the requirements.<br />
+SRS folder has the Software requirements and functionality of the project.<br />
+VnVPlan and VnVReport folders contain testing and report of the tests conducted for the device.<br />
+
