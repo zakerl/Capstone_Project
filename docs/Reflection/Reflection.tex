@@ -5,7 +5,7 @@
 
 \title{Reflection Report on \progname}
 
-\author{author name}
+\author{Back End Developers}
 
 \date{}
 
@@ -20,9 +20,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+April 5th, 2023 & Back End Developers & Initial Documentation\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -35,18 +33,40 @@ Put your introductory blurb here.
 
 \section{Project Overview}
 
-\plt{Summarize the original project goals and requirements}
+Our project was ambitious. The goal of our project was to create an Ecological Momentary Assessment (EMA)-Capable device that Dr. Luciana Macedo and her team of researchers could integrate into their research environment with minimal friction (For information on the purposes and methodology of EMA, we highly recommend reading the article that can be found at this link).\\
+
+The device had to fit a multitude of requirements; that the device had to stay on during the monitoring period, that the device had to track minor movements of users such that activities would have been recorded appropriately, that the device had to notify the user when the software detected a registered activity relevant to EMA standards that was significant or promptable, that the device would prompt the user if activity stops to check if they were in pain, that the activity tracker/system should have been such that the user can attach/wear it on their body, that input thresholds should have been customizable in the software of the device in a simplistic manner, that the device would store all relevant data every time an activity took place or a prompt was answered on the device, and that the data stored on the device would have been able to be extracted such that the data would have been interpretable in the form of graphical representation and raw data.\\
+
+In addition to all these functional requirements, there were a multitude of non-functional requirements that we had to meet in order to ensure the device was up to standards regarding accuracy, useability, maintainability, portability, cleanability, safety, reusability, data privacy, accessibility, hardware safety, messaging, performance, data security, and non-disruptiveness to user life. This last point was exceptionally important; as we saw it essential that we preserved the dignity of those using/wearing our device throughout their daily lives during the EMA observation period as much as possible. We did not want to make users carry around a massive set of electronics that may make them feel insecure or as if they were a cyborg.\\
 
 \section{Key Accomplishments}
 
-\plt{What went well?  This can be what went well with the documentation, the
-  coding, the project management, etc.}
+Our team sat down together a few days ago to do an "autopsy" of our capstone project up to that point. The conversation lead to us reflecting on what we were most proud of, and we are happy to say that we are well satisfied regarding all that we have accomplished.\\
+
+Our final product (the EMAnator) is what we are the most proud of. Over these 8 months of long nights, blood, sweat, and tears, we created a first-class mechatronics product that effectively fits the needs of our stakeholder. Our design checked off all our requirements (both functional and non-functional), and excelled in the aspects of portability, configurability, and non-disruptiveness to user life.\\
+
+The final smartwatch incorporates ingenious and reliable technical solutions to problems that even industry leaders find difficult to address. We are of the opinion that our PCB is a work of art. It condenses all the power circuitry, supporting circuitry, ICs, sensors, device management, and microcontroller into a package smaller than the size of some existing smart-watches. We had some trouble with a few mistakes made during the design phase, which lead to us being unable to use the PCB for our demo. However, those issues have since been resolved and we are excited to present the fully functional final smartwatch during the expo! In addition, the touch bezel that we designed accurately and reliably allows users with a wide range of mobility levels to input data into our device. Every person who has seen and used this bezel has been impressed by the simplistic yet effective design. Moreover, the touch bezel was extremely cost-effective to make, using only parts salvaged from common electronics materials. There are also some more subtle aspects of the design that we can pride ourselves on; the code we have written is properly abstract, and in line with modern coding principles — a concept which most mechatronics engineering students still struggle with (including those in the Back End Developers!). Nevertheless, we wrote workable, maintainable, and adaptable code which can be used and changed with ease far into this device's future.\\
+
+When it comes to the design process itself, our team effectively utilized many tools that streamlined the process of ideation to production greatly. We treated our documentation like code; using Git and Github to effectuate merges and deletions in our documentation stemming from multiple people working on the same document together. This approach allowed us to make changes to our documentation without many of the headaches of combing through PDFs and TeX documents, copying and pasting content back and forth. It is important to not that our team was not familiar with Git or Github at the beginning of this project. We learned as we developed the EMAnator, eventually learning to use Git with great effect. We have learned how to leverage the process of branching, pull requests, reviews and approvals to ensure that our codebase remained intact and clean. Our issue tracking process was also quite well developed. Utilizing Trello, we set up a KANBAN board which allowed every member of our team to have a clear and detailed view of the current state of the project, including the current issues, objectives, testing situation, and future goals.\\
+
+Finally, an aspect of our project which is also of note is the future prospects of our product in the market of research-assistive tools. The entire world is aging, and Canada is aging faster than most other nations INSERT CITATION. In X years, the portion of Canadians over the age of X will grow from X to X. As this number of older adults continues to climb, we forecast that aging-related research will explode over the next few decades. EMA is also now seen as an extremely useful tool in the field of aging research. We predict that this product and other products like it that enable effective aging related research will be in great demand as more researchers grow interesting in aging related research and EMA. It is a simple situation of supply and demand; as the demand for products like the EMAnator grows, we will be able to provide the supply to keep up with industry needs.\\
 
 \section{Key Problem Areas}
 
-\plt{What went wrong?  This can be what went wrong with the documentation, the
-  technology, the coding, time management, etc.}
+Even though our project ended up being a success, it was not at all smooth sailing at certain times during the product's development. Firstly, we had just taken on a project involving the cutting edge of aging related medical research, and none of the Back End Developers had a shred of experience of making engineering solutions in the field of medicine or research. This forced us to scramble in an attempt to learn as much as we could regarding the incredibly deep and broad field of aging related research. This need for us to learn about an entire industry that we were completely unfamiliar with slowed us down greatly; by the time we were confident about the goals of our project, and the roadmap we would use to get there, we had already lost weeks of time that could have been used to develop the product further. Of course, this learning process is unavoidable in any engineering process. The issue lay in the fact that we had to spent much more time than anticipated in this stage.\\
+
+In addition, we were held back by that eternal curse that plagues all engineers; laziness. On top of all of the tools that we used to help streamline the development process, we ignored many more that could have helped us out of the fact that we were unfamiliar with and that we did not wish to expend energy on learning. Examples include version control, concrete testing methodologies, linting, and project building tools. We were vaguely aware what these tools were meant for, and that they could have helped us. But at the time of setting up the framework for developing our solution, we skipped over these tools as we did not know exactly how to incorporate them into our project. Now we realize how version control could have saved us many code merging headaches, how linters could have shortened the hours spent combing through code for bugs, and so on.\\
+
+One of the other struggles we faced was the lack of an establish project management procedure. Ironically, two of the six members of our team have previously served in roles of project management in our various co-op terms. But for whatever reason, we did not utilize existing project management methodologies that would have allowed us to greatly improve communication. We found difficulty translating from decisions made to concrete technical plans; an issue which could easily have been solved with the use of effective project management tools and processes. We managed to bodge our way to the end through sheer willpower alone, but we believe that those hours spent trying to organize and reorganize our project could have been better spent on actual work, or at least sleep.\\
+
+We were also too inflexibile when it came to work roles at the start, ended up with some members having nothing to do and some with all the work on their backs at certain points during the project. For example, having a designated team member responsible for developing embedded software was extremely useful for categorizing responsibility during the planning phase. But the moment the embedded software development ended up being more complex than initially expected, it ended up forming a bottleneck in which other team members were hesitant to help with as it fell outside their work jurisdiction. We ended up rectifying this, mainly through making our management structure much more flexible and shuffling people around based on manpower needs and expertise.\\
 
 \section{What Would you Do Differently Next Time}
+
+This is a surprisingly difficult question. During the "autopsy" of our capstone project, one of our team members noted that it was difficult to questions many of the decisions made during the development phase, as it resulted in the final product we have today. He noted that we made all of our decisions in good faith, and with the best of our knowledge at the time and that it ended up working out at the end. That being said, we still identified several aspects of our project that could definitely have been improved upon.\\
+
+Firstly, we should have utilized the experts around us much more than we did. Most obviously, Dr. Macedo is an expert in the exact kind of devices we were attempting to design, and she was very happy to lend us her knowledge and expertise. We should have taken advantage of this incredible resource; touching base with her often regarding the status of the project, and asking her about any issues or questions we had with the concept of EMA, or aging related research. We could have saved ourselves and Dr. Macedo much trouble if we had just asked more about what we were doing right and wrong throughout the project. \\
+
+Second, we should have spent the time to learn about the various tools available to us that we were unfamiliar with that were mentioned in the Key Problem Areas section. There is no exact way to know exactly how much time and effort that we would have saved, but our team grudgingly admits that it would not have been time wasted in learning.\\ 
 
 \end{document}
