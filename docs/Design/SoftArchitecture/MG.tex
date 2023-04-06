@@ -168,10 +168,8 @@ actually be implemented.
   \item [\refstepcounter{mnum} \mthemnum \label{mRTC}:] Real Time Clock  Module
   \item [\refstepcounter{mnum} \mthemnum \label{mGP}:] Graph  Module
   \item [\refstepcounter{mnum} \mthemnum \label{mGP2}:] Data Display Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPS}:] Create New User Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPS2}:] Configuration Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPD}:]  Watch Straps Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mPD2}:] Watch Case Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPS}:] Configuration Module
+  \item [\refstepcounter{mnum} \mthemnum \label{mPD}:]  Watch Straps and Case Module
 \end{description}
 
 
@@ -183,7 +181,7 @@ actually be implemented.
     \textbf{Level 1}        & \textbf{Level 2}        &\textbf{Level 3} \\
     \midrule
 
-    \multirow{9}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
+    \multirow{8}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
 \cline{2-3}
 					                                                          &  \multirow{2}{0.3\textwidth}{Data Storage}        & microSD     \\
 																		&			&Database\\
@@ -192,8 +190,7 @@ actually be implemented.
 																		&			& Sensor Data Processing \\
 																		&			& Sensor Prompt Validity \\ 
 \cline{2-3}
-												  & \multirow{2}{0.3\textwidth}{Physical Design} & Watch Straps \\
-																		&			& Watch Case \\
+												  & Physical Design & Watch Straps and Case\\
 
     \midrule
 
@@ -206,8 +203,7 @@ actually be implemented.
 
     \midrule
 
-    \multirow{4}{0.3\textwidth}{Software Decision Module} &  \multirow{2}{0.3\textwidth}{Parameter Selection}& Create New User\\
-																		&			& Configuration \\
+    \multirow{3}{0.3\textwidth}{Software Decision Module} &  Parameter selection & Configuration\\
 \cline{2-3}
                                                           & \multirow{2}{0.3\textwidth}{Data Processing}       & Graph  \\
 											&			& Data Display \\
@@ -264,6 +260,8 @@ to be implemented.
   \item[Implemented By:] Firmware
 \end{description}
 
+\pagebreak
+
 \subsubsection{Database (\mref{mDS_2})}
 \begin{description}
   \item[Secrets:] Static array to store the data on local host computer.
@@ -292,20 +290,12 @@ to be implemented.
   \item[Implemented By:] Firmware
 \end{description}
 
-\subsubsection{Watch Straps (\mref{mPD})}
+\subsubsection{Watch Straps and case(\mref{mPD})}
 \begin{description}
   \item[Secrets:] Not applicable.
   \item[Services:] This module lays out the structural design of the device.
-  \item[Implemented By:] CAD
+  \item[Implemented By:] CAD, straps
 \end{description}
-
-\subsubsection{Watch Case (\mref{mPD2})}
-\begin{description}
-  \item[Secrets:] Not applicable.
-  \item[Services:] This module lays out the structural design of the device.
-  \item[Implemented By:] Velcro straps.
-\end{description}
-
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
@@ -378,7 +368,7 @@ to be implemented.
   \item[Implemented By:] Python, SQL
 \end{description}
 
-\subsubsection{Parameter Selection (\mref{mPS})}
+\subsubsection{Configuration (\mref{mPS})}
 
 \begin{description}
   \item[Secrets:] The data structures and algorithms to take user input and store parameter selection.
