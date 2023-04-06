@@ -162,7 +162,6 @@ actually be implemented.
   \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Database Module
   \item [\refstepcounter{mnum} \mthemnum \label{mSA1}:] Sensor Reading Module
   \item [\refstepcounter{mnum} \mthemnum \label{mSA2}:] Sensor Data Processing Module
-  \item [\refstepcounter{mnum} \mthemnum \label{mSA3}:] Sensor Prompt Validity Module
   \item [\refstepcounter{mnum} \mthemnum \label{mDS_2}:] Display System Module
   \item [\refstepcounter{mnum} \mthemnum \label{mPG}:] Prompt Generation Module
   \item [\refstepcounter{mnum} \mthemnum \label{mRTC}:] Real Time Clock  Module
@@ -181,14 +180,13 @@ actually be implemented.
     \textbf{Level 1}        & \textbf{Level 2}        &\textbf{Level 3} \\
     \midrule
 
-    \multirow{8}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
+    \multirow{7}{0.3\textwidth} {Hardware-Hiding Module}              & Battery Management       & Battery\\
 \cline{2-3}
 					                                                          &  \multirow{2}{0.3\textwidth}{Data Storage}        & microSD     \\
 																		&			&Database\\
 \cline{2-3}
-					                                                          & \multirow{3}{0.3\textwidth}{Sensor Array}         & Sensor Reading    \\
+					                                                          & \multirow{2}{0.3\textwidth}{Sensor Array}         & Sensor Reading    \\
 																		&			& Sensor Data Processing \\
-																		&			& Sensor Prompt Validity \\ 
 \cline{2-3}
 												  & Physical Design & Watch Straps and Case\\
 
@@ -280,13 +278,6 @@ to be implemented.
 \begin{description}
   \item[Secrets:] Static array to store the sensor data
   \item[Services:] This module will process the law data and smooth out noise for filtering, ready to be stored in memory.
-  \item[Implemented By:] Firmware
-\end{description}
-
-\subsubsection{Sensor Prompt Validity (\mref{mSA3})}
-\begin{description}
-  \item[Secrets:] Static array to store the sensor data
-  \item[Services:] This module will evaluate the processed data to decide if the prompt sohuld be generated. If so, the filtered data will get stored onto the memory as well.
   \item[Implemented By:] Firmware
 \end{description}
 
