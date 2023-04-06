@@ -729,29 +729,20 @@ None.
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{3cm} p{4cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-Disp\_Flag& - & bool & - \\
-MPU\_Flag& - & bool & - \\
-RTC\_Flag& - & bool & - \\
-HR\_Flag& - & bool & - \\
-Touch\_Flag& - & bool & - \\
-\hline
-\end{tabular}
-\end{center}
+\begin{itemize}
+\item Minimum battery threshold for voltage
+\item Maximum battery limit for voltage
+\item Low charge indicator for 10\% limit
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{3cm} p{4cm}}
+\begin{tabular}{p{4cm} p{4cm} p{3cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Bat\_State & Bat\_Select & $\mathbb{Z}$ (tuple) & BED\_ERR\_BAT\\
+bed\_getBatteryLev & Bat\_Raw & $\mathbb{Z}$ & BED\_ERR\_BAT\\
 \hline
 \end{tabular}
 \end{center}
@@ -764,7 +755,10 @@ None.
 
 \subsubsection{Environment Variables}
 
-None.
+\begin{itemize}
+\item battery level
+\item low\_Flag
+\end{itemize}
 
 \subsubsection{Assumptions}
 
@@ -772,12 +766,17 @@ System responds instantaneously to changes in flags (exported constants).
 
 \subsubsection{Access Routine Semantics}
 
-None.
+bed\_getBatteryLev: 
+\begin{itemize}
+\item Transition: Extracts the current battery level
+\item Output: Integer percentage value of the battery level.
+\item Exception:  BED\_ERR\_BAT = Z
+\end{itemize}
 
 \subsubsection{Local Functions}
-
-None.
-
+\begin{itemize}
+\item bed\_lowIndicator: boolean
+\end{itemize}
 \newpage
 
 %Data Storage Module
@@ -805,8 +804,9 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Card\_Read & - & Read\_Data: string & BED\_ERR\_SD: $\mathbb{Z}$ \\
-Card\_Write & Write\_Data: $\mathbb{Z}$ (tuple) & Write\_Flag: bool & BED\_ERR\_SD: $\mathbb{Z}$ \\
+listDir & FS, const char*, uint8\_t & dirname: string & BED\_ERR\_SD: $\mathbb{Z}$ \\
+createDir & FS, const char *& - & BED\_ERR\_SD: $\mathbb{Z}$ \\
+removeDir & FS, const char * & - & BED\_ERR\_SD: $\mathbb{Z}$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -818,8 +818,9 @@ Card\_Write & Write\_Data: $\mathbb{Z}$ (tuple) & Write\_Flag: bool & BED\_ERR\_
 None.
 
 \subsubsection{Environment Variables}
-
-file: A text file.
+\begin{itemize}
+\item fs: A text file.
+\end{itemize}
 
 \subsubsection{Assumptions}
 \begin{itemize}
@@ -831,8 +832,13 @@ file: A text file.
 None.
 
 \subsubsection{Local Functions}
-
-None.
+\begin{itemize}
+\item readFile
+\item writeFile
+\item appendFile
+\item renameFile
+\item deleteFile
+\end{itemize}
 
 \newpage
 
@@ -850,7 +856,15 @@ microSD Module (Section \ref{mDS_1})   %%%%%%%%%%%%
 
 \subsubsection{Exported Constants}
 
-None.
+\begin{itemize}
+\item Size of the field: First Name = 25
+\item Size of the field: Last Name = 25
+\item Size of the field: Gender = 25
+\item Size of the field: Phone Number = 20
+\item Size of the field: Email = 25
+\item Size of the field: Address = 255
+\item Size of the field: Device model number = 50
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
@@ -859,8 +873,11 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Database\_Read & - & Read\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
-Database\_Write & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+object.connect & - & Read\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+object.cursor & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+object.execute & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+object.commit & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+object.close & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -873,13 +890,26 @@ None.
 
 \subsubsection{Environment Variables}
 
-file: A text file.
+\begin{itemize}
+\item First Name 
+\item Last Name 
+\item Gender 
+\item Phone Number 
+\item Email 
+\item Address 
+\item Device Model Number
+\end{itemize}
 
 \subsubsection{Assumptions}
 None.
 \subsubsection{Access Routine Semantics}
-
-None.
+\begin{itemize}
+\item object.connect(): Connects to the database.
+\item object.cursor(): Establishes connection between the database and the query.
+\item object.execute():
+\item object.commit():
+\item object.close(): Disconnects from the database.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
@@ -903,25 +933,34 @@ Battery Management (Section \ref{mBM})
 
 \subsubsection{Exported Constants}
 
-None.
+\begin{itemize}
+\item ACCEL\_SENSITIVITY: Z
+\item GYRO\_SENSITIVITY: Z
+\item Threshold: Z
+\item MPU\_CALIBRATION: Z
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
-
-None.
+\begin{itemize}
+\item bed\_mpu\_detect
+\item bed\_hr\_detect
+\end{itemize}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-%give the module memory.
+$currTime: \mathbb{R}$ 
 
-$pedometer\_count: \mathbb{R}$ \\
-$heartrate: \mathbb{R}$ \\
-$prompt\_interrupt:$ bool \\
-$touch\_input:$ bool (tuple) 
 \subsubsection{Environment Variables}
 %interaction with device driver, screen, keyboard, file
-
-None.
+\begin{itemize}
+\item curr\_ax
+\item curr\_ay
+\item curr\_az
+\item curr\_gx
+\item curr\_gy
+\item curr\_gz
+\end{itemize}
 
 \subsubsection{Assumptions}
 \begin{itemize}
@@ -929,11 +968,16 @@ None.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
-
-None.
+\begin{itemize}
+\item bed\_mpu\_detect: Returns the current values of the accelerometer and gyroscope.
+\item bed\_hr\_detect: Returns the current values of heartrate sensor.
+\end{itemize}
 
 \subsubsection{Local Functions}
-None.
+\begin{itemize}
+\item bed\_mpu\_setup
+\item bed\_hr\_setup
+\end{itemize}
 
 \newpage
 
@@ -950,6 +994,11 @@ Sensor Reading (Section \ref{mSA1})
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+\begin{itemize}
+\item ACTIVITY\_STEPS
+\item ACTIVITY\_IDLE\_RESET
+\item ACTIVITY\_IDLE\_WAIT
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
