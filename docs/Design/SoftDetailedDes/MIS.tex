@@ -730,9 +730,7 @@ None.
 
 \subsubsection{Exported Constants}
 \begin{itemize}
-\item Minimum battery threshold for voltage
-\item Maximum battery limit for voltage
-\item Low charge indicator for 10\% limit
+\item BAT\_LOW\_THRESHOLD: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Exported Access Programs}
@@ -742,7 +740,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-bed\_getBatteryLev & Bat\_Raw & $\mathbb{Z}$ & BED\_ERR\_BAT\\
+bed\_get\_bat\_level & - & battery\_level: $\mathbb{Z}$ & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -756,8 +754,7 @@ None.
 \subsubsection{Environment Variables}
 
 \begin{itemize}
-\item battery level
-\item low\_Flag
+\item battery\_level: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -766,17 +763,13 @@ System responds instantaneously to changes in flags (exported constants).
 
 \subsubsection{Access Routine Semantics}
 
-bed\_getBatteryLev: 
 \begin{itemize}
-\item Transition: Extracts the current battery level
-\item Output: Integer percentage value of the battery level.
-\item Exception:  BED\_ERR\_BAT = Z
+\item bed\_get\_bat\_level: This function returns the battery voltage level as a percentage of the battery's full charge.
 \end{itemize}
 
 \subsubsection{Local Functions}
-\begin{itemize}
-\item bed\_lowIndicator: boolean
-\end{itemize}
+None.
+
 \newpage
 
 %Data Storage Module
@@ -804,9 +797,9 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-listDir & FS, const char*, uint8\_t & dirname: string & BED\_ERR\_SD: $\mathbb{Z}$ \\
-createDir & FS, const char *& - & BED\_ERR\_SD: $\mathbb{Z}$ \\
-removeDir & FS, const char * & - & BED\_ERR\_SD: $\mathbb{Z}$ \\
+listDir & fs: type FS, dirname: char *, levels: $\mathbb{Z}$ & - & - \\
+createDir & fs: type FS, path: char * & - & - \\
+removeDir & fs: type FS, path: char * & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -819,7 +812,7 @@ None.
 
 \subsubsection{Environment Variables}
 \begin{itemize}
-\item fs: A text file.
+\item fs: type FS
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -829,16 +822,30 @@ None.
 \end{itemize}
 \subsubsection{Access Routine Semantics}
 
-None.
+\begin{itemize}
+\item listDir: This function lists all files in the path given.
+\item createDir: This function creates a new folder at the designated path.
+\item removeDir: This function removes a folder at the designated path.
+\end{itemize}
 
 \subsubsection{Local Functions}
-\begin{itemize}
-\item readFile
-\item writeFile
-\item appendFile
-\item renameFile
-\item deleteFile
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{3.5cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+readFile & fs: type FS, path: char * & - & - \\
+writeFile & path: char * , message: char *& - & - \\
+appendFile & fs: type FS, path: char * , message: char * & - & - \\
+renameFile & fs: type FS, path1: char * , path2: char * & - & -\\
+deleteFile & fs: type FS, path: char * & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{FS Datatype Details}
+The FS object as defined by the SD.h class.
 
 \newpage
 
@@ -857,13 +864,14 @@ microSD Module (Section \ref{mDS_1})   %%%%%%%%%%%%
 \subsubsection{Exported Constants}
 
 \begin{itemize}
-\item Size of the field: First Name = 25
-\item Size of the field: Last Name = 25
-\item Size of the field: Gender = 25
-\item Size of the field: Phone Number = 20
-\item Size of the field: Email = 25
-\item Size of the field: Address = 255
-\item Size of the field: Device model number = 50
+\item MAX\_CHAR\_LIMIT: $\mathbb{Z}$
+\item MAX\_FIRST\_NAME\_SIZE: $\mathbb{Z}$
+\item MAX\_LAST\_NAME\_SIZE: $\mathbb{Z}$
+\item MAX\_GENDER\_SIZE: $\mathbb{Z}$
+\item MAX\_PHONE\_SIZE: $\mathbb{Z}$
+\item MAX\_EMAIL\_SIZE: $\mathbb{Z}$
+\item MAX\_ADDRESS\_SIZE: $\mathbb{Z}$
+\item MAX\_DEVICE\_MODEL\_SIZE: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Exported Access Programs}
@@ -873,11 +881,11 @@ microSD Module (Section \ref{mDS_1})   %%%%%%%%%%%%
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-object.connect & - & Read\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
-object.cursor & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
-object.execute & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
-object.commit & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
-object.close & Write\_Data: string, integer & BED\_ERR\_DB: $\mathbb{Z}$ \\
+sqlite3.connect & database: type path-like & connection: type Connection & ProgrammingError: type Exception \\
+conn.cursor & - & cursor: type Cursor & ProgrammingError: type Exception \\
+cursor.execute & sql: char array & - & ProgrammingError: type Exception \\
+conn.commit & - & - & ProgrammingError: type Exception \\
+conn.close & - & - & ProgrammingError: type Exception \\
 \hline
 \end{tabular}
 \end{center}
@@ -891,29 +899,48 @@ None.
 \subsubsection{Environment Variables}
 
 \begin{itemize}
-\item First Name 
-\item Last Name 
-\item Gender 
-\item Phone Number 
-\item Email 
-\item Address 
-\item Device Model Number
+\item FirstName: char array
+\item LastName: char array
+\item Gender: char array
+\item PhoneNumber: char array
+\item EmailID: char array
+\item Address: char array
+\item MonitoringPeriod: char array
+\item TrackerModel: char array
+\item Age: $\mathbb{Z}$
+\item ParticipantID: $\mathbb{Z}$
+\item StudyID: $\mathbb{Z}$
+\item Weight: float
+\item Height: float
 \end{itemize}
 
 \subsubsection{Assumptions}
 None.
 \subsubsection{Access Routine Semantics}
 \begin{itemize}
-\item object.connect(): Connects to the database.
-\item object.cursor(): Establishes connection between the database and the query.
-\item object.execute():
-\item object.commit():
-\item object.close(): Disconnects from the database.
+\item sqlite3.connect: Performs a handshake between the database and the host software
+\item conn.cursor: Establishes an object through which database transactions occur
+\item cursor.execute: Executes the SQl statement to the database on the current transaction
+\item conn.commit: Commits any pending transaction to the database
+\item conn.close: Closes the database connection
+
 \end{itemize}
 
 \subsubsection{Local Functions}
 
 None.
+
+\subsubsection{path-like Datatype Details}
+The path-like-object is an object which contains the string of the path to the .db database file
+
+\subsubsection{Connection Datatype Details}
+An object representing the sqlite3 object.
+
+\subsubsection{Cursor Datatype Details}
+An object which contains the functions which manipulate the database
+
+\subsubsection{ProgrammingError Datatype Details}
+A subclass of DatabaseError datatype.
 
 \newpage
 
@@ -923,7 +950,7 @@ None.
 
 \subsection{Module}
 
-Sensor\_Reding
+Sensor\_Reading
 
 \subsection{Uses}
 
@@ -934,32 +961,40 @@ Battery Management (Section \ref{mBM})
 \subsubsection{Exported Constants}
 
 \begin{itemize}
-\item ACCEL\_SENSITIVITY: Z
-\item GYRO\_SENSITIVITY: Z
-\item Threshold: Z
-\item MPU\_CALIBRATION: Z
+\item ACCEL\_SENSITIVITY: $\mathbb{Z}$
+\item GYRO\_SENSITIVITY: $\mathbb{Z}$
+\item Threshold: $\mathbb{Z}$
+\item MPU\_CALIBRATION: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Exported Access Programs}
-\begin{itemize}
-\item bed\_mpu\_detect
-\item bed\_hr\_detect
-\end{itemize}
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{3.5cm} p{3.6cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+bed\_mpu\_detect & currentTime: $\mathbb{Z}$ & - & - \\
+bed\_hr\_detect & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-$currTime: \mathbb{R}$ 
+\begin{itemize}
+\item currentTime: $\mathbb{Z}$
+\end{itemize}
 
 \subsubsection{Environment Variables}
 %interaction with device driver, screen, keyboard, file
 \begin{itemize}
-\item curr\_ax
-\item curr\_ay
-\item curr\_az
-\item curr\_gx
-\item curr\_gy
-\item curr\_gz
+\item curr\_ax: $\mathbb{Z}$
+\item curr\_ay: $\mathbb{Z}$
+\item curr\_a$\mathbb{Z}$: $\mathbb{Z}$
+\item curr\_gx: $\mathbb{Z}$
+\item curr\_gy: $\mathbb{Z}$
+\item curr\_g$\mathbb{Z}$: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -969,15 +1004,21 @@ $currTime: \mathbb{R}$
 
 \subsubsection{Access Routine Semantics}
 \begin{itemize}
-\item bed\_mpu\_detect: Returns the current values of the accelerometer and gyroscope.
-\item bed\_hr\_detect: Returns the current values of heartrate sensor.
+\item bed\_mpu\_detect: returns the current values of accelerometer and gyroscope.
+\item bed\_hr\_detect: returns the current values of heart rate sensor.
 \end{itemize}
 
 \subsubsection{Local Functions}
-\begin{itemize}
-\item bed\_mpu\_setup
-\item bed\_hr\_setup
-\end{itemize}
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{3.5cm} p{3.6cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+bed\_mpu\_setup & - & b32\_err\_code: $\mathbb{Z}$ & b32\_err\_code: BED\_ERR\_MPU \\
+bed\_hr\_setup & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
 
 \newpage
 
@@ -995,9 +1036,9 @@ Sensor Reading (Section \ref{mSA1})
 
 \subsubsection{Exported Constants}
 \begin{itemize}
-\item ACTIVITY\_STEPS
-\item ACTIVITY\_IDLE\_RESET
-\item ACTIVITY\_IDLE\_WAIT
+\item ACTIVITY\_STEPS: $\mathbb{Z}$
+\item ACTIVITY\_IDLE\_RESET: $\mathbb{Z}$
+\item ACTIVITY\_IDLE\_WAIT: $\mathbb{Z}$
 \end{itemize}
 
 \subsubsection{Exported Access Programs}
@@ -1007,9 +1048,8 @@ Sensor Reading (Section \ref{mSA1})
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-HeartRate\_Read & - & Read\_Data: integer & BED\_ERR\_SE: $\mathbb{Z}$ \\
-MPU\_Read & -& Read\_Data: integer & BED\_ERR\_SE: $\mathbb{Z}$ \\
-Touch\_Read & - & Read\_Data: bool & BED\_ERR\_SE: $\mathbb{Z}$ \\
+bed\_mpu\_detect & currentTime: $\mathbb{Z}$ & - & - \\
+bed\_hr\_detect & - & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -1017,12 +1057,18 @@ Touch\_Read & - & Read\_Data: bool & BED\_ERR\_SE: $\mathbb{Z}$ \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-None.
+\begin{itemize}
+\item currentTime: $\mathbb{Z}$
+\end{itemize}
 
 \subsubsection{Environment Variables}
 %interaction with device driver, screen, keyboard, file
-None.
-
+\begin{itemize}
+\item step\_count: $\mathbb{Z}$
+\item TOTAL\_STEP: $\mathbb{Z}$
+\item step\_flag: $\mathbb{Z}$
+\item activity\_flag: $\mathbb{Z}$
+\end{itemize}
 \subsubsection{Assumptions}
 
 \begin{itemize}
@@ -1030,59 +1076,26 @@ None.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
-None.
-
+\begin{itemize}
+\item bed\_mpu\_detect: returns the current values of accelerometer and gyroscope
+\item bed\_hr\_detect: returns the current values of heart rate sensor
+\end{itemize}
 \subsubsection{Local Functions}
 
-data\_smoothing\_filter(): The purpose of this function is to make sure that the data coming from all the sensors is smoothed, in order to prevent a prompt from being generated erroneously and disturbing the user.
-
-\newpage
-
-\section{MIS of Prompt Validity Module} \label{mSA3} 
-
-\subsection{Module}
-
-Sensor\_Prompt
-
-\subsection{Uses}
-
-Sensor Data Processing (Section \ref{mSA2})
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-\subsubsection{Exported Access Programs}
-
 \begin{center}
-\begin{tabular}{p{3cm} p{2cm} p{4cm} p{4cm}}
+\begin{tabular}{p{4cm} p{1cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Check\_Validity & Read\_Data & Prompt\_Valid: bool & BED\_ERR\_SE: $\mathbb{Z}$ \\
+bed\_mpu\_setup & - & b32\_err\_code: $\mathbb{Z}$ & b32\_err\_code: BED\_ERR\_MPU\\
+bed\_hr\_setup & - & - & -\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-None.
-
-\subsubsection{Environment Variables}
-%interaction with device driver, screen, keyboard, file
-None.
-
-\subsubsection{Assumptions}
-
-None.
-
-\subsubsection{Access Routine Semantics}
-None.
-
-\subsubsection{Local Functions}
 
 \newpage
+
 
 %Display System Module
 
@@ -1100,7 +1113,13 @@ Prompt Generation Module (Section \ref{mPG}), Real Time Clock Module (Section \r
 
 \subsubsection{Exported Constants}
 
-None.
+\begin{itemize}
+\item TEXT\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item BED\_TFT\_CS: $\mathbb{Z}$
+\item BED\_TFT\_DC: $\mathbb{Z}$
+\item BED\_TFT\_MOSI: $\mathbb{Z}$
+\item BED\_TFT\_SCK: $\mathbb{Z}$
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
@@ -1109,9 +1128,8 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Disp\_Time & - & - & BED\_ERR\_DISP: $\mathbb{Z}$ \\
-Disp\_Prompt & Prompt: string & Response: string & BED\_ERR\_DISP: $\mathbb{Z}$ \\
-Switch\_Window & Window:  $\mathbb{Z}$ & - &  BED\_ERR\_DISP: $\mathbb{Z}$ \\
+bed\_display\_prompt & direction: $\mathbb{Z}$, prompt\_index: $\mathbb{Z}$, no\_of\_options: $\mathbb{Z}$, flag: $\mathbb{Z}$ & - & -  \\
+bed\_display\_date\_time & - & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -1120,11 +1138,21 @@ Switch\_Window & Window:  $\mathbb{Z}$ & - &  BED\_ERR\_DISP: $\mathbb{Z}$ \\
 
 \subsubsection{State Variables}
 
-None.
+\begin{itemize}
+\item draw\_flag: $\mathbb{Z}$
+\item wait\_flag: $\mathbb{Z}$
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-None.
+\begin{itemize}
+\item scroll\_index: $\mathbb{Z}$
+\item curr\_hr: $\mathbb{Z}$
+\item curr\_min: $\mathbb{Z}$
+\item curr\_sec: $\mathbb{Z}$
+\item prompt\_buff: char array
+\item inPain: char array
+\end{itemize}
 
 \subsubsection{Assumptions}
 
@@ -1132,11 +1160,28 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-None.
+\begin{itemize}
+\item bed\_display\_prompt: This function takes the type of prompt and prompt index and accordingly generates the corresponding questions and options. Upon answering all the questions, it will save the answers in the SD card.
+\item bed\_display\_date\_time: This function grabs the current time and draws it to the screen.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-None.
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{3.5cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+bed\_init\_display & - & Response: string & BED\_ERR\_DISPLAY\_SYSTEM: $\mathbb{Z}$  \\
+bed\_splash\_screen & - & - & - \\
+bed\_display\_one\_line & displayText: char *, coordX: $\mathbb{Z}$, coordY: $\mathbb{Z}$, clearFlag: $\mathbb{Z}$ & - & -   \\
+drawHour & - & - & - \\
+drawMinute & - & - & -  \\
+drawSecond & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
 
 \newpage
 
@@ -1152,25 +1197,23 @@ Prompt\_Gen
 
 \subsection{Uses}
 
-Sensor Array Module (Section \ref{mSA})
+Sensor Array Module (Section \ref{mSA2})
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-
-$max\_prompts: \mathbb{Z}$
+\begin{itemize}
+\item MAX\_PROMPTS: $\mathbb{Z}$
+\item WALK\_PROMPT\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item ALARM\_PROMPT\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item prompt\_test: type Prompt (struct)
+\item prompt\_walking: type Prompt (struct)
+\item prompt\_alarm: type Prompt (struct)
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
-\begin{center}
-\begin{tabular}{p{3cm} p{3cm} p{3cm} p{4cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-Access\_Prompt & Prompt\_: $\mathbb{Z}$ & Prompt: Struct & BED\_ERR\_PG: $\mathbb{Z}$ \\
-\hline
-\end{tabular}
-\end{center}
+None.
 
 \subsection{Semantics}
 
@@ -1193,6 +1236,17 @@ None.
 \subsubsection{Local Functions}
 
 None.
+
+\subsubsection{Prompt Datatype Details}
+
+\begin{itemize}
+\item Prompt is a struct composed of 5 fields:
+\item prompt\_id: $\mathbb{Z}$
+\item no\_of\_options: $\mathbb{Z}$
+\item prompt\_question: char array
+\item prompt\_possible\_answers: char array (2D)
+\item prompt\_response: char array
+\end{itemize}
 
 \newpage
 
@@ -1214,7 +1268,16 @@ None.
 
 \subsubsection{Exported Constants}
 
-None.
+\begin{itemize}
+\item RTC\_ADDRESS: $\mathbb{Z}$
+\item ALARM\_NUMBER: $\mathbb{Z}$
+\item alarms: $\mathbb{Z}$ array (2D)
+\item rtc: type RTC\_DS1307
+\item now: type DateTime
+\item daysOfTheWeek: char array (2D)
+\item monthsOfTheYear: char array (2D)
+\item rtc\_date\_time: type RTC\_DATE\_TIME
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
@@ -1223,7 +1286,9 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-Get\_DateTime & - & $ \mathbb{R}$ & BED\_ERR\_RTC: $ \mathbb{Z}$ \\
+bed\_display\_info & - & - & -  \\
+bed\_alarm\_prompt & prev\_input: $\mathbb{Z}$ & new\_input: $\mathbb{Z}$ & - \\
+bed\_set\_explicit\_date\_time & date: char *, time: char * & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -1231,10 +1296,10 @@ Get\_DateTime & - & $ \mathbb{R}$ & BED\_ERR\_RTC: $ \mathbb{Z}$ \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-
-\textit{Date}: string\\
-\textit{Time}: string\\
-
+\begin{itemize}
+\item alarm\_flag: $\mathbb{Z}$
+\item curr\_alarm: $\mathbb{Z}$
+\end{itemize}
 \subsubsection{Environment Variables}
 
 None.
@@ -1247,61 +1312,48 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-None.
-
-\subsubsection{Local Functions}
-
-None.
-\newpage
-
-
-%Parameter Selection
-
-\section{MIS of Create New User Module} \label{mPS} 
-
-\subsection{Module}
-
-NewUser\_Enter
-
-\subsection{Uses}
-
-Local Database Module (Section \ref{mDS_2})
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None.
-
-\subsubsection{Exported Access Programs}
-
-None.
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-$param\_input$: string, integer
-
-\subsubsection{Environment Variables}
-
-File: A new information line in database.
-
-\subsubsection{Assumptions}
-
 \begin{itemize}
-\item All configuration parameters within acceptable limits.
+\item bed\_display\_info: This function grabs the current time from the DateTime struct, and stores it in the RTC\_DATE\_TIME struct.
+\item bed\_alarm\_prompt: This function checks whether or not an alarm should be triggered based on the time, and accordingly updates the state.
+\item bed\_set\_explicit\_date\_time: This function sets the date and time of the RTC explicitly.
 \end{itemize}
 
-\subsubsection{Access Routine Semantics}
-
-None.
-
 \subsubsection{Local Functions}
 
-None.
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+bed\_init\_rtc & - & b32\_err\_code: $\mathbb{Z}$ & b32\_err\_code: BED\_ERR\_RTC\_SYSTEM \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{RTC\_DATE\_TIME Datatype Details}
+
+RTC\_DATE\_TIME is a struct composed of 6 fields:
+
+\begin{itemize}
+\item rtc\_year: $\mathbb{Z}$
+\item rtc\_month: $\mathbb{Z}$
+\item rtc\_day: $\mathbb{Z}$
+\item rtc\_hour: $\mathbb{Z}$
+\item rtc\_min: $\mathbb{Z}$
+\item rtc\_sec: $\mathbb{Z}$
+\end{itemize}
+
+\subsubsection{RTC\_DS1307 Datatype Details}
+The RTC object as defined by the RTClib system class.
+
+
+\subsubsection{DateTime Datatype Details}
+The DateTime object as defined by the RTClib system class.
 
 \newpage
+
+
+%Configuration Selection
 
 \section{MIS of Configuration Module} \label{mPS2} 
 
@@ -1317,21 +1369,55 @@ MicroSD Module (Section \ref{mDS_1})
 
 \subsubsection{Exported Constants}
 
-None.
+\begin{itemize}
+\item MAX\_CHAR\_LIMIT: $\mathbb{Z}$
+\item MAX\_FIRST\_NAME\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_LAST\_NAME\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_GENDER\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_PHONE\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_EMAIL\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_ADDRESS\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\item MAX\_DEVICE\_MODEL\_SI$\mathbb{Z}$E: $\mathbb{Z}$
+\end{itemize}
 
 \subsubsection{Exported Access Programs}
 
-None.
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+object.text & - & enter\_text: char array& - \\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-$param\_input$: string
+\begin{itemize}
+\item CreateRecord: type QPushButton
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-None.
+\begin{itemize}
+\item FirstName: char array
+\item LastName: char array
+\item Gender: char array
+\item PhoneNumber: char array
+\item EmailID: char array
+\item Address: char array
+\item MonitoringPeriod: char array
+\item TrackerModel: char array
+\item Age: $\mathbb{Z}$
+\item ParticipantID: $\mathbb{Z}$
+\item StudyID: $\mathbb{Z}$
+\item Weight: float
+\item Height: float
+\end{itemize}
+
 
 \subsubsection{Assumptions}
 
@@ -1341,11 +1427,16 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-None.
+\begin{itemize}
+\item object.text: This function grabs what is typed into the UI input box and stores it into a variable
+\end{itemize}
 
 \subsubsection{Local Functions}
 
 None.
+
+\subsubsection{QPushButton Datatype Details}
+The object from the PyQt class which enables UI buttons.
 
 \newpage
 
@@ -1367,17 +1458,36 @@ None.
 
 \subsubsection{Exported Access Programs}
 
-None.
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+OpenHeart & - & - & - \\
+OpenSteps & - & - & - \\
+OpenActivity & - & - & - \\
+sqlite3.connect & database: type path-like & connection: type Connection & ProgrammingError: type Exception \\
+conn.cursor & - & cursor: type Cursor & ProgrammingError: type Exception \\
+cursor.execute & sql: char array & - & ProgrammingError: type Exception \\
+conn.commit & - & - & ProgrammingError: type Exception \\
+conn.close & - & - & ProgrammingError: type Exception \\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-$graph\_select$: bool
+\begin{itemize}
+\item HeartGraph: type QPushButton
+\item StepsGraph: type QPushButton
+\item ActivityGraph: type QPushButton
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-File: A database on the host computer.
+None.
 
 \subsubsection{Assumptions}
 
@@ -1387,28 +1497,61 @@ File: A database on the host computer.
 
 \subsubsection{Access Routine Semantics}
 
-None.
+\begin{itemize}
+\item OpenHeart: This function fetches heart rate and time data from the database and plots it on the graph
+\item OpenSteps: This function fetches step and time data from the database and plots it on the graph
+\item OpenActivity: This function fetches activity and time data from the database and plots it on the graph
+\item sqlite3.connect: Performs a handshake between the database and the host software
+\item conn.cursor: Establishes an object through which database transactions occur
+\item cursor.execute: Executes the SQl statement to the database on the current transaction
+\item conn.commit: Commits any pending transaction to the database
+\item conn.close: Closes the database connection
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-$graph\_stat$: Statistical analysis function.
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{2cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Plot & PlotTime: type Pandas Data Frame, Yaxis: type Pandas Data Frame, name: char array, color: char array & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsubsection{QPushButton Datatype Details}
+The object from the PyQt class which enables UI buttons.
+
+\subsubsection{path-like Datatype Details}
+The path-like-object is an object which contains the string of the path to the .db database file
+
+\subsubsection{Connection Datatype Details}
+An object representing the sqlite3 object
+
+\subsubsection{Cursor Datatype Details}
+An object which contains the functions which manipulate the database
+
+\subsubsection{ProgrammingError Datatype Details}
+A subclass of DatabaseError datatype.
 
 \newpage
 
 %Physical Design Module 
 
-\section{MIS of Watch Strap Module} \label{mPD} 
+\section{MIS of Watch Case and Straps Module} \label{mPD} 
 
 \subsection{Module}
 
-Watch\_Strap
+Watch\_Case\_Strap
 
 \subsection{Uses}
-Watch Case Module (Section \ref{mPD2})
+
+None.
 
 \subsection{Syntax}
 
-Velcro straps going tied to the watch case.
 
 \subsubsection{Exported Constants}
 
@@ -1421,54 +1564,6 @@ None.
 \subsection{Semantics}
 
 Allow the device to be strapped onto the user.
-
-\subsubsection{State Variables}
-
-None.
-
-\subsubsection{Environment Variables}
-
-None.
-
-\subsubsection{Assumptions}
-
-Will not impact the functionality of any other components.
-
-\subsubsection{Access Routine Semantics}
-
-None.
-
-\subsubsection{Local Functions}
-
-None.
-
-\newpage
-
-
-\section{MIS of Watch Case Module} \label{mPD2} 
-
-\subsection{Module}
-
-Watch\_Case
-
-\subsection{Uses}
-None.
-
-\subsection{Syntax}
-
-CAD model and 3D printed.
-
-\subsubsection{Exported Constants}
-
-None.
-
-\subsubsection{Exported Access Programs}
-
-None.
-
-\subsection{Semantics}
-
-Holds the display screen, touch bezels, and display screen together into 1 single device.
 
 \subsubsection{State Variables}
 
